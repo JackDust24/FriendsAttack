@@ -13,6 +13,7 @@
 		9E21894B20DC7B41008997FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E21894920DC7B41008997FB /* Main.storyboard */; };
 		9E21894D20DC7B43008997FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E21894C20DC7B43008997FB /* Assets.xcassets */; };
 		9E21895020DC7B43008997FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E21894E20DC7B43008997FB /* LaunchScreen.storyboard */; };
+		9E21895820DC7C3C008997FB /* target.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E21895720DC7C3C008997FB /* target.scnassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		9E21894C20DC7B43008997FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E21894F20DC7B43008997FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E21895120DC7B43008997FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E21895720DC7C3C008997FB /* target.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = target.scnassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				9E21894C20DC7B43008997FB /* Assets.xcassets */,
 				9E21894E20DC7B43008997FB /* LaunchScreen.storyboard */,
 				9E21895120DC7B43008997FB /* Info.plist */,
+				9E21895720DC7C3C008997FB /* target.scnassets */,
 			);
 			path = "AR_Friends-Attack";
 			sourceTree = "<group>";
@@ -128,6 +131,7 @@
 				9E21894620DC7B41008997FB /* art.scnassets in Resources */,
 				9E21895020DC7B43008997FB /* LaunchScreen.storyboard in Resources */,
 				9E21894D20DC7B43008997FB /* Assets.xcassets in Resources */,
+				9E21895820DC7C3C008997FB /* target.scnassets in Resources */,
 				9E21894B20DC7B41008997FB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
