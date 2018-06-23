@@ -1,27 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A278a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <arscnView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="BrB-h1-WRS">
+                <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="AR_Friends_Attack" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dZE-Ig-3aI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </arscnView>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1KA-Vf-5pk">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </arscnView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ZZ-G9-9mb">
+                                <rect key="frame" x="151" y="73" width="73" height="36"/>
+                                <fontDescription key="fontDescription" name="Courier-Bold" family="Courier" pointSize="24"/>
+                                <state key="normal" title="Start">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="addTargets:" destination="BV1-FR-VrT" eventType="touchUpInside" id="zMY-Hv-gfM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0lT-hO-8i9">
+                                <rect key="frame" x="172.5" y="561" width="30" height="66"/>
+                                <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="48"/>
+                                <state key="normal" title="+"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="1KA-Vf-5pk" firstAttribute="leading" secondItem="VA2-3w-OvD" secondAttribute="leading" id="GpF-WJ-IbF"/>
+                            <constraint firstItem="6ZZ-G9-9mb" firstAttribute="centerX" secondItem="dZE-Ig-3aI" secondAttribute="centerX" id="NPb-l5-9TU"/>
+                            <constraint firstItem="1KA-Vf-5pk" firstAttribute="bottom" secondItem="VA2-3w-OvD" secondAttribute="bottom" id="OSI-iX-325"/>
+                            <constraint firstItem="0lT-hO-8i9" firstAttribute="centerX" secondItem="dZE-Ig-3aI" secondAttribute="centerX" id="QjU-AO-4F7"/>
+                            <constraint firstItem="1KA-Vf-5pk" firstAttribute="trailing" secondItem="VA2-3w-OvD" secondAttribute="trailing" id="d3X-OB-xBD"/>
+                            <constraint firstItem="1KA-Vf-5pk" firstAttribute="top" secondItem="dZE-Ig-3aI" secondAttribute="top" id="hSG-8B-f22"/>
+                            <constraint firstItem="VA2-3w-OvD" firstAttribute="bottom" secondItem="0lT-hO-8i9" secondAttribute="bottom" constant="40" id="uUX-yw-Ovb"/>
+                            <constraint firstItem="VA2-3w-OvD" firstAttribute="bottom" secondItem="6ZZ-G9-9mb" secondAttribute="bottom" constant="558" id="ums-OU-yUg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VA2-3w-OvD"/>
+                    </view>
                     <connections>
-                        <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
+                        <outlet property="sceneView" destination="1KA-Vf-5pk" id="qQO-A7-0Eh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="117.59999999999999" y="111.99400299850076"/>
         </scene>
     </scenes>
 </document>

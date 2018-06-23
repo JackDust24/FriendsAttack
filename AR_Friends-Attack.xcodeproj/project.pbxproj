@@ -8,24 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		9E21894420DC7B41008997FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E21894320DC7B41008997FB /* AppDelegate.swift */; };
-		9E21894620DC7B41008997FB /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E21894520DC7B41008997FB /* art.scnassets */; };
 		9E21894820DC7B41008997FB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E21894720DC7B41008997FB /* ViewController.swift */; };
 		9E21894B20DC7B41008997FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E21894920DC7B41008997FB /* Main.storyboard */; };
 		9E21894D20DC7B43008997FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E21894C20DC7B43008997FB /* Assets.xcassets */; };
 		9E21895020DC7B43008997FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E21894E20DC7B43008997FB /* LaunchScreen.storyboard */; };
 		9E21895820DC7C3C008997FB /* target.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E21895720DC7C3C008997FB /* target.scnassets */; };
+		9EC06F7720DE265A00138175 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC06F7620DE265A00138175 /* GameManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9E21894020DC7B41008997FB /* AR_Friends-Attack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AR_Friends-Attack.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E21894320DC7B41008997FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9E21894520DC7B41008997FB /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		9E21894720DC7B41008997FB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9E21894A20DC7B41008997FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9E21894C20DC7B43008997FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E21894F20DC7B43008997FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E21895120DC7B43008997FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E21895720DC7C3C008997FB /* target.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = target.scnassets; sourceTree = "<group>"; };
+		9EC06F7620DE265A00138175 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,8 +59,8 @@
 			isa = PBXGroup;
 			children = (
 				9E21894320DC7B41008997FB /* AppDelegate.swift */,
-				9E21894520DC7B41008997FB /* art.scnassets */,
 				9E21894720DC7B41008997FB /* ViewController.swift */,
+				9EC06F7620DE265A00138175 /* GameManager.swift */,
 				9E21894920DC7B41008997FB /* Main.storyboard */,
 				9E21894C20DC7B43008997FB /* Assets.xcassets */,
 				9E21894E20DC7B43008997FB /* LaunchScreen.storyboard */,
@@ -128,7 +128,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E21894620DC7B41008997FB /* art.scnassets in Resources */,
 				9E21895020DC7B43008997FB /* LaunchScreen.storyboard in Resources */,
 				9E21894D20DC7B43008997FB /* Assets.xcassets in Resources */,
 				9E21895820DC7C3C008997FB /* target.scnassets in Resources */,
@@ -144,6 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E21894820DC7B41008997FB /* ViewController.swift in Sources */,
+				9EC06F7720DE265A00138175 /* GameManager.swift in Sources */,
 				9E21894420DC7B41008997FB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
