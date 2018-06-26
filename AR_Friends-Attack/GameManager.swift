@@ -12,7 +12,7 @@ import UIKit
 class GameStateManager: NSObject {
     
     public var gameLevel: Int = 1
-    public var initialTargets: Int = 3
+    public var initialTargets: Int = 5
 
     public class func sharedInstance() -> GameStateManager {
         
