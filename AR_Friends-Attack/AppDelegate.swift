@@ -16,6 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+//        let navigationController: UINavigationController? = (self.window?.rootViewController as? UINavigationController)
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            // Show the dashboard
+        // navigationController?.pushViewController(storyboard.instantiateViewController(withIdentifier: "StartViewController"), animated: false)
+
+        
         return true
     }
 

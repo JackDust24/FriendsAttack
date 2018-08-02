@@ -7,16 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E07BC3C20ECF00700A26584 /* FriendDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E07BC3B20ECF00700A26584 /* FriendDetailViewController.swift */; };
+		9E07BC3E20ECF06900A26584 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E07BC3D20ECF06900A26584 /* AddFriendViewController.swift */; };
 		9E21894420DC7B41008997FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E21894320DC7B41008997FB /* AppDelegate.swift */; };
 		9E21894820DC7B41008997FB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E21894720DC7B41008997FB /* ViewController.swift */; };
 		9E21894B20DC7B41008997FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E21894920DC7B41008997FB /* Main.storyboard */; };
 		9E21894D20DC7B43008997FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E21894C20DC7B43008997FB /* Assets.xcassets */; };
 		9E21895020DC7B43008997FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E21894E20DC7B43008997FB /* LaunchScreen.storyboard */; };
 		9E21895820DC7C3C008997FB /* target.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E21895720DC7C3C008997FB /* target.scnassets */; };
+		9E2AE57020ECBF0B00AA54B9 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2AE56F20ECBF0B00AA54B9 /* StartViewController.swift */; };
+		9E2AE57220ECBF3200AA54B9 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2AE57120ECBF3200AA54B9 /* FriendsViewController.swift */; };
+		9EB2DF29210F1ED400444981 /* FriendsCollectionViewCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB2DF28210F1ED400444981 /* FriendsCollectionViewCall.swift */; };
 		9EC06F7720DE265A00138175 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC06F7620DE265A00138175 /* GameManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9E07BC3B20ECF00700A26584 /* FriendDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDetailViewController.swift; sourceTree = "<group>"; };
+		9E07BC3D20ECF06900A26584 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
 		9E21894020DC7B41008997FB /* AR_Friends-Attack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AR_Friends-Attack.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E21894320DC7B41008997FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E21894720DC7B41008997FB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -25,6 +32,9 @@
 		9E21894F20DC7B43008997FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E21895120DC7B43008997FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E21895720DC7C3C008997FB /* target.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = target.scnassets; sourceTree = "<group>"; };
+		9E2AE56F20ECBF0B00AA54B9 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		9E2AE57120ECBF3200AA54B9 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		9EB2DF28210F1ED400444981 /* FriendsCollectionViewCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCollectionViewCall.swift; sourceTree = "<group>"; };
 		9EC06F7620DE265A00138175 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -58,6 +68,9 @@
 		9E21894220DC7B41008997FB /* AR_Friends-Attack */ = {
 			isa = PBXGroup;
 			children = (
+				9E2AE56F20ECBF0B00AA54B9 /* StartViewController.swift */,
+				9E2AE57120ECBF3200AA54B9 /* FriendsViewController.swift */,
+				9EB2DF28210F1ED400444981 /* FriendsCollectionViewCall.swift */,
 				9E21894320DC7B41008997FB /* AppDelegate.swift */,
 				9E21894720DC7B41008997FB /* ViewController.swift */,
 				9EC06F7620DE265A00138175 /* GameManager.swift */,
@@ -66,6 +79,8 @@
 				9E21894E20DC7B43008997FB /* LaunchScreen.storyboard */,
 				9E21895120DC7B43008997FB /* Info.plist */,
 				9E21895720DC7C3C008997FB /* target.scnassets */,
+				9E07BC3B20ECF00700A26584 /* FriendDetailViewController.swift */,
+				9E07BC3D20ECF06900A26584 /* AddFriendViewController.swift */,
 			);
 			path = "AR_Friends-Attack";
 			sourceTree = "<group>";
@@ -142,7 +157,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EB2DF29210F1ED400444981 /* FriendsCollectionViewCall.swift in Sources */,
 				9E21894820DC7B41008997FB /* ViewController.swift in Sources */,
+				9E07BC3E20ECF06900A26584 /* AddFriendViewController.swift in Sources */,
+				9E2AE57220ECBF3200AA54B9 /* FriendsViewController.swift in Sources */,
+				9E07BC3C20ECF00700A26584 /* FriendDetailViewController.swift in Sources */,
+				9E2AE57020ECBF0B00AA54B9 /* StartViewController.swift in Sources */,
 				9EC06F7720DE265A00138175 /* GameManager.swift in Sources */,
 				9E21894420DC7B41008997FB /* AppDelegate.swift in Sources */,
 			);
