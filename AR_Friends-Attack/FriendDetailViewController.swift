@@ -45,7 +45,8 @@ class FriendDetailViewController: UIViewController {
 //        if let detailContent = detailItem?.valueForKey("content") as? String{
 //            self.webView.loadHTMLString(detailContent as String, baseURL:nil)
 //        }
-        nameLabel.text = name
+        // nameLabel.text = name
+        nameLabel.text = "Test"
     }
     
     

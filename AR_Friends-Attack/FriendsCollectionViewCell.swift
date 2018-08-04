@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class FriendsCollectionViewCall: UICollectionViewCell {
+class FriendsCollectionViewCell: UICollectionViewCell {
     @IBOutlet var friendImage: UIImageView!
     @IBOutlet var friendLabel: UILabel!
     

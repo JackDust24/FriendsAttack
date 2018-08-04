@@ -17,7 +17,7 @@
 		9E21895820DC7C3C008997FB /* target.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E21895720DC7C3C008997FB /* target.scnassets */; };
 		9E2AE57020ECBF0B00AA54B9 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2AE56F20ECBF0B00AA54B9 /* StartViewController.swift */; };
 		9E2AE57220ECBF3200AA54B9 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2AE57120ECBF3200AA54B9 /* FriendsViewController.swift */; };
-		9EB2DF29210F1ED400444981 /* FriendsCollectionViewCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB2DF28210F1ED400444981 /* FriendsCollectionViewCall.swift */; };
+		9EB2DF29210F1ED400444981 /* FriendsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB2DF28210F1ED400444981 /* FriendsCollectionViewCell.swift */; };
 		9EC06F7720DE265A00138175 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC06F7620DE265A00138175 /* GameManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,7 +34,7 @@
 		9E21895720DC7C3C008997FB /* target.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = target.scnassets; sourceTree = "<group>"; };
 		9E2AE56F20ECBF0B00AA54B9 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		9E2AE57120ECBF3200AA54B9 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
-		9EB2DF28210F1ED400444981 /* FriendsCollectionViewCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCollectionViewCall.swift; sourceTree = "<group>"; };
+		9EB2DF28210F1ED400444981 /* FriendsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCollectionViewCell.swift; sourceTree = "<group>"; };
 		9EC06F7620DE265A00138175 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,7 +70,7 @@
 			children = (
 				9E2AE56F20ECBF0B00AA54B9 /* StartViewController.swift */,
 				9E2AE57120ECBF3200AA54B9 /* FriendsViewController.swift */,
-				9EB2DF28210F1ED400444981 /* FriendsCollectionViewCall.swift */,
+				9EB2DF28210F1ED400444981 /* FriendsCollectionViewCell.swift */,
 				9E21894320DC7B41008997FB /* AppDelegate.swift */,
 				9E21894720DC7B41008997FB /* ViewController.swift */,
 				9EC06F7620DE265A00138175 /* GameManager.swift */,
@@ -157,7 +157,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9EB2DF29210F1ED400444981 /* FriendsCollectionViewCall.swift in Sources */,
+				9EB2DF29210F1ED400444981 /* FriendsCollectionViewCell.swift in Sources */,
 				9E21894820DC7B41008997FB /* ViewController.swift in Sources */,
 				9E07BC3E20ECF06900A26584 /* AddFriendViewController.swift in Sources */,
 				9E2AE57220ECBF3200AA54B9 /* FriendsViewController.swift in Sources */,

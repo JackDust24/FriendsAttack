@@ -103,7 +103,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="balloons" translatesAutoresizingMaskIntoConstraints="NO" id="3gZ-Xa-Nz1">
-                                <rect key="frame" x="0.0" y="-667" width="750" height="1334"/>
+                                <rect key="frame" x="0.0" y="-20" width="375" height="687"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="flG-ab-70I">
@@ -125,15 +125,15 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionViewCell" id="JqO-sP-6As" customClass="FriendsCollectionViewCall" customModule="AR_Friends_Attack" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionViewCell" id="JqO-sP-6As" customClass="FriendsCollectionViewCell" customModule="AR_Friends_Attack" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="115" height="190"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="115" height="190"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ry-TB-2Ch">
-                                                    <rect key="frame" x="10" y="118" width="85" height="52"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ry-TB-2Ch">
+                                                    <rect key="frame" x="10" y="118" width="42" height="52"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -175,10 +175,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aNF-QO-dS9"/>
                     </view>
-                    <connections>
-                        <segue destination="WDQ-dq-uaG" kind="presentation" identifier="friendView" id="U70-Cz-cGe"/>
-                        <segue destination="LhA-sm-zNc" kind="presentation" identifier="addFriend" id="Ccb-Vr-h1M"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FcQ-Gu-dbT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -201,8 +197,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="3pS-x6-QBk" firstAttribute="trailing" secondItem="SGZ-tI-ZpF" secondAttribute="trailing" constant="167" id="40B-jF-zwU"/>
-                            <constraint firstItem="SGZ-tI-ZpF" firstAttribute="leading" secondItem="3pS-x6-QBk" secondAttribute="leading" constant="166" id="hU6-FY-Oiw"/>
+                            <constraint firstItem="3pS-x6-QBk" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="SGZ-tI-ZpF" secondAttribute="trailing" id="40B-jF-zwU"/>
+                            <constraint firstItem="SGZ-tI-ZpF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3pS-x6-QBk" secondAttribute="leading" id="hU6-FY-Oiw"/>
                             <constraint firstItem="SGZ-tI-ZpF" firstAttribute="top" secondItem="3pS-x6-QBk" secondAttribute="top" constant="68" id="idm-KR-92h"/>
                             <constraint firstItem="SGZ-tI-ZpF" firstAttribute="centerX" secondItem="9nd-HL-tp6" secondAttribute="centerX" id="wgU-MC-6dp"/>
                         </constraints>
