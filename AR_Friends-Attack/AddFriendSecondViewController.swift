@@ -1,14 +1,14 @@
 //
-//  StartViewController.swift
+//  AddFriendSecondViewController.swift
 //  AR_Friends-Attack
 //
-//  Created by JasonMac on 4/7/2561 BE.
+//  Created by JasonMac on 12/8/2561 BE.
 //  Copyright © 2561 JasonMac. All rights reserved.
 //
 
 import UIKit
 
-class StartViewController: UIViewController {
+class AddFriendSecondViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,28 +21,7 @@ class StartViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func performSegue(withIdentifier identifier: String, sender: Any?) {
-        
-        print("performSegue")
 
-        var secondController = ""
-        
-        if identifier == "viewFriends" {
-            print("JTEST")
-            secondController = "FriendsViewController"
-           
-        } else  {
-            secondController = "ViewController"
-
-        }
-        
-        let secondViewController = storyboard?.instantiateViewController(withIdentifier: secondController)
-        self.navigationController?.pushViewController(secondViewController!, animated: true
-        
-)
-    }
-    
-  
     /*
     // MARK: - Navigation
 

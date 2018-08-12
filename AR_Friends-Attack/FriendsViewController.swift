@@ -21,6 +21,8 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.isNavigationBarHidden = false
 
         
         // self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "friendCell")
@@ -33,89 +35,77 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
         // Dispose of any resources that can be recreated.
     }
     
-
-    
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//
-//        print("Prepare for segue")
-//
-//        if segue.identifier == "friendView" {
-//            print("CHECK")
-//
-//            if let indexPath = self.collectionView?.indexPath(for: sender as! FriendsCollectionViewCell) {
-//                print("DONE")
-//                let detailVC = segue.destination as! FriendDetailViewController
-//                detailVC.name = friends[indexPath.row]
-//            }
-//            print("Index info \(self.collectionView.indexPath)")
-//        }
-//
-//    }
-    
-    override func performSegue(withIdentifier identifier: String, sender: Any?) {
-
-        print("Perform  segue")
-
-        if identifier == "friendView" {
-            print("Perform  segue2 - friendView")
-
-            // let selectedRow = indexPath.row
-            // detailVC.park = self.parksArray[selectedRow]
-
-            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-
-          
-            // let friendName = friends[indexPath.row]
-
-            let detailVC = "FriendDetailViewController"
-            let secondViewController = storyboard.instantiateViewController(withIdentifier: detailVC)
-            self.navigationController?.pushViewController(secondViewController, animated: true)
-            // secondViewController.name = friendName
-            
-            // let detailVC = FriendDetailViewController()
-
-        } else if identifier == "addFriend" {
-            print("Perform  segue4 - addFriend")
-            
-            // let selectedRow = indexPath.row
-            // detailVC.park = self.parksArray[selectedRow]
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            
-            let secondViewController = storyboard.instantiateViewController(withIdentifier: "AddFriendViewController") as! AddFriendViewController
-            //let friendName = friends[indexPath.row]
-            
-            self.navigationController?.pushViewController(secondViewController, animated: true)
-            // secondViewController.name = friendName
-            
-            // let detailVC = FriendDetailViewController()
-            
+    // We don't want Add Friend to do the Segue, so we block it here. Add Friend has a tag 0f 100
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        
+        print("shouldPerformSegue")
+        
+        let cell = sender as! UICollectionViewCell
+        
+        if cell.tag == 100  {
+            // your code here, like badParameters  = false, e.t.c
+            return false
         }
+        return true
     }
-
     
+    // This is for View Friend Only
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        print("Prepare for segue")
+        guard let cell = sender as! UICollectionViewCell? else {
+            print("Cell not the sender")
+            return
+        }
+        
+        // Though the previous method checks for this, this is to make it more secure.
+        if cell.tag == 100 {
+            print("We will not send by Segue")
+            return // This is not for Add Friend which is being dealt with by Did Select
+        }
+
+        if segue.identifier == "viewFriend" {
+            print("CHECK - viewFriend - name")
+            let detailVC = segue.destination as! FriendDetailViewController
+            guard cell.tag <= friends.count else {
+                print("Tag out of range - error")
+                return
+            }
+            
+            let detailsForVC = FriendDetails(name: friends[cell.tag], hits: 6, games: 4, kills: 2, ranking: "Deadly")
+            detailVC.detailItem = detailsForVC
+            
+            detailVC.name = friends[cell.tag]
+
+
+        }
+
+    }
+    
+// MARK: - Collection Views
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let cell = collectionView.cellForItem(at: indexPath as IndexPath)
-        print("Call  segue2")
-        
+        print("Call  segue2 - ")
+
         // Cell.tag is for Adding a friend - so we call Add friend, else we view the Friend
         if cell?.tag == 100 {
+            print("Call  segue3 - Add Friend")
+            //self.performSegue(withIdentifier: "addFriend", sender: cell)
             
-            self.performSegue(withIdentifier: "addFriend", sender: cell)
-
-        } else {
-            // self.performSegue(withIdentifier: "friendView", sender: cell)
-            let detailVC = "FriendDetailViewController"
-            let secondViewController = storyboard?.instantiateViewController(withIdentifier: detailVC)
+            let nextController = "AddFriendViewController"
+            let secondViewController = storyboard?.instantiateViewController(withIdentifier: nextController)
             self.navigationController?.pushViewController(secondViewController!, animated: true)
 
+        } else {
+            print("Call  segue4 - viewFriend - nothing to do as did prepare for segue")
+            
         }
+
     }
 
-    // MARK: - Collection Views
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return friends.count + 1
     }
@@ -128,6 +118,7 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
             let friendName = friends[indexPath.row]
             cell.friendLabel?.text = friendName
             cell.friendImage?.image = UIImage(named: "target.scnassets/\(friendName).png")
+            cell.tag = indexPath.row
             return cell
         } else {
             cell.friendLabel?.text = "Add Friend"

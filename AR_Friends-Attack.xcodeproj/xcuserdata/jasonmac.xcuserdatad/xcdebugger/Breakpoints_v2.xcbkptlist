@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AR_Friends-Attack/ViewController.swift"
-            timestampString = "554646490.595889"
+            timestampString = "555750147.075987"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "76"
@@ -43,11 +43,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AR_Friends-Attack/FriendsViewController.swift"
-            timestampString = "555059827.413528"
+            timestampString = "555751490.149447"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "FriendsViewController"
             landmarkType = "3">
          </BreakpointContent>

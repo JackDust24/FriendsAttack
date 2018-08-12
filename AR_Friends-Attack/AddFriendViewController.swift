@@ -9,13 +9,39 @@
 import UIKit
 
 class AddFriendViewController: UIViewController {
-
+    @IBOutlet weak var savePhotoButton: UIButton!
+    
+    @IBOutlet weak var addPhotoButton: UIButton!
+    @IBOutlet weak var imageView: UIImageView!
+    
+    var hasPhotoBeenTaken = false // So that we can change the buttons that appear
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        print("View Did Appear - true")
+        
+        savePhotoButton.isHidden = true
+        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool)  {
+        super.viewWillAppear(true)
+        print("View Will Appear - true")
+        
+        if hasPhotoBeenTaken {
+            addPhotoButton.titleLabel?.text = "Choose Other Photo"
+            savePhotoButton.isHidden = false
+            addPhotoButton.contentMode = .scaleAspectFit
+        }
 
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func addPhoto(_ sender: Any) {
+        
+        presentImagePicker()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -32,4 +58,60 @@ class AddFriendViewController: UIViewController {
     }
     */
 
+}
+
+// Set the view controller to delegate for the navvontroller and the imagepicker as we need both
+// MARK: - UINavigationControllerDelegate
+extension AddFriendViewController: UINavigationControllerDelegate {
+    
+}
+
+
+// MARK: - UIImagePickerControllerDelegate
+extension AddFriendViewController: UIImagePickerControllerDelegate {
+    // We set this action sheet for the user to select some options from
+    func presentImagePicker() {
+        
+        let imagePickerActionSheet = UIAlertController(title: "Take Photo",
+                                                       message: nil, preferredStyle: .actionSheet)
+        
+        // If the device has a camera add a Camera button to imagePickerActionSheet
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let cameraButton = UIAlertAction(title: "Take Photo",
+                                             style: .default) { (alert) -> Void in
+                                                let imagePicker = UIImagePickerController()
+                                                imagePicker.delegate = self
+                                                imagePicker.sourceType = .camera
+                                                imagePicker.allowsEditing = true
+                                                self.present(imagePicker, animated: true)
+            }
+            imagePickerActionSheet.addAction(cameraButton)
+        }
+        // Add a Choose Existing button for picking from the photo library
+        let libraryButton = UIAlertAction(title: "Choose Existing",
+                                          style: .default) { (alert) -> Void in
+                                            let imagePicker = UIImagePickerController()
+                                            imagePicker.delegate = self
+                                            imagePicker.sourceType = .photoLibrary
+                                            imagePicker.allowsEditing = true
+                                            self.present(imagePicker, animated: true)
+        }
+        imagePickerActionSheet.addAction(libraryButton)
+        
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
+        imagePickerActionSheet.addAction(cancelButton)
+        
+        // *** Present your instance of UIAlertController
+        present(imagePickerActionSheet, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            imageView.contentMode = .scaleAspectFit
+            imageView.image = pickedImage
+            hasPhotoBeenTaken = true
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
 }

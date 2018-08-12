@@ -8,14 +8,35 @@
 
 import UIKit
 
+struct FriendDetails {
+    
+    var name: String
+    var hits: Int
+    var games: Int
+    var kills: Int
+    var ranking: String
+}
+
 class FriendDetailViewController: UIViewController {
 
+    @IBOutlet weak var killsLabel: UILabel!
+    @IBOutlet weak var hitsLabel: UILabel!
+    @IBOutlet weak var gamesLabel: UILabel!
+    @IBOutlet weak var rankingLabel: UILabel!
+   
     @IBOutlet weak var nameLabel: UILabel! {
         didSet {
             // Update the view.
             self.configureView()
         }
     }
+    @IBOutlet weak var friendImage: UIImageView! {
+        didSet {
+            // Update the view.
+            self.configureView()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,8 +45,9 @@ class FriendDetailViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    // USE LATER
-    var detailItem: AnyObject? {
+   
+    // This is a struct with all the details.
+    var detailItem: FriendDetails? {
         didSet {
             // Update the view.
             self.configureView()
@@ -41,12 +63,22 @@ class FriendDetailViewController: UIViewController {
     
     func configureView() {
         // Update the user interface for the detail item.
-        if self.nameLabel == nil { return } // no web view, bail out
+        
+        if self.rankingLabel == nil { return } // no web view, bail out
 //        if let detailContent = detailItem?.valueForKey("content") as? String{
 //            self.webView.loadHTMLString(detailContent as String, baseURL:nil)
 //        }
-        // nameLabel.text = name
-        nameLabel.text = "Test"
+        // Update the details with the struct
+        
+        print("Detail item - \(String(describing: detailItem))")
+        nameLabel.text = detailItem?.name
+        killsLabel.text = "\(detailItem?.kills ?? 0)"
+        hitsLabel.text = "\(detailItem?.hits ?? 0)"
+        gamesLabel.text = "\(detailItem?.games ?? 0)"
+        rankingLabel.text = detailItem?.ranking
+        
+        friendImage.image = UIImage(named: "target.scnassets/\(detailItem?.name ?? "Friend").png")
+
     }
     
     

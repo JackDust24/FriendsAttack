@@ -18,6 +18,7 @@
 		9E2AE57020ECBF0B00AA54B9 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2AE56F20ECBF0B00AA54B9 /* StartViewController.swift */; };
 		9E2AE57220ECBF3200AA54B9 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2AE57120ECBF3200AA54B9 /* FriendsViewController.swift */; };
 		9EB2DF29210F1ED400444981 /* FriendsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB2DF28210F1ED400444981 /* FriendsCollectionViewCell.swift */; };
+		9EBD7F9F21201A5A001B0C81 /* AddFriendSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBD7F9E21201A5A001B0C81 /* AddFriendSecondViewController.swift */; };
 		9EC06F7720DE265A00138175 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC06F7620DE265A00138175 /* GameManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		9E2AE56F20ECBF0B00AA54B9 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		9E2AE57120ECBF3200AA54B9 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		9EB2DF28210F1ED400444981 /* FriendsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCollectionViewCell.swift; sourceTree = "<group>"; };
+		9EBD7F9E21201A5A001B0C81 /* AddFriendSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendSecondViewController.swift; sourceTree = "<group>"; };
 		9EC06F7620DE265A00138175 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,6 +83,7 @@
 				9E21895720DC7C3C008997FB /* target.scnassets */,
 				9E07BC3B20ECF00700A26584 /* FriendDetailViewController.swift */,
 				9E07BC3D20ECF06900A26584 /* AddFriendViewController.swift */,
+				9EBD7F9E21201A5A001B0C81 /* AddFriendSecondViewController.swift */,
 			);
 			path = "AR_Friends-Attack";
 			sourceTree = "<group>";
@@ -158,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EB2DF29210F1ED400444981 /* FriendsCollectionViewCell.swift in Sources */,
+				9EBD7F9F21201A5A001B0C81 /* AddFriendSecondViewController.swift in Sources */,
 				9E21894820DC7B41008997FB /* ViewController.swift in Sources */,
 				9E07BC3E20ECF06900A26584 /* AddFriendViewController.swift in Sources */,
 				9E2AE57220ECBF3200AA54B9 /* FriendsViewController.swift in Sources */,
