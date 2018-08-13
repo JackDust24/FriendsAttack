@@ -14,6 +14,8 @@ class AddFriendViewController: UIViewController {
     @IBOutlet weak var addPhotoButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     
+    //weak var delegate: AddFriendSecondViewControllerDelegate?
+    
     var hasPhotoBeenTaken = false // So that we can change the buttons that appear
     
     override func viewDidLoad() {
@@ -22,6 +24,8 @@ class AddFriendViewController: UIViewController {
         print("View Did Appear - true")
         
         savePhotoButton.isHidden = true
+        
+       // delegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -32,7 +36,7 @@ class AddFriendViewController: UIViewController {
         if hasPhotoBeenTaken {
             addPhotoButton.titleLabel?.text = "Choose Other Photo"
             savePhotoButton.isHidden = false
-            addPhotoButton.contentMode = .scaleAspectFit
+            addPhotoButton.contentMode = .scaleToFill
         }
 
         // Do any additional setup after loading the view.
@@ -47,6 +51,13 @@ class AddFriendViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let imageToPass = imageView.image {
+            if let destinationViewController = segue.destination as? AddFriendSecondViewController {
+                destinationViewController.imageFromMasterScreen = imageToPass
+            }
+        }
+    }
 
     /*
     // MARK: - Navigation
@@ -115,3 +126,4 @@ extension AddFriendViewController: UIImagePickerControllerDelegate {
         dismiss(animated: true, completion: nil)
     }
 }
+

@@ -421,6 +421,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="kMO-f3-X0d"/>
                     </view>
+                    <connections>
+                        <outlet property="friendImage" destination="8zo-fK-YkX" id="ogi-Ab-9QA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Hp-D0-WFS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
