@@ -9,6 +9,7 @@
 import UIKit
 import SceneKit
 import ARKit
+import CoreData
 
 struct friend {
     var name = ""
@@ -20,6 +21,8 @@ enum BitMaskCategory: Int {
 }
 
 class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDelegate {
+    
+    var managedContext: NSManagedObjectContext!
 
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet var sceneView: ARSCNView!

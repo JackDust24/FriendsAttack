@@ -20,6 +20,7 @@
 		9EB2DF29210F1ED400444981 /* FriendsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB2DF28210F1ED400444981 /* FriendsCollectionViewCell.swift */; };
 		9EBD7F9F21201A5A001B0C81 /* AddFriendSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBD7F9E21201A5A001B0C81 /* AddFriendSecondViewController.swift */; };
 		9EC06F7720DE265A00138175 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC06F7620DE265A00138175 /* GameManager.swift */; };
+		9EDC97912121A6AF008B2EAD /* FriendsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9EDC978D212179EF008B2EAD /* FriendsModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		9EB2DF28210F1ED400444981 /* FriendsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCollectionViewCell.swift; sourceTree = "<group>"; };
 		9EBD7F9E21201A5A001B0C81 /* AddFriendSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendSecondViewController.swift; sourceTree = "<group>"; };
 		9EC06F7620DE265A00138175 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		9EDC978E212179EF008B2EAD /* FriendsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FriendsModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 			children = (
 				9E2AE56F20ECBF0B00AA54B9 /* StartViewController.swift */,
 				9E2AE57120ECBF3200AA54B9 /* FriendsViewController.swift */,
+				9EDC978C212179D1008B2EAD /* CoreData */,
 				9EB2DF28210F1ED400444981 /* FriendsCollectionViewCell.swift */,
 				9E21894320DC7B41008997FB /* AppDelegate.swift */,
 				9E21894720DC7B41008997FB /* ViewController.swift */,
@@ -86,6 +89,14 @@
 				9EBD7F9E21201A5A001B0C81 /* AddFriendSecondViewController.swift */,
 			);
 			path = "AR_Friends-Attack";
+			sourceTree = "<group>";
+		};
+		9EDC978C212179D1008B2EAD /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				9EDC978D212179EF008B2EAD /* FriendsModel.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,6 +180,7 @@
 				9E2AE57020ECBF0B00AA54B9 /* StartViewController.swift in Sources */,
 				9EC06F7720DE265A00138175 /* GameManager.swift in Sources */,
 				9E21894420DC7B41008997FB /* AppDelegate.swift in Sources */,
+				9EDC97912121A6AF008B2EAD /* FriendsModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,6 +378,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9EDC978D212179EF008B2EAD /* FriendsModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9EDC978E212179EF008B2EAD /* FriendsModel.xcdatamodel */,
+			);
+			currentVersion = 9EDC978E212179EF008B2EAD /* FriendsModel.xcdatamodel */;
+			path = FriendsModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9E21893820DC7B41008997FB /* Project object */;
 }

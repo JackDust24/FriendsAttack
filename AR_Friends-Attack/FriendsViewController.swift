@@ -7,13 +7,21 @@
 //
 
 import UIKit
+import CoreData
 
-class FriendsTableViewCell: UITableViewCell {
-    @IBOutlet weak var friendLabel: UILabel!
-    @IBOutlet weak var friendImageView: UIImageView!
-}
+//class FriendsTableViewCell: UITableViewCell {
+//    @IBOutlet weak var friendLabel: UILabel!
+//    @IBOutlet weak var friendImageView: UIImageView!
+//}
 
-class FriendsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class FriendsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate {
+    
+    var managedContext: NSManagedObjectContext! {
+        didSet {
+            // Update the view.
+            self.configureView()
+        }
+    }
     
     @IBOutlet var collectionView: UICollectionView!
     
@@ -42,11 +50,19 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         let cell = sender as! UICollectionViewCell
         
+        // This will be for addFriend
         if cell.tag == 100  {
             // your code here, like badParameters  = false, e.t.c
             return false
         }
         return true
+    }
+    
+    func configureView() {
+        print("Check if context set")
+        if managedContext == nil {
+            return
+        }
     }
     
     // This is for View Friend Only
@@ -74,29 +90,59 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
             
             let detailsForVC = FriendDetails(name: friends[cell.tag], hits: 6, games: 4, kills: 2, ranking: "Deadly")
             detailVC.detailItem = detailsForVC
-            
+            detailVC.managedContext = managedContext
             detailVC.name = friends[cell.tag]
 
 
         }
+        
+        testSampleCode()
 
     }
     
+    func testSampleCode() {
+        
+        if managedContext == nil {
+            print("NO CONTEXT YET")
+
+            return
+        }
+        
+        //2
+        let request: NSFetchRequest<Friend> = Friend.fetchRequest()
+        
+        do {
+            //3
+            let results = try managedContext.fetch(request)
+            
+            // Fetch List Records
+            for result in results {
+                
+                print(result.value(forKey: "name") ?? "no name")
+                print(result)
+            }
+            
+            //4
+            // populate(friend: results.first!)
+            print("")
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+    }
 // MARK: - Collection Views
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let cell = collectionView.cellForItem(at: indexPath as IndexPath)
-        print("Call  segue2 - ")
 
         // Cell.tag is for Adding a friend - so we call Add friend, else we view the Friend
         if cell?.tag == 100 {
-            print("Call  segue3 - Add Friend")
-            //self.performSegue(withIdentifier: "addFriend", sender: cell)
+            print("CollectionView - Add Friend")
             
             let nextController = "AddFriendViewController"
-            let secondViewController = storyboard?.instantiateViewController(withIdentifier: nextController)
-            self.navigationController?.pushViewController(secondViewController!, animated: true)
+            let secondViewController = storyboard?.instantiateViewController(withIdentifier: nextController)  as! AddFriendViewController
+            self.navigationController?.pushViewController(secondViewController, animated: true)
+             secondViewController.managedContext = managedContext
 
         } else {
             print("Call  segue4 - viewFriend - nothing to do as did prepare for segue")
@@ -131,65 +177,7 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
         // self.collectionView?.reloadData()
     }
 
-    
-    //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    //        let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as! FriendsTableViewCell
-    //
-    //        if indexPath.row < friends.count {
-    //            let friendName = friends[indexPath.row]
-    //            cell.friendLabel?.text = friendName
-    //            cell.friendImageView?.image = UIImage(named: "target.scnassets/\(friendName).png")
-    //            return cell
-    //        } else {
-    //            cell.friendLabel?.text = "Add Friend"
-    //            cell.friendLabel?.textColor = UIColor.blue
-    //            cell.friendImageView?.image = UIImage(named: "target.scnassets/placeholder-image.png")
-    //            cell.tag = 100 // This way we can add friend
-    //            return cell
-    //        }
-    //
-    //    }
-    //
-    
-    //    func numberOfSections(in tableView: UITableView) -> Int {
-    //        return 1
-    //    }
-    //
-    //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    //        return friends.count + 1
-    //    }
-    //
-    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //
-    //        var segue: String!
-    //
-    //        if indexPath.row >= friends.count {
-    //            print("Can add new friend")
-    //            segue = "addFriend"
-    //            self.performSegue(withIdentifier: segue, sender: self)
-    //
-    //
-    //        } else {
-    //            print("You selected cell #\(indexPath.row)!")
-    //
-    //            segue = "friendView"
-    //            self.performSegue(withIdentifier: segue, sender: self)
-    //
-    //
-    //        }
-    //
-    //        // self.performSegue(withIdentifier: segue, sender: self)
-    //    }
-    //
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }

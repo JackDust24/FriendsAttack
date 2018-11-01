@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17E202" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Friend" representedClassName=".Friend" syncable="YES" codeGenerationType="class">
+        <attribute name="active" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="friendImage" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="friendStats" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Stats" inverseName="friendStats" inverseEntity="Stats" syncable="YES"/>
+    </entity>
+    <entity name="Stats" representedClassName="Stats" syncable="YES" codeGenerationType="class">
+        <attribute name="games" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="hits" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="kills" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="ranking" attributeType="String" defaultValueString="No Ranking" syncable="YES"/>
+        <relationship name="friendStats" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Friend" inverseName="friendStats" inverseEntity="Friend" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Friend" positionX="-380" positionY="-225" width="128" height="103"/>
+        <element name="Stats" positionX="-99" positionY="-288" width="128" height="118"/>
+    </elements>
+</model>

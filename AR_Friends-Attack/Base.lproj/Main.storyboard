@@ -415,14 +415,28 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <action selector="done:" destination="Lvx-iD-vwi" eventType="editingDidEndOnExit" id="Zur-T5-nkS"/>
+                                    <outlet property="delegate" destination="Lvx-iD-vwi" id="Hqt-hj-Che"/>
+                                </connections>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kiu-yO-U9y">
+                                <rect key="frame" x="165" y="599" width="53" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="SAVE"/>
+                                <connections>
+                                    <action selector="Save:" destination="Lvx-iD-vwi" eventType="touchUpInside" id="mWV-j6-6RZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="kMO-f3-X0d"/>
                     </view>
                     <connections>
                         <outlet property="friendImage" destination="8zo-fK-YkX" id="ogi-Ab-9QA"/>
+                        <outlet property="nameTextField" destination="dSa-Nr-sRE" id="R4i-nQ-gQm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Hp-D0-WFS" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -7,15 +7,15 @@
 //
 
 import UIKit
+import CoreData
 
 class AddFriendViewController: UIViewController {
+   
     @IBOutlet weak var savePhotoButton: UIButton!
-    
     @IBOutlet weak var addPhotoButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     
-    //weak var delegate: AddFriendSecondViewControllerDelegate?
-    
+    var managedContext: NSManagedObjectContext!
     var hasPhotoBeenTaken = false // So that we can change the buttons that appear
     
     override func viewDidLoad() {
@@ -38,8 +38,45 @@ class AddFriendViewController: UIViewController {
             savePhotoButton.isHidden = false
             addPhotoButton.contentMode = .scaleToFill
         }
-
+        
+        testSampleCode()
         // Do any additional setup after loading the view.
+    }
+    
+    
+    
+    func testSampleCode() {
+        print("TSC")
+
+        
+        if managedContext == nil {
+            print("NO CONTEXT YET")
+            
+            return
+        }
+        print("ALL HERE")
+
+        
+        //2
+        let request: NSFetchRequest<Friend> = Friend.fetchRequest()
+        
+        do {
+            //3
+            let results = try managedContext.fetch(request)
+            
+            // Fetch List Records
+            for result in results {
+                
+                print(result.value(forKey: "name") ?? "no name")
+                print("Add Friend")
+            }
+            
+            //4
+            // populate(friend: results.first!)
+            print("")
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
     }
 
     @IBAction func addPhoto(_ sender: Any) {
@@ -55,6 +92,7 @@ class AddFriendViewController: UIViewController {
         if let imageToPass = imageView.image {
             if let destinationViewController = segue.destination as? AddFriendSecondViewController {
                 destinationViewController.imageFromMasterScreen = imageToPass
+                destinationViewController.managedContext = managedContext
             }
         }
     }

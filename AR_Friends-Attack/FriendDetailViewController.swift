@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 struct FriendDetails {
     
@@ -23,6 +24,9 @@ class FriendDetailViewController: UIViewController {
     @IBOutlet weak var hitsLabel: UILabel!
     @IBOutlet weak var gamesLabel: UILabel!
     @IBOutlet weak var rankingLabel: UILabel!
+    
+    var managedContext: NSManagedObjectContext!
+
    
     @IBOutlet weak var nameLabel: UILabel! {
         didSet {
@@ -85,14 +89,52 @@ class FriendDetailViewController: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        
+
+        super.viewWillAppear(true)
+        print("View Will Appear - true")
+        testSampleCode()
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func testSampleCode() {
+        
+        print("testSampleCode - FD")
+
+        if managedContext == nil {
+            print("NO CONTEXT YET")
+            
+            return
+        }
+        print("testSampleCode - FD-PASS")
+
+        
+        //2
+        let request: NSFetchRequest<Friend> = Friend.fetchRequest()
+        
+        do {
+            //3
+            let results = try managedContext.fetch(request)
+            
+            // Fetch List Records
+            for result in results {
+                
+                print(result.value(forKey: "name") ?? "no name")
+                print("Friend")
+            }
+            
+            //4
+            // populate(friend: results.first!)
+            print("")
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+    }
+
     
 
     /*
