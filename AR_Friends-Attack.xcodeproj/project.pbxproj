@@ -72,6 +72,7 @@
 		9E21894220DC7B41008997FB /* AR_Friends-Attack */ = {
 			isa = PBXGroup;
 			children = (
+				9ED56CA421BBB64600B1C7E8 /* Controllers */,
 				9E2AE56F20ECBF0B00AA54B9 /* StartViewController.swift */,
 				9E2AE57120ECBF3200AA54B9 /* FriendsViewController.swift */,
 				9EDC978C212179D1008B2EAD /* CoreData */,
@@ -89,6 +90,13 @@
 				9EBD7F9E21201A5A001B0C81 /* AddFriendSecondViewController.swift */,
 			);
 			path = "AR_Friends-Attack";
+			sourceTree = "<group>";
+		};
+		9ED56CA421BBB64600B1C7E8 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		9EDC978C212179D1008B2EAD /* CoreData */ = {
