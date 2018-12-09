@@ -9,10 +9,6 @@
 import UIKit
 import CoreData
 
-//class FriendsTableViewCell: UITableViewCell {
-//    @IBOutlet weak var friendLabel: UILabel!
-//    @IBOutlet weak var friendImageView: UIImageView!
-//}
 
 class FriendsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate {
     
@@ -27,15 +23,26 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     var friends: [String] = ["Ian", "Doug", "Ploy"]
     
+    lazy var fetchedResultsController: NSFetchedResultsController<Friend> = {
+        let fetchRequest = NSFetchRequest<Friend>()
+        let entity = Friend.entity()
+        fetchRequest.entity = entity
+        let sort1 = NSSortDescriptor(key: "name", ascending: false) // Because we want Start Month first
+        // let sort2 = NSSortDescriptor(key: "date", ascending: true)
+        fetchRequest.sortDescriptors = [sort1]
+        fetchRequest.fetchBatchSize = 20
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedContext, sectionNameKeyPath: nil, cacheName: "Friends")
+        fetchedResultsController.delegate = self
+        return fetchedResultsController
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("TestJW1")
+        performFetch()
         self.navigationController?.isNavigationBarHidden = false
 
-        
-        // self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "friendCell")
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,6 +72,23 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
     }
     
+    
+    // MARK:- Private methods
+    func performFetch() {
+        do {
+            print("Perform fetch")
+            try fetchedResultsController.performFetch()
+            
+        } catch {
+            // fatalCoreDataError(error)
+            print("Perform fetch error")
+
+        }
+    }
+    
+    
+    
+    
     // This is for View Friend Only
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
@@ -92,8 +116,6 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
             detailVC.detailItem = detailsForVC
             detailVC.managedContext = managedContext
             detailVC.name = friends[cell.tag]
-
-
         }
         
         testSampleCode()
@@ -104,11 +126,9 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         if managedContext == nil {
             print("NO CONTEXT YET")
-
             return
         }
         
-        //2
         let request: NSFetchRequest<Friend> = Friend.fetchRequest()
         
         do {
@@ -117,13 +137,10 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
             
             // Fetch List Records
             for result in results {
-                
                 print(result.value(forKey: "name") ?? "no name")
-                print(result)
+                print("Record - \(result)")
             }
-            
             //4
-            // populate(friend: results.first!)
             print("")
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
@@ -138,32 +155,53 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
         // Cell.tag is for Adding a friend - so we call Add friend, else we view the Friend
         if cell?.tag == 100 {
             print("CollectionView - Add Friend")
-            
             let nextController = "AddFriendViewController"
             let secondViewController = storyboard?.instantiateViewController(withIdentifier: nextController)  as! AddFriendViewController
             self.navigationController?.pushViewController(secondViewController, animated: true)
              secondViewController.managedContext = managedContext
-
         } else {
             print("Call  segue4 - viewFriend - nothing to do as did prepare for segue")
-            
         }
-
     }
 
-
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return friends.count + 1
+        print("TestJW2")
+
+        guard let quotes = fetchedResultsController.fetchedObjects else { return 0 }
+        return quotes.count + 1
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath) as! FriendsCollectionViewCell
         
-        if indexPath.row < friends.count {
-            let friendName = friends[indexPath.row]
-            cell.friendLabel?.text = friendName
-            cell.friendImage?.image = UIImage(named: "target.scnassets/\(friendName).png")
+        // If default set, then show the label
+        let friendsCount = fetchedResultsController.fetchedObjects?.count ?? 1
+        
+        print("friendCount = fetchedResultsController.object - \(friendsCount)")
+
+        
+//        if indexPath.row < friends.count {
+//            let friendName = friends[indexPath.row]
+//            cell.friendLabel?.text = friendName
+//            cell.friendImage?.image = UIImage(named: "target.scnassets/\(friendName).png")
+//            cell.tag = indexPath.row
+//            return cell
+//        } else {
+//            cell.friendLabel?.text = "Add Friend"
+//            cell.friendLabel?.textColor = UIColor.blue
+//            cell.friendImage?.image = UIImage(named: "target.scnassets/placeholder-image.png")
+//            cell.tag = 100 // This way we can add friend
+//            return cell
+//        }
+        
+        if indexPath.row < friendsCount {
+            let friend = fetchedResultsController.object(at: indexPath)
+            
+            print("friend = fetchedResultsController.object - \(friend)")
+            cell.friendLabel?.text = friend.name
+            cell.friendImage?.image = UIImage(data: friend.friendImage!)
             cell.tag = indexPath.row
             return cell
         } else {
@@ -173,8 +211,6 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
             cell.tag = 100 // This way we can add friend
             return cell
         }
-        
-        // self.collectionView?.reloadData()
     }
 
 

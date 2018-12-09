@@ -13,67 +13,74 @@ class StartViewController: UIViewController {
     
     var managedContext: NSManagedObjectContext!
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Sample data which we can remove at the end
         insertSampleData()
         
-        //2
+        // Fetch friends
         let request: NSFetchRequest<Friend> = Friend.fetchRequest()
-        
         do {
             //3
             let results = try managedContext.fetch(request)
             
             // Fetch List Records
             for result in results {
-                
-                print(result)
                 print(result.value(forKey: "name") ?? "no name")
                 print(result)
             }
-        
-            //4
             // populate(friend: results.first!)
-            print("")
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
         }
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    // MARK: - Segue
+//    override func performSegue(withIdentifier identifier: String, sender: Any?) {
+//        
+//        var secondController = ""
+//        // Go to view friends
+//        print("performSegue")
+//
+//        if identifier == "viewFriends" {
+//            print("performSegue - View")
+//
+//            secondController = "FriendsViewController"
+//            let secondViewController = storyboard?.instantiateViewController(withIdentifier: secondController) as! FriendsViewController
+//            self.navigationController?.pushViewController(secondViewController, animated: true)
+//            secondViewController.managedContext = managedContext
+//
+//           
+//        } else {
+//            secondController = "ViewController"
+//            let secondViewController = storyboard?.instantiateViewController(withIdentifier: secondController) as! ViewController
+//            secondViewController.managedContext = managedContext
+//            self.navigationController?.pushViewController(secondViewController, animated: true)
+//        }
+//    }
     
-    override func performSegue(withIdentifier identifier: String, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
         
-        print("performSegue")
-
-        var secondController = ""
+        print("prepare")
         
-        if identifier == "viewFriends" {
-            print("JTEST")
-            secondController = "FriendsViewController"
-            let secondViewController = storyboard?.instantiateViewController(withIdentifier: secondController) as! FriendsViewController
-            self.navigationController?.pushViewController(secondViewController, animated: true)
+        if segue.identifier == "viewFriends" {
+            print("prepare - View")
+            let secondViewController = segue.destination as! FriendsViewController
             secondViewController.managedContext = managedContext
-
-           
         } else  {
-            secondController = "ViewController"
-            let secondViewController = storyboard?.instantiateViewController(withIdentifier: secondController) as! ViewController
+            let secondViewController = segue.destination as! ViewController
+            
             secondViewController.managedContext = managedContext
-            self.navigationController?.pushViewController(secondViewController, animated: true)
-
-
+            
         }
-        // let secondViewController = storyboard?.instantiateViewController(withIdentifier: secondController)
-        
-    
     }
     
     // MARK: - Core Data
@@ -99,46 +106,12 @@ class StartViewController: UIViewController {
                 in: managedContext)!
             let friend = Friend(entity: entity,
                                 insertInto: managedContext)
-            
             friend.name = index
             let image = UIImage(named: "target.scnassets/\(index).png")
             let photoData = UIImagePNGRepresentation(image!)!
             friend.friendImage = NSData(data: photoData) as Data
             friend.active = true
-            
-     
         }
         try! managedContext.save()
     }
-  
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        
-        print("performSegue")
-        
-        if segue.identifier == "viewFriends" {
-            print("JTEST")
-            let secondViewController = segue.destination as! FriendsViewController
-            // let secondViewController = nav.topViewController as! FriendsViewController
-
-//            let secondViewController = segue.destinationViewController =
-//            secondController) as! FriendsViewController
-//            self.navigationController?.pushViewController(secondViewController, animated: true)
-            secondViewController.managedContext = managedContext
-            
-            
-        } else  {
-            let secondViewController = segue.destination as! ViewController
-
-            secondViewController.managedContext = managedContext
-            
-        }
-    }
- 
-
 }

@@ -85,9 +85,6 @@ class FriendDetailViewController: UIViewController {
 
     }
     
-    
-    
-    
     override func viewWillAppear(_ animated: Bool) {
 
         super.viewWillAppear(true)
@@ -103,48 +100,25 @@ class FriendDetailViewController: UIViewController {
     
     func testSampleCode() {
         
-        print("testSampleCode - FD")
-
         if managedContext == nil {
-            print("NO CONTEXT YET")
-            
             return
         }
-        print("testSampleCode - FD-PASS")
-
         
-        //2
         let request: NSFetchRequest<Friend> = Friend.fetchRequest()
         
         do {
             //3
             let results = try managedContext.fetch(request)
-            
             // Fetch List Records
             for result in results {
-                
                 print(result.value(forKey: "name") ?? "no name")
                 print("Friend")
             }
             
-            //4
             // populate(friend: results.first!)
             print("")
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
         }
     }
-
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

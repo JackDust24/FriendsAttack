@@ -18,6 +18,7 @@
 		9E2AE57020ECBF0B00AA54B9 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2AE56F20ECBF0B00AA54B9 /* StartViewController.swift */; };
 		9E2AE57220ECBF3200AA54B9 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2AE57120ECBF3200AA54B9 /* FriendsViewController.swift */; };
 		9EB2DF29210F1ED400444981 /* FriendsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB2DF28210F1ED400444981 /* FriendsCollectionViewCell.swift */; };
+		9EB97CEF21BD2DC2009ED736 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB97CEE21BD2DC2009ED736 /* Extensions.swift */; };
 		9EBD7F9F21201A5A001B0C81 /* AddFriendSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBD7F9E21201A5A001B0C81 /* AddFriendSecondViewController.swift */; };
 		9EC06F7720DE265A00138175 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC06F7620DE265A00138175 /* GameManager.swift */; };
 		9EDC97912121A6AF008B2EAD /* FriendsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9EDC978D212179EF008B2EAD /* FriendsModel.xcdatamodeld */; };
@@ -37,6 +38,7 @@
 		9E2AE56F20ECBF0B00AA54B9 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		9E2AE57120ECBF3200AA54B9 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		9EB2DF28210F1ED400444981 /* FriendsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCollectionViewCell.swift; sourceTree = "<group>"; };
+		9EB97CEE21BD2DC2009ED736 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9EBD7F9E21201A5A001B0C81 /* AddFriendSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendSecondViewController.swift; sourceTree = "<group>"; };
 		9EC06F7620DE265A00138175 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		9EDC978E212179EF008B2EAD /* FriendsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FriendsModel.xcdatamodel; sourceTree = "<group>"; };
@@ -73,21 +75,16 @@
 			isa = PBXGroup;
 			children = (
 				9ED56CA421BBB64600B1C7E8 /* Controllers */,
-				9E2AE56F20ECBF0B00AA54B9 /* StartViewController.swift */,
-				9E2AE57120ECBF3200AA54B9 /* FriendsViewController.swift */,
 				9EDC978C212179D1008B2EAD /* CoreData */,
 				9EB2DF28210F1ED400444981 /* FriendsCollectionViewCell.swift */,
 				9E21894320DC7B41008997FB /* AppDelegate.swift */,
-				9E21894720DC7B41008997FB /* ViewController.swift */,
 				9EC06F7620DE265A00138175 /* GameManager.swift */,
+				9EB97CEE21BD2DC2009ED736 /* Extensions.swift */,
 				9E21894920DC7B41008997FB /* Main.storyboard */,
 				9E21894C20DC7B43008997FB /* Assets.xcassets */,
 				9E21894E20DC7B43008997FB /* LaunchScreen.storyboard */,
 				9E21895120DC7B43008997FB /* Info.plist */,
 				9E21895720DC7C3C008997FB /* target.scnassets */,
-				9E07BC3B20ECF00700A26584 /* FriendDetailViewController.swift */,
-				9E07BC3D20ECF06900A26584 /* AddFriendViewController.swift */,
-				9EBD7F9E21201A5A001B0C81 /* AddFriendSecondViewController.swift */,
 			);
 			path = "AR_Friends-Attack";
 			sourceTree = "<group>";
@@ -95,6 +92,12 @@
 		9ED56CA421BBB64600B1C7E8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9E21894720DC7B41008997FB /* ViewController.swift */,
+				9E2AE56F20ECBF0B00AA54B9 /* StartViewController.swift */,
+				9E2AE57120ECBF3200AA54B9 /* FriendsViewController.swift */,
+				9E07BC3B20ECF00700A26584 /* FriendDetailViewController.swift */,
+				9E07BC3D20ECF06900A26584 /* AddFriendViewController.swift */,
+				9EBD7F9E21201A5A001B0C81 /* AddFriendSecondViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 				9E2AE57020ECBF0B00AA54B9 /* StartViewController.swift in Sources */,
 				9EC06F7720DE265A00138175 /* GameManager.swift in Sources */,
 				9E21894420DC7B41008997FB /* AppDelegate.swift in Sources */,
+				9EB97CEF21BD2DC2009ED736 /* Extensions.swift in Sources */,
 				9EDC97912121A6AF008B2EAD /* FriendsModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

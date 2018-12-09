@@ -22,10 +22,7 @@ class AddFriendViewController: UIViewController {
         super.viewDidLoad()
 
         print("View Did Appear - true")
-        
         savePhotoButton.isHidden = true
-        
-       // delegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -48,15 +45,11 @@ class AddFriendViewController: UIViewController {
     func testSampleCode() {
         print("TSC")
 
-        
         if managedContext == nil {
             print("NO CONTEXT YET")
             
             return
         }
-        print("ALL HERE")
-
-        
         //2
         let request: NSFetchRequest<Friend> = Friend.fetchRequest()
         
@@ -80,8 +73,8 @@ class AddFriendViewController: UIViewController {
     }
 
     @IBAction func addPhoto(_ sender: Any) {
-        
         presentImagePicker()
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -96,16 +89,6 @@ class AddFriendViewController: UIViewController {
             }
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -155,12 +138,28 @@ extension AddFriendViewController: UIImagePickerControllerDelegate {
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            imageView.contentMode = .scaleAspectFit
-            imageView.image = pickedImage
-            hasPhotoBeenTaken = true
+        print("didFinishPickingMediaWithInfo")
+
+//        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+//            print("didFinishPickingMediaWithInfo2")
+//
+//            imageView.contentMode = .scaleAspectFill
+//            imageView.image = pickedImage
+//            hasPhotoBeenTaken = true
+//        }
+        if let img = info[UIImagePickerControllerEditedImage] as? UIImage
+        {
+            let roundedImage = img.roundedImage()
+            imageView.image = roundedImage
+            
+        }
+        else if let img = info[UIImagePickerControllerOriginalImage] as? UIImage
+        {
+            imageView.image = img
         }
         
+        hasPhotoBeenTaken = true
+
         dismiss(animated: true, completion: nil)
     }
 }
