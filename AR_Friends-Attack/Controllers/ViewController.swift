@@ -30,6 +30,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     var targetsOnScreen = false
     var power: Float = 50
     var Target: SCNNode?
+    var testOne = false
     
     var peopleAdded = 0
     
@@ -66,20 +67,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         // Pause the view's session
         sceneView.session.pause()
     }
-    
-
-    // TODO:
-    /*
-     // Create a struct to hold the image - done
-     // Apply the image to the box - done
-     // Random position - done
-     // Random movement - done
-     // Other objects - done
-     // Shooting
-     */
-    
-    // Set the scene to the view
-    // sceneView.scene = target
     
     // MARK: - Buttons
 
@@ -119,7 +106,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         
         if !gameStarted {
             // Get nodes moving.
-            getTheNodesStarted()
+            // getTheNodesStarted()
             print("Nodes Started")
         }
         
@@ -182,18 +169,46 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
 
     }
     
+    func addRotation(node: SCNNode) {
+        let rotateOne = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 25.0)
+        
+        let backwards = rotateOne.reversed()
+        let rotateSequence = SCNAction.sequence([rotateOne, backwards])
+        let repeatForever = SCNAction.repeatForever(rotateSequence)
+        node.runAction(repeatForever)
+    }
+    
     func getTheNodesStarted() {
         
         self.sceneView.scene.rootNode.enumerateChildNodes { (node, _) in
             if node.name == "target" {
                 print("Runing Block")
                 
+                // addRotation(node: node)
+                
+                if testOne { return }
+                
+                print("Test Node One")
+
+                
+                testOne = true
+                
                 //edit something
-                let wait = SCNAction.wait(duration: 0.5)
-                let nodeRotateAction = rotation(time: 15)
-                let nodeAnimation = animateNode()
-                let sequence = SCNAction.sequence([wait, nodeRotateAction, wait,  nodeAnimation])
-                node.runAction(sequence)
+//                let wait = SCNAction.wait(duration: 0.5)
+//                let nodeRotateAction = rotation(time: 10)
+//                let nodeRotation = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 5.0)
+//                let foreverRotation = SCNAction.repeatForever(nodeRotation)
+//                let nodeAnimation = animateNode()
+//                let sequence = SCNAction.sequence([wait, nodeRotateAction, wait,  nodeAnimation])
+//                let loopSequence = SCNAction.repeatForever(nodeAnimation)
+//                node.runAction(foreverRotation)
+                
+                let rotateOne = SCNAction.rotateBy(x: 0, y: CGFloat(Float.pi), z: 0, duration: 5.0)
+                
+                let backwards = rotateOne.reversed()
+                let rotateSequence = SCNAction.sequence([rotateOne, backwards])
+                let repeatForever = SCNAction.repeatForever(rotateSequence)
+                node.runAction(repeatForever)
             }
         }
         print("Game now true")
@@ -204,10 +219,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     func addNodeToScene(nodeFriend: String) {
         
         print("Add Node To Scene")
+        
+        let targetParent = SCNNode()
 
         // Create a new scene and set it's position
         let targetScene = SCNScene(named: "target.scnassets/target.scn")!
-        let targetNode = targetScene.rootNode.childNode(withName: "target", recursively: false)
+        let targetNode = targetScene.rootNode.childNode(withName: "target", recursively: false)!
         
         print("Add Physics Body")
         
@@ -215,27 +232,42 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         let x = randomNumbers(numA: -5, numB: 5.5)
         let y = randomNumbers(numA: -0.5, numB: 4)
         let z = randomNumbers(numA: -1, numB: -5)
-        targetNode?.position = SCNVector3(x,y,z)
+        targetNode.position = SCNVector3(x,y,z)
         
+        self.sceneView.scene.rootNode.addChildNode(targetNode)
+
         // Physics Body
-//        targetNode?.physicsBody = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(node: boxNode!, options: nil))
-////        print("Add Physics Body2")
+//        targetNode.physicsBody?.type = .dynamic
+//        targetNode.physicsBody?.isAffectedByGravity = true
+//        print("Add Physics Body2")
 //
-        targetNode?.physicsBody?.categoryBitMask = BitMaskCategory.target.rawValue
-        targetNode?.physicsBody?.contactTestBitMask = BitMaskCategory.bullet.rawValue
+        targetNode.physicsBody?.categoryBitMask = BitMaskCategory.target.rawValue
+        targetNode.physicsBody?.contactTestBitMask = BitMaskCategory.bullet.rawValue
         
     
         // Add images
-        self.addFace(nodeName: "faceFront", targetNode: targetNode!, imageName: nodeFriend)
-        self.addFace(nodeName: "faceBack", targetNode: targetNode!, imageName: nodeFriend)
-        self.addLabel(nodeName: "nameLabelLeft", targetNode: targetNode!, imageName: nodeFriend)
-        self.addLabel(nodeName: "nameLabelRight", targetNode: targetNode!, imageName: nodeFriend)
-
-        // self.addWalls(nodeName: "sideDoorB", portalNode: portalNode, imageName: "b-frontb")
-        self.sceneView.scene.rootNode.addChildNode(targetNode!)
-        print("Added Node")
-
+        self.addFace(nodeName: "faceFront", targetNode: targetNode, imageName: nodeFriend)
+        self.addFace(nodeName: "faceBack", targetNode: targetNode, imageName: nodeFriend)
+        self.addLabel(nodeName: "nameLabelLeft", targetNode: targetNode, imageName: nodeFriend)
+        self.addLabel(nodeName: "nameLabelRight", targetNode: targetNode, imageName: nodeFriend)
         
+        // self.addWalls(nodeName: "sideDoorB", portalNode: portalNode, imageName: "b-frontb")
+        
+        let waitRandom = randomNonWholeNumbers(numA: 3, numB: 0)
+        print("Waitrandom Check \(waitRandom)")
+        
+        let wait = SCNAction.wait(duration: TimeInterval(waitRandom))
+        let parentRotation = rotation(time: 4)
+        let nodeAnimation = animateNode()
+        let sequence = SCNAction.sequence([parentRotation, wait, nodeAnimation])
+        let loopSequence = SCNAction.repeatForever(sequence)
+       // node.runAction(sequence)
+        targetNode.runAction(loopSequence)
+        
+        //targetParent.addChildNode(targetNode)
+        
+        print("Added Node")
+    
     }
     
     // MARK: - Animation and random positioning
@@ -243,12 +275,13 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     
     func rotation(time: TimeInterval) -> SCNAction {
         print("Rotate")
-
         
         let rotation = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: time)
+        
+//        let rotation = SCNAction.rotateBy(x: (CGFloat(node.position.x) - x), y: CGFloat(CGFloat(node.position.y) - CGFloat(Float.pi)), z: 0, duration: time)
         let foreverRotation = SCNAction.repeatForever(rotation)
         
-        return foreverRotation
+        return rotation
     }
     
     
@@ -256,21 +289,35 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         
         print("Animate")
 
-        let waitStart = SCNAction.wait(duration: 0.25)
-        let moveDown = SCNAction.move(by: SCNVector3(0, -2, 0), duration: 1)
-        let moveUp = SCNAction.move(by: SCNVector3(0,2,0), duration: 1)
-        let waitAction = SCNAction.wait(duration: 0.25)
-        let hoverSequence = SCNAction.sequence([waitStart, moveUp,waitAction,moveDown])
+        let randomMinus = randomNonWholeNumbers(numA: 0, numB: -2)
+        let randomPlus = randomNonWholeNumbers(numA: 2, numB: 0)
+        let waitRandom = randomNonWholeNumbers(numA: 1, numB: 0)
+        print("Waitrandom Check  2 \(waitRandom) randomMinus \(randomMinus) randomPlus \(randomPlus)")
+        
+        let wait = SCNAction.wait(duration: TimeInterval(waitRandom))
+        let moveDown = SCNAction.move(by: SCNVector3(0, randomMinus, 0), duration: 0.5)
+        let moveUp = SCNAction.move(by: SCNVector3(0, randomPlus,0), duration: 0.5)
+        let moveLeft = SCNAction.move(by: SCNVector3(randomMinus, 0, 0), duration: 0.5)
+        let moveRight = SCNAction.move(by: SCNVector3(randomPlus,0,0), duration: 0.5)
+        let hoverSequence = SCNAction.sequence([wait, moveUp, wait, moveLeft, wait, moveDown, wait, moveRight])
         let loopSequence = SCNAction.repeatForever(hoverSequence)
        //  node.runAction(loopSequence)
         
-        return loopSequence
+        return hoverSequence
         
 
     }
     
     func randomNumbers(numA: CGFloat, numB: CGFloat) -> CGFloat {
         return CGFloat(arc4random()) / CGFloat(UINT32_MAX) * abs(numA - numB) + min(numA, numB)
+    }
+    
+    func randomNonWholeNumbers(numA: CGFloat, numB: CGFloat) -> CGFloat {
+        let randomNumber =  CGFloat(arc4random()) / CGFloat(UINT32_MAX) * (numA - numB) + min(numA, numB)
+        let roundedNumber = (randomNumber*100).rounded()/100
+        print(roundedNumber)  // 1.57
+        
+        return roundedNumber
     }
     
     // MARK: - Rendering
@@ -325,10 +372,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
         print("physicsWorld")
 
-        
         let nodeA = contact.nodeA
         let nodeB = contact.nodeB
         if nodeA.physicsBody?.categoryBitMask == BitMaskCategory.target.rawValue {
+            print("HIT!")
+
             self.Target = nodeA
         } else if nodeB.physicsBody?.categoryBitMask == BitMaskCategory.target.rawValue {
             self.Target = nodeB
