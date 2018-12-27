@@ -16,8 +16,8 @@ struct friend {
 }
 
 enum BitMaskCategory: Int {
-    case bullet = 2
-    case target = 3
+    case target = 2
+    case bullet = 3
 }
 
 class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDelegate {
@@ -29,7 +29,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     var gameStarted = false
     var targetsOnScreen = false
     var power: Float = 50
-    var Target: SCNNode?
+    var target: SCNNode?
     var testOne = false
     
     var peopleAdded = 0
@@ -117,6 +117,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         let location = SCNVector3(transform.m41, transform.m42, transform.m43)
         let position = orientation + location
         let bullet = SCNNode(geometry: SCNSphere(radius: 0.1))
+        bullet.name = "bullet"
         bullet.geometry?.firstMaterial?.diffuse.contents = UIColor.red
         bullet.position = position
         let body = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: bullet, options: nil))
@@ -224,9 +225,14 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
 
         // Create a new scene and set it's position
         let targetScene = SCNScene(named: "target.scnassets/target.scn")!
-        let targetNode = targetScene.rootNode.childNode(withName: "target", recursively: false)!
+        let targetNode = targetScene.rootNode.childNode(withName: "target", recursively: true)!
+        targetNode.name = nodeFriend
+        let childNode = targetNode.childNode(withName: "box", recursively: false)
         
-        print("Add Physics Body")
+        print("targetNode.name \(targetNode.name)")
+        print("childNode \(childNode?.name)")
+        childNode?.name = nodeFriend
+
         
         // Position of node
         let x = randomNumbers(numA: -5, numB: 5.5)
@@ -234,8 +240,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         let z = randomNumbers(numA: -1, numB: -5)
         targetNode.position = SCNVector3(x,y,z)
         
-        self.sceneView.scene.rootNode.addChildNode(targetNode)
-
         // Physics Body
 //        targetNode.physicsBody?.type = .dynamic
 //        targetNode.physicsBody?.isAffectedByGravity = true
@@ -250,8 +254,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         self.addFace(nodeName: "faceBack", targetNode: targetNode, imageName: nodeFriend)
         self.addLabel(nodeName: "nameLabelLeft", targetNode: targetNode, imageName: nodeFriend)
         self.addLabel(nodeName: "nameLabelRight", targetNode: targetNode, imageName: nodeFriend)
+    
         
         // self.addWalls(nodeName: "sideDoorB", portalNode: portalNode, imageName: "b-frontb")
+        
+        self.sceneView.scene.rootNode.addChildNode(targetNode)
+
         
         let waitRandom = randomNonWholeNumbers(numA: 3, numB: 0)
         print("Waitrandom Check \(waitRandom)")
@@ -333,6 +341,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
 //        if let mask = child?.childNode(withName: "mask", recursively: false) {
 //            mask.geometry?.firstMaterial?.transparency = 0.000001
 //        }
+        
+        if imageName == "Harsh" && (nodeName == "faceFront" || nodeName == "faceBack") {
+            print("Specular Check")
+            child?.geometry?.firstMaterial?.normal.contents = UIImage(named: "target.scnassets/\(imageName).png_specular.png")
+
+        }
     }
     
     func addLabel(nodeName: String, targetNode: SCNNode, imageName: String) {
@@ -371,25 +385,54 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     // For collision
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
         print("physicsWorld")
+        
+//        DispatchQueue.main.async {
+//            // 1
+//            if let touchLocation = touches.first?.location(
+//                in: self.sceneView) {
+//                // 2
+//                if let hit = self.sceneView.hitTest(touchLocation,
+//                                                    options: nil).first {
+//                    // 3
+//                    if hit.node.name == "dice" {
+//                        // 4
+//                        hit.node.removeFromParentNode()
+//                        self.diceCount += 1
+//                    }
+//                }
+//            }
+//        }
+
 
         let nodeA = contact.nodeA
         let nodeB = contact.nodeB
+        
+        let nodeAMask = nodeA.categoryBitMask
+        let nodeBMask = nodeB.categoryBitMask
+
+        print(nodeAMask, nodeBMask)
+        print(nodeA.name, nodeB.name)
+        print(BitMaskCategory.target.rawValue)
+
+        
         if nodeA.physicsBody?.categoryBitMask == BitMaskCategory.target.rawValue {
             print("HIT!")
-
-            self.Target = nodeA
+            self.target = nodeA
         } else if nodeB.physicsBody?.categoryBitMask == BitMaskCategory.target.rawValue {
-            self.Target = nodeB
+            print("HIT!")
+            self.target = nodeB
         }
         let confetti = SCNParticleSystem(named: "target.scnassets/Fire.scnp", inDirectory: nil)
         confetti?.loops = false
         confetti?.particleLifeSpan = 4
-        confetti?.emitterShape = Target?.geometry
+        confetti?.emitterShape = target?.geometry
         let confettiNode = SCNNode()
         confettiNode.addParticleSystem(confetti!)
         confettiNode.position = contact.contactPoint
         self.sceneView.scene.rootNode.addChildNode(confettiNode)
-        Target?.removeFromParentNode()
+        print("Target got hit \(target?.name)")
+
+        target?.removeFromParentNode()
         
     }
     
