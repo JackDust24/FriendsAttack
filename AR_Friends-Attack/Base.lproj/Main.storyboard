@@ -526,13 +526,38 @@
                                                 <constraint firstItem="PoF-Lv-Ums" firstAttribute="leading" secondItem="jWi-RT-Jia" secondAttribute="trailing" constant="60" id="fZI-Ub-F15"/>
                                             </constraints>
                                         </stackView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zi1-lE-yf1">
+                                            <rect key="frame" x="264" y="8.5" width="60" height="20.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="7HU-jf-qvJ"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3xu-M3-t3q">
+                                            <rect key="frame" x="264" y="36" width="60" height="25"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="60" id="7Gj-li-EEG"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="3xu-M3-t3q" firstAttribute="top" secondItem="Zi1-lE-yf1" secondAttribute="bottom" constant="7" id="0I3-Cj-5xD"/>
+                                        <constraint firstItem="3xu-M3-t3q" firstAttribute="top" secondItem="1SY-Yq-p1U" secondAttribute="top" id="1GY-bN-Lpo"/>
+                                        <constraint firstItem="3xu-M3-t3q" firstAttribute="leading" secondItem="1SY-Yq-p1U" secondAttribute="trailing" constant="44" id="1ja-np-Pkm"/>
                                         <constraint firstItem="1SY-Yq-p1U" firstAttribute="top" secondItem="Tvc-n6-wgs" secondAttribute="top" constant="36" id="Cqk-im-crP"/>
                                         <constraint firstItem="1SY-Yq-p1U" firstAttribute="leading" secondItem="Tvc-n6-wgs" secondAttribute="leading" constant="40" id="WBe-9q-zzG"/>
                                         <constraint firstItem="1SY-Yq-p1U" firstAttribute="top" secondItem="dJY-wc-QnI" secondAttribute="bottom" constant="7.5" id="aBY-nt-wEX"/>
+                                        <constraint firstAttribute="trailing" secondItem="Zi1-lE-yf1" secondAttribute="trailing" constant="51" id="bxy-s0-TcR"/>
                                         <constraint firstAttribute="bottom" secondItem="1SY-Yq-p1U" secondAttribute="bottom" constant="4" id="byw-zl-VJg"/>
+                                        <constraint firstAttribute="trailing" secondItem="3xu-M3-t3q" secondAttribute="trailing" constant="51" id="eiO-xo-QDE"/>
                                         <constraint firstItem="dJY-wc-QnI" firstAttribute="top" secondItem="Tvc-n6-wgs" secondAttribute="top" constant="8" id="fHW-hb-GLr"/>
+                                        <constraint firstItem="3xu-M3-t3q" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Zi1-lE-yf1" secondAttribute="leading" id="i9c-v8-bsw"/>
+                                        <constraint firstItem="3xu-M3-t3q" firstAttribute="bottom" secondItem="1SY-Yq-p1U" secondAttribute="bottom" id="q0Y-ss-dNx"/>
                                         <constraint firstItem="dJY-wc-QnI" firstAttribute="leading" secondItem="Tvc-n6-wgs" secondAttribute="leading" constant="40" id="sCV-ft-kUI"/>
                                     </constraints>
                                 </view>
@@ -541,14 +566,26 @@
                                 </constraints>
                                 <blurEffect style="light"/>
                             </visualEffectView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vle-DJ-mEV" userLabel="messageLabel">
+                                <rect key="frame" x="8" y="137" width="359" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="aiG-OC-zib"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="VA2-3w-OvD" firstAttribute="trailing" secondItem="vle-DJ-mEV" secondAttribute="trailing" constant="8" id="5so-CO-OrL"/>
+                            <constraint firstItem="vle-DJ-mEV" firstAttribute="leading" secondItem="VA2-3w-OvD" secondAttribute="leading" constant="8" id="CUw-29-u4y"/>
                             <constraint firstItem="1KA-Vf-5pk" firstAttribute="leading" secondItem="VA2-3w-OvD" secondAttribute="leading" id="GpF-WJ-IbF"/>
                             <constraint firstItem="6ZZ-G9-9mb" firstAttribute="centerX" secondItem="dZE-Ig-3aI" secondAttribute="centerX" id="NPb-l5-9TU"/>
                             <constraint firstItem="1KA-Vf-5pk" firstAttribute="bottom" secondItem="VA2-3w-OvD" secondAttribute="bottom" id="OSI-iX-325"/>
                             <constraint firstItem="0lT-hO-8i9" firstAttribute="centerX" secondItem="dZE-Ig-3aI" secondAttribute="centerX" id="QjU-AO-4F7"/>
                             <constraint firstItem="ue1-2c-qJi" firstAttribute="top" secondItem="VA2-3w-OvD" secondAttribute="top" id="U3w-g6-6ne"/>
+                            <constraint firstItem="vle-DJ-mEV" firstAttribute="top" secondItem="ue1-2c-qJi" secondAttribute="bottom" constant="8" id="Wpw-B0-3ew"/>
                             <constraint firstItem="ue1-2c-qJi" firstAttribute="trailing" secondItem="VA2-3w-OvD" secondAttribute="trailing" id="Xz9-RV-Jr4"/>
                             <constraint firstItem="1KA-Vf-5pk" firstAttribute="trailing" secondItem="VA2-3w-OvD" secondAttribute="trailing" id="d3X-OB-xBD"/>
                             <constraint firstItem="1KA-Vf-5pk" firstAttribute="top" secondItem="dZE-Ig-3aI" secondAttribute="top" id="hSG-8B-f22"/>
@@ -559,6 +596,10 @@
                         <viewLayoutGuide key="safeArea" id="VA2-3w-OvD"/>
                     </view>
                     <connections>
+                        <outlet property="friendsLabel" destination="jWi-RT-Jia" id="zic-EB-iVd"/>
+                        <outlet property="killsLabel" destination="PoF-Lv-Ums" id="bgj-1l-VEh"/>
+                        <outlet property="messageLabel" destination="vle-DJ-mEV" id="PR6-pf-Q1r"/>
+                        <outlet property="pointsLabel" destination="3xu-M3-t3q" id="EDB-vt-aMK"/>
                         <outlet property="sceneView" destination="1KA-Vf-5pk" id="qQO-A7-0Eh"/>
                         <outlet property="startButton" destination="6ZZ-G9-9mb" id="IXy-jn-v6B"/>
                     </connections>

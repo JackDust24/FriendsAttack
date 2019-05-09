@@ -26,11 +26,19 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
 
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet var sceneView: ARSCNView!
+    
+    @IBOutlet weak var friendsLabel: UILabel!
+    @IBOutlet weak var killsLabel: UILabel!
+    @IBOutlet weak var pointsLabel: UILabel!
+    @IBOutlet weak var messageLabel: UILabel!
+    
     var gameStarted = false
     var targetsOnScreen = false
     var power: Float = 50
     var target: SCNNode?
-    var testOne = false
+    var currentlyShooting = false
+    var points = 0
+    var kills = 0
     
     var faceHit = false
     
@@ -44,6 +52,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         sceneView.delegate = self
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
+        
+        messageLabel.text = "Press Start to Begin"
     
     }
     
@@ -74,6 +84,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         
         // Add the appropriate amount of targets
         let objectsToAdd = GameStateManager.sharedInstance().initialTargets
+        
+        friendsLabel.text = "\(objectsToAdd)"
+
         
         for i in 1...objectsToAdd {
             print("1. Add Friend")
@@ -114,6 +127,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
             target.name = "Ian"
             print("1.3 Add Friend")
             
+        case 6:
+            target.name = "Rory"
+            print("1.3 Add Friend")
+            
         default:
             target.name = "Harsh"
             print("1.4 Add Friend")
@@ -133,20 +150,21 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         // Create a new scene and set it's position
         let targetScene = SCNScene(named: "target.scnassets/target.scn")!
         let targetNode = targetScene.rootNode.childNode(withName: "target", recursively: false)!
-        targetNode.name = "Target_" + nodeFriend
+        targetNode.name = nodeFriend
         
         let childNode = targetNode.childNode(withName: "box", recursively: false)
-        childNode?.name = "Target_" + nodeFriend
+        childNode?.name = nodeFriend
         
         // Position of node
-        let x = randomNumbers(numA: -5, numB: 5.5)
-        let y = randomNumbers(numA: -0.5, numB: 4)
-        let z = randomNumbers(numA: -1, numB: -5)
+        let x = randomNumbers(numA: -3, numB: 3.5)
+        let y = randomNumbers(numA: -0.5, numB: 2)
+        let z = randomNumbers(numA: -1, numB: -2)
         targetNode.position = SCNVector3(x,y,z)
         
         // Physics body
         targetNode.physicsBody?.categoryBitMask = BitMaskCategory.target.rawValue
         targetNode.physicsBody?.contactTestBitMask = BitMaskCategory.bullet.rawValue
+//        targetNode.physicsBody?.restitution = 0.1
         
         // Add images
         self.addFace(nodeName: "faceFront", targetNode: targetNode, imageName: nodeFriend)
@@ -222,6 +240,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     // MARK: Touches - fire bullets
     @objc func handleTap(sender: UITapGestureRecognizer) {
         print("Handle Tap")
+
+        if currentlyShooting {
+            print("Currently shooting already")
+
+            return
+        }
         // Don't need to do this if Game hasn't started.
         if !targetsOnScreen {
             print("Targets not on screen")
@@ -231,9 +255,13 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         if !gameStarted {
             print("Await to get game started then can start firing")
             gameStarted = true
+            messageLabel.text = "Shoot in the face to kill"
             return
 
         }
+        
+        // We are currently shooting
+        currentlyShooting = true
         
         guard let sceneView = sender.view as? ARSCNView else {return}
         guard let pointOfView = sceneView.pointOfView else {return}
@@ -265,16 +293,27 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                 SCNAction.sequence([SCNAction.wait(duration: 2.0),
                                     SCNAction.removeFromParentNode()])
             )
+            bullet.runAction(SCNAction.sequence([SCNAction.wait(duration: 2.0),
+                                                 SCNAction.removeFromParentNode()]), completionHandler: ({
+                                                    print("Finished Shooting")
+                                                    self.currentlyShooting = false
+                                                 }))
         }
     }
     
     //TODO: - To decide whether to keep this and how we can add this to main queue
     override func touchesBegan(_ touches: Set<UITouch>,
                                with event: UIEvent?) {
-        // Must default back to false
-        faceHit = false
-
+        
         print("Touches Began")
+
+        // Must default back to false
+//        faceHit = false
+        if currentlyShooting {
+            print("Currently shooting already")
+            
+            return
+        }
         
         DispatchQueue.main.async {
             // 1
@@ -311,30 +350,30 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         let nodeAMask = nodeA.categoryBitMask
         let nodeBMask = nodeB.categoryBitMask
         
-        // Test to see if we can tell which part is hit
-        let testA = nodeA.name
-        let testB = nodeA.name?.contains("front")
-        let testBA = nodeA.name?.contains("back")
-        let testBB = nodeA.name?.contains("left")
-        let testBC = nodeA.name?.contains("right")
-        let testBD = nodeA.name?.contains("face-side")
-
-        let testC = nodeA.childNodes.description
-        let testD = nodeA.parent?.name
-        let testE = nodeA.childNodes.first?.name
-        let testF = nodeA.childNodes.first
-
-        print(testA as Any)
-        print(testB as Any)
-        print(testBA as Any)
-        print(testBB as Any)
-        print(testBC as Any)
-        print(testBD as Any)
-        print(testC as Any)
-        print(testD as Any)
-        print(testE as Any)
-        print(testF as Any)
+//        // Test to see if we can tell which part is hit
+//        let testA = nodeA.name
+//        let testB = nodeA.name?.contains("front")
+//        let testBA = nodeA.name?.contains("back")
+//        let testBB = nodeA.name?.contains("left")
+//        let testBC = nodeA.name?.contains("right")
+//        let testBD = nodeA.name?.contains("face-side")
+//
+//        let testC = nodeA.childNodes.description
+//        let testD = nodeA.parent?.name
+//        let testE = nodeA.childNodes.first?.name
+//        let testF = nodeA.childNodes.first
+//
+//        print(testA as Any)
+//        print(testB as Any)
+//        print(testBA as Any)
+//        print(testBB as Any)
+//        print(testBC as Any)
+//        print(testBD as Any)
 //        print(testC as Any)
+//        print(testD as Any)
+//        print(testE as Any)
+//        print(testF as Any)
+////        print(testC as Any)
 
 
 
@@ -344,10 +383,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         
         
         if nodeA.physicsBody?.categoryBitMask == BitMaskCategory.target.rawValue {
-            print("HIT! nodeA")
             self.target = nodeA
         } else if nodeB.physicsBody?.categoryBitMask == BitMaskCategory.target.rawValue {
-            print("HIT! nodeB")
             self.target = nodeB
         }
         
@@ -357,25 +394,43 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         var particle: SCNParticleSystem
         
         if faceHit {
+            print("FACE HIT")
             particle = bulletHitEffect(particleName: "target.scnassets/Fire.scnp", directory: nil, loops: false, lifeSpan: 4)
             
         } else {
-            particle = bulletHitEffect(particleName: "target.scnassets/HitSide.scnp", directory: nil, loops: false, lifeSpan: 2)
+            print("No FACE HIT")
+
+            particle = bulletHitEffect(particleName: "target.scnassets/HitSide.scnp", directory: nil, loops: false, lifeSpan: 0.5)
         }
         
         let particleNode = SCNNode()
         particleNode.addParticleSystem(particle)
         particleNode.position = contact.contactPoint
+        particleNode.scale = SCNVector3(0.5, 0.5, 0.5)
         self.sceneView.scene.rootNode.addChildNode(particleNode)
         print("Target got hit \(target?.name ?? "No Name")")
         
-        if faceHit {
-
-            target?.removeFromParentNode()
+        DispatchQueue.main.async {
             
+            if self.faceHit {
+                print("You Killed \(self.target?.name ?? "No Name")")
+                self.messageLabel.text = "You KILLED \(self.target?.name ?? "No Name")"
+
+                self.points += 10
+                //TODO- We will change this depending on the timer
+                self.pointsLabel.text = "\(self.points)"
+                self.kills += 1
+                self.killsLabel.text = "\(self.kills)"
+                self.target?.removeFromParentNode()
+            } else {
+                print("You hit \(self.target?.name ?? "No Name")")
+                self.points += 1
+                self.pointsLabel.text = "\(self.points)"
+                self.messageLabel.text = "You hit \(self.target?.name ?? "No Name")"
+            }
+            self.faceHit = false
+
         }
-        
-        faceHit = false
         
     }
     
@@ -385,6 +440,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         particle?.loops = loops
         particle?.particleLifeSpan = lifeSpan
         particle?.emitterShape = target?.geometry
+        particle?.particleSize = 0.01
         
         return particle!
         
@@ -414,15 +470,17 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         print("Animate")
         let randomMinus = randomNonWholeNumbers(numA: 0, numB: -2)
         let randomPlus = randomNonWholeNumbers(numA: 2, numB: 0)
-        let waitRandom = randomNonWholeNumbers(numA: 1, numB: 0)
-        print("Waitrandom Check  2 \(waitRandom) randomMinus \(randomMinus) randomPlus \(randomPlus)")
+        let waitRandom = randomNonWholeNumbers(numA: 2, numB: 0)
+        let randomNegative = -randomPlus
+//        print("Waitrandom Check  2 \(waitRandom) randomMinus \(randomMinus) randomPlus \(randomPlus)")
         
         let wait = SCNAction.wait(duration: TimeInterval(waitRandom))
-        let moveDown = SCNAction.move(by: SCNVector3(0, randomMinus, 0), duration: 0.5)
+        let moveDown = SCNAction.move(by: SCNVector3(0, randomNegative, 0), duration: 0.5)
         let moveUp = SCNAction.move(by: SCNVector3(0, randomPlus,0), duration: 0.5)
-        let moveLeft = SCNAction.move(by: SCNVector3(randomMinus, 0, 0), duration: 0.5)
+        let moveLeft = SCNAction.move(by: SCNVector3(randomNegative, 0, 0), duration: 0.5)
         let moveRight = SCNAction.move(by: SCNVector3(randomPlus,0,0), duration: 0.5)
         let hoverSequence = SCNAction.sequence([wait, moveUp, wait, moveLeft, wait, moveDown, wait, moveRight])
+//        let hoverSequence = SCNAction.sequence([wait, moveLeft, wait, moveRight])
 //        let loopSequence = SCNAction.repeatForever(hoverSequence)
         return hoverSequence
     }
