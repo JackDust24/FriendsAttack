@@ -76,6 +76,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         super.viewWillDisappear(animated)
         
         // Pause the view's session
+        print("**** Leaving the View")
+        GameStateManager.sharedInstance().savePointsAndKills(kills: kills, points: points)
         sceneView.session.pause()
     }
     
@@ -87,7 +89,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         
         friendsLabel.text = "\(objectsToAdd)"
 
-        
         for i in 1...objectsToAdd {
             print("1. Add Friend")
             addFriends(numOfFriend: i)

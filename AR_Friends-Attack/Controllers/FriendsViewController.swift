@@ -86,9 +86,6 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
     }
     
-    
-    
-    
     // This is for View Friend Only
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
@@ -112,7 +109,7 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
                 return
             }
             
-            let detailsForVC = FriendDetails(name: friends[cell.tag], hits: 6, games: 4, kills: 2, ranking: "Deadly")
+            let detailsForVC = FriendDetails(name: friends[cell.tag], killed: 2)
             detailVC.detailItem = detailsForVC
             detailVC.managedContext = managedContext
             detailVC.name = friends[cell.tag]

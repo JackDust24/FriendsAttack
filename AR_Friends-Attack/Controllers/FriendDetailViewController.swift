@@ -12,18 +12,12 @@ import CoreData
 struct FriendDetails {
     
     var name: String
-    var hits: Int
-    var games: Int
-    var kills: Int
-    var ranking: String
+    var killed: Int
 }
 
 class FriendDetailViewController: UIViewController {
 
-    @IBOutlet weak var killsLabel: UILabel!
-    @IBOutlet weak var hitsLabel: UILabel!
-    @IBOutlet weak var gamesLabel: UILabel!
-    @IBOutlet weak var rankingLabel: UILabel!
+    @IBOutlet weak var killedLabel: UILabel!
     
     var managedContext: NSManagedObjectContext!
 
@@ -68,7 +62,7 @@ class FriendDetailViewController: UIViewController {
     func configureView() {
         // Update the user interface for the detail item.
         
-        if self.rankingLabel == nil { return } // no web view, bail out
+        if self.killedLabel == nil { return } // no web view, bail out
 //        if let detailContent = detailItem?.valueForKey("content") as? String{
 //            self.webView.loadHTMLString(detailContent as String, baseURL:nil)
 //        }
@@ -76,11 +70,8 @@ class FriendDetailViewController: UIViewController {
         
         print("Detail item - \(String(describing: detailItem))")
         nameLabel.text = detailItem?.name
-        killsLabel.text = "\(detailItem?.kills ?? 0)"
-        hitsLabel.text = "\(detailItem?.hits ?? 0)"
-        gamesLabel.text = "\(detailItem?.games ?? 0)"
-        rankingLabel.text = detailItem?.ranking
-        
+        killedLabel.text = "\(detailItem?.killed ?? 0)"
+
         friendImage.image = UIImage(named: "target.scnassets/\(detailItem?.name ?? "Friend").png")
 
     }
