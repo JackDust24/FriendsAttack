@@ -40,30 +40,6 @@ class StartViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    // MARK: - Segue
-//    override func performSegue(withIdentifier identifier: String, sender: Any?) {
-//        
-//        var secondController = ""
-//        // Go to view friends
-//        print("performSegue")
-//
-//        if identifier == "viewFriends" {
-//            print("performSegue - View")
-//
-//            secondController = "FriendsViewController"
-//            let secondViewController = storyboard?.instantiateViewController(withIdentifier: secondController) as! FriendsViewController
-//            self.navigationController?.pushViewController(secondViewController, animated: true)
-//            secondViewController.managedContext = managedContext
-//
-//           
-//        } else {
-//            secondController = "ViewController"
-//            let secondViewController = storyboard?.instantiateViewController(withIdentifier: secondController) as! ViewController
-//            secondViewController.managedContext = managedContext
-//            self.navigationController?.pushViewController(secondViewController, animated: true)
-//        }
-//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
@@ -75,6 +51,10 @@ class StartViewController: UIViewController {
             print("prepare - View")
             let secondViewController = segue.destination as! FriendsViewController
             secondViewController.managedContext = managedContext
+        } else if segue.identifier == "showScores" {
+            print("prepare - View")
+            let secondViewController = segue.destination as! ScoreViewController
+//            secondViewController.managedContext = managedContext
         } else  {
             let secondViewController = segue.destination as! ViewController
             

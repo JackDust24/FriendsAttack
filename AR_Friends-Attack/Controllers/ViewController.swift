@@ -25,6 +25,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     var managedContext: NSManagedObjectContext!
 
     @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var exitButton: UIButton!
+
     @IBOutlet var sceneView: ARSCNView!
     
     @IBOutlet weak var friendsLabel: UILabel!
@@ -32,18 +34,31 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     @IBOutlet weak var pointsLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
     
+    @IBOutlet weak var gameKills: UILabel!
+    @IBOutlet weak var gamePoints: UILabel!
+    @IBOutlet weak var totalKills: UILabel!
+    @IBOutlet weak var totalPoints: UILabel!
+    
+    @IBOutlet weak var timerLabel: UILabel!
     var gameStarted = false
+    var gameFinished = false
     var targetsOnScreen = false
     var power: Float = 50
     var target: SCNNode?
     var currentlyShooting = false
     var points = 0
     var kills = 0
+    var friends = 0
     
     var faceHit = false
     
     var peopleAdded = 0
     
+    // Timers
+    var myTimer = Timer()
+    var countdown: Double = 30.00
+    
+    @IBOutlet weak var constX: NSLayoutConstraint!
     // MARK: - Views
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,30 +90,38 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        // Pause the view's session
-        print("**** Leaving the View")
-        GameStateManager.sharedInstance().savePointsAndKills(kills: kills, points: points)
-        sceneView.session.pause()
+//        // Pause the view's session
+//        print("**** Leaving the View")
+//        GameStateManager.sharedInstance().savePointsAndKills(kills: kills, points: points)
+//        sceneView.session.pause()
     }
     
-    // MARK: - Add the Targets
+    // MARK: - Add the Targets (the targets)
     @IBAction func addTargets(_ sender: Any) {
         
-        // Add the appropriate amount of targets
-        let objectsToAdd = GameStateManager.sharedInstance().initialTargets
-        
-        friendsLabel.text = "\(objectsToAdd)"
-
-        for i in 1...objectsToAdd {
-            print("1. Add Friend")
-            addFriends(numOfFriend: i)
+        // We don't want to add if already finished
+        if !gameFinished {
+            
+            // Add the appropriate amount of targets
+            let objectsToAdd = GameStateManager.sharedInstance().initialTargets
+            
+            friendsLabel.text = "\(objectsToAdd)"
+            
+            for i in 1...objectsToAdd {
+                print("1. Add Friend")
+                addFriends(numOfFriend: i)
+            }
+            print("Add Targets done")
+            
+            friends = objectsToAdd
+            
+            // No longer need the start button
+            startButton.isHidden = true
+            startButton.isEnabled = false
+            targetsOnScreen = true
+            
         }
-        print("Add Targets done")
 
-        // No longer need the start button
-        startButton.isHidden = true
-        startButton.isEnabled = false
-        targetsOnScreen = true
     }
     
     
@@ -257,9 +280,21 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
             print("Await to get game started then can start firing")
             gameStarted = true
             messageLabel.text = "Shoot in the face to kill"
+            myTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { _ in
+                self.startTimer()
+            }
             return
 
         }
+        
+        if gameFinished {
+            print("Game Finished")
+
+            return
+        }
+        
+        print("Handle Tap - Proceed")
+
         
         // We are currently shooting
         currentlyShooting = true
@@ -307,9 +342,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                                with event: UIEvent?) {
         
         print("Touches Began")
-
+        
         // Must default back to false
-//        faceHit = false
+        //        faceHit = false
         if currentlyShooting {
             print("Currently shooting already")
             
@@ -330,14 +365,153 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                         // 4
                         print("WE HAVE A HIT IN THE FACE")
                         self.faceHit = true
-
+                        
                     } else {
                         print("NO HIT")
                         self.faceHit = false
-
+                        
                     }
                 }
             }
+        }
+    }
+    
+    
+    // MARK - Game management and timer
+    func startTimer() {
+    
+        gameManagement()
+        
+        // No point doing this if game has finished
+        if !gameFinished {
+            countdown -= 0.01
+            
+            DispatchQueue.main.async {
+                self.timerLabel.text = String(format: "%.2f", self.countdown)
+            }
+        }
+    }
+
+    
+    func gameManagement() {
+        
+        if !gameFinished {
+            
+            if countdown <= 0.0  {
+                print("countdown reached")
+                // endGame()
+                // Pause session view
+                sceneView.session.pause()
+                messageLabel.text = "Time Ran Out"
+                // set game as finished & stop the timer
+                myTimer.invalidate()
+                timerLabel.text = String(format: "%.2f", 00.00)
+
+                gameFinished = true
+                
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    self.messageLabel.text = "Save and Exit"
+                    self.endGame()
+//                    _ = self.navigationController?.popViewController(animated: true)
+                    
+                    // Stats Pop Up
+                }
+                
+            }
+            
+            if friends == 0 {
+                print("All friends killed")
+
+                // endGame()
+                // Pause session view
+                // set game as finished & stop the timer
+                myTimer.invalidate()
+                gameFinished = true
+                
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    self.messageLabel.text = "You have killed all friends"
+                    self.endGame()
+//                    _ = self.navigationController?.popViewController(animated: true)
+
+                    // Stats Pop Up
+                }
+            }
+        }
+    }
+    
+    func endGame() {
+        
+        // Pause the view's session
+        print("**** ending Game")
+        GameStateManager.sharedInstance().savePointsAndKills(kills: kills, points: points)
+        sceneView.session.pause()
+        showPopUp()
+        
+    }
+    
+    @IBAction func exitButtonPressed(_ sender: Any) {
+        
+        print("**** Exit button Pressed")
+
+        
+        // Set alert if not sure
+        gameFinished = true
+        myTimer.invalidate()
+        countdown = 0.0
+        timerLabel.text = String(format: "%.2f", self.countdown)
+//        endGame()
+        self.messageLabel.text = "Game about to exit"
+
+        // Pop Up
+//        showPopUp()
+        
+        // Go Back
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            self.messageLabel.text = "Exit in a second"
+//            _ = self.navigationController?.popViewController(animated: true)
+            self.endGame()
+
+        }
+    }
+    
+    func showPopUp() {
+        
+        constX.constant = 0
+        updatePopUpScores()
+        UIView.animate(withDuration: 0.7, delay: 0, options: .curveEaseOut, animations: {
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+    }
+    
+    
+    func updatePopUpScores() {
+        
+        gameKills.text = String(kills)
+        gamePoints.text = String(points)
+        
+        let killsAndPoints = GameStateManager.sharedInstance().returnKillsAndPoints()
+        let tKills = killsAndPoints.0
+        let tPoints = killsAndPoints.1
+        
+        totalKills.text = String(tKills)
+        totalPoints.text = String(tPoints)
+        
+    }
+    @IBAction func popUpButtonDismiss(_ sender: Any) {
+        print("Hello")
+        
+        constX.constant = -1000
+        UIView.animate(withDuration: 0.7, delay: 0, options: .curveEaseOut, animations: {
+            self.view.layoutIfNeeded()
+            self.dismissToMainScreen()
+            }, completion: nil)
+    }
+    
+    func dismissToMainScreen() {
+        Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { _ in
+//            self.messageLabel.text = "Exiting to main screen"
+            _ = self.navigationController?.popViewController(animated: true)
+            
         }
     }
     
@@ -421,7 +595,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                 //TODO- We will change this depending on the timer
                 self.pointsLabel.text = "\(self.points)"
                 self.kills += 1
+                self.friends -= 1
                 self.killsLabel.text = "\(self.kills)"
+                self.friendsLabel.text = "\(self.friends)"
                 self.target?.removeFromParentNode()
             } else {
                 print("You hit \(self.target?.name ?? "No Name")")
@@ -508,6 +684,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
      return node
      }
      */
+
+    
     
     // MARK: - Session functions
     

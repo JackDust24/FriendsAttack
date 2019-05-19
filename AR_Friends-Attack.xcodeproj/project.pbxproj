@@ -20,6 +20,19 @@
 		9E21895820DC7C3C008997FB /* target.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E21895720DC7C3C008997FB /* target.scnassets */; };
 		9E2AE57020ECBF0B00AA54B9 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2AE56F20ECBF0B00AA54B9 /* StartViewController.swift */; };
 		9E2AE57220ECBF3200AA54B9 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2AE57120ECBF3200AA54B9 /* FriendsViewController.swift */; };
+		9E493CC7228D36AB0081FB0D /* ComicNeue-Angular_Oblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E493CBB228D36AA0081FB0D /* ComicNeue-Angular_Oblique.otf */; };
+		9E493CC8228D36AB0081FB0D /* ComicNeue-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E493CBC228D36AA0081FB0D /* ComicNeue-Regular.otf */; };
+		9E493CC9228D36AB0081FB0D /* ComicNeue_Oblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E493CBD228D36AA0081FB0D /* ComicNeue_Oblique.otf */; };
+		9E493CCA228D36AB0081FB0D /* ComicNeue-Angular_Bold_Oblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E493CBE228D36AA0081FB0D /* ComicNeue-Angular_Bold_Oblique.otf */; };
+		9E493CCB228D36AB0081FB0D /* ComicNeue_Light_Oblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E493CBF228D36AA0081FB0D /* ComicNeue_Light_Oblique.otf */; };
+		9E493CCC228D36AB0081FB0D /* ComicNeue-Angular-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E493CC0228D36AA0081FB0D /* ComicNeue-Angular-Regular.otf */; };
+		9E493CCD228D36AB0081FB0D /* ComicNeue_Bold_Oblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E493CC1228D36AA0081FB0D /* ComicNeue_Bold_Oblique.otf */; };
+		9E493CCE228D36AB0081FB0D /* ComicNeue-Angular_Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E493CC2228D36AB0081FB0D /* ComicNeue-Angular_Light.otf */; };
+		9E493CCF228D36AB0081FB0D /* ComicNeue_Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E493CC3228D36AB0081FB0D /* ComicNeue_Bold.otf */; };
+		9E493CD0228D36AB0081FB0D /* ComicNeue-Angular_Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E493CC4228D36AB0081FB0D /* ComicNeue-Angular_Bold.otf */; };
+		9E493CD1228D36AB0081FB0D /* ComicNeue_Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E493CC5228D36AB0081FB0D /* ComicNeue_Light.otf */; };
+		9E493CD2228D36AB0081FB0D /* ComicNeue-Angular_Light_Oblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E493CC6228D36AB0081FB0D /* ComicNeue-Angular_Light_Oblique.otf */; };
+		9E493CD4228D3B1C0081FB0D /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E493CD3228D3B1C0081FB0D /* ScoreViewController.swift */; };
 		9EB2DF29210F1ED400444981 /* FriendsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB2DF28210F1ED400444981 /* FriendsCollectionViewCell.swift */; };
 		9EB97CEF21BD2DC2009ED736 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB97CEE21BD2DC2009ED736 /* Extensions.swift */; };
 		9EBD7F9F21201A5A001B0C81 /* AddFriendSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBD7F9E21201A5A001B0C81 /* AddFriendSecondViewController.swift */; };
@@ -43,6 +56,19 @@
 		9E21895720DC7C3C008997FB /* target.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = target.scnassets; sourceTree = "<group>"; };
 		9E2AE56F20ECBF0B00AA54B9 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		9E2AE57120ECBF3200AA54B9 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		9E493CBB228D36AA0081FB0D /* ComicNeue-Angular_Oblique.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ComicNeue-Angular_Oblique.otf"; sourceTree = "<group>"; };
+		9E493CBC228D36AA0081FB0D /* ComicNeue-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ComicNeue-Regular.otf"; sourceTree = "<group>"; };
+		9E493CBD228D36AA0081FB0D /* ComicNeue_Oblique.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ComicNeue_Oblique.otf; sourceTree = "<group>"; };
+		9E493CBE228D36AA0081FB0D /* ComicNeue-Angular_Bold_Oblique.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ComicNeue-Angular_Bold_Oblique.otf"; sourceTree = "<group>"; };
+		9E493CBF228D36AA0081FB0D /* ComicNeue_Light_Oblique.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ComicNeue_Light_Oblique.otf; sourceTree = "<group>"; };
+		9E493CC0228D36AA0081FB0D /* ComicNeue-Angular-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ComicNeue-Angular-Regular.otf"; sourceTree = "<group>"; };
+		9E493CC1228D36AA0081FB0D /* ComicNeue_Bold_Oblique.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ComicNeue_Bold_Oblique.otf; sourceTree = "<group>"; };
+		9E493CC2228D36AB0081FB0D /* ComicNeue-Angular_Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ComicNeue-Angular_Light.otf"; sourceTree = "<group>"; };
+		9E493CC3228D36AB0081FB0D /* ComicNeue_Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ComicNeue_Bold.otf; sourceTree = "<group>"; };
+		9E493CC4228D36AB0081FB0D /* ComicNeue-Angular_Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ComicNeue-Angular_Bold.otf"; sourceTree = "<group>"; };
+		9E493CC5228D36AB0081FB0D /* ComicNeue_Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ComicNeue_Light.otf; sourceTree = "<group>"; };
+		9E493CC6228D36AB0081FB0D /* ComicNeue-Angular_Light_Oblique.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ComicNeue-Angular_Light_Oblique.otf"; sourceTree = "<group>"; };
+		9E493CD3228D3B1C0081FB0D /* ScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
 		9EB2DF28210F1ED400444981 /* FriendsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCollectionViewCell.swift; sourceTree = "<group>"; };
 		9EB97CEE21BD2DC2009ED736 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9EBD7F9E21201A5A001B0C81 /* AddFriendSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendSecondViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +99,7 @@
 		9E21893720DC7B41008997FB = {
 			isa = PBXGroup;
 			children = (
+				9E493CBA228D365D0081FB0D /* Fonts */,
 				9E0A14FD227C5D63007ED3CB /* HitSide.scnp */,
 				9E0A14FA227C58C4007ED3CB /* Assets.xcassets */,
 				9E21894220DC7B41008997FB /* AR_Friends-Attack */,
@@ -107,6 +134,25 @@
 			path = "AR_Friends-Attack";
 			sourceTree = "<group>";
 		};
+		9E493CBA228D365D0081FB0D /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				9E493CC1228D36AA0081FB0D /* ComicNeue_Bold_Oblique.otf */,
+				9E493CC3228D36AB0081FB0D /* ComicNeue_Bold.otf */,
+				9E493CBF228D36AA0081FB0D /* ComicNeue_Light_Oblique.otf */,
+				9E493CC5228D36AB0081FB0D /* ComicNeue_Light.otf */,
+				9E493CBD228D36AA0081FB0D /* ComicNeue_Oblique.otf */,
+				9E493CBE228D36AA0081FB0D /* ComicNeue-Angular_Bold_Oblique.otf */,
+				9E493CC4228D36AB0081FB0D /* ComicNeue-Angular_Bold.otf */,
+				9E493CC6228D36AB0081FB0D /* ComicNeue-Angular_Light_Oblique.otf */,
+				9E493CC2228D36AB0081FB0D /* ComicNeue-Angular_Light.otf */,
+				9E493CBB228D36AA0081FB0D /* ComicNeue-Angular_Oblique.otf */,
+				9E493CC0228D36AA0081FB0D /* ComicNeue-Angular-Regular.otf */,
+				9E493CBC228D36AA0081FB0D /* ComicNeue-Regular.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		9ED56CA421BBB64600B1C7E8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +162,7 @@
 				9E07BC3B20ECF00700A26584 /* FriendDetailViewController.swift */,
 				9E07BC3D20ECF06900A26584 /* AddFriendViewController.swift */,
 				9EBD7F9E21201A5A001B0C81 /* AddFriendSecondViewController.swift */,
+				9E493CD3228D3B1C0081FB0D /* ScoreViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -186,12 +233,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E493CD2228D36AB0081FB0D /* ComicNeue-Angular_Light_Oblique.otf in Resources */,
+				9E493CD0228D36AB0081FB0D /* ComicNeue-Angular_Bold.otf in Resources */,
+				9E493CCE228D36AB0081FB0D /* ComicNeue-Angular_Light.otf in Resources */,
 				9E21895020DC7B43008997FB /* LaunchScreen.storyboard in Resources */,
 				9E21894D20DC7B43008997FB /* Assets.xcassets in Resources */,
+				9E493CCC228D36AB0081FB0D /* ComicNeue-Angular-Regular.otf in Resources */,
+				9E493CCB228D36AB0081FB0D /* ComicNeue_Light_Oblique.otf in Resources */,
+				9E493CCA228D36AB0081FB0D /* ComicNeue-Angular_Bold_Oblique.otf in Resources */,
+				9E493CCD228D36AB0081FB0D /* ComicNeue_Bold_Oblique.otf in Resources */,
 				9E21895820DC7C3C008997FB /* target.scnassets in Resources */,
+				9E493CC8228D36AB0081FB0D /* ComicNeue-Regular.otf in Resources */,
+				9E493CD1228D36AB0081FB0D /* ComicNeue_Light.otf in Resources */,
 				9E21894B20DC7B41008997FB /* Main.storyboard in Resources */,
+				9E493CCF228D36AB0081FB0D /* ComicNeue_Bold.otf in Resources */,
+				9E493CC9228D36AB0081FB0D /* ComicNeue_Oblique.otf in Resources */,
 				9E0A14FE227C5D63007ED3CB /* HitSide.scnp in Resources */,
 				9E0A14FC227C58C4007ED3CB /* Assets.xcassets in Resources */,
+				9E493CC7228D36AB0081FB0D /* ComicNeue-Angular_Oblique.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,6 +272,7 @@
 				9E21894420DC7B41008997FB /* AppDelegate.swift in Sources */,
 				9EB97CEF21BD2DC2009ED736 /* Extensions.swift in Sources */,
 				9EDC97912121A6AF008B2EAD /* FriendsModel.xcdatamodeld in Sources */,
+				9E493CD4228D3B1C0081FB0D /* ScoreViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

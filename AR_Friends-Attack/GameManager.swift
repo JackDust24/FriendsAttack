@@ -51,7 +51,29 @@ class GameStateManager: NSObject {
         defaults.set(newPoints, forKey: "pointsKey")
         defaults.set(newKills, forKey: "killsKey")
         
+    }
+    
+    func returnKillsAndPoints() -> (Int, Int) {
         
+        // Creeate temp totals of zero
+        var pointsTemp = 0
+        var killsTemp = 0
+        // Get the UserDefaults
+        let defaults = UserDefaults.standard
+        
+        // Extract and manipulate the temp scores if a score already exists
+        if UserDefaults.standard.object(forKey: "pointsKey") != nil {
+            pointsTemp = defaults.integer(forKey: "pointsKey")
+            
+        }
+        
+        if UserDefaults.standard.object(forKey: "killsKey") != nil {
+            killsTemp = defaults.integer(forKey: "killsKey")
+            
+        }
+        
+        return (killsTemp, pointsTemp)
+    
     }
     
 }
