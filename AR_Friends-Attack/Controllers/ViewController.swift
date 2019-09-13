@@ -20,9 +20,14 @@ enum BitMaskCategory: Int {
     case bullet = 3
 }
 
-class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDelegate, NSFetchedResultsControllerDelegate {
     
-    var managedContext: NSManagedObjectContext!
+    var managedContext: NSManagedObjectContext! {
+        didSet {
+            // Update the view.
+            self.configureView()
+        }
+    }
 
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var exitButton: UIButton!
@@ -56,10 +61,18 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     
     // Timers
     var myTimer = Timer()
-    var countdown: Double = 30.00
+    var countdown: Double = 40.00
     
     @IBOutlet weak var constX: NSLayoutConstraint!
     // MARK: - Views
+    
+    func configureView() {
+        print("View Controller = Check if context set")
+        if managedContext == nil {
+            return
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -69,8 +82,13 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         sceneView.showsStatistics = true
         
         messageLabel.text = "Press Start to Begin"
+        
+        print("TestJW1")
+        performFetch()
     
     }
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -96,6 +114,36 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
 //        sceneView.session.pause()
     }
     
+    // MARK: - Core Data Methods
+    lazy var fetchedResultsController: NSFetchedResultsController<Friend> = {
+        let fetchRequest = NSFetchRequest<Friend>()
+        let entity = Friend.entity()
+        fetchRequest.entity = entity
+        let sort1 = NSSortDescriptor(key: "name", ascending: false) // Because we want Start Month first
+        // let sort2 = NSSortDescriptor(key: "date", ascending: true)
+        fetchRequest.sortDescriptors = [sort1]
+        fetchRequest.fetchBatchSize = 20
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedContext, sectionNameKeyPath: nil, cacheName: "Friends")
+        fetchedResultsController.delegate = self
+        return fetchedResultsController
+    }()
+    
+    func performFetch() {
+        do {
+            print("Perform fetch")
+            try fetchedResultsController.performFetch()
+            
+        } catch {
+            // fatalCoreDataError(error)
+            print("Perform fetch error")
+            
+        }
+    }
+    
+    func populateFriends() {
+        
+    }
+    
     // MARK: - Add the Targets (the targets)
     @IBAction func addTargets(_ sender: Any) {
         
@@ -103,17 +151,55 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         if !gameFinished {
             
             // Add the appropriate amount of targets
-            let objectsToAdd = GameStateManager.sharedInstance().initialTargets
-            
-            friendsLabel.text = "\(objectsToAdd)"
-            
-            for i in 1...objectsToAdd {
-                print("1. Add Friend")
-                addFriends(numOfFriend: i)
+            // If it is nil then we will add sample data
+            if managedContext == nil {
+                print("Add Sample Data")
+
+                let objectsToAdd = GameStateManager.sharedInstance().initialTargets
+                
+                friendsLabel.text = "\(objectsToAdd)"
+                
+                for i in 1...objectsToAdd {
+                    print("1. Add Friend")
+                    addFriends(numOfFriend: i)
+                }
+                print("Add Targets done")
+                
+                friends = objectsToAdd
+           
+            } else {
+                print("Fetch Request")
+
+                let request: NSFetchRequest<Friend> = Friend.fetchRequest()
+                
+                do {
+                    //3
+                    let results = try managedContext.fetch(request)
+                    friends = results.count
+                    
+                    // Fetch List Records
+                    for result in results {
+                        print(result.value(forKey: "name") ?? "no name")
+                        print("Record - \(result)")
+                        var target = friend.init()
+                        let name = result.value(forKey: "name") ?? "no-name-given"
+                        let imageData = result.value(forKey: "friendImage") ?? nil
+                        var image = UIImage()
+                        if let imageAvailable = imageData {
+                            // Image exists
+                            print("Image exists")
+                            image = UIImage(data: imageAvailable as! Data)!
+                        }
+                        
+                        target.name = "\(name)"
+                        addNodeToScene(nodeFriend: target.name, defaultImage: false, image: image)
+                    }
+                    //4
+                    print("Finished adding people")
+                } catch let error as NSError {
+                    print("Could not fetch \(error), \(error.userInfo)")
+                }
             }
-            print("Add Targets done")
-            
-            friends = objectsToAdd
             
             // No longer need the start button
             startButton.isHidden = true
@@ -124,7 +210,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
 
     }
     
-    
+    // Sample Code
     func addFriends(numOfFriend: Int) {
         
         var target = friend.init()
@@ -161,12 +247,20 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
             
         }
         
-        addNodeToScene(nodeFriend: target.name)
+        addNodeToScene(nodeFriend: target.name, defaultImage: true, image: nil)
         
     }
  
     //TODO: - Split the movemenents into different functions
-    func addNodeToScene(nodeFriend: String) {
+    // We set default image for any images that are on the system
+    func addNodeToScene(nodeFriend: String, defaultImage: Bool, image: UIImage?) {
+        
+        var passedName = nodeFriend
+        
+        // Use default iamge
+        if nodeFriend == "no-name-given" {
+            passedName = "Harsh"
+        }
         
         print("Add Node To Scene")
         let targetParent = SCNNode()
@@ -174,10 +268,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         // Create a new scene and set it's position
         let targetScene = SCNScene(named: "target.scnassets/target.scn")!
         let targetNode = targetScene.rootNode.childNode(withName: "target", recursively: false)!
-        targetNode.name = nodeFriend
+        targetNode.name = passedName
         
         let childNode = targetNode.childNode(withName: "box", recursively: false)
-        childNode?.name = nodeFriend
+        childNode?.name = passedName
         
         // Position of node
         let x = randomNumbers(numA: -3, numB: 3.5)
@@ -190,11 +284,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         targetNode.physicsBody?.contactTestBitMask = BitMaskCategory.bullet.rawValue
 //        targetNode.physicsBody?.restitution = 0.1
         
-        // Add images
-        self.addFace(nodeName: "faceFront", targetNode: targetNode, imageName: nodeFriend)
-        self.addFace(nodeName: "faceBack", targetNode: targetNode, imageName: nodeFriend)
-        self.addLabel(nodeName: "nameLabelLeft", targetNode: targetNode, imageName: nodeFriend)
-        self.addLabel(nodeName: "nameLabelRight", targetNode: targetNode, imageName: nodeFriend)
+        // Add images; we also pass through a bool of default image in case we are loading up the images from core data or the device
+        self.addFace(nodeName: "faceFront", targetNode: targetNode, imageName: passedName, defaultImage: defaultImage, image: image)
+        self.addFace(nodeName: "faceBack", targetNode: targetNode, imageName: passedName, defaultImage: defaultImage, image: image)
+        self.addLabel(nodeName: "nameLabelLeft", targetNode: targetNode, imageName: passedName)
+        self.addLabel(nodeName: "nameLabelRight", targetNode: targetNode, imageName: passedName)
         
         self.sceneView.scene.rootNode.addChildNode(targetNode)
         
@@ -212,11 +306,17 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         
     }
     
-    func addFace(nodeName: String, targetNode: SCNNode, imageName: String) {
+    func addFace(nodeName: String, targetNode: SCNNode, imageName: String, defaultImage: Bool, image: UIImage?) {
         
         print("Node Check - \(nodeName), \(targetNode), \(imageName)")
         let child = targetNode.childNode(withName: nodeName, recursively: true)
-        child?.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "target.scnassets/\(imageName).png")
+        if defaultImage {
+            child?.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "target.scnassets/\(imageName).png")
+        } else {
+            print("Adding image for a face in core data")
+            child?.geometry?.firstMaterial?.diffuse.contents = image!
+        }
+
         child?.renderingOrder = 200
         child?.name = "face-side"
 

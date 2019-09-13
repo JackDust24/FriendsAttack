@@ -52,8 +52,8 @@ class StartViewController: UIViewController {
             let secondViewController = segue.destination as! FriendsViewController
             secondViewController.managedContext = managedContext
         } else if segue.identifier == "showScores" {
-            print("prepare - View")
-            let secondViewController = segue.destination as! ScoreViewController
+            print("prepare - View for Score Controller")
+//            let secondViewController = segue.destination as! ScoreViewController
 //            secondViewController.managedContext = managedContext
         } else  {
             let secondViewController = segue.destination as! ViewController
