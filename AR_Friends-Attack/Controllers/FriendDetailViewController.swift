@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 
+// Details for the Friend
 struct FriendDetails {
     
     var name: String
@@ -16,12 +17,10 @@ struct FriendDetails {
 }
 
 class FriendDetailViewController: UIViewController {
-
-    @IBOutlet weak var killedLabel: UILabel!
     
     var managedContext: NSManagedObjectContext!
 
-   
+    @IBOutlet weak var killedLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel! {
         didSet {
             // Update the view.
@@ -35,16 +34,7 @@ class FriendDetailViewController: UIViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.configureView()
-
-
-        // Do any additional setup after loading the view.
-    }
-   
-    // This is a struct with all the details.
+    //MARK:- The struct details
     var detailItem: FriendDetails? {
         didSet {
             // Update the view.
@@ -59,19 +49,22 @@ class FriendDetailViewController: UIViewController {
         }
     }
     
-    func configureView() {
-        // Update the user interface for the detail item.
+    //MARK:- Views
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
+        self.configureView()
+        
+    }
+    
+    func configureView() {
+     
+        // Update the user interface for the detail item.
         if self.killedLabel == nil { return } // no web view, bail out
-//        if let detailContent = detailItem?.valueForKey("content") as? String{
-//            self.webView.loadHTMLString(detailContent as String, baseURL:nil)
-//        }
-        // Update the details with the struct
         
         print("Detail item - \(String(describing: detailItem))")
         nameLabel.text = detailItem?.name
         killedLabel.text = "\(detailItem?.killed ?? 0)"
-
         friendImage.image = UIImage(named: "target.scnassets/\(detailItem?.name ?? "Friend").png")
 
     }
@@ -79,16 +72,13 @@ class FriendDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
 
         super.viewWillAppear(true)
+        
         print("View Will Appear - true")
         testSampleCode()
 
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
+    //TODO:- We can remove this
     func testSampleCode() {
         
         if managedContext == nil {
@@ -98,7 +88,6 @@ class FriendDetailViewController: UIViewController {
         let request: NSFetchRequest<Friend> = Friend.fetchRequest()
         
         do {
-            //3
             let results = try managedContext.fetch(request)
             // Fetch List Records
             for result in results {
@@ -106,10 +95,15 @@ class FriendDetailViewController: UIViewController {
                 print("Friend")
             }
             
-            // populate(friend: results.first!)
-            print("")
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
         }
     }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+
 }

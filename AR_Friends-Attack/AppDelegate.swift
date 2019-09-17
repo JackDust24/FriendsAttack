@@ -15,8 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        //TODO:- Work out the best way for Navigation
         // Override point for customization after application launch.
         let navigationController: UINavigationController? = (self.window?.rootViewController as? UINavigationController)
         let controller = navigationController?.topViewController as! StartViewController

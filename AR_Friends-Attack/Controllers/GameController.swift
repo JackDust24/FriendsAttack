@@ -11,17 +11,20 @@ import SceneKit
 import ARKit
 import CoreData
 
+
 struct friend {
     var name = ""
 }
 
+// For the Physics
 enum BitMaskCategory: Int {
     case target = 2
     case bullet = 3
 }
 
-class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDelegate, NSFetchedResultsControllerDelegate {
+class GameController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDelegate, NSFetchedResultsControllerDelegate {
     
+    // The context for keeping the names of friends etc
     var managedContext: NSManagedObjectContext! {
         didSet {
             // Update the view.
@@ -29,43 +32,44 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         }
     }
 
+    //MARK:- Properties
+    
+    // Game Buttons
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var exitButton: UIButton!
-
+    //View
     @IBOutlet var sceneView: ARSCNView!
-    
+    // Header Labels
     @IBOutlet weak var friendsLabel: UILabel!
     @IBOutlet weak var killsLabel: UILabel!
     @IBOutlet weak var pointsLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
-    
     @IBOutlet weak var gameKills: UILabel!
     @IBOutlet weak var gamePoints: UILabel!
     @IBOutlet weak var totalKills: UILabel!
     @IBOutlet weak var totalPoints: UILabel!
-    
     @IBOutlet weak var timerLabel: UILabel!
+    // Bools
     var gameStarted = false
     var gameFinished = false
-    var targetsOnScreen = false
-    var power: Float = 50
+    var targetsOnScreen = false // If targets are on screen then game is playing
+    var currentlyShooting = false // If shooting can't shoot
+    var faceHit = false
+    // Nodes
     var target: SCNNode?
-    var currentlyShooting = false
+    // Values
+    var power: Float = 50 // power of the shot
     var points = 0
     var kills = 0
     var friends = 0
-    
-    var faceHit = false
-    
     var peopleAdded = 0
-    
     // Timers
     var myTimer = Timer()
     var countdown: Double = 40.00
-    
+    // Misc
     @IBOutlet weak var constX: NSLayoutConstraint!
-    // MARK: - Views
     
+// MARK: - Views
     func configureView() {
         print("View Controller = Check if context set")
         if managedContext == nil {
@@ -80,14 +84,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         sceneView.delegate = self
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
-        
         messageLabel.text = "Press Start to Begin"
-        
-        print("TestJW1")
+        // Fetch the Friends Data
         performFetch()
-    
     }
-    
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -107,7 +107,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+        //TODO:- Check what we will do here
 //        // Pause the view's session
 //        print("**** Leaving the View")
 //        GameStateManager.sharedInstance().savePointsAndKills(kills: kills, points: points)
@@ -119,9 +119,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         let fetchRequest = NSFetchRequest<Friend>()
         let entity = Friend.entity()
         fetchRequest.entity = entity
-        let sort1 = NSSortDescriptor(key: "name", ascending: false) // Because we want Start Month first
-        // let sort2 = NSSortDescriptor(key: "date", ascending: true)
-        fetchRequest.sortDescriptors = [sort1]
+        let sortNames = NSSortDescriptor(key: "name", ascending: false) // Because we want Start Month first
+        fetchRequest.sortDescriptors = [sortNames]
         fetchRequest.fetchBatchSize = 20
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedContext, sectionNameKeyPath: nil, cacheName: "Friends")
         fetchedResultsController.delegate = self
@@ -134,46 +133,45 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
             try fetchedResultsController.performFetch()
             
         } catch {
+            //TODO:- Set Error
             // fatalCoreDataError(error)
             print("Perform fetch error")
-            
         }
     }
     
+    //TODO - Are we adding friends?
     func populateFriends() {
         
     }
     
     // MARK: - Add the Targets (the targets)
-    @IBAction func addTargets(_ sender: Any) {
+    // This is when the user clicks the Start Button
+    @IBAction func startPressed(_ sender: Any) {
         
+        // 1. We want to add the nodes to shoot.
         // We don't want to add if already finished
         if !gameFinished {
             
             // Add the appropriate amount of targets
             // If it is nil then we will add sample data
             if managedContext == nil {
-                print("Add Sample Data")
+                print("Add Sample Friends Data")
 
                 let objectsToAdd = GameStateManager.sharedInstance().initialTargets
-                
                 friendsLabel.text = "\(objectsToAdd)"
                 
                 for i in 1...objectsToAdd {
                     print("1. Add Friend")
                     addFriends(numOfFriend: i)
                 }
-                print("Add Targets done")
-                
                 friends = objectsToAdd
            
             } else {
-                print("Fetch Request")
-
+                print("Fetch Request to add friends")
                 let request: NSFetchRequest<Friend> = Friend.fetchRequest()
                 
                 do {
-                    //3
+                    // Get results of friends request
                     let results = try managedContext.fetch(request)
                     friends = results.count
                     
@@ -190,61 +188,42 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                             print("Image exists")
                             image = UIImage(data: imageAvailable as! Data)!
                         }
-                        
                         target.name = "\(name)"
                         addNodeToScene(nodeFriend: target.name, defaultImage: false, image: image)
                     }
-                    //4
                     print("Finished adding people")
+                    
                 } catch let error as NSError {
                     print("Could not fetch \(error), \(error.userInfo)")
                 }
             }
-            
-            // No longer need the start button
+            // 2. No longer need the start button, so amend the game variables
             startButton.isHidden = true
             startButton.isEnabled = false
             targetsOnScreen = true
-            
         }
-
     }
     
+    //TODO - We will add sample code onto other model
     // Sample Code
     func addFriends(numOfFriend: Int) {
         
         var target = friend.init()
-        
         switch numOfFriend {
-            
-        case 1:
-            target.name = "Harsh"
-            print("1.1 Add Friend")
-            
-        case 2:
-            target.name = "Ploy"
-            print("1.2 Add Friend")
-            
-        case 3:
-            target.name = "Scotto"
-            print("1.3 Add Friend")
-            
-        case 4:
-            target.name = "Doug"
-            print("1.3 Add Friend")
-            
-        case 5:
-            target.name = "Ian"
-            print("1.3 Add Friend")
-            
-        case 6:
-            target.name = "Rory"
-            print("1.3 Add Friend")
-            
-        default:
-            target.name = "Harsh"
-            print("1.4 Add Friend")
-            
+            case 1:
+                target.name = "Harsh"
+            case 2:
+                target.name = "Ploy"
+            case 3:
+                target.name = "Scotto"
+            case 4:
+                target.name = "Doug"
+            case 5:
+                target.name = "Ian"
+            case 6:
+                target.name = "Rory"
+            default:
+                target.name = "no-name-given"
         }
         
         addNodeToScene(nodeFriend: target.name, defaultImage: true, image: nil)
@@ -255,23 +234,21 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     // We set default image for any images that are on the system
     func addNodeToScene(nodeFriend: String, defaultImage: Bool, image: UIImage?) {
         
-        var passedName = nodeFriend
+        // Set passedName for the node we want to name
+        var nodedName = nodeFriend
         
-        // Use default iamge
+        // Use default iamge if we do not have a name
+        // No name given is when a person is added by there is no name
         if nodeFriend == "no-name-given" {
-            passedName = "Harsh"
+            nodedName = "Harsh"
         }
         
-        print("Add Node To Scene")
-        let targetParent = SCNNode()
-        
-        // Create a new scene and set it's position
+        // Create a new scene
         let targetScene = SCNScene(named: "target.scnassets/target.scn")!
         let targetNode = targetScene.rootNode.childNode(withName: "target", recursively: false)!
-        targetNode.name = passedName
-        
+        targetNode.name = nodedName
         let childNode = targetNode.childNode(withName: "box", recursively: false)
-        childNode?.name = passedName
+        childNode?.name = nodedName
         
         // Position of node
         let x = randomNumbers(numA: -3, numB: 3.5)
@@ -279,22 +256,22 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         let z = randomNumbers(numA: -1, numB: -2)
         targetNode.position = SCNVector3(x,y,z)
         
-        // Physics body
+        // Set the Physics body
         targetNode.physicsBody?.categoryBitMask = BitMaskCategory.target.rawValue
         targetNode.physicsBody?.contactTestBitMask = BitMaskCategory.bullet.rawValue
-//        targetNode.physicsBody?.restitution = 0.1
+        // TODO:- Play around with this - targetNode.physicsBody?.restitution = 0.1
         
         // Add images; we also pass through a bool of default image in case we are loading up the images from core data or the device
-        self.addFace(nodeName: "faceFront", targetNode: targetNode, imageName: passedName, defaultImage: defaultImage, image: image)
-        self.addFace(nodeName: "faceBack", targetNode: targetNode, imageName: passedName, defaultImage: defaultImage, image: image)
-        self.addLabel(nodeName: "nameLabelLeft", targetNode: targetNode, imageName: passedName)
-        self.addLabel(nodeName: "nameLabelRight", targetNode: targetNode, imageName: passedName)
+        self.addFace(nodeName: "faceFront", targetNode: targetNode, imageName: nodedName, defaultImage: defaultImage, image: image)
+        self.addFace(nodeName: "faceBack", targetNode: targetNode, imageName: nodedName, defaultImage: defaultImage, image: image)
+        self.addLabel(nodeName: "nameLabelLeft", targetNode: targetNode, imageName: nodedName)
+        self.addLabel(nodeName: "nameLabelRight", targetNode: targetNode, imageName: nodedName)
         
         self.sceneView.scene.rootNode.addChildNode(targetNode)
         
         // Movement
+        // TODO:- Play around with this - try and set up by frames
         let waitRandom = randomNonWholeNumbers(numA: 3, numB: 0)
-        print("Waitrandom Check \(waitRandom)")
         
         let wait = SCNAction.wait(duration: TimeInterval(waitRandom))
         let parentRotation = rotation(time: 4)
@@ -305,11 +282,14 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         targetNode.runAction(loopSequence)
         
     }
-    
+    //MARK:- Set the friend nodes up
+    // Add the image to the node
     func addFace(nodeName: String, targetNode: SCNNode, imageName: String, defaultImage: Bool, image: UIImage?) {
         
-        print("Node Check - \(nodeName), \(targetNode), \(imageName)")
+        print("Node Check for face we are adding - \(nodeName), \(targetNode), \(imageName)")
+        // Get the child node
         let child = targetNode.childNode(withName: nodeName, recursively: true)
+        // If a default image from the system, then use that name of the image, otherwise hysr you the image contents
         if defaultImage {
             child?.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "target.scnassets/\(imageName).png")
         } else {
@@ -327,19 +307,21 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         }
     }
     
+    // Add the name labels for the nodes
     func addLabel(nodeName: String, targetNode: SCNNode, imageName: String) {
         
-        print("Label Check - \(nodeName), \(targetNode), \(imageName)")
+        let labelScene = addLabelText(text: imageName)
+        
         let child = targetNode.childNode(withName: nodeName, recursively: true)
         child?.name = "label-side"
-
-        let labelScene = addLabelText(text: imageName)
         child?.geometry?.firstMaterial?.diffuse.contents = labelScene
         child?.geometry?.firstMaterial?.isDoubleSided = true
         child?.renderingOrder = 200
     }
     
+    // Add the label text
     func addLabelText(text: String) -> SKScene {
+        
         let skScene = SKScene(size: CGSize(width: 200, height: 200))
         skScene.backgroundColor = UIColor.clear
         
@@ -348,29 +330,29 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         rectangle.strokeColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         rectangle.lineWidth = 5
         rectangle.alpha = 0.4
+        
         let labelNode = SKLabelNode(text: text)
         labelNode.fontSize = 46
         labelNode.fontName = "SanFranciscoText-Bold"
         labelNode.position = CGPoint(x:100,y:100)
         skScene.addChild(rectangle)
         skScene.addChild(labelNode)
-        print("Add label")
-        
         
         return skScene
     }
     
-    
     // MARK: Touches - fire bullets
     @objc func handleTap(sender: UITapGestureRecognizer) {
+        
         print("Handle Tap")
-
+        
+        // Of currntly shooting then we return
         if currentlyShooting {
             print("Currently shooting already")
-
             return
         }
-        // Don't need to do this if Game hasn't started.
+        
+        // Cannot shoot if Game hasn't started.
         if !targetsOnScreen {
             print("Targets not on screen")
             return
@@ -379,26 +361,26 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         if !gameStarted {
             print("Await to get game started then can start firing")
             gameStarted = true
+            // Change the text to say we can now shoot
+            //TODO:- test this
             messageLabel.text = "Shoot in the face to kill"
             myTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { _ in
                 self.startTimer()
             }
             return
-
         }
         
         if gameFinished {
             print("Game Finished")
-
             return
         }
         
         print("Handle Tap - Proceed")
 
-        
         // We are currently shooting
         currentlyShooting = true
         
+        // If not the sender view then exit
         guard let sceneView = sender.view as? ARSCNView else {return}
         guard let pointOfView = sceneView.pointOfView else {return}
         
@@ -429,11 +411,14 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                 SCNAction.sequence([SCNAction.wait(duration: 2.0),
                                     SCNAction.removeFromParentNode()])
             )
-            bullet.runAction(SCNAction.sequence([SCNAction.wait(duration: 2.0),
-                                                 SCNAction.removeFromParentNode()]), completionHandler: ({
-                                                    print("Finished Shooting")
-                                                    self.currentlyShooting = false
-                                                 }))
+            // We don't need the bullet anymore once shot whether missed or shot.
+            bullet.runAction(SCNAction.sequence(
+                [SCNAction.wait(duration: 2.0),
+                SCNAction.removeFromParentNode()]), completionHandler: ({
+                    print("Finished Shooting")
+                    self.currentlyShooting = false
+                })
+            )
         }
     }
     
@@ -443,8 +428,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         
         print("Touches Began")
         
-        // Must default back to false
-        //        faceHit = false
         if currentlyShooting {
             print("Currently shooting already")
             
@@ -478,10 +461,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     
     
     // MARK - Game management and timer
+    
+    // Timer for the game if run out of time
     func startTimer() {
     
+        // First call the Game Management method
         gameManagement()
-        
         // No point doing this if game has finished
         if !gameFinished {
             countdown -= 0.01
@@ -497,32 +482,31 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         
         if !gameFinished {
             
+            // Check if we have reached zerp
             if countdown <= 0.0  {
+                
                 print("countdown reached")
-                // endGame()
+                
                 // Pause session view
                 sceneView.session.pause()
                 messageLabel.text = "Time Ran Out"
+                
                 // set game as finished & stop the timer
                 myTimer.invalidate()
                 timerLabel.text = String(format: "%.2f", 00.00)
-
                 gameFinished = true
                 
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                     self.messageLabel.text = "Save and Exit"
                     self.endGame()
-//                    _ = self.navigationController?.popViewController(animated: true)
-                    
-                    // Stats Pop Up
                 }
-                
             }
             
+            // We can also end the game if it reaches zero
             if friends == 0 {
+                
                 print("All friends killed")
-
-                // endGame()
+                
                 // Pause session view
                 // set game as finished & stop the timer
                 myTimer.invalidate()
@@ -531,14 +515,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                     self.messageLabel.text = "You have killed all friends"
                     self.endGame()
-//                    _ = self.navigationController?.popViewController(animated: true)
-
-                    // Stats Pop Up
                 }
             }
         }
     }
     
+    // Show the pop up for ending the game
     func endGame() {
         
         // Pause the view's session
@@ -549,33 +531,31 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         
     }
     
+    
     @IBAction func exitButtonPressed(_ sender: Any) {
         
         print("**** Exit button Pressed")
-
-        
         // Set alert if not sure
+        //TODO:- Game Exit check?
+        
+        // Otherwise we exit
         gameFinished = true
         myTimer.invalidate()
         countdown = 0.0
         timerLabel.text = String(format: "%.2f", self.countdown)
-//        endGame()
         self.messageLabel.text = "Game about to exit"
 
-        // Pop Up
-//        showPopUp()
-        
-        // Go Back
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
             self.messageLabel.text = "Exit in a second"
 //            _ = self.navigationController?.popViewController(animated: true)
             self.endGame()
-
         }
     }
     
+    // PopUp for ending thegame
     func showPopUp() {
         
+        //TODO - Check the popup
         constX.constant = 0
         updatePopUpScores()
         UIView.animate(withDuration: 0.7, delay: 0, options: .curveEaseOut, animations: {
@@ -583,7 +563,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         }, completion: nil)
     }
     
-    
+    // Add the PopUp Scores
     func updatePopUpScores() {
         
         gameKills.text = String(kills)
@@ -595,10 +575,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         
         totalKills.text = String(tKills)
         totalPoints.text = String(tPoints)
-        
     }
+    
     @IBAction func popUpButtonDismiss(_ sender: Any) {
-        print("Hello")
+        print("popUpButtonDismiss pressed")
         
         constX.constant = -1000
         UIView.animate(withDuration: 0.7, delay: 0, options: .curveEaseOut, animations: {
@@ -607,6 +587,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
             }, completion: nil)
     }
     
+    // Dismissed to main screen - need to checj
     func dismissToMainScreen() {
         Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { _ in
 //            self.messageLabel.text = "Exiting to main screen"
@@ -615,47 +596,19 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         }
     }
     
-    // For collision
+    // MARK:- For collision
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
-        print("physicsWorld")
         
+        print("physicsWorld")
         let nodeA = contact.nodeA
         let nodeB = contact.nodeB
         
         let nodeAMask = nodeA.categoryBitMask
         let nodeBMask = nodeB.categoryBitMask
-        
-//        // Test to see if we can tell which part is hit
-//        let testA = nodeA.name
-//        let testB = nodeA.name?.contains("front")
-//        let testBA = nodeA.name?.contains("back")
-//        let testBB = nodeA.name?.contains("left")
-//        let testBC = nodeA.name?.contains("right")
-//        let testBD = nodeA.name?.contains("face-side")
-//
-//        let testC = nodeA.childNodes.description
-//        let testD = nodeA.parent?.name
-//        let testE = nodeA.childNodes.first?.name
-//        let testF = nodeA.childNodes.first
-//
-//        print(testA as Any)
-//        print(testB as Any)
-//        print(testBA as Any)
-//        print(testBB as Any)
-//        print(testBC as Any)
-//        print(testBD as Any)
-//        print(testC as Any)
-//        print(testD as Any)
-//        print(testE as Any)
-//        print(testF as Any)
-////        print(testC as Any)
-
-
 
         print(nodeAMask, nodeBMask)
         print(nodeA.name as Any, nodeB.name as Any)
         print(BitMaskCategory.target.rawValue)
-        
         
         if nodeA.physicsBody?.categoryBitMask == BitMaskCategory.target.rawValue {
             self.target = nodeA
@@ -663,11 +616,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
             self.target = nodeB
         }
         
-        
 //        let particle = SCNParticleSystem(named: "target.scnassets/Fire.scnp", inDirectory: nil)
         
         var particle: SCNParticleSystem
         
+        // Depending if we PRESSED the face or not, what effect we would have.
         if faceHit {
             print("FACE HIT")
             particle = bulletHitEffect(particleName: "target.scnassets/Fire.scnp", directory: nil, loops: false, lifeSpan: 4)
@@ -682,35 +635,39 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         particleNode.addParticleSystem(particle)
         particleNode.position = contact.contactPoint
         particleNode.scale = SCNVector3(0.5, 0.5, 0.5)
+        
         self.sceneView.scene.rootNode.addChildNode(particleNode)
         print("Target got hit \(target?.name ?? "No Name")")
         
         DispatchQueue.main.async {
             
+            // If hit the face then the node is removed
             if self.faceHit {
                 print("You Killed \(self.target?.name ?? "No Name")")
-                self.messageLabel.text = "You KILLED \(self.target?.name ?? "No Name")"
-
+                
                 self.points += 10
-                //TODO- We will change this depending on the timer
                 self.pointsLabel.text = "\(self.points)"
                 self.kills += 1
                 self.friends -= 1
+                
+                self.messageLabel.text = "You KILLED \(self.target?.name ?? "No Name")"
                 self.killsLabel.text = "\(self.kills)"
                 self.friendsLabel.text = "\(self.friends)"
                 self.target?.removeFromParentNode()
+                
             } else {
                 print("You hit \(self.target?.name ?? "No Name")")
+                
                 self.points += 1
                 self.pointsLabel.text = "\(self.points)"
                 self.messageLabel.text = "You hit \(self.target?.name ?? "No Name")"
+                
             }
             self.faceHit = false
-
         }
-        
     }
     
+    // Bullet Effect
     func bulletHitEffect(particleName: String, directory: String?, loops: Bool, lifeSpan: CGFloat) -> SCNParticleSystem {
         
         let particle = SCNParticleSystem(named: particleName, inDirectory: directory)
@@ -738,13 +695,15 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         
         print("Rotate")
         let rotation = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: time)
+        //TODO:- Check this rotation
         let foreverRotation = SCNAction.repeatForever(rotation)
-        return rotation
+        return foreverRotation
     }
     
     func animateNode() -> SCNAction  {
         
         print("Animate")
+        //TODO:- Set Parameters -
         let randomMinus = randomNonWholeNumbers(numA: 0, numB: -2)
         let randomPlus = randomNonWholeNumbers(numA: 2, numB: 0)
         let waitRandom = randomNonWholeNumbers(numA: 2, numB: 0)
@@ -760,9 +719,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
 //        let hoverSequence = SCNAction.sequence([wait, moveLeft, wait, moveRight])
 //        let loopSequence = SCNAction.repeatForever(hoverSequence)
         return hoverSequence
+        
     }
     
     //MARK: Helper methods
+    // Random Numbers flost
     func randomNumbers(numA: CGFloat, numB: CGFloat) -> CGFloat {
         return CGFloat(arc4random()) / CGFloat(UINT32_MAX) * abs(numA - numB) + min(numA, numB)
     }
@@ -773,19 +734,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         print(roundedNumber)  // 1.57
         return roundedNumber
     }
-    
-    // MARK: - ARSCNViewDelegate
-    
-    /*
-     // Override to create and configure nodes for anchors added to the view's session.
-     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-     let node = SCNNode()
-     
-     return node
-     }
-     */
-
-    
     
     // MARK: - Session functions
     

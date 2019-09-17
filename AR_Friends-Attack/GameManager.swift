@@ -5,14 +5,17 @@
 //  Created by JasonMac on 23/6/2561 BE.
 //  Copyright © 2561 JasonMac. All rights reserved.
 //
+// This is for all the data that's relevant for when the game is running
 
 import Foundation
 import UIKit
 
 class GameStateManager: NSObject {
     
-    public var gameLevel: Int = 1
+    public var gameLevel: Int = 1 // Need to decide if there will be higher levels etc
     public var initialTargets: Int = 6
+    
+    // Shared Instance to get scores etc
     public class func sharedInstance() -> GameStateManager {
         return GameStateManagerInstance
     }
@@ -22,6 +25,7 @@ class GameStateManager: NSObject {
         print("Init GameStateManager")
     }
     
+    // WHen we save our score we store here
     func savePointsAndKills(kills: Int, points: Int) {
         
         // Creeate temp totals of zero
@@ -78,5 +82,6 @@ class GameStateManager: NSObject {
     
 }
 
+// The Singleton to call
 private let GameStateManagerInstance = GameStateManager()
 

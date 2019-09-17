@@ -11,7 +11,10 @@ import UIKit
 
 public extension UIImage {
     
+    // This rounds the image, but
+    //TODO - We may remove this
     func roundedImage() -> UIImage {
+        
         let imageView: UIImageView = UIImageView(image: self)
         let layer = imageView.layer
         layer.masksToBounds = true

@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+//TODO- Delete this file
 class FriendsCollectionViewCell: UICollectionViewCell {
     @IBOutlet var friendImage: UIImageView!
     @IBOutlet var friendLabel: UILabel!

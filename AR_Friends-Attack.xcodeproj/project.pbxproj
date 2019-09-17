@@ -12,8 +12,9 @@
 		9E07BC3E20ECF06900A26584 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E07BC3D20ECF06900A26584 /* AddFriendViewController.swift */; };
 		9E0A14FC227C58C4007ED3CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E0A14FA227C58C4007ED3CB /* Assets.xcassets */; };
 		9E0A14FE227C5D63007ED3CB /* HitSide.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 9E0A14FD227C5D63007ED3CB /* HitSide.scnp */; };
+		9E0F9407233106C0008A587E /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0F9406233106C0008A587E /* FriendsTableViewCell.swift */; };
 		9E21894420DC7B41008997FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E21894320DC7B41008997FB /* AppDelegate.swift */; };
-		9E21894820DC7B41008997FB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E21894720DC7B41008997FB /* ViewController.swift */; };
+		9E21894820DC7B41008997FB /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E21894720DC7B41008997FB /* GameController.swift */; };
 		9E21894B20DC7B41008997FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E21894920DC7B41008997FB /* Main.storyboard */; };
 		9E21894D20DC7B43008997FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E21894C20DC7B43008997FB /* Assets.xcassets */; };
 		9E21895020DC7B43008997FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E21894E20DC7B43008997FB /* LaunchScreen.storyboard */; };
@@ -46,9 +47,10 @@
 		9E07BC3D20ECF06900A26584 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
 		9E0A14FA227C58C4007ED3CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "AR_Friends-Attack/target.scnassets/Assets.xcassets"; sourceTree = "<group>"; };
 		9E0A14FD227C5D63007ED3CB /* HitSide.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; name = HitSide.scnp; path = "AR_Friends-Attack/target.scnassets/HitSide.scnp"; sourceTree = "<group>"; };
+		9E0F9406233106C0008A587E /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
 		9E21894020DC7B41008997FB /* AR_Friends-Attack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AR_Friends-Attack.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E21894320DC7B41008997FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9E21894720DC7B41008997FB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9E21894720DC7B41008997FB /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 		9E21894A20DC7B41008997FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9E21894C20DC7B43008997FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E21894F20DC7B43008997FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				9ED56CA421BBB64600B1C7E8 /* Controllers */,
 				9EDC978C212179D1008B2EAD /* CoreData */,
 				9EB2DF28210F1ED400444981 /* FriendsCollectionViewCell.swift */,
+				9E0F9406233106C0008A587E /* FriendsTableViewCell.swift */,
 				9E21894320DC7B41008997FB /* AppDelegate.swift */,
 				9EC06F7620DE265A00138175 /* GameManager.swift */,
 				9EB97CEE21BD2DC2009ED736 /* Extensions.swift */,
@@ -156,7 +159,7 @@
 		9ED56CA421BBB64600B1C7E8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9E21894720DC7B41008997FB /* ViewController.swift */,
+				9E21894720DC7B41008997FB /* GameController.swift */,
 				9E2AE56F20ECBF0B00AA54B9 /* StartViewController.swift */,
 				9E2AE57120ECBF3200AA54B9 /* FriendsViewController.swift */,
 				9E07BC3B20ECF00700A26584 /* FriendDetailViewController.swift */,
@@ -263,8 +266,9 @@
 			files = (
 				9EB2DF29210F1ED400444981 /* FriendsCollectionViewCell.swift in Sources */,
 				9EBD7F9F21201A5A001B0C81 /* AddFriendSecondViewController.swift in Sources */,
-				9E21894820DC7B41008997FB /* ViewController.swift in Sources */,
+				9E21894820DC7B41008997FB /* GameController.swift in Sources */,
 				9E07BC3E20ECF06900A26584 /* AddFriendViewController.swift in Sources */,
+				9E0F9407233106C0008A587E /* FriendsTableViewCell.swift in Sources */,
 				9E2AE57220ECBF3200AA54B9 /* FriendsViewController.swift in Sources */,
 				9E07BC3C20ECF00700A26584 /* FriendDetailViewController.swift in Sources */,
 				9E2AE57020ECBF0B00AA54B9 /* StartViewController.swift in Sources */,

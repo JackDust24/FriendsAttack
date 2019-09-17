@@ -16,20 +16,19 @@ class AddFriendViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     
     var managedContext: NSManagedObjectContext!
-    var hasPhotoBeenTaken = false // So that we can change the buttons that appear
+    
+    var hasPhotoBeenTaken = false // So that we can swap between Save and Add image
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("View Did Appear - true")
         savePhotoButton.isHidden = true
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool)  {
         super.viewWillAppear(true)
-        print("View Will Appear - true")
         
+        // If photo has been taken, we can ask user if they wish to take again
         if hasPhotoBeenTaken {
             addPhotoButton.titleLabel?.text = "Choose Other Photo"
             savePhotoButton.isHidden = false
@@ -41,44 +40,35 @@ class AddFriendViewController: UIViewController {
     }
     
     
-    
+    //TODO: - We can remove this soon
     func testSampleCode() {
-        print("TSC")
 
         if managedContext == nil {
-            print("NO CONTEXT YET")
-            
             return
+            
         }
-        //2
+        
         let request: NSFetchRequest<Friend> = Friend.fetchRequest()
         
         do {
-            //3
+
             let results = try managedContext.fetch(request)
             
             // Fetch List Records
             for result in results {
                 
                 print(result.value(forKey: "name") ?? "no name")
-                print("Add Friend")
             }
-            
-            //4
-            // populate(friend: results.first!)
-            print("")
+
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
         }
     }
 
+    // Get Image
     @IBAction func addPhoto(_ sender: Any) {
         presentImagePicker()
         
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -89,6 +79,13 @@ class AddFriendViewController: UIViewController {
             }
         }
     }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+
 
 }
 
@@ -140,27 +137,18 @@ extension AddFriendViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         print("didFinishPickingMediaWithInfo")
 
-//        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-//            print("didFinishPickingMediaWithInfo2")
-//
-//            imageView.contentMode = .scaleAspectFill
-//            imageView.image = pickedImage
-//            hasPhotoBeenTaken = true
-//        }
-        if let img = info[UIImagePickerControllerEditedImage] as? UIImage
-        {
+        if let img = info[UIImagePickerControllerEditedImage] as? UIImage {
             let roundedImage = img.roundedImage()
             imageView.image = roundedImage
             
         }
-        else if let img = info[UIImagePickerControllerOriginalImage] as? UIImage
-        {
+        else if let img = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageView.image = img
         }
         
         hasPhotoBeenTaken = true
-
         dismiss(animated: true, completion: nil)
+        
     }
 }
 

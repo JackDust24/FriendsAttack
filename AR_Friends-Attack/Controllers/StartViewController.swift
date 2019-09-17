@@ -5,6 +5,7 @@
 //  Created by JasonMac on 4/7/2561 BE.
 //  Copyright © 2561 JasonMac. All rights reserved.
 //
+// This Controller is the Home Screen
 
 import UIKit
 import CoreData
@@ -17,6 +18,7 @@ class StartViewController: UIViewController {
         super.viewDidLoad()
         
         // Sample data which we can remove at the end
+        //TODO:- We will need default data, so need to set this to get context if empty
         insertSampleData()
         
         // Fetch friends
@@ -27,10 +29,9 @@ class StartViewController: UIViewController {
             
             // Fetch List Records
             for result in results {
-                print(result.value(forKey: "name") ?? "no name")
-                print(result)
+                print("Loading up sample data \(result.value(forKey: "name") ?? "no name")")
             }
-            // populate(friend: results.first!)
+
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
         }
@@ -42,10 +43,9 @@ class StartViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
         
-        print("prepare")
+        // If the user selects the View Screen or Scoresthen it goes there,
+        // otherwise it's the Game Controller
         
         if segue.identifier == "viewFriends" {
             print("prepare - View")
@@ -56,7 +56,7 @@ class StartViewController: UIViewController {
 //            let secondViewController = segue.destination as! ScoreViewController
 //            secondViewController.managedContext = managedContext
         } else  {
-            let secondViewController = segue.destination as! ViewController
+            let secondViewController = segue.destination as! GameController
             
             secondViewController.managedContext = managedContext
             
@@ -76,22 +76,24 @@ class StartViewController: UIViewController {
         if count > 0 {
             // SampleData already already in Core Data
             return
+        } else {
+            // Set up the game with sample data
+            //TODO- Properly change this
+            let dataArray = ["Harsh", "Doug", "Ian", "Scotto", "Ploy"]
+            
+            for index in dataArray {
+                let entity = NSEntityDescription.entity(
+                    forEntityName: "Friend",
+                    in: managedContext)!
+                let friend = Friend(entity: entity,
+                                    insertInto: managedContext)
+                friend.name = index
+                let image = UIImage(named: "target.scnassets/\(index).png")
+                let photoData = UIImagePNGRepresentation(image!)!
+                friend.friendImage = NSData(data: photoData) as Data
+                friend.active = true
+            }
+            try! managedContext.save()
         }
-
-        let dataArray = ["Harsh", "Doug", "Ian", "Scotto", "Ploy"]
-        
-        for index in dataArray {
-            let entity = NSEntityDescription.entity(
-                forEntityName: "Friend",
-                in: managedContext)!
-            let friend = Friend(entity: entity,
-                                insertInto: managedContext)
-            friend.name = index
-            let image = UIImage(named: "target.scnassets/\(index).png")
-            let photoData = UIImagePNGRepresentation(image!)!
-            friend.friendImage = NSData(data: photoData) as Data
-            friend.active = true
-        }
-        try! managedContext.save()
     }
 }

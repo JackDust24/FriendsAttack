@@ -34,41 +34,28 @@ class AddFriendSecondViewController: UIViewController, UITextFieldDelegate {
     }
     
     func configureView() {
-        // Update the user interface for the detail item.
         
+        // Update the user interface for the detail item.
         if self.friendImage == nil || imageFromMasterScreen == nil { return } // no web view, bail out
 
-        // Do we want to force unwrap this could be a nil
+        // We know this won't be a nil
         friendImage.image = imageFromMasterScreen!
         
     }
     
+    //MARK:- Text Field
+    // For typing in name
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        
         if textField == nameTextField {
             print("You edit myTextField")
             nameTextField.becomeFirstResponder()
         }
     }
     
-    @IBAction func done(_ sender: Any) {
-        print("Contents of text field - \(nameTextField.text ?? " ")")
-        dismiss(animated: true, completion: nil)
-    }
-    
-//
     func textFieldDidEndEditing(_ textField: UITextField) {
+        
         print("DID END TEXT")
-    }
-    
-    @IBAction func Save(_ sender: Any) {
-        if nameTextField.text == nil {
-            print("We need a name and to issue Action Alert.")
-            return
-        }
-        updateNameFromTextField()
-        updateContext()
-        testSampleCode()
-        self.navigationController?.popToRootViewController(animated: true)
     }
     
     func updateNameFromTextField() {
@@ -78,6 +65,30 @@ class AddFriendSecondViewController: UIViewController, UITextFieldDelegate {
         }
         nameOfImage = name
     }
+    
+    //MARK:- Buttons for saving and press Done
+    //TODO:- Need to 1. Use has option for Save or Return, 2. Store the name, 3. Save the details
+
+    // For finishing - this needs to change for the save.
+    @IBAction func done(_ sender: Any) {
+        
+        print("Contents of text field - \(nameTextField.text ?? " ")")
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func save(_ sender: Any) {
+        if nameTextField.text == nil {
+            print("We need a name and to issue Action Alert.")
+            return
+        }
+        updateNameFromTextField()
+        updateContext()
+        //TODO: - We can remove this of saving the Sample COde
+        testSampleCode()
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+
 
     
     func updateContext() {
