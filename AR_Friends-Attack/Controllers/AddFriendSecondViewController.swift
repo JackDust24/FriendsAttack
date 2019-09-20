@@ -96,7 +96,7 @@ class AddFriendSecondViewController: UIViewController, UITextFieldDelegate {
         let context = managedContext
         // Convert Image - TODO
         let image = imageFromMasterScreen
-        let photoData = UIImagePNGRepresentation(image!)!
+        let photoData = image!.pngData()!
         let photoDataValue = NSData(data: photoData) as Data
         let entity = NSEntityDescription.entity(forEntityName: "Friend", in: context!)
         let newFriend = NSManagedObject(entity: entity!, insertInto: context)

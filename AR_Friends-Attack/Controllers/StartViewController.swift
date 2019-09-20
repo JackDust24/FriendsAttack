@@ -75,6 +75,7 @@ class StartViewController: UIViewController {
         
         if count > 0 {
             // SampleData already already in Core Data
+            print("DATA ALREADY EXISTS")
             return
         } else {
             // Set up the game with sample data
@@ -89,7 +90,7 @@ class StartViewController: UIViewController {
                                     insertInto: managedContext)
                 friend.name = index
                 let image = UIImage(named: "target.scnassets/\(index).png")
-                let photoData = UIImagePNGRepresentation(image!)!
+                let photoData = image!.pngData()!
                 friend.friendImage = NSData(data: photoData) as Data
                 friend.active = true
             }

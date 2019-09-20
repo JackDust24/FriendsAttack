@@ -49,6 +49,9 @@ class GameController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     @IBOutlet weak var totalKills: UILabel!
     @IBOutlet weak var totalPoints: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
+    
+    var message: String = "" // This is for the message label
+    
     // Bools
     var gameStarted = false
     var gameFinished = false
@@ -68,6 +71,7 @@ class GameController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     var countdown: Double = 40.00
     // Misc
     @IBOutlet weak var constX: NSLayoutConstraint!
+
     
 // MARK: - Views
     func configureView() {
@@ -85,6 +89,9 @@ class GameController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
         messageLabel.text = "Press Start to Begin"
+        
+        // Set up boundaries for the nodes etc:
+        setBoundariesForNodes()
         // Fetch the Friends Data
         performFetch()
     }
@@ -251,9 +258,9 @@ class GameController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         childNode?.name = nodedName
         
         // Position of node
-        let x = randomNumbers(numA: -3, numB: 3.5)
-        let y = randomNumbers(numA: -0.5, numB: 2)
-        let z = randomNumbers(numA: -1, numB: -2)
+        let x = randomNumbers(numA: -4, numB: 4.5)
+        let y = randomNumbers(numA: -0.5, numB: 3)
+        let z = randomNumbers(numA: -1, numB: -2.5)
         targetNode.position = SCNVector3(x,y,z)
         
         // Set the Physics body
@@ -282,6 +289,14 @@ class GameController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         targetNode.runAction(loopSequence)
         
     }
+    
+    // We don't want the nodes to go out of bounds
+    func setBoundariesForNodes() {
+        
+        //
+        
+    }
+    
     //MARK:- Set the friend nodes up
     // Add the image to the node
     func addFace(nodeName: String, targetNode: SCNNode, imageName: String, defaultImage: Bool, image: UIImage?) {
@@ -363,7 +378,7 @@ class GameController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
             gameStarted = true
             // Change the text to say we can now shoot
             //TODO:- test this
-            messageLabel.text = "Shoot in the face to kill"
+            message = "Shoot in the face to kill"
             myTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { _ in
                 self.startTimer()
             }
@@ -489,7 +504,7 @@ class GameController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                 
                 // Pause session view
                 sceneView.session.pause()
-                messageLabel.text = "Time Ran Out"
+                message = "Time Ran Out"
                 
                 // set game as finished & stop the timer
                 myTimer.invalidate()
@@ -497,7 +512,7 @@ class GameController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                 gameFinished = true
                 
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                    self.messageLabel.text = "Save and Exit"
+                    self.message = "Save and Exit"
                     self.endGame()
                 }
             }
@@ -513,7 +528,7 @@ class GameController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                 gameFinished = true
                 
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                    self.messageLabel.text = "You have killed all friends"
+                    self.message = "You have killed all friends"
                     self.endGame()
                 }
             }
@@ -543,10 +558,10 @@ class GameController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         myTimer.invalidate()
         countdown = 0.0
         timerLabel.text = String(format: "%.2f", self.countdown)
-        self.messageLabel.text = "Game about to exit"
+        self.message = "Game about to exit"
 
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-            self.messageLabel.text = "Exit in a second"
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            self.message = "Exit in a second"
 //            _ = self.navigationController?.popViewController(animated: true)
             self.endGame()
         }
@@ -646,22 +661,15 @@ class GameController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                 print("You Killed \(self.target?.name ?? "No Name")")
                 
                 self.points += 10
-                self.pointsLabel.text = "\(self.points)"
                 self.kills += 1
                 self.friends -= 1
-                
-                self.messageLabel.text = "You KILLED \(self.target?.name ?? "No Name")"
-                self.killsLabel.text = "\(self.kills)"
-                self.friendsLabel.text = "\(self.friends)"
+                self.message = "You KILLED \(self.target?.name ?? "No Name")"
                 self.target?.removeFromParentNode()
                 
             } else {
                 print("You hit \(self.target?.name ?? "No Name")")
-                
                 self.points += 1
-                self.pointsLabel.text = "\(self.points)"
-                self.messageLabel.text = "You hit \(self.target?.name ?? "No Name")"
-                
+                self.message = "You hit \(self.target?.name ?? "No Name")"
             }
             self.faceHit = false
         }
@@ -687,8 +695,8 @@ class GameController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         let rotateOne = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 25.0)
         let backwards = rotateOne.reversed()
         let rotateSequence = SCNAction.sequence([rotateOne, backwards])
-        let repeatForever = SCNAction.repeatForever(rotateSequence)
-        node.runAction(repeatForever)
+        // let repeatForever = SCNAction.repeatForever(rotateSequence)
+        node.runAction(rotateSequence)
     }
     
     func rotation(time: TimeInterval) -> SCNAction {
@@ -696,13 +704,13 @@ class GameController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         print("Rotate")
         let rotation = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: time)
         //TODO:- Check this rotation
-        let foreverRotation = SCNAction.repeatForever(rotation)
-        return foreverRotation
+       //  let foreverRotation = SCNAction.repeatForever(rotation)
+        return rotation
     }
     
     func animateNode() -> SCNAction  {
         
-        print("Animate")
+        print("Animate Node")
         //TODO:- Set Parameters -
         let randomMinus = randomNonWholeNumbers(numA: 0, numB: -2)
         let randomPlus = randomNonWholeNumbers(numA: 2, numB: 0)
@@ -720,6 +728,21 @@ class GameController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
 //        let loopSequence = SCNAction.repeatForever(hoverSequence)
         return hoverSequence
         
+    }
+    
+    //MARK:- Renders
+    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+        print("update node")
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        
+        DispatchQueue.main.async {
+            self.messageLabel.text = self.message
+            self.pointsLabel.text = "\(self.points)"
+            self.killsLabel.text = "\(self.kills)"
+            self.friendsLabel.text = "\(self.friends)"
+        }
     }
     
     //MARK: Helper methods

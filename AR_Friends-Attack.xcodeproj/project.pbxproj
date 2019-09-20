@@ -39,6 +39,7 @@
 		9EBD7F9F21201A5A001B0C81 /* AddFriendSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBD7F9E21201A5A001B0C81 /* AddFriendSecondViewController.swift */; };
 		9EC06F7720DE265A00138175 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC06F7620DE265A00138175 /* GameManager.swift */; };
 		9EDC97912121A6AF008B2EAD /* FriendsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9EDC978D212179EF008B2EAD /* FriendsModel.xcdatamodeld */; };
+		9EEF01DA23321051005FE2BB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEF01D923321051005FE2BB /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		9EBD7F9E21201A5A001B0C81 /* AddFriendSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendSecondViewController.swift; sourceTree = "<group>"; };
 		9EC06F7620DE265A00138175 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		9EDC978E212179EF008B2EAD /* FriendsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FriendsModel.xcdatamodel; sourceTree = "<group>"; };
+		9EEF01D923321051005FE2BB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 				9E21894E20DC7B43008997FB /* LaunchScreen.storyboard */,
 				9E21895120DC7B43008997FB /* Info.plist */,
 				9E21895720DC7C3C008997FB /* target.scnassets */,
+				9EEF01D923321051005FE2BB /* Constants.swift */,
 			);
 			path = "AR_Friends-Attack";
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 				TargetAttributes = {
 					9E21893F20DC7B41008997FB = {
 						CreatedOnToolsVersion = 9.4;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -275,6 +279,7 @@
 				9EC06F7720DE265A00138175 /* GameManager.swift in Sources */,
 				9E21894420DC7B41008997FB /* AppDelegate.swift in Sources */,
 				9EB97CEF21BD2DC2009ED736 /* Extensions.swift in Sources */,
+				9EEF01DA23321051005FE2BB /* Constants.swift in Sources */,
 				9EDC97912121A6AF008B2EAD /* FriendsModel.xcdatamodeld in Sources */,
 				9E493CD4228D3B1C0081FB0D /* ScoreViewController.swift in Sources */,
 			);
@@ -432,7 +437,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Jason.AR-Friends-Attack";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -453,7 +458,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Jason.AR-Friends-Attack";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
