@@ -22,7 +22,7 @@ enum BitMaskCategory: Int {
     case bullet = 3
 }
 
-class GameController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDelegate, NSFetchedResultsControllerDelegate {
+class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResultsControllerDelegate {
     
     // The context for keeping the names of friends etc
     var managedContext: NSManagedObjectContext! {
@@ -266,6 +266,7 @@ class GameController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         // Set the Physics body
         targetNode.physicsBody?.categoryBitMask = BitMaskCategory.target.rawValue
         targetNode.physicsBody?.contactTestBitMask = BitMaskCategory.bullet.rawValue
+        targetNode.categoryBitMask = BitMaskCategory.target.rawValue
         // TODO:- Play around with this - targetNode.physicsBody?.restitution = 0.1
         
         // Add images; we also pass through a bool of default image in case we are loading up the images from core data or the device
@@ -278,15 +279,15 @@ class GameController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         
         // Movement
         // TODO:- Play around with this - try and set up by frames
-        let waitRandom = randomNonWholeNumbers(numA: 3, numB: 0)
+                let waitRandom = randomNonWholeNumbers(numA: 3, numB: 0)
         
-        let wait = SCNAction.wait(duration: TimeInterval(waitRandom))
-        let parentRotation = rotation(time: 4)
-        let nodeAnimation = animateNode()
-        let sequence = SCNAction.sequence([parentRotation, wait, nodeAnimation])
-        let loopSequence = SCNAction.repeatForever(sequence)
-        // node.runAction(sequence)
-        targetNode.runAction(loopSequence)
+                let wait = SCNAction.wait(duration: TimeInterval(waitRandom))
+                let parentRotation = rotation(time: 4)
+                let nodeAnimation = animateNode()
+                let sequence = SCNAction.sequence([parentRotation, wait, nodeAnimation])
+         //let loopSequence = SCNAction.repeatForever(sequence)
+//         node.runAction(sequence)
+         targetNode.runAction(sequence)
         
     }
     
@@ -712,7 +713,7 @@ class GameController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         
         print("Animate Node")
         //TODO:- Set Parameters -
-        let randomMinus = randomNonWholeNumbers(numA: 0, numB: -2)
+//        let randomMinus = randomNonWholeNumbers(numA: 0, numB: -2)
         let randomPlus = randomNonWholeNumbers(numA: 2, numB: 0)
         let waitRandom = randomNonWholeNumbers(numA: 2, numB: 0)
         let randomNegative = -randomPlus
@@ -720,29 +721,16 @@ class GameController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         
         let wait = SCNAction.wait(duration: TimeInterval(waitRandom))
         let moveDown = SCNAction.move(by: SCNVector3(0, randomNegative, 0), duration: 0.5)
-        let moveUp = SCNAction.move(by: SCNVector3(0, randomPlus,0), duration: 0.5)
+        let moveUp = SCNAction.move(by: SCNVector3(0, randomPlus, 0), duration: 0.5)
         let moveLeft = SCNAction.move(by: SCNVector3(randomNegative, 0, 0), duration: 0.5)
         let moveRight = SCNAction.move(by: SCNVector3(randomPlus,0,0), duration: 0.5)
+        let moveForward = SCNAction.move(by: SCNVector3(0, 0, randomPlus), duration: 0.5)
+        let moveBackwards = SCNAction.move(by: SCNVector3(0,0, randomNegative), duration: 0.5)
         let hoverSequence = SCNAction.sequence([wait, moveUp, wait, moveLeft, wait, moveDown, wait, moveRight])
 //        let hoverSequence = SCNAction.sequence([wait, moveLeft, wait, moveRight])
 //        let loopSequence = SCNAction.repeatForever(hoverSequence)
         return hoverSequence
         
-    }
-    
-    //MARK:- Renders
-    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-        print("update node")
-    }
-    
-    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        
-        DispatchQueue.main.async {
-            self.messageLabel.text = self.message
-            self.pointsLabel.text = "\(self.points)"
-            self.killsLabel.text = "\(self.kills)"
-            self.friendsLabel.text = "\(self.friends)"
-        }
     }
     
     //MARK: Helper methods
@@ -772,6 +760,82 @@ class GameController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     
     func sessionInterruptionEnded(_ session: ARSession) {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
+        
+    }
+}
+
+//MARK:- SceneView Delegate
+extension GameController: ARSCNViewDelegate {
+    
+    
+//    func renderer(_ renderer: SCNSceneRenderer, didRenderScene scene: SCNScene, atTime time: TimeInterval) {
+//
+//    }
+    
+    //MARK:- Renders
+    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+        print("update node")
+        
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        
+        print("updateAtTime")
+
+        DispatchQueue.main.async {
+            self.messageLabel.text = self.message
+            self.pointsLabel.text = "\(self.points)"
+            self.killsLabel.text = "\(self.kills)"
+            self.friendsLabel.text = "\(self.friends)"
+        }
+        
+        // Count
+        
+        // Enumerate
+        sceneView.scene.rootNode.childNodes.filter({
+            $0.categoryBitMask == 2 }).forEach({ moveNode(node: $0) })
+//        for node in sceneView.scene.rootNode.childNodes {
+//            print("Node Enumerate")
+//            print("Node Enumerate - \(node.categoryBitMask)")
+//
+//            if node.categoryBitMask == BitMaskCategory.target.rawValue {
+//                print("Node Called \(String(describing: node.name))")
+//                moveNode(node: node)
+//            }
+//        }
+        
+//        for node in sceneView.root {
+//
+//        }
+        
+//        for targetNode
+    }
+    
+    func moveNode(node: SCNNode) {
+        
+        print("Node moveNode")
+
+        
+        if node.hasActions {
+            // Node has actions running so not needed
+            print("Node is running an action")
+            return
+        }
+        
+        print("Node Can Move")
+        
+        // Movement
+        // TODO:- Play around with this - try and set up by frames
+        let waitRandom = randomNonWholeNumbers(numA: 3, numB: 0)
+
+        let wait = SCNAction.wait(duration: TimeInterval(waitRandom))
+        let parentRotation = rotation(time: 4)
+        let nodeAnimation = animateNode()
+        let sequence = SCNAction.sequence([parentRotation, wait, nodeAnimation])
+//         let loopSequence = SCNAction.repeatForever(sequence)
+        node.runAction(sequence)
+//         targetNode.runAction(sequence)
+        
         
     }
 }

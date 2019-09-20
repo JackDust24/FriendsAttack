@@ -89,6 +89,11 @@ class AddFriendViewController: UIViewController {
 
 }
 
+
+
+
+
+
 // Set the view controller to delegate for the navvontroller and the imagepicker as we need both
 // MARK: - UINavigationControllerDelegate
 extension AddFriendViewController: UINavigationControllerDelegate {
