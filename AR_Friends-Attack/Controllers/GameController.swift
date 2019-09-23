@@ -22,6 +22,15 @@ enum BitMaskCategory: Int {
     case bullet = 3
 }
 
+enum Movement: String {
+    case left = "left"
+    case right = "right"
+    case up = "up"
+    case down = "down"
+    case forwards = "forwards"
+    case backwards = "backwards"
+}
+
 class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResultsControllerDelegate {
     
     // The context for keeping the names of friends etc
@@ -90,8 +99,6 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         sceneView.showsStatistics = true
         messageLabel.text = "Press Start to Begin"
         
-        // Set up boundaries for the nodes etc:
-        setBoundariesForNodes()
         // Fetch the Friends Data
         performFetch()
     }
@@ -283,7 +290,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         
                 let wait = SCNAction.wait(duration: TimeInterval(waitRandom))
                 let parentRotation = rotation(time: 4)
-                let nodeAnimation = animateNode()
+                let nodeAnimation = animateNode(nodePosition: targetNode.position)
                 let sequence = SCNAction.sequence([parentRotation, wait, nodeAnimation])
          //let loopSequence = SCNAction.repeatForever(sequence)
 //         node.runAction(sequence)
@@ -291,12 +298,6 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         
     }
     
-    // We don't want the nodes to go out of bounds
-    func setBoundariesForNodes() {
-        
-        //
-        
-    }
     
     //MARK:- Set the friend nodes up
     // Add the image to the node
@@ -709,29 +710,123 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         return rotation
     }
     
-    func animateNode() -> SCNAction  {
+    // We take the node argument for when calling the boundaries check
+    func animateNode(nodePosition: SCNVector3) -> SCNAction  {
         
         print("Animate Node")
-        //TODO:- Set Parameters -
-//        let randomMinus = randomNonWholeNumbers(numA: 0, numB: -2)
+        // 1. Create the constants for this functions
         let randomPlus = randomNonWholeNumbers(numA: 2, numB: 0)
         let waitRandom = randomNonWholeNumbers(numA: 2, numB: 0)
         let randomNegative = -randomPlus
-//        print("Waitrandom Check  2 \(waitRandom) randomMinus \(randomMinus) randomPlus \(randomPlus)")
-        
         let wait = SCNAction.wait(duration: TimeInterval(waitRandom))
-        let moveDown = SCNAction.move(by: SCNVector3(0, randomNegative, 0), duration: 0.5)
-        let moveUp = SCNAction.move(by: SCNVector3(0, randomPlus, 0), duration: 0.5)
-        let moveLeft = SCNAction.move(by: SCNVector3(randomNegative, 0, 0), duration: 0.5)
-        let moveRight = SCNAction.move(by: SCNVector3(randomPlus,0,0), duration: 0.5)
-        let moveForward = SCNAction.move(by: SCNVector3(0, 0, randomPlus), duration: 0.5)
-        let moveBackwards = SCNAction.move(by: SCNVector3(0,0, randomNegative), duration: 0.5)
-        let hoverSequence = SCNAction.sequence([wait, moveUp, wait, moveLeft, wait, moveDown, wait, moveRight])
+        
+//        let hoverSequence = SCNAction.sequence([wait, moveUp, wait, moveLeft, wait, moveDown, wait, moveRight])
 //        let hoverSequence = SCNAction.sequence([wait, moveLeft, wait, moveRight])
 //        let loopSequence = SCNAction.repeatForever(hoverSequence)
-        return hoverSequence
+        
+        // 2. Create the SCNVectors for the movement
+        let moveDown = SCNVector3(0, randomNegative, 0)
+        let moveUp = SCNVector3(0, randomPlus, 0)
+        let moveLeft = SCNVector3(randomNegative, 0, 0)
+        let moveRight = SCNVector3(randomPlus,0,0)
+        let moveForwards = SCNVector3(0, 0, randomPlus)
+        let moveBackwards = SCNVector3(0,0, randomNegative)
+        
+        // 3. Do a random movement 0 - 5
+        // 4. Create a movement variable for action
+        let moveDirectionChoice = randomNumbers(numA: 0, numB: 5)
+        var movement: SCNAction
+        
+        // 5. Switch through the random numbers
+        // 6. If the movement is safe to move in that direction, then it can move, otherwise it moves the opposite way.
+        switch moveDirectionChoice {
+        case 0: // left
+            if canNodeMove(nodePosition: nodePosition, newPosition: moveLeft, moveDirection: Movement.left) {
+                movement = SCNAction.move(by: moveLeft, duration: 0.5)
+            } else {
+                movement = SCNAction.move(by: moveRight, duration: 0.5)
+            }
+        case 1: // right
+            if canNodeMove(nodePosition: nodePosition, newPosition: moveRight, moveDirection: Movement.right) {
+                movement = SCNAction.move(by: moveRight, duration: 0.5)
+            } else {
+                movement = SCNAction.move(by: moveLeft, duration: 0.5)
+            }
+        case 2: // down
+            if canNodeMove(nodePosition: nodePosition, newPosition: moveDown, moveDirection: Movement.down) {
+                movement = SCNAction.move(by: moveDown, duration: 0.5)
+            } else {
+                movement = SCNAction.move(by: moveUp, duration: 0.5)
+            }
+        case 3: // up
+            if canNodeMove(nodePosition: nodePosition, newPosition: moveUp, moveDirection: Movement.up) {
+                movement = SCNAction.move(by: moveUp, duration: 0.5)
+            } else {
+                movement = SCNAction.move(by: moveDown, duration: 0.5)
+            }
+        case 4: // backwards
+            if canNodeMove(nodePosition: nodePosition, newPosition: moveBackwards, moveDirection: Movement.backwards) {
+                movement = SCNAction.move(by: moveBackwards, duration: 0.5)
+            } else {
+                movement = SCNAction.move(by: moveForwards, duration: 0.5)
+            }
+        case 5: // forwards
+            if canNodeMove(nodePosition: nodePosition, newPosition: moveForwards, moveDirection: Movement.forwards) {
+                movement = SCNAction.move(by: moveForwards, duration: 0.5)
+            } else {
+                movement = SCNAction.move(by: moveBackwards, duration: 0.5)
+            }
+        default:
+            movement = SCNAction.move(by: moveRight, duration: 0.5)
+        }
+        
+        let moveSequence = SCNAction.sequence([wait, movement, wait, rotation(time: 3)])
+        
+        return moveSequence
         
     }
+    
+    // We don't want the nodes to go out of bounds
+    func canNodeMove(nodePosition: SCNVector3, newPosition: SCNVector3, moveDirection: Movement) -> Bool {
+        
+        // Set default it can move
+        var nodeCanMove = true
+        
+        // If the movement goes beyond then it fails
+        switch moveDirection {
+        case .left:
+            if Int((nodePosition.x + newPosition.x)) < kMinX {
+                nodeCanMove = false
+            }
+        case .right:
+            if Int((nodePosition.x + newPosition.x)) > kMaxX {
+                nodeCanMove = false
+            }
+        case .down:
+            if Int((nodePosition.y + newPosition.y)) < kMinY {
+                nodeCanMove = false
+            }
+        case .up:
+            if Int((nodePosition.y + newPosition.y)) > kMaxY {
+                nodeCanMove = false
+            }
+        case .backwards:
+            if Int((nodePosition.z + newPosition.z)) < kMinZ {
+                nodeCanMove = false
+            }
+        case .forwards:
+            if Int((nodePosition.z + newPosition.z)) > kMaxZ {
+                nodeCanMove = false
+            }
+
+        }
+        
+        return nodeCanMove
+        
+    }
+    
+    // Check what Action to return
+
     
     //MARK: Helper methods
     // Random Numbers flost
@@ -830,7 +925,9 @@ extension GameController: ARSCNViewDelegate {
 
         let wait = SCNAction.wait(duration: TimeInterval(waitRandom))
         let parentRotation = rotation(time: 4)
-        let nodeAnimation = animateNode()
+        let nodeAnimation = animateNode(nodePosition: node.position)
+        let nodePositionTest = node.position
+        print("Node Position - \(nodePositionTest)")
         let sequence = SCNAction.sequence([parentRotation, wait, nodeAnimation])
 //         let loopSequence = SCNAction.repeatForever(sequence)
         node.runAction(sequence)
