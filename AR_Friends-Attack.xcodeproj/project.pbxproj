@@ -34,6 +34,7 @@
 		9E493CD1228D36AB0081FB0D /* ComicNeue_Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E493CC5228D36AB0081FB0D /* ComicNeue_Light.otf */; };
 		9E493CD2228D36AB0081FB0D /* ComicNeue-Angular_Light_Oblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E493CC6228D36AB0081FB0D /* ComicNeue-Angular_Light_Oblique.otf */; };
 		9E493CD4228D3B1C0081FB0D /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E493CD3228D3B1C0081FB0D /* ScoreViewController.swift */; };
+		9E8601DE233A1BC40093219A /* AR_Friends_AttackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8601D0233A17BF0093219A /* AR_Friends_AttackTests.swift */; };
 		9EB2DF29210F1ED400444981 /* FriendsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB2DF28210F1ED400444981 /* FriendsCollectionViewCell.swift */; };
 		9EB97CEF21BD2DC2009ED736 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB97CEE21BD2DC2009ED736 /* Extensions.swift */; };
 		9EBD7F9F21201A5A001B0C81 /* AddFriendSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBD7F9E21201A5A001B0C81 /* AddFriendSecondViewController.swift */; };
@@ -41,6 +42,16 @@
 		9EDC97912121A6AF008B2EAD /* FriendsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9EDC978D212179EF008B2EAD /* FriendsModel.xcdatamodeld */; };
 		9EEF01DA23321051005FE2BB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEF01D923321051005FE2BB /* Constants.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9E8601D3233A17BF0093219A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9E21893820DC7B41008997FB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9E21893F20DC7B41008997FB;
+			remoteInfo = "AR_Friends-Attack";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		9E02D86C226F2CD6005D4221 /* ARKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARKit.framework; path = System/Library/Frameworks/ARKit.framework; sourceTree = SDKROOT; };
@@ -72,6 +83,10 @@
 		9E493CC5228D36AB0081FB0D /* ComicNeue_Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ComicNeue_Light.otf; sourceTree = "<group>"; };
 		9E493CC6228D36AB0081FB0D /* ComicNeue-Angular_Light_Oblique.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ComicNeue-Angular_Light_Oblique.otf"; sourceTree = "<group>"; };
 		9E493CD3228D3B1C0081FB0D /* ScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
+		9E8601CE233A17BF0093219A /* AR_Friends-AttackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AR_Friends-AttackTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E8601D0233A17BF0093219A /* AR_Friends_AttackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AR_Friends_AttackTests.swift; sourceTree = "<group>"; };
+		9E8601D2233A17BF0093219A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E8601D8233A1AD30093219A /* ARFriendsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARFriendsTest.swift; sourceTree = "<group>"; };
 		9EB2DF28210F1ED400444981 /* FriendsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCollectionViewCell.swift; sourceTree = "<group>"; };
 		9EB97CEE21BD2DC2009ED736 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9EBD7F9E21201A5A001B0C81 /* AddFriendSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendSecondViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +104,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9E8601CB233A17BF0093219A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -103,10 +125,12 @@
 		9E21893720DC7B41008997FB = {
 			isa = PBXGroup;
 			children = (
+				9E8601D8233A1AD30093219A /* ARFriendsTest.swift */,
 				9E493CBA228D365D0081FB0D /* Fonts */,
 				9E0A14FD227C5D63007ED3CB /* HitSide.scnp */,
 				9E0A14FA227C58C4007ED3CB /* Assets.xcassets */,
 				9E21894220DC7B41008997FB /* AR_Friends-Attack */,
+				9E8601CF233A17BF0093219A /* AR_Friends-AttackTests */,
 				9E21894120DC7B41008997FB /* Products */,
 				9E02D86B226F2CD6005D4221 /* Frameworks */,
 			);
@@ -116,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				9E21894020DC7B41008997FB /* AR_Friends-Attack.app */,
+				9E8601CE233A17BF0093219A /* AR_Friends-AttackTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -157,6 +182,15 @@
 				9E493CBC228D36AA0081FB0D /* ComicNeue-Regular.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		9E8601CF233A17BF0093219A /* AR_Friends-AttackTests */ = {
+			isa = PBXGroup;
+			children = (
+				9E8601D0233A17BF0093219A /* AR_Friends_AttackTests.swift */,
+				9E8601D2233A17BF0093219A /* Info.plist */,
+			);
+			path = "AR_Friends-AttackTests";
 			sourceTree = "<group>";
 		};
 		9ED56CA421BBB64600B1C7E8 /* Controllers */ = {
@@ -201,19 +235,41 @@
 			productReference = 9E21894020DC7B41008997FB /* AR_Friends-Attack.app */;
 			productType = "com.apple.product-type.application";
 		};
+		9E8601CD233A17BF0093219A /* AR_Friends-AttackTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9E8601D7233A17BF0093219A /* Build configuration list for PBXNativeTarget "AR_Friends-AttackTests" */;
+			buildPhases = (
+				9E8601CA233A17BF0093219A /* Sources */,
+				9E8601CB233A17BF0093219A /* Frameworks */,
+				9E8601CC233A17BF0093219A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9E8601D4233A17BF0093219A /* PBXTargetDependency */,
+			);
+			name = "AR_Friends-AttackTests";
+			productName = "AR_Friends-AttackTests";
+			productReference = 9E8601CE233A17BF0093219A /* AR_Friends-AttackTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		9E21893820DC7B41008997FB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = JasonMac;
 				TargetAttributes = {
 					9E21893F20DC7B41008997FB = {
 						CreatedOnToolsVersion = 9.4;
 						LastSwiftMigration = 1010;
+					};
+					9E8601CD233A17BF0093219A = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 9E21893F20DC7B41008997FB;
 					};
 				};
 			};
@@ -231,6 +287,7 @@
 			projectRoot = "";
 			targets = (
 				9E21893F20DC7B41008997FB /* AR_Friends-Attack */,
+				9E8601CD233A17BF0093219A /* AR_Friends-AttackTests */,
 			);
 		};
 /* End PBXProject section */
@@ -261,6 +318,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9E8601CC233A17BF0093219A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -285,7 +349,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9E8601CA233A17BF0093219A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E8601DE233A1BC40093219A /* AR_Friends_AttackTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9E8601D4233A17BF0093219A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9E21893F20DC7B41008997FB /* AR_Friends-Attack */;
+			targetProxy = 9E8601D3233A17BF0093219A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		9E21894920DC7B41008997FB /* Main.storyboard */ = {
@@ -463,6 +543,51 @@
 			};
 			name = Release;
 		};
+		9E8601D5233A17BF0093219A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = EUFCY3UFR6;
+				INFOPLIST_FILE = "AR_Friends-AttackTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "Jason.AR-Friends-AttackTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AR_Friends-Attack.app/AR_Friends-Attack";
+			};
+			name = Debug;
+		};
+		9E8601D6233A17BF0093219A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = EUFCY3UFR6;
+				INFOPLIST_FILE = "AR_Friends-AttackTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "Jason.AR-Friends-AttackTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AR_Friends-Attack.app/AR_Friends-Attack";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -480,6 +605,15 @@
 			buildConfigurations = (
 				9E21895520DC7B43008997FB /* Debug */,
 				9E21895620DC7B43008997FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9E8601D7233A17BF0093219A /* Build configuration list for PBXNativeTarget "AR_Friends-AttackTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E8601D5233A17BF0093219A /* Debug */,
+				9E8601D6233A17BF0093219A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
