@@ -13,7 +13,7 @@ let kMinX = -5
 let kMaxX = 5
 let kMinY = -5
 let kMaxY = 5
-let kMinZ = -4
-let kMaxZ = 5
+let kMinZ = -1
+let kMaxZ = -5
 
 

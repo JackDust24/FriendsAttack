@@ -103,6 +103,10 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         performFetch()
     }
     
+    func testCall() {
+        print("Test")
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -811,11 +815,11 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
                 nodeCanMove = false
             }
         case .backwards:
-            if Int((nodePosition.z + newPosition.z)) < kMinZ {
+            if Int((nodePosition.z + newPosition.z)) < kMaxZ {
                 nodeCanMove = false
             }
         case .forwards:
-            if Int((nodePosition.z + newPosition.z)) > kMaxZ {
+            if Int((nodePosition.z + newPosition.z)) > kMinZ {
                 nodeCanMove = false
             }
 
