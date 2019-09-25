@@ -150,8 +150,6 @@ class AR_Friends_AttackTests: XCTestCase {
         XCTAssertEqual(result, false, "testFailMoveBackwards is a failure")
     }
 
- 
-
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {

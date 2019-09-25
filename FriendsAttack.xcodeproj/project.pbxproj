@@ -89,7 +89,6 @@
 		9E8601CE233A17BF0093219A /* FriendsAttackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FriendsAttackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E8601D0233A17BF0093219A /* AR_Friends_AttackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AR_Friends_AttackTests.swift; sourceTree = "<group>"; };
 		9E8601D2233A17BF0093219A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9E8601D8233A1AD30093219A /* ARFriendsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARFriendsTest.swift; sourceTree = "<group>"; };
 		9E8601DF233A6B8A0093219A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		9E8601E1233A749A0093219A /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
 		9E8601EB233A798B0093219A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -135,7 +134,6 @@
 			isa = PBXGroup;
 			children = (
 				9E8601DF233A6B8A0093219A /* Default-568h@2x.png */,
-				9E8601D8233A1AD30093219A /* ARFriendsTest.swift */,
 				9E493CBA228D365D0081FB0D /* Fonts */,
 				9E0A14FD227C5D63007ED3CB /* HitSide.scnp */,
 				9E0A14FA227C58C4007ED3CB /* Assets.xcassets */,

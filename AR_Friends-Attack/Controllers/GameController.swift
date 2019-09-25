@@ -270,8 +270,8 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         
         // Position of node
         let x = randomNumbers(numA: -4, numB: 4.5)
-        let y = randomNumbers(numA: -0.5, numB: 3)
-        let z = randomNumbers(numA: -1, numB: -2.5)
+        let y = randomNumbers(numA: -2, numB: 3)
+        let z = randomNumbers(numA: -2, numB: -3.5)
         targetNode.position = SCNVector3(x,y,z)
         
         // Set the Physics body
@@ -369,18 +369,18 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         
         // Of currntly shooting then we return
         if currentlyShooting {
-            print("Currently shooting already")
+            print("HT - Currently shooting already")
             return
         }
         
         // Cannot shoot if Game hasn't started.
         if !targetsOnScreen {
-            print("Targets not on screen")
+            print("HT- Targets not on screen")
             return
         }
         
         if !gameStarted {
-            print("Await to get game started then can start firing")
+            print("HT - Await to get game started then can start firing")
             gameStarted = true
             // Change the text to say we can now shoot
             //TODO:- test this
@@ -396,7 +396,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
             return
         }
         
-        print("Handle Tap - Proceed")
+        print("Handle Tap - Shooting")
 
         // We are currently shooting
         currentlyShooting = true
@@ -412,8 +412,9 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
             let orientation = SCNVector3(-transform.m31, -transform.m32, -transform.m33)
             let location = SCNVector3(transform.m41, transform.m42, transform.m43)
             let position = orientation + location
+            print(position)
             
-            let bullet = SCNNode(geometry: SCNSphere(radius: 0.1))
+            let bullet = SCNNode(geometry: SCNSphere(radius: 0.3))
             bullet.name = "bullet"
             bullet.geometry?.firstMaterial?.diffuse.contents = UIColor.red
             bullet.position = position
@@ -428,13 +429,13 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
             bullet.physicsBody?.contactTestBitMask = BitMaskCategory.target.rawValue
             
             self.sceneView.scene.rootNode.addChildNode(bullet)
-            bullet.runAction(
-                SCNAction.sequence([SCNAction.wait(duration: 2.0),
-                                    SCNAction.removeFromParentNode()])
-            )
+//            bullet.runAction(
+//                SCNAction.sequence([SCNAction.wait(duration: 2.0),
+//                                    SCNAction.removeFromParentNode()])
+//            )
             // We don't need the bullet anymore once shot whether missed or shot.
             bullet.runAction(SCNAction.sequence(
-                [SCNAction.wait(duration: 2.0),
+                [SCNAction.wait(duration: 1.0),
                 SCNAction.removeFromParentNode()]), completionHandler: ({
                     print("Finished Shooting")
                     self.currentlyShooting = false
@@ -746,39 +747,50 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         switch moveDirectionChoice {
         case 0: // left
             if canNodeMove(nodePosition: nodePosition, newPosition: moveLeft, moveDirection: Movement.left) {
-                movement = SCNAction.move(by: moveLeft, duration: 0.5)
+                movement = SCNAction.move(by: moveLeft, duration: 1.5)
             } else {
-                movement = SCNAction.move(by: moveRight, duration: 0.5)
+                movement = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 1)
+//                movement = SCNAction.move(by: moveRight, duration: 0.5)
             }
         case 1: // right
             if canNodeMove(nodePosition: nodePosition, newPosition: moveRight, moveDirection: Movement.right) {
-                movement = SCNAction.move(by: moveRight, duration: 0.5)
+                movement = SCNAction.move(by: moveRight, duration: 1.5)
             } else {
-                movement = SCNAction.move(by: moveLeft, duration: 0.5)
+                movement = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 1)
+
+//                movement = SCNAction.move(by: moveLeft, duration: 0.5)
             }
         case 2: // down
             if canNodeMove(nodePosition: nodePosition, newPosition: moveDown, moveDirection: Movement.down) {
-                movement = SCNAction.move(by: moveDown, duration: 0.5)
+                movement = SCNAction.move(by: moveDown, duration: 1.5)
             } else {
-                movement = SCNAction.move(by: moveUp, duration: 0.5)
+                movement = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 1)
+
+//                movement = SCNAction.move(by: moveUp, duration: 0.5)
             }
         case 3: // up
             if canNodeMove(nodePosition: nodePosition, newPosition: moveUp, moveDirection: Movement.up) {
-                movement = SCNAction.move(by: moveUp, duration: 0.5)
+                movement = SCNAction.move(by: moveUp, duration: 1.5)
             } else {
-                movement = SCNAction.move(by: moveDown, duration: 0.5)
+//                movement = SCNAction.move(by: moveDown, duration: 0.5)
+                movement = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 1)
+
             }
         case 4: // backwards
             if canNodeMove(nodePosition: nodePosition, newPosition: moveBackwards, moveDirection: Movement.backwards) {
-                movement = SCNAction.move(by: moveBackwards, duration: 0.5)
+                movement = SCNAction.move(by: moveBackwards, duration: 1.5)
             } else {
-                movement = SCNAction.move(by: moveForwards, duration: 0.5)
+                movement = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 1)
+
+//                movement = SCNAction.move(by: moveForwards, duration: 0.5)
             }
         case 5: // forwards
             if canNodeMove(nodePosition: nodePosition, newPosition: moveForwards, moveDirection: Movement.forwards) {
-                movement = SCNAction.move(by: moveForwards, duration: 0.5)
+                movement = SCNAction.move(by: moveForwards, duration: 1.5)
             } else {
-                movement = SCNAction.move(by: moveBackwards, duration: 0.5)
+                movement = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 1)
+
+//                movement = SCNAction.move(by: moveBackwards, duration: 0.5)
             }
         default:
             movement = SCNAction.move(by: moveRight, duration: 0.5)
@@ -891,8 +903,10 @@ extension GameController: ARSCNViewDelegate {
         // Count
         
         // Enumerate
+//        print(time)
         sceneView.scene.rootNode.childNodes.filter({
             $0.categoryBitMask == 2 }).forEach({ moveNode(node: $0) })
+        
 //        for node in sceneView.scene.rootNode.childNodes {
 //            print("Node Enumerate")
 //            print("Node Enumerate - \(node.categoryBitMask)")
@@ -912,16 +926,16 @@ extension GameController: ARSCNViewDelegate {
     
     func moveNode(node: SCNNode) {
         
-        print("Node moveNode")
+        // currentlyShooting
 
         
         if node.hasActions {
             // Node has actions running so not needed
-            print("Node is running an action")
+//            print("Node is running an action")
             return
         }
         
-        print("Node Can Move")
+//        print("Node Can Move")
         
         // Movement
         // TODO:- Play around with this - try and set up by frames
@@ -931,7 +945,7 @@ extension GameController: ARSCNViewDelegate {
         let parentRotation = rotation(time: 4)
         let nodeAnimation = animateNode(nodePosition: node.position)
         let nodePositionTest = node.position
-        print("Node Position - \(nodePositionTest)")
+//        print("Node Position - \(nodePositionTest)")
         let sequence = SCNAction.sequence([parentRotation, wait, nodeAnimation])
 //         let loopSequence = SCNAction.repeatForever(sequence)
         node.runAction(sequence)
