@@ -43,13 +43,14 @@ class FriendsViewController: UIViewController, NSFetchedResultsControllerDelegat
         
         // Fetch the data
         performFetch()
-        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = true
 
     }
     
     func configureView() {
         print("Check if context set")
         if managedContext == nil {
+            print("Context is nil")
             return
         }
     }
@@ -176,6 +177,7 @@ class FriendsViewController: UIViewController, NSFetchedResultsControllerDelegat
     //MARK:- Table Views
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        print("QUOTES")
         guard let quotes = fetchedResultsController.fetchedObjects else { return 0 }
         return quotes.count + 1
     }
@@ -190,7 +192,7 @@ class FriendsViewController: UIViewController, NSFetchedResultsControllerDelegat
         
         print("friendCount = fetchedResultsController.object - \(friendsCount)")
         
-       // Here we say add if less than the count, populate the row,
+        // Here we say add if less than the count, populate the row,
         // else we popular with ADD ROW (as we add an extra row)
         if indexPath.row < friendsCount {
             
@@ -211,10 +213,30 @@ class FriendsViewController: UIViewController, NSFetchedResultsControllerDelegat
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let cell = tableView.cellForRow(at: indexPath as IndexPath)
+        
+        // Cell.tag is for Adding a friend - so we call Add friend, else we view the Friend
+        if cell?.tag == 100 {
+            
+            print("CollectionView - Add Friend")
+            let nextController = "AddFriendViewController"
+            let secondViewController = storyboard?.instantiateViewController(withIdentifier: nextController)  as! AddFriendViewController
+        self.navigationController?.pushViewController(secondViewController, animated: true)
+            secondViewController.managedContext = managedContext
+            
+        } else {
+            print("Call segue4 - viewFriend - nothing to do as did prepare for segue")
+        }
+    }
+    
     //MARK:- Buttons
     @IBAction func exit(_ sender: Any) {
         //TODO- Add Code for Exit
+        self.navigationController?.popToRootViewController(animated: true)
     }
+    
     //MARK:- Misc
     func testSampleCode() {
         

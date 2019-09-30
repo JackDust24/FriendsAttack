@@ -20,6 +20,7 @@ class AddFriendSecondViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        self.navigationController?.isNavigationBarHidden = true
     }
 
     @IBOutlet weak var friendImage: UIImageView!  {
@@ -72,15 +73,23 @@ class AddFriendSecondViewController: UIViewController, UITextFieldDelegate {
     // For finishing - this needs to change for the save.
     @IBAction func done(_ sender: Any) {
         
-        print("Contents of text field - \(nameTextField.text ?? " ")")
+        print("Contents of text field - \(nameTextField.text ?? "")")
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func save(_ sender: Any) {
-        if nameTextField.text == nil {
-            print("We need a name and to issue Action Alert.")
+        
+        print("PRESSED SAVE")
+        print("\(String(describing: nameTextField.text))")
+        
+        if nameTextField.text == "" {
+            print("nameTextField.text == nil")
+
+            showMessage()
+            
             return
         }
+        
         updateNameFromTextField()
         updateContext()
         //TODO: - We can remove this of saving the Sample COde
@@ -88,8 +97,22 @@ class AddFriendSecondViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.popToRootViewController(animated: true)
     }
     
-
-
+    func showMessage() {
+        
+        let alertNameMissing = UIAlertController(title: "Missing Name",
+                                                       message: "Please add a name", preferredStyle: .alert)
+        
+        alertNameMissing.addAction(UIAlertAction(title: "OK", style: .destructive, handler: { action in
+            self.nameTextField.becomeFirstResponder()
+        }))
+        
+        // If the device has a camera add a Camera button to imagePickerActionSheet
+//        let okButton = UIAlertAction(title: "Ok", style: .default)
+//        alertNameMissing.addAction(okButton)
+        
+        // *** Present your instance of UIAlertController
+        present(alertNameMissing, animated: true)
+    }
     
     func updateContext() {
         

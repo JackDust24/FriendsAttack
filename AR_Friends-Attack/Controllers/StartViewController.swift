@@ -48,7 +48,7 @@ class StartViewController: UIViewController {
         // otherwise it's the Game Controller
         
         if segue.identifier == "viewFriends" {
-            print("prepare - View")
+            print("prepare - viewFriends")
             let secondViewController = segue.destination as! FriendsViewController
             secondViewController.managedContext = managedContext
         } else if segue.identifier == "showScores" {
@@ -78,6 +78,9 @@ class StartViewController: UIViewController {
             print("DATA ALREADY EXISTS")
             return
         } else {
+            
+            print("DATA DOES NOT EXIST")
+
             // Set up the game with sample data
             //TODO- Properly change this
             let dataArray = ["Harsh", "Doug", "Ian", "Scotto", "Ploy"]

@@ -23,6 +23,7 @@ class AddFriendViewController: UIViewController {
         super.viewDidLoad()
 
         savePhotoButton.isHidden = true
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool)  {
@@ -30,7 +31,9 @@ class AddFriendViewController: UIViewController {
         
         // If photo has been taken, we can ask user if they wish to take again
         if hasPhotoBeenTaken {
-            addPhotoButton.titleLabel?.text = "Choose Other Photo"
+//            addPhotoButton.titleLabel?.text = "Change Photo"
+            addPhotoButton.setTitle("Change Photo", for: .normal)
+            addPhotoButton.titleLabel?.font = UIFont.init(name: "Helvetica", size:18)
             savePhotoButton.isHidden = false
             addPhotoButton.contentMode = .scaleToFill
         }
@@ -90,10 +93,6 @@ class AddFriendViewController: UIViewController {
 }
 
 
-
-
-
-
 // Set the view controller to delegate for the navvontroller and the imagepicker as we need both
 // MARK: - UINavigationControllerDelegate
 extension AddFriendViewController: UINavigationControllerDelegate {
@@ -130,6 +129,7 @@ extension AddFriendViewController: UIImagePickerControllerDelegate {
                                             imagePicker.allowsEditing = true
                                             self.present(imagePicker, animated: true)
         }
+        
         imagePickerActionSheet.addAction(libraryButton)
         
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
@@ -140,8 +140,9 @@ extension AddFriendViewController: UIImagePickerControllerDelegate {
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-// Local variable inserted by Swift 4.2 migrator.
-let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
+        // Local variable inserted by Swift 4.2 migrator.
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
 
         print("didFinishPickingMediaWithInfo")
 

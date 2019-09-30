@@ -66,7 +66,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
     var gameFinished = false
     var targetsOnScreen = false // If targets are on screen then game is playing
     var currentlyShooting = false // If shooting can't shoot
-    var faceHit = false
+//    var faceHit = false
     // Nodes
     var target: SCNNode?
     // Values
@@ -286,22 +286,31 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         self.addLabel(nodeName: "nameLabelLeft", targetNode: targetNode, imageName: nodedName)
         self.addLabel(nodeName: "nameLabelRight", targetNode: targetNode, imageName: nodedName)
         
+        // Set default colours
+        changeNodeLabelColour(targetNode: targetNode)
+        
+        
         self.sceneView.scene.rootNode.addChildNode(targetNode)
         
         // Movement
         // TODO:- Play around with this - try and set up by frames
-                let waitRandom = randomNonWholeNumbers(numA: 3, numB: 0)
+        let waitRandom = randomNonWholeNumbers(numA: 3, numB: 0)
         
-                let wait = SCNAction.wait(duration: TimeInterval(waitRandom))
-                let parentRotation = rotation(time: 4)
-                let nodeAnimation = animateNode(nodePosition: targetNode.position)
-                let sequence = SCNAction.sequence([parentRotation, wait, nodeAnimation])
+        let wait = SCNAction.wait(duration: TimeInterval(waitRandom))
+        let parentRotation = rotation(time: 2)
+        let nodeAnimation = animateNode(nodePosition: targetNode.position)
+        let sequence = SCNAction.sequence([parentRotation, wait, nodeAnimation])
          //let loopSequence = SCNAction.repeatForever(sequence)
 //         node.runAction(sequence)
          targetNode.runAction(sequence)
-        
     }
-    
+//
+//    func setDefaultLabelColours(node: SCNNode) {
+//
+//        let front = targetNode.childNode(withName: nodeName
+//
+//        childNode.geometry?.firstMaterial?.diffuse.contents = UIColor.green
+//    }
     
     //MARK:- Set the friend nodes up
     // Add the image to the node
@@ -356,10 +365,63 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         labelNode.fontSize = 46
         labelNode.fontName = "SanFranciscoText-Bold"
         labelNode.position = CGPoint(x:100,y:100)
+        labelNode.fontColor = UIColor.black
         skScene.addChild(rectangle)
         skScene.addChild(labelNode)
         
         return skScene
+    }
+    
+    // For when the bullet hits
+    func changeNodeLabelColour(targetNode: SCNNode) {
+        
+        // Go through all the sides that need changing
+        let frontChild = targetNode.childNode(withName: "front", recursively: true)
+        let backChild = targetNode.childNode(withName: "back", recursively: true)
+        let leftChild = targetNode.childNode(withName: "left", recursively: true)
+        let rightChild = targetNode.childNode(withName: "right", recursively: true)
+        
+        let nodeArrays = [frontChild, backChild, leftChild, rightChild]
+        
+        for childNode in nodeArrays {
+            let colour = childNode?.geometry?.firstMaterial?.diffuse.contents as! UIColor
+            print("\(colour) is chosen")
+            changeColourForNode(childNode: (childNode)!, existingColour: colour)
+            let colourCheck = childNode?.geometry?.firstMaterial?.diffuse.contents as! UIColor
+            print("\(colourCheck) is Colour Check")
+
+        }
+    
+    }
+    
+    func changeColourForNode(childNode: SCNNode, existingColour: UIColor) {
+        
+        var currentColour = existingColour
+        
+        if currentColour == UIColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0) {
+            print("\(currentColour) is green -> blue")
+            childNode.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+            currentColour = UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0)
+            
+        } else if currentColour == UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0) {
+            print("\(currentColour) is blue -> red")
+            childNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+            currentColour = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
+            
+        } else if currentColour == UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0) {
+            print("\(currentColour) is red -> black")
+            childNode.geometry?.firstMaterial?.diffuse.contents = UIColor.black
+            currentColour = UIColor(white: 0, alpha: 1)
+            
+        } else {
+            print("\(currentColour) is the original")
+            childNode.geometry?.firstMaterial?.diffuse.contents = UIColor.green
+            currentColour = UIColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0)
+
+        }
+        
+        print("Current Colour Check - \(currentColour)")
+
     }
     
     // MARK: Touches - fire bullets
@@ -384,7 +446,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
             gameStarted = true
             // Change the text to say we can now shoot
             //TODO:- test this
-            message = "Shoot in the face to kill"
+            message = "Shoot 3 times to Kill"
             myTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { _ in
                 self.startTimer()
             }
@@ -412,7 +474,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
             let orientation = SCNVector3(-transform.m31, -transform.m32, -transform.m33)
             let location = SCNVector3(transform.m41, transform.m42, transform.m43)
             let position = orientation + location
-            print(position)
+            print("Bullet fired \(position)")
             
             let bullet = SCNNode(geometry: SCNSphere(radius: 0.3))
             bullet.name = "bullet"
@@ -456,31 +518,30 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
             return
         }
         
-        DispatchQueue.main.async {
-            // 1
-            if let touchLocation = touches.first?.location(
-                in: self.sceneView) {
-                // 2
-                if let hit = self.sceneView.hitTest(touchLocation,
-                                                    options: nil).first {
-                    
-                    print(hit.node.name!)
-                    // 3
-                    if hit.node.name == "face-side" || hit.node.name == "front" || hit.node.name == "back" {
-                        // 4
-                        print("WE HAVE A HIT IN THE FACE")
-                        self.faceHit = true
-                        
-                    } else {
-                        print("NO HIT")
-                        self.faceHit = false
-                        
-                    }
-                }
-            }
-        }
+//        DispatchQueue.main.async {
+//            // 1
+//            if let touchLocation = touches.first?.location(
+//                in: self.sceneView) {
+//                // 2
+//                if let hit = self.sceneView.hitTest(touchLocation,
+//                                                    options: nil).first {
+//
+//                    print(hit.node.name!)
+//                    // 3
+//                    if hit.node.name == "face-side" || hit.node.name == "front" || hit.node.name == "back" {
+//                        // 4
+//                        print("WE HAVE A HIT IN THE FACE")
+//                        self.faceHit = true
+//
+//                    } else {
+//                        print("NO HIT")
+//                        self.faceHit = false
+//
+//                    }
+//                }
+//            }
+//        }
     }
-    
     
     // MARK - Game management and timer
     
@@ -621,9 +682,16 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
     // MARK:- For collision
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
         
+        // collision for nodes
+        
         print("physicsWorld")
         let nodeA = contact.nodeA
         let nodeB = contact.nodeB
+        
+        print("physicsWorld 2 - \(contact.nodeA.position)")
+        print("physicsWorld 2 - \(contact.nodeA.worldPosition)")
+
+
         
         let nodeAMask = nodeA.categoryBitMask
         let nodeBMask = nodeB.categoryBitMask
@@ -633,25 +701,72 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         print(BitMaskCategory.target.rawValue)
         
         if nodeA.physicsBody?.categoryBitMask == BitMaskCategory.target.rawValue {
+            nodeA.removeAllActions()
             self.target = nodeA
+            nodeB.removeFromParentNode()
         } else if nodeB.physicsBody?.categoryBitMask == BitMaskCategory.target.rawValue {
+            nodeB.removeAllActions()
             self.target = nodeB
+            nodeA.removeFromParentNode()
+
         }
         
 //        let particle = SCNParticleSystem(named: "target.scnassets/Fire.scnp", inDirectory: nil)
         
         var particle: SCNParticleSystem
         
-        // Depending if we PRESSED the face or not, what effect we would have.
-        if faceHit {
-            print("FACE HIT")
+        print("NodeA Name - \(String(describing: nodeA.name)) / NodeA Position - \(nodeA.position) / NodeB Name - \(String(describing: nodeB.name))/ NodeB Position - \(nodeB.position)")
+        
+        var tempMessage = "" // We will use this further down for updating the message on the screen
+        
+        // Check Target node to see if Black if so, them it will be destroyed
+        
+        // 1. Change the colour of the node if it hits
+        changeNodeLabelColour(targetNode: target!)
+        
+        // 2. We only need to check one of the sides
+        let frontChild = target?.childNode(withName: "front", recursively: true)
+        
+        // 3. Check the colour of that node
+        let colourCheck = frontChild?.geometry?.firstMaterial?.diffuse.contents as! UIColor
+        
+        // 4. If Black means it has been hit 3 times
+        if colourCheck == UIColor(white: 0, alpha: 1) {
+
             particle = bulletHitEffect(particleName: "target.scnassets/Fire.scnp", directory: nil, loops: false, lifeSpan: 4)
+            print("You Killed \(self.target?.name ?? "No Name")")
+            
+            points += 10
+            kills += 1
+            friends -= 1
+            tempMessage = "You KILLED \(self.target?.name ?? "No Name")"
+            target?.removeFromParentNode()
             
         } else {
-            print("No FACE HIT")
 
             particle = bulletHitEffect(particleName: "target.scnassets/HitSide.scnp", directory: nil, loops: false, lifeSpan: 0.5)
+            print("You hit \(self.target?.name ?? "No Name")")
+            
+            points += 1
+            tempMessage = "You hit \(self.target?.name ?? "No Name")"
         }
+        
+        DispatchQueue.main.async {
+            
+            self.message = tempMessage
+        }
+        
+//        // Depending if we PRESSED the face or not, what effect we would have.
+//        if faceHit {
+//            print("FACE HIT")
+//            particle = bulletHitEffect(particleName: "target.scnassets/Fire.scnp", directory: nil, loops: false, lifeSpan: 4)
+//
+//        } else {
+//            print("No FACE HIT")
+//
+//            particle = bulletHitEffect(particleName: "target.scnassets/HitSide.scnp", directory: nil, loops: false, lifeSpan: 0.5)
+//
+//        }
         
         let particleNode = SCNNode()
         particleNode.addParticleSystem(particle)
@@ -659,27 +774,26 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         particleNode.scale = SCNVector3(0.5, 0.5, 0.5)
         
         self.sceneView.scene.rootNode.addChildNode(particleNode)
-        print("Target got hit \(target?.name ?? "No Name")")
         
-        DispatchQueue.main.async {
-            
-            // If hit the face then the node is removed
-            if self.faceHit {
-                print("You Killed \(self.target?.name ?? "No Name")")
-                
-                self.points += 10
-                self.kills += 1
-                self.friends -= 1
-                self.message = "You KILLED \(self.target?.name ?? "No Name")"
-                self.target?.removeFromParentNode()
-                
-            } else {
-                print("You hit \(self.target?.name ?? "No Name")")
-                self.points += 1
-                self.message = "You hit \(self.target?.name ?? "No Name")"
-            }
-            self.faceHit = false
-        }
+//        DispatchQueue.main.async {
+//
+//            // If hit the face then the node is removed
+//            if self.faceHit {
+//                print("You Killed \(self.target?.name ?? "No Name")")
+//
+//                self.points += 10
+//                self.kills += 1
+//                self.friends -= 1
+//                self.message = "You KILLED \(self.target?.name ?? "No Name")"
+//                self.target?.removeFromParentNode()
+//
+//            } else {
+//                print("You hit \(self.target?.name ?? "No Name")")
+//                self.points += 1
+//                self.message = "You hit \(self.target?.name ?? "No Name")"
+//            }
+//            self.faceHit = false
+//        }
     }
     
     // Bullet Effect
@@ -747,14 +861,14 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         switch moveDirectionChoice {
         case 0: // left
             if canNodeMove(nodePosition: nodePosition, newPosition: moveLeft, moveDirection: Movement.left) {
-                movement = SCNAction.move(by: moveLeft, duration: 1.5)
+                movement = SCNAction.move(by: moveLeft, duration: 2.5)
             } else {
                 movement = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 1)
 //                movement = SCNAction.move(by: moveRight, duration: 0.5)
             }
         case 1: // right
             if canNodeMove(nodePosition: nodePosition, newPosition: moveRight, moveDirection: Movement.right) {
-                movement = SCNAction.move(by: moveRight, duration: 1.5)
+                movement = SCNAction.move(by: moveRight, duration: 2.5)
             } else {
                 movement = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 1)
 
@@ -762,7 +876,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
             }
         case 2: // down
             if canNodeMove(nodePosition: nodePosition, newPosition: moveDown, moveDirection: Movement.down) {
-                movement = SCNAction.move(by: moveDown, duration: 1.5)
+                movement = SCNAction.move(by: moveDown, duration: 2.5)
             } else {
                 movement = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 1)
 
@@ -770,7 +884,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
             }
         case 3: // up
             if canNodeMove(nodePosition: nodePosition, newPosition: moveUp, moveDirection: Movement.up) {
-                movement = SCNAction.move(by: moveUp, duration: 1.5)
+                movement = SCNAction.move(by: moveUp, duration: 2.5)
             } else {
 //                movement = SCNAction.move(by: moveDown, duration: 0.5)
                 movement = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 1)
@@ -778,7 +892,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
             }
         case 4: // backwards
             if canNodeMove(nodePosition: nodePosition, newPosition: moveBackwards, moveDirection: Movement.backwards) {
-                movement = SCNAction.move(by: moveBackwards, duration: 1.5)
+                movement = SCNAction.move(by: moveBackwards, duration: 2.5)
             } else {
                 movement = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 1)
 
@@ -786,7 +900,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
             }
         case 5: // forwards
             if canNodeMove(nodePosition: nodePosition, newPosition: moveForwards, moveDirection: Movement.forwards) {
-                movement = SCNAction.move(by: moveForwards, duration: 1.5)
+                movement = SCNAction.move(by: moveForwards, duration: 2.5)
             } else {
                 movement = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 1)
 
@@ -796,7 +910,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
             movement = SCNAction.move(by: moveRight, duration: 0.5)
         }
         
-        let moveSequence = SCNAction.sequence([wait, movement, wait, rotation(time: 3)])
+        let moveSequence = SCNAction.sequence([movement, wait, rotation(time: 3)])
         
         return moveSequence
         
@@ -878,11 +992,6 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
 //MARK:- SceneView Delegate
 extension GameController: ARSCNViewDelegate {
     
-    
-//    func renderer(_ renderer: SCNSceneRenderer, didRenderScene scene: SCNScene, atTime time: TimeInterval) {
-//
-//    }
-    
     //MARK:- Renders
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
         print("update node")
@@ -891,8 +1000,6 @@ extension GameController: ARSCNViewDelegate {
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         
-        print("updateAtTime")
-
         DispatchQueue.main.async {
             self.messageLabel.text = self.message
             self.pointsLabel.text = "\(self.points)"
@@ -926,9 +1033,6 @@ extension GameController: ARSCNViewDelegate {
     
     func moveNode(node: SCNNode) {
         
-        // currentlyShooting
-
-        
         if node.hasActions {
             // Node has actions running so not needed
 //            print("Node is running an action")
@@ -945,7 +1049,7 @@ extension GameController: ARSCNViewDelegate {
         let parentRotation = rotation(time: 4)
         let nodeAnimation = animateNode(nodePosition: node.position)
         let nodePositionTest = node.position
-//        print("Node Position - \(nodePositionTest)")
+        print("Node Name - \(String(describing: node.name)) Node Position - \(nodePositionTest)")
         let sequence = SCNAction.sequence([parentRotation, wait, nodeAnimation])
 //         let loopSequence = SCNAction.repeatForever(sequence)
         node.runAction(sequence)

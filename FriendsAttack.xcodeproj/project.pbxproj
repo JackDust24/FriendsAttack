@@ -156,19 +156,14 @@
 		9E21894220DC7B41008997FB /* AR_Friends-Attack */ = {
 			isa = PBXGroup;
 			children = (
+				9E49E68E2341FDD00020DCB4 /* Model */,
 				9ED56CA421BBB64600B1C7E8 /* Controllers */,
 				9EDC978C212179D1008B2EAD /* CoreData */,
-				9EB2DF28210F1ED400444981 /* FriendsCollectionViewCell.swift */,
-				9E0F9406233106C0008A587E /* FriendsTableViewCell.swift */,
-				9E21894320DC7B41008997FB /* AppDelegate.swift */,
-				9EC06F7620DE265A00138175 /* GameManager.swift */,
-				9EB97CEE21BD2DC2009ED736 /* Extensions.swift */,
 				9E21894920DC7B41008997FB /* Main.storyboard */,
 				9E21894C20DC7B43008997FB /* Assets.xcassets */,
 				9E21894E20DC7B43008997FB /* LaunchScreen.storyboard */,
 				9E21895120DC7B43008997FB /* Info.plist */,
 				9E21895720DC7C3C008997FB /* target.scnassets */,
-				9EEF01D923321051005FE2BB /* Constants.swift */,
 			);
 			path = "AR_Friends-Attack";
 			sourceTree = "<group>";
@@ -192,6 +187,17 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		9E49E68E2341FDD00020DCB4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9E21894320DC7B41008997FB /* AppDelegate.swift */,
+				9EC06F7620DE265A00138175 /* GameManager.swift */,
+				9EB97CEE21BD2DC2009ED736 /* Extensions.swift */,
+				9EEF01D923321051005FE2BB /* Constants.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		9E8601CF233A17BF0093219A /* AR_Friends-AttackTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +210,8 @@
 		9ED56CA421BBB64600B1C7E8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9EB2DF28210F1ED400444981 /* FriendsCollectionViewCell.swift */,
+				9E0F9406233106C0008A587E /* FriendsTableViewCell.swift */,
 				9E21894720DC7B41008997FB /* GameController.swift */,
 				9E2AE56F20ECBF0B00AA54B9 /* StartViewController.swift */,
 				9E2AE57120ECBF3200AA54B9 /* FriendsViewController.swift */,

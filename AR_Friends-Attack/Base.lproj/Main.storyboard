@@ -36,7 +36,7 @@
         <!--Score View Controller-->
         <scene sceneID="ccy-hu-aMe">
             <objects>
-                <viewController id="0CM-13-v3K" customClass="ScoreViewController" customModule="AR_Friends_Attack" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0CM-13-v3K" customClass="ScoreViewController" customModule="FriendsAttack" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UyI-fi-LOr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -138,7 +138,7 @@
         <!--Start View Controller-->
         <scene sceneID="MGv-Xg-2Ws">
             <objects>
-                <viewController id="47f-za-7LQ" customClass="StartViewController" customModule="AR_Friends_Attack" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="47f-za-7LQ" customClass="StartViewController" customModule="FriendsAttack" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0Tu-6W-b1P">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -222,7 +222,7 @@
         <!--Friends View Controller-->
         <scene sceneID="XSV-Ce-Mhf">
             <objects>
-                <viewController id="joy-EC-fpW" customClass="FriendsViewController" customModule="AR_Friends_Attack" sceneMemberID="viewController">
+                <viewController id="joy-EC-fpW" customClass="FriendsViewController" customModule="FriendsAttack" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ugj-2F-jRX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -245,37 +245,76 @@
                                             <action selector="exit:" destination="joy-EC-fpW" eventType="touchUpInside" id="Kfc-Cf-hso"/>
                                         </connections>
                                     </button>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7bL-YR-5UB">
+                                        <rect key="frame" x="5" y="125" width="325" height="317"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableViewCell" rowHeight="60" id="Nwc-kN-PiT" customClass="FriendsTableViewCell" customModule="FriendsAttack" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="325" height="60"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nwc-kN-PiT" id="ReF-mz-PgQ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="325" height="59.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bZg-uf-X0d">
+                                                            <rect key="frame" x="15" y="5" width="50" height="50"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="50" id="6Sy-WN-BPg"/>
+                                                                <constraint firstAttribute="width" constant="50" id="Xw2-ix-oIX"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z4N-WV-AP0">
+                                                            <rect key="frame" x="75" y="19.5" width="42" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 kills" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGC-9q-M8E">
+                                                            <rect key="frame" x="282" y="20" width="43" height="20"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                            <color key="textColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="z4N-WV-AP0" firstAttribute="centerY" secondItem="ReF-mz-PgQ" secondAttribute="centerY" id="O6g-3L-Bps"/>
+                                                        <constraint firstItem="dGC-9q-M8E" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="z4N-WV-AP0" secondAttribute="trailing" constant="8" symbolic="YES" id="PZ7-79-r5Z"/>
+                                                        <constraint firstItem="bZg-uf-X0d" firstAttribute="top" secondItem="ReF-mz-PgQ" secondAttribute="top" constant="5" id="XlO-16-XTf"/>
+                                                        <constraint firstItem="dGC-9q-M8E" firstAttribute="centerY" secondItem="ReF-mz-PgQ" secondAttribute="centerY" id="YgW-ex-VhC"/>
+                                                        <constraint firstItem="bZg-uf-X0d" firstAttribute="leading" secondItem="ReF-mz-PgQ" secondAttribute="leading" constant="15" id="ZcR-sZ-Xw7"/>
+                                                        <constraint firstItem="z4N-WV-AP0" firstAttribute="leading" secondItem="bZg-uf-X0d" secondAttribute="trailing" constant="10" id="g3R-Ji-Py4"/>
+                                                        <constraint firstItem="dGC-9q-M8E" firstAttribute="trailing" secondItem="ReF-mz-PgQ" secondAttribute="trailingMargin" constant="15" id="uXy-3Q-9cd"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="friendImage" destination="bZg-uf-X0d" id="oaS-Tl-ss0"/>
+                                                    <outlet property="friendLabel" destination="z4N-WV-AP0" id="iQW-kc-hDi"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="joy-EC-fpW" id="lnV-uh-PP2"/>
+                                            <outlet property="delegate" destination="joy-EC-fpW" id="i76-4x-z9Z"/>
+                                        </connections>
+                                    </tableView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friends List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2rU-UC-10I">
-                                        <rect key="frame" x="37" y="35" width="261" height="59"/>
+                                        <rect key="frame" x="31" y="26" width="272" height="75"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="50"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7bL-YR-5UB">
-                                        <rect key="frame" x="20" y="119" width="295" height="333"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableViewCell" id="Nwc-kN-PiT" customClass="FriendsTableViewCell" customModule="AR_Friends_Attack" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="295" height="44"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nwc-kN-PiT" id="ReF-mz-PgQ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="295" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </tableViewCellContentView>
-                                            </tableViewCell>
-                                        </prototypes>
-                                    </tableView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.20784313725490194" green="0.69019607843137254" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="flG-ab-70I" secondAttribute="bottom" constant="30" id="2ab-MH-JbW"/>
-                                    <constraint firstAttribute="trailing" secondItem="7bL-YR-5UB" secondAttribute="trailing" constant="20" id="7qq-uT-3u9"/>
-                                    <constraint firstItem="2rU-UC-10I" firstAttribute="leading" secondItem="Nvo-mW-Wmf" secondAttribute="leading" constant="37" id="Jtw-pp-uxg"/>
-                                    <constraint firstItem="flG-ab-70I" firstAttribute="top" secondItem="7bL-YR-5UB" secondAttribute="bottom" constant="25" id="R3p-VK-O47"/>
-                                    <constraint firstItem="2rU-UC-10I" firstAttribute="top" secondItem="Nvo-mW-Wmf" secondAttribute="top" constant="35" id="XNS-k2-BbL"/>
-                                    <constraint firstItem="2rU-UC-10I" firstAttribute="centerX" secondItem="7bL-YR-5UB" secondAttribute="centerX" id="Zbt-O1-Xjb"/>
-                                    <constraint firstItem="7bL-YR-5UB" firstAttribute="leading" secondItem="Nvo-mW-Wmf" secondAttribute="leading" constant="20" id="jof-Xe-3cf"/>
-                                    <constraint firstItem="7bL-YR-5UB" firstAttribute="top" secondItem="2rU-UC-10I" secondAttribute="bottom" constant="25" id="sjK-zy-LPa"/>
+                                    <constraint firstItem="7bL-YR-5UB" firstAttribute="centerY" secondItem="Nvo-mW-Wmf" secondAttribute="centerY" id="Dwi-tx-o8W"/>
+                                    <constraint firstItem="2rU-UC-10I" firstAttribute="leading" secondItem="Nvo-mW-Wmf" secondAttribute="leading" constant="31" id="Jtw-pp-uxg"/>
+                                    <constraint firstItem="flG-ab-70I" firstAttribute="top" secondItem="7bL-YR-5UB" secondAttribute="bottom" constant="35" id="R3p-VK-O47"/>
+                                    <constraint firstItem="2rU-UC-10I" firstAttribute="top" secondItem="Nvo-mW-Wmf" secondAttribute="top" constant="26" id="XNS-k2-BbL"/>
+                                    <constraint firstItem="2rU-UC-10I" firstAttribute="centerX" secondItem="7bL-YR-5UB" secondAttribute="centerX" constant="-0.5" id="Zbt-O1-Xjb"/>
+                                    <constraint firstItem="7bL-YR-5UB" firstAttribute="leading" secondItem="Nvo-mW-Wmf" secondAttribute="leading" constant="5" id="fpZ-vN-75e"/>
+                                    <constraint firstAttribute="trailing" secondItem="7bL-YR-5UB" secondAttribute="trailing" constant="5" id="n8M-WK-lLG"/>
+                                    <constraint firstItem="7bL-YR-5UB" firstAttribute="top" secondItem="2rU-UC-10I" secondAttribute="bottom" constant="24" id="sjK-zy-LPa"/>
                                     <constraint firstItem="flG-ab-70I" firstAttribute="centerX" secondItem="Nvo-mW-Wmf" secondAttribute="centerX" id="yCp-cq-blR"/>
                                 </constraints>
                             </view>
@@ -295,12 +334,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FcQ-Gu-dbT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-335.19999999999999" y="1008.8455772113944"/>
+            <point key="canvasLocation" x="288.80000000000001" y="703.89805097451278"/>
         </scene>
         <!--Friend Detail View Controller-->
         <scene sceneID="nZc-Xo-uJ2">
             <objects>
-                <viewController storyboardIdentifier="FriendDetailViewController" id="WDQ-dq-uaG" customClass="FriendDetailViewController" customModule="AR_Friends_Attack" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FriendDetailViewController" id="WDQ-dq-uaG" customClass="FriendDetailViewController" customModule="FriendsAttack" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9nd-HL-tp6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -372,12 +411,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F7b-DD-vDH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1004" y="1014.2428785607198"/>
+            <point key="canvasLocation" x="2273" y="704"/>
         </scene>
         <!--Add Friend View Controller-->
         <scene sceneID="76H-h1-1rd">
             <objects>
-                <viewController storyboardIdentifier="AddFriendViewController" id="LhA-sm-zNc" customClass="AddFriendViewController" customModule="AR_Friends_Attack" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddFriendViewController" id="LhA-sm-zNc" customClass="AddFriendViewController" customModule="FriendsAttack" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5gC-fx-1xw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -386,12 +425,13 @@
                                 <rect key="frame" x="20" y="60" width="335" height="567"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZwD-9k-Owc">
-                                        <rect key="frame" x="117.5" y="377" width="100" height="51"/>
+                                        <rect key="frame" x="57.5" y="384" width="220" height="44"/>
                                         <color key="backgroundColor" red="0.1333333333" green="0.41960784309999999" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="AQO-xT-Zn8"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="220" id="VGR-JU-SFz"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="30"/>
+                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="24"/>
                                         <state key="normal" title="ADD">
                                             <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -464,7 +504,7 @@
         <!--Add Friend Second View Controller-->
         <scene sceneID="v1T-qq-8Vw">
             <objects>
-                <viewController id="Lvx-iD-vwi" customClass="AddFriendSecondViewController" customModule="AR_Friends_Attack" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Lvx-iD-vwi" customClass="AddFriendSecondViewController" customModule="FriendsAttack" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ibw-SD-aql">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -482,7 +522,7 @@
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="7cg-Fq-VTr"/>
                                             <constraint firstAttribute="height" constant="54" id="eYI-bJ-By9"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                         <state key="normal" title="SAVE">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -555,7 +595,7 @@
         <!--Game Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameController" customModule="AR_Friends_Attack" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BV1-FR-VrT" customClass="GameController" customModule="FriendsAttack" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dZE-Ig-3aI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -838,7 +878,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1144.8" y="193.85307346326837"/>
+            <point key="canvasLocation" x="836" y="-9"/>
         </scene>
     </scenes>
 </document>
