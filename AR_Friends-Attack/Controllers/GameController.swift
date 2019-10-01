@@ -68,7 +68,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
     var currentlyShooting = false // If shooting can't shoot
 //    var faceHit = false
     // Nodes
-    var target: SCNNode?
+//    var target: SCNNode?
     // Values
     var power: Float = 50 // power of the shot
     var points = 0
@@ -468,18 +468,25 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         guard let pointOfView = sceneView.pointOfView else {return}
         
         // Set up the bullet
+        
+        print("Bullet fired")
+
         DispatchQueue.main.async {
             
             let transform = pointOfView.transform
             let orientation = SCNVector3(-transform.m31, -transform.m32, -transform.m33)
             let location = SCNVector3(transform.m41, transform.m42, transform.m43)
             let position = orientation + location
-            print("Bullet fired \(position)")
+            print("transform \(transform)")
+            print("orientation \(orientation)")
+            print("location \(location)")
+            print("position \(position)")
             
             let bullet = SCNNode(geometry: SCNSphere(radius: 0.3))
             bullet.name = "bullet"
             bullet.geometry?.firstMaterial?.diffuse.contents = UIColor.red
             bullet.position = position
+            print("Bullet world position \(bullet.worldPosition)")
             
             let body = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: bullet, options: nil))
             body.isAffectedByGravity = false
@@ -683,15 +690,14 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
         
         // collision for nodes
+        var targetNode: SCNNode?
         
         print("physicsWorld")
         let nodeA = contact.nodeA
         let nodeB = contact.nodeB
         
-        print("physicsWorld 2 - \(contact.nodeA.position)")
+        print("physicsWorld 1 - \(contact.nodeA.position)")
         print("physicsWorld 2 - \(contact.nodeA.worldPosition)")
-
-
         
         let nodeAMask = nodeA.categoryBitMask
         let nodeBMask = nodeB.categoryBitMask
@@ -701,31 +707,27 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         print(BitMaskCategory.target.rawValue)
         
         if nodeA.physicsBody?.categoryBitMask == BitMaskCategory.target.rawValue {
+            targetNode = nodeA
             nodeA.removeAllActions()
-            self.target = nodeA
-            nodeB.removeFromParentNode()
+            
         } else if nodeB.physicsBody?.categoryBitMask == BitMaskCategory.target.rawValue {
+            targetNode = nodeB
             nodeB.removeAllActions()
-            self.target = nodeB
-            nodeA.removeFromParentNode()
 
         }
         
-//        let particle = SCNParticleSystem(named: "target.scnassets/Fire.scnp", inDirectory: nil)
-        
         var particle: SCNParticleSystem
         
-        print("NodeA Name - \(String(describing: nodeA.name)) / NodeA Position - \(nodeA.position) / NodeB Name - \(String(describing: nodeB.name))/ NodeB Position - \(nodeB.position)")
+        print("NodeA Name - \(String(describing: nodeA.name)) / NodeA Position - \(nodeA.worldPosition) / NodeB Name - \(String(describing: nodeB.name))/ NodeB Position - \(nodeB.position)")
         
         var tempMessage = "" // We will use this further down for updating the message on the screen
         
         // Check Target node to see if Black if so, them it will be destroyed
-        
         // 1. Change the colour of the node if it hits
-        changeNodeLabelColour(targetNode: target!)
+        changeNodeLabelColour(targetNode: targetNode!)
         
         // 2. We only need to check one of the sides
-        let frontChild = target?.childNode(withName: "front", recursively: true)
+        let frontChild = targetNode?.childNode(withName: "front", recursively: true)
         
         // 3. Check the colour of that node
         let colourCheck = frontChild?.geometry?.firstMaterial?.diffuse.contents as! UIColor
@@ -734,21 +736,21 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         if colourCheck == UIColor(white: 0, alpha: 1) {
 
             particle = bulletHitEffect(particleName: "target.scnassets/Fire.scnp", directory: nil, loops: false, lifeSpan: 4)
-            print("You Killed \(self.target?.name ?? "No Name")")
+            print("You Killed \(targetNode?.name ?? "No Name")")
             
             points += 10
             kills += 1
             friends -= 1
-            tempMessage = "You KILLED \(self.target?.name ?? "No Name")"
-            target?.removeFromParentNode()
+            tempMessage = "You KILLED \(targetNode?.name ?? "No Name")"
+            targetNode!.removeFromParentNode()
             
         } else {
 
             particle = bulletHitEffect(particleName: "target.scnassets/HitSide.scnp", directory: nil, loops: false, lifeSpan: 0.5)
-            print("You hit \(self.target?.name ?? "No Name")")
+            print("You hit \(targetNode?.name ?? "No Name")")
             
             points += 1
-            tempMessage = "You hit \(self.target?.name ?? "No Name")"
+            tempMessage = "You hit \(targetNode?.name ?? "No Name")"
         }
         
         DispatchQueue.main.async {
@@ -802,7 +804,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         let particle = SCNParticleSystem(named: particleName, inDirectory: directory)
         particle?.loops = loops
         particle?.particleLifeSpan = lifeSpan
-        particle?.emitterShape = target?.geometry
+//        particle?.emitterShape =
         particle?.particleSize = 0.01
         
         return particle!
