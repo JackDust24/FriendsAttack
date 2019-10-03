@@ -13,7 +13,7 @@ import UIKit
 class GameStateManager: NSObject {
     
     public var gameLevel: Int = 1 // Need to decide if there will be higher levels etc
-    public var initialTargets: Int = 6
+    public var initialTargets: Int = 1
     
     // Shared Instance to get scores etc
     public class func sharedInstance() -> GameStateManager {

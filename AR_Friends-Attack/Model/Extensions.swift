@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SceneKit
 
 public extension UIImage {
     

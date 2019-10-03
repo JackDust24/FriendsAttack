@@ -83,7 +83,7 @@ class StartViewController: UIViewController {
 
             // Set up the game with sample data
             //TODO- Properly change this
-            let dataArray = ["Harsh", "Doug", "Ian", "Scotto", "Ploy"]
+            let dataArray = ["Harsh", "Doug", "Ian", "Scotto", "Ploy", "Rory"]
             
             for index in dataArray {
                 let entity = NSEntityDescription.entity(

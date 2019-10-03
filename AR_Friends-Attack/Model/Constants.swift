@@ -9,11 +9,11 @@
 import Foundation
 
 // Boundaries for checking node does not go out of bounds
-let kMinX = -4
-let kMaxX = 4
-let kMinY = -4
-let kMaxY = 4
+let kMinX = -5
+let kMaxX = 5
+let kMinY = -5
+let kMaxY = 5
 let kMinZ = -1
-let kMaxZ = -4
+let kMaxZ = -5
 
 

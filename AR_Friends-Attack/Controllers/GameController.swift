@@ -66,6 +66,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
     var gameFinished = false
     var targetsOnScreen = false // If targets are on screen then game is playing
     var currentlyShooting = false // If shooting can't shoot
+    var collisionInProgress = false
 //    var faceHit = false
     // Nodes
 //    var target: SCNNode?
@@ -77,7 +78,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
     var peopleAdded = 0
     // Timers
     var myTimer = Timer()
-    var countdown: Double = 40.00
+    var countdown: Double = 140.00
     // Misc
     @IBOutlet weak var constX: NSLayoutConstraint!
 
@@ -270,11 +271,12 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         
         // Position of node
         let x = randomNumbers(numA: -4, numB: 4.5)
-        let y = randomNumbers(numA: -2, numB: 3)
-        let z = randomNumbers(numA: -2, numB: -3.5)
+        let y = randomNumbers(numA: -2, numB: 4)
+        let z = randomNumbers(numA: -2, numB: -5)
         targetNode.position = SCNVector3(x,y,z)
         
         // Set the Physics body
+
         targetNode.physicsBody?.categoryBitMask = BitMaskCategory.target.rawValue
         targetNode.physicsBody?.contactTestBitMask = BitMaskCategory.bullet.rawValue
         targetNode.categoryBitMask = BitMaskCategory.target.rawValue
@@ -289,6 +291,8 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         // Set default colours
         changeNodeLabelColour(targetNode: targetNode)
         
+//        targetNode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: targetNode, options: nil))
+        
         
         self.sceneView.scene.rootNode.addChildNode(targetNode)
         
@@ -298,11 +302,11 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         
         let wait = SCNAction.wait(duration: TimeInterval(waitRandom))
         let parentRotation = rotation(time: 2)
-        let nodeAnimation = animateNode(nodePosition: targetNode.position)
+        let nodeAnimation = animateNode(nodePosition: targetNode.worldPosition)
         let sequence = SCNAction.sequence([parentRotation, wait, nodeAnimation])
-         //let loopSequence = SCNAction.repeatForever(sequence)
-//         node.runAction(sequence)
-         targetNode.runAction(sequence)
+        let loopSequence = SCNAction.repeatForever(sequence)
+         targetNode.runAction(loopSequence)
+//         targetNode.runAction(loopSequence)
     }
 //
 //    func setDefaultLabelColours(node: SCNNode) {
@@ -482,7 +486,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
             print("location \(location)")
             print("position \(position)")
             
-            let bullet = SCNNode(geometry: SCNSphere(radius: 0.3))
+            let bullet = SCNNode(geometry: SCNSphere(radius: 0.1))
             bullet.name = "bullet"
             bullet.geometry?.firstMaterial?.diffuse.contents = UIColor.red
             bullet.position = position
@@ -689,6 +693,14 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
     // MARK:- For collision
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
         
+        if collisionInProgress {
+            print("collisionInProgress = true")
+            return // We don't want this to run again while it is still in progress
+        }
+        
+        // We only want to do one collision in this loop
+        collisionInProgress = true
+        
         // collision for nodes
         var targetNode: SCNNode?
         
@@ -757,6 +769,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
             
             self.message = tempMessage
         }
+    
         
 //        // Depending if we PRESSED the face or not, what effect we would have.
 //        if faceHit {
@@ -798,6 +811,25 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
 //        }
     }
     
+    func physicsWorld(_ world: SCNPhysicsWorld, didEnd contact: SCNPhysicsContact) {
+        
+        print("physicsWorld did end")
+        let nodeA = contact.nodeA
+        let nodeB = contact.nodeB
+
+        if nodeA.physicsBody?.categoryBitMask == BitMaskCategory.target.rawValue {
+            nodeB.removeFromParentNode()
+            
+        } else if nodeB.physicsBody?.categoryBitMask == BitMaskCategory.target.rawValue {
+            nodeA.removeFromParentNode()
+
+        }
+        // We can shoot again
+        currentlyShooting = false
+        // No longer in collision so can end
+        collisionInProgress = false
+    }
+    
     // Bullet Effect
     func bulletHitEffect(particleName: String, directory: String?, loops: Bool, lifeSpan: CGFloat) -> SCNParticleSystem {
         
@@ -823,6 +855,8 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
     }
     
     func rotation(time: TimeInterval) -> SCNAction {
+//        // Get rid of this
+//        return SCNAction.wait(duration: TimeInterval(1))
         
         print("Rotate")
         let rotation = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: time)
@@ -849,14 +883,16 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         let moveDown = SCNVector3(0, randomNegative, 0)
         let moveUp = SCNVector3(0, randomPlus, 0)
         let moveLeft = SCNVector3(randomNegative, 0, 0)
-        let moveRight = SCNVector3(randomPlus,0,0)
+        let moveRight = SCNVector3(randomPlus, 0, 0)
         let moveForwards = SCNVector3(0, 0, randomPlus)
-        let moveBackwards = SCNVector3(0,0, randomNegative)
+        let moveBackwards = SCNVector3(0, 0, randomNegative)
         
         // 3. Do a random movement 0 - 5
         // 4. Create a movement variable for action
-        let moveDirectionChoice = randomNumbers(numA: 0, numB: 5)
+        let moveDirectionChoice = Int(arc4random_uniform(6))
         var movement: SCNAction
+        
+        print("Check Move - \(moveDirectionChoice)")
         
         // 5. Switch through the random numbers
         // 6. If the movement is safe to move in that direction, then it can move, otherwise it moves the opposite way.
@@ -869,9 +905,15 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
 //                movement = SCNAction.move(by: moveRight, duration: 0.5)
             }
         case 1: // right
+            print("Check Move - move Right")
+
             if canNodeMove(nodePosition: nodePosition, newPosition: moveRight, moveDirection: Movement.right) {
+                print("Check Move - True")
+
                 movement = SCNAction.move(by: moveRight, duration: 2.5)
             } else {
+                print("Check Move - False")
+
                 movement = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 1)
 
 //                movement = SCNAction.move(by: moveLeft, duration: 0.5)
@@ -921,6 +963,8 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
     // We don't want the nodes to go out of bounds
     func canNodeMove(nodePosition: SCNVector3, newPosition: SCNVector3, moveDirection: Movement) -> Bool {
         
+        print("Check Move - canNodeMove \(nodePosition) - \(newPosition)")
+
         // Set default it can move
         var nodeCanMove = true
         
@@ -1054,7 +1098,7 @@ extension GameController: ARSCNViewDelegate {
         print("Node Name - \(String(describing: node.name)) Node Position - \(nodePositionTest)")
         let sequence = SCNAction.sequence([parentRotation, wait, nodeAnimation])
 //         let loopSequence = SCNAction.repeatForever(sequence)
-        node.runAction(sequence)
+//        node.runAction(sequence)
 //         targetNode.runAction(sequence)
         
         

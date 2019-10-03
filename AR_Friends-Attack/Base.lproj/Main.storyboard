@@ -614,7 +614,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0lT-hO-8i9">
-                                <rect key="frame" x="172.5" y="561" width="30" height="66"/>
+                                <rect key="frame" x="172.5" y="300.5" width="30" height="66"/>
                                 <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="48"/>
                                 <state key="normal" title="+"/>
                             </button>
@@ -854,7 +854,7 @@
                             <constraint firstItem="1KA-Vf-5pk" firstAttribute="trailing" secondItem="VA2-3w-OvD" secondAttribute="trailing" id="d3X-OB-xBD"/>
                             <constraint firstItem="1KA-Vf-5pk" firstAttribute="top" secondItem="dZE-Ig-3aI" secondAttribute="top" id="hSG-8B-f22"/>
                             <constraint firstItem="Ww0-zF-YRG" firstAttribute="centerX" secondItem="dZE-Ig-3aI" secondAttribute="centerX" constant="-1000" id="pwn-qQ-8fe"/>
-                            <constraint firstItem="VA2-3w-OvD" firstAttribute="bottom" secondItem="0lT-hO-8i9" secondAttribute="bottom" constant="40" id="uUX-yw-Ovb"/>
+                            <constraint firstItem="0lT-hO-8i9" firstAttribute="centerY" secondItem="dZE-Ig-3aI" secondAttribute="centerY" id="uLm-RD-cSC"/>
                             <constraint firstItem="VA2-3w-OvD" firstAttribute="bottom" secondItem="6ZZ-G9-9mb" secondAttribute="bottom" constant="454" id="ums-OU-yUg"/>
                             <constraint firstItem="ue1-2c-qJi" firstAttribute="leading" secondItem="VA2-3w-OvD" secondAttribute="leading" id="wzW-E6-k8D"/>
                         </constraints>
