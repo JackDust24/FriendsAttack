@@ -115,9 +115,11 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
         self.sceneView.autoenablesDefaultLighting = true
+        self.sceneView.debugOptions = [ARSCNDebugOptions.showWorldOrigin, ARSCNDebugOptions.showFeaturePoints]
         
         // Run the view's session
         sceneView.session.run(configuration)
+        sceneView.session.delegate = self as? ARSessionDelegate
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
         self.sceneView.addGestureRecognizer(tapGestureRecognizer)
         self.sceneView.scene.physicsWorld.contactDelegate = self
@@ -263,20 +265,20 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         }
         
         // Create a new scene
-        let targetScene = SCNScene(named: "target.scnassets/target.scn")!
+        let targetScene = SCNScene(named: "target.scnassets/target_copy.scn")!
         let targetNode = targetScene.rootNode.childNode(withName: "target", recursively: false)!
         targetNode.name = nodedName
-        let childNode = targetNode.childNode(withName: "box", recursively: false)
-        childNode?.name = nodedName
+//        let childNode = targetNode.childNode(withName: "box", recursively: false)
+//        childNode?.name = nodedName
         
         // Position of node
-        let x = randomNumbers(numA: -4, numB: 4.5)
-        let y = randomNumbers(numA: -2, numB: 4)
-        let z = randomNumbers(numA: -2, numB: -5)
+        let x = randomNumbers(numA: -5, numB: 5)
+        let y = randomNumbers(numA: -5, numB: 5)
+        let z = randomNumbers(numA: -1, numB: -5)
         targetNode.position = SCNVector3(x,y,z)
         
         // Set the Physics body
-
+        targetNode.physicsBody = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(node: targetNode, options: nil))
         targetNode.physicsBody?.categoryBitMask = BitMaskCategory.target.rawValue
         targetNode.physicsBody?.contactTestBitMask = BitMaskCategory.bullet.rawValue
         targetNode.categoryBitMask = BitMaskCategory.target.rawValue
@@ -285,8 +287,8 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         // Add images; we also pass through a bool of default image in case we are loading up the images from core data or the device
         self.addFace(nodeName: "faceFront", targetNode: targetNode, imageName: nodedName, defaultImage: defaultImage, image: image)
         self.addFace(nodeName: "faceBack", targetNode: targetNode, imageName: nodedName, defaultImage: defaultImage, image: image)
-        self.addLabel(nodeName: "nameLabelLeft", targetNode: targetNode, imageName: nodedName)
-        self.addLabel(nodeName: "nameLabelRight", targetNode: targetNode, imageName: nodedName)
+//        self.addLabel(nodeName: "nameLabelLeft", targetNode: targetNode, imageName: nodedName)
+//        self.addLabel(nodeName: "nameLabelRight", targetNode: targetNode, imageName: nodedName)
         
         // Set default colours
         changeNodeLabelColour(targetNode: targetNode)
@@ -302,10 +304,10 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         
         let wait = SCNAction.wait(duration: TimeInterval(waitRandom))
         let parentRotation = rotation(time: 2)
-        let nodeAnimation = animateNode(nodePosition: targetNode.worldPosition)
+        let nodeAnimation = animateNode(nodePosition: targetNode.position)
         let sequence = SCNAction.sequence([parentRotation, wait, nodeAnimation])
         let loopSequence = SCNAction.repeatForever(sequence)
-         targetNode.runAction(loopSequence)
+         targetNode.runAction(sequence)
 //         targetNode.runAction(loopSequence)
     }
 //
@@ -475,46 +477,47 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         
         print("Bullet fired")
 
-        DispatchQueue.main.async {
-            
-            let transform = pointOfView.transform
-            let orientation = SCNVector3(-transform.m31, -transform.m32, -transform.m33)
-            let location = SCNVector3(transform.m41, transform.m42, transform.m43)
-            let position = orientation + location
-            print("transform \(transform)")
-            print("orientation \(orientation)")
-            print("location \(location)")
-            print("position \(position)")
-            
-            let bullet = SCNNode(geometry: SCNSphere(radius: 0.1))
-            bullet.name = "bullet"
-            bullet.geometry?.firstMaterial?.diffuse.contents = UIColor.red
-            bullet.position = position
-            print("Bullet world position \(bullet.worldPosition)")
-            
-            let body = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: bullet, options: nil))
-            body.isAffectedByGravity = false
-            body.categoryBitMask = BitMaskCategory.bullet.rawValue
-            
-            bullet.physicsBody = body
-            bullet.physicsBody?.applyForce(SCNVector3(orientation.x*self.power, orientation.y*self.power, orientation.z*self.power), asImpulse: true)
-            bullet.physicsBody?.categoryBitMask = BitMaskCategory.bullet.rawValue
-            bullet.physicsBody?.contactTestBitMask = BitMaskCategory.target.rawValue
-            
-            self.sceneView.scene.rootNode.addChildNode(bullet)
-//            bullet.runAction(
-//                SCNAction.sequence([SCNAction.wait(duration: 2.0),
-//                                    SCNAction.removeFromParentNode()])
-//            )
-            // We don't need the bullet anymore once shot whether missed or shot.
-            bullet.runAction(SCNAction.sequence(
-                [SCNAction.wait(duration: 1.0),
-                SCNAction.removeFromParentNode()]), completionHandler: ({
-                    print("Finished Shooting")
-                    self.currentlyShooting = false
-                })
-            )
-        }
+        
+        let transform = pointOfView.transform
+        let orientation = SCNVector3(-transform.m31, -transform.m32, -transform.m33)
+        let location = SCNVector3(transform.m41, transform.m42, transform.m43)
+        let position = orientation + location
+        print("transform \(transform)")
+        print("orientation \(orientation)")
+        print("location \(location)")
+        print("position \(position)")
+        
+        let bullet = SCNNode(geometry: SCNSphere(radius: 0.1))
+        bullet.name = "bullet"
+        bullet.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+        bullet.position = position
+        print("Bullet world position \(bullet.worldPosition)")
+        
+        let body = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: bullet, options: nil))
+        body.isAffectedByGravity = false
+        body.categoryBitMask = BitMaskCategory.bullet.rawValue
+        
+        bullet.physicsBody = body
+        bullet.physicsBody?.applyForce(SCNVector3(orientation.x*self.power, orientation.y*self.power, orientation.z*self.power), asImpulse: true)
+        bullet.physicsBody?.categoryBitMask = BitMaskCategory.bullet.rawValue
+        bullet.physicsBody?.contactTestBitMask = BitMaskCategory.target.rawValue
+        
+        self.sceneView.scene.rootNode.addChildNode(bullet)
+        //            bullet.runAction(
+        //                SCNAction.sequence([SCNAction.wait(duration: 2.0),
+        //                                    SCNAction.removeFromParentNode()])
+        //            )
+        // We don't need the bullet anymore once shot whether missed or shot.
+        bullet.runAction(SCNAction.sequence(
+            [SCNAction.wait(duration: 1.0),
+             SCNAction.removeFromParentNode()]), completionHandler: ({
+                print("Finished Shooting")
+                self.currentlyShooting = false
+             })
+        )
+//        DispatchQueue.main.async {
+//  
+//        }
     }
     
     //TODO: - To decide whether to keep this and how we can add this to main queue
@@ -870,8 +873,8 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         
         print("Animate Node")
         // 1. Create the constants for this functions
-        let randomPlus = randomNonWholeNumbers(numA: 2, numB: 0)
-        let waitRandom = randomNonWholeNumbers(numA: 2, numB: 0)
+        let randomPlus = randomNonWholeNumbers(numA: 5, numB: 0)
+        let waitRandom = randomNonWholeNumbers(numA: 5, numB: 0)
         let randomNegative = -randomPlus
         let wait = SCNAction.wait(duration: TimeInterval(waitRandom))
         
@@ -892,16 +895,19 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         let moveDirectionChoice = Int(arc4random_uniform(6))
         var movement: SCNAction
         
+//        let newPosition = SCNVector3((moveLeft.x + nodePosition.x), nodePosition.y, nodePosition.z)
         print("Check Move - \(moveDirectionChoice)")
         
-        // 5. Switch through the random numbers
-        // 6. If the movement is safe to move in that direction, then it can move, otherwise it moves the opposite way.
+//        movement = SCNAction.move(to: newPosition, duration: 1.0)
+        
+//         5. Switch through the random numbers
+//         6. If the movement is safe to move in that direction, then it can move, otherwise it moves the opposite way.
         switch moveDirectionChoice {
         case 0: // left
             if canNodeMove(nodePosition: nodePosition, newPosition: moveLeft, moveDirection: Movement.left) {
-                movement = SCNAction.move(by: moveLeft, duration: 2.5)
+                movement = SCNAction.move(by: moveLeft, duration: 1.5)
             } else {
-                movement = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 1)
+                movement = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 0.5)
 //                movement = SCNAction.move(by: moveRight, duration: 0.5)
             }
         case 1: // right
@@ -909,52 +915,51 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
 
             if canNodeMove(nodePosition: nodePosition, newPosition: moveRight, moveDirection: Movement.right) {
                 print("Check Move - True")
-
-                movement = SCNAction.move(by: moveRight, duration: 2.5)
+                movement = SCNAction.move(by: moveRight, duration: 1.5)
             } else {
                 print("Check Move - False")
 
-                movement = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 1)
+                movement = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 0.5)
 
 //                movement = SCNAction.move(by: moveLeft, duration: 0.5)
             }
         case 2: // down
             if canNodeMove(nodePosition: nodePosition, newPosition: moveDown, moveDirection: Movement.down) {
-                movement = SCNAction.move(by: moveDown, duration: 2.5)
+                movement = SCNAction.move(by: moveDown, duration: 1.5)
             } else {
-                movement = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 1)
+                movement = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 0.5)
 
 //                movement = SCNAction.move(by: moveUp, duration: 0.5)
             }
         case 3: // up
             if canNodeMove(nodePosition: nodePosition, newPosition: moveUp, moveDirection: Movement.up) {
-                movement = SCNAction.move(by: moveUp, duration: 2.5)
+                movement = SCNAction.move(by: moveUp, duration: 1.5)
             } else {
 //                movement = SCNAction.move(by: moveDown, duration: 0.5)
-                movement = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 1)
+                movement = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 0.5)
 
             }
         case 4: // backwards
             if canNodeMove(nodePosition: nodePosition, newPosition: moveBackwards, moveDirection: Movement.backwards) {
-                movement = SCNAction.move(by: moveBackwards, duration: 2.5)
+                movement = SCNAction.move(by: moveBackwards, duration: 1.5)
             } else {
-                movement = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 1)
+                movement = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 0.5)
 
 //                movement = SCNAction.move(by: moveForwards, duration: 0.5)
             }
         case 5: // forwards
             if canNodeMove(nodePosition: nodePosition, newPosition: moveForwards, moveDirection: Movement.forwards) {
-                movement = SCNAction.move(by: moveForwards, duration: 2.5)
+                movement = SCNAction.move(by: moveForwards, duration: 1.5)
             } else {
-                movement = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 1)
+                movement = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 0.5)
 
 //                movement = SCNAction.move(by: moveBackwards, duration: 0.5)
             }
         default:
-            movement = SCNAction.move(by: moveRight, duration: 0.5)
+            movement = SCNAction.move(by: moveRight, duration: 1.5)
         }
         
-        let moveSequence = SCNAction.sequence([movement, wait, rotation(time: 3)])
+        let moveSequence = SCNAction.sequence([movement, wait, rotation(time: 1)])
         
         return moveSequence
         
@@ -1033,6 +1038,16 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         // Reset tracking and/or remove existing anchors if consistent tracking is required
         
     }
+    
+//    @available(iOS 11.3, *)
+//    func session(_ session: ARSession, didUpdate frame: ARFrame) {
+//        print("adjust frame")
+//        
+//        guard let currentFrame = sceneView.session.currentFrame?.camera else { return }
+//        let transform = currentFrame.transform
+//        sceneView.session.setWorldOrigin(relativeTransform: transform)
+//        
+//    }
 }
 
 //MARK:- SceneView Delegate
@@ -1040,7 +1055,7 @@ extension GameController: ARSCNViewDelegate {
     
     //MARK:- Renders
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-        print("update node")
+//        print("update node")
         
     }
     
@@ -1058,7 +1073,19 @@ extension GameController: ARSCNViewDelegate {
         // Enumerate
 //        print(time)
         sceneView.scene.rootNode.childNodes.filter({
-            $0.categoryBitMask == 2 }).forEach({ moveNode(node: $0) })
+            $0.categoryBitMask == 2 }).forEach({
+                print("Node Enumerate")
+                if !$0.hasActions {
+                    print("Node Enumerate - no actions")
+                    // Node has no actions running so it is okay
+                    moveNode(node: $0)
+                    // Can break from the loop
+                    return
+                }
+                
+                print("Node Enumerate - actions")
+
+            })
         
 //        for node in sceneView.scene.rootNode.childNodes {
 //            print("Node Enumerate")
@@ -1092,14 +1119,13 @@ extension GameController: ARSCNViewDelegate {
         let waitRandom = randomNonWholeNumbers(numA: 3, numB: 0)
 
         let wait = SCNAction.wait(duration: TimeInterval(waitRandom))
-        let parentRotation = rotation(time: 4)
+        let parentRotation = rotation(time: 1)
         let nodeAnimation = animateNode(nodePosition: node.position)
         let nodePositionTest = node.position
         print("Node Name - \(String(describing: node.name)) Node Position - \(nodePositionTest)")
         let sequence = SCNAction.sequence([parentRotation, wait, nodeAnimation])
 //         let loopSequence = SCNAction.repeatForever(sequence)
-//        node.runAction(sequence)
-//         targetNode.runAction(sequence)
+        node.runAction(sequence)
         
         
     }
