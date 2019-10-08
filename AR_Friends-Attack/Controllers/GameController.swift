@@ -287,8 +287,8 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         // Add images; we also pass through a bool of default image in case we are loading up the images from core data or the device
         self.addFace(nodeName: "faceFront", targetNode: targetNode, imageName: nodedName, defaultImage: defaultImage, image: image)
         self.addFace(nodeName: "faceBack", targetNode: targetNode, imageName: nodedName, defaultImage: defaultImage, image: image)
-//        self.addLabel(nodeName: "nameLabelLeft", targetNode: targetNode, imageName: nodedName)
-//        self.addLabel(nodeName: "nameLabelRight", targetNode: targetNode, imageName: nodedName)
+        self.addLabel(nodeName: "nameLabelLeft", targetNode: targetNode, imageName: nodedName)
+        self.addLabel(nodeName: "nameLabelRight", targetNode: targetNode, imageName: nodedName)
         
         // Set default colours
         changeNodeLabelColour(targetNode: targetNode)
