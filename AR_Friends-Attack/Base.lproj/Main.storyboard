@@ -347,14 +347,31 @@
                                             </label>
                                         </subviews>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7PH-s8-iIC">
+                                        <rect key="frame" x="107.5" y="477" width="120" height="60"/>
+                                        <color key="backgroundColor" red="0.1333333333" green="0.41960784309999999" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="EuU-Yw-KTA"/>
+                                            <constraint firstAttribute="height" constant="60" id="Stl-MG-ixZ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="22"/>
+                                        <state key="normal" title="Exit">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="exit:" destination="WDQ-dq-uaG" eventType="touchUpInside" id="jhL-eN-nYf"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.20784313725490194" green="0.69019607843137254" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="SGZ-tI-ZpF" firstAttribute="top" secondItem="Ukj-SA-gfK" secondAttribute="top" constant="30" id="9uj-Qg-Mr6"/>
+                                    <constraint firstItem="7PH-s8-iIC" firstAttribute="centerX" secondItem="Ukj-SA-gfK" secondAttribute="centerX" id="Evu-4A-KQc"/>
                                     <constraint firstItem="smG-5J-GEj" firstAttribute="top" secondItem="kSK-pk-m7Y" secondAttribute="bottom" constant="30" id="MvD-Is-rAz"/>
                                     <constraint firstItem="SGZ-tI-ZpF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ukj-SA-gfK" secondAttribute="leading" id="VSl-n2-BVq"/>
                                     <constraint firstItem="kSK-pk-m7Y" firstAttribute="centerX" secondItem="Ukj-SA-gfK" secondAttribute="centerX" id="Y89-YZ-HkR"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="SGZ-tI-ZpF" secondAttribute="trailing" id="aEA-g9-6Ms"/>
+                                    <constraint firstAttribute="bottom" secondItem="7PH-s8-iIC" secondAttribute="bottom" constant="30" id="eFg-4O-VAg"/>
                                     <constraint firstItem="smG-5J-GEj" firstAttribute="centerX" secondItem="Ukj-SA-gfK" secondAttribute="centerX" id="jLB-ey-YFU"/>
                                     <constraint firstItem="kSK-pk-m7Y" firstAttribute="top" secondItem="SGZ-tI-ZpF" secondAttribute="bottom" constant="25" id="qiz-QU-DAV"/>
                                     <constraint firstItem="SGZ-tI-ZpF" firstAttribute="centerX" secondItem="Ukj-SA-gfK" secondAttribute="centerX" id="yf3-GI-tJ2"/>

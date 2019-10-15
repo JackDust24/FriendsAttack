@@ -13,6 +13,7 @@ import CoreData
 struct FriendDetails {
     
     var name: String
+    var image: UIImage
     var killed: Int
 }
 
@@ -65,7 +66,7 @@ class FriendDetailViewController: UIViewController {
         print("Detail item - \(String(describing: detailItem))")
         nameLabel.text = detailItem?.name
         killedLabel.text = "\(detailItem?.killed ?? 0)"
-        friendImage.image = UIImage(named: "target.scnassets/\(detailItem?.name ?? "Friend").png")
+        friendImage.image = detailItem?.image
 
     }
     
@@ -74,36 +75,14 @@ class FriendDetailViewController: UIViewController {
         super.viewWillAppear(true)
         
         print("View Will Appear - true")
-        testSampleCode()
 
     }
     
     @IBAction func exit(_ sender: Any) {
         //TODO- Add Code for Exit
-        self.navigationController?.popToRootViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
-    //TODO:- We can remove this
-    func testSampleCode() {
-        
-        if managedContext == nil {
-            return
-        }
-        
-        let request: NSFetchRequest<Friend> = Friend.fetchRequest()
-        
-        do {
-            let results = try managedContext.fetch(request)
-            // Fetch List Records
-            for result in results {
-                print(result.value(forKey: "name") ?? "no name")
-                print("Friend")
-            }
-            
-        } catch let error as NSError {
-            print("Could not fetch \(error), \(error.userInfo)")
-        }
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

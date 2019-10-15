@@ -102,6 +102,7 @@ class StartViewController: UIViewController {
                 let roundedImage = image?.roundedImage()
                 let photoData = roundedImage!.pngData()!
                 friend.friendImage = NSData(data: photoData) as Data
+                friend.killed = 0
                 friend.active = true
             }
             try! managedContext.save()

@@ -51,6 +51,11 @@ class FriendsViewController: UIViewController, NSFetchedResultsControllerDelegat
 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        tableView.reloadData()
+    }
+    
     func configureView() {
         if managedContext == nil {
             print("Context is nil")
@@ -155,7 +160,7 @@ class FriendsViewController: UIViewController, NSFetchedResultsControllerDelegat
             
             let friend = fetchedResultsController.object(at: indexPath)
             
-            cell.displayContent(image: UIImage(data: friend.friendImage!)!, title: friend.name!, killed: 0)
+            cell.displayContent(image: UIImage(data: friend.friendImage!)!, title: friend.name!, killed: Int(friend.killed))
             print("friend = fetchedResultsController.object - \(friend)")
             cell.tag = indexPath.row
             return cell
@@ -188,12 +193,14 @@ class FriendsViewController: UIViewController, NSFetchedResultsControllerDelegat
             secondViewController.managedContext = managedContext
             let friend = fetchedResultsController.object(at: indexPath)
             
-            let detailsForVC = FriendDetails(name: friend.name ?? "", killed: 2)
+            let detailsForVC = FriendDetails(name: friend.name ?? "", image: UIImage(data: friend.friendImage!)!, killed: Int(friend.killed))
             secondViewController.detailItem = detailsForVC
             secondViewController.managedContext = managedContext
             secondViewController.name = friend.name // Don't think we need this anymore
             
         }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func didReceiveMemoryWarning() {

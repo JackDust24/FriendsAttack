@@ -126,6 +126,7 @@ class AddFriendSecondViewController: UIViewController, UITextFieldDelegate {
         newFriend.setValue(nameOfImage, forKey: "name")
         newFriend.setValue(photoDataValue, forKey: "friendImage")
         newFriend.setValue(true, forKey: "active")
+        newFriend.setValue(0, forKey: "killed")
         try! managedContext.save()
     }
     

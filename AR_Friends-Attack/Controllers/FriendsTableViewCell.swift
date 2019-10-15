@@ -11,17 +11,19 @@ import UIKit
 class FriendsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var cellView: UIView!
+    @IBOutlet weak var friendImage: UIImageView!
+    @IBOutlet weak var friendLabel: UILabel!
+    @IBOutlet weak var killedLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
+        // Set up view so that it is curved for each cell
         cellView.backgroundColor = UIColor.white
         self.backgroundView = cellView
         
         backgroundColor = .clear // very important
-//        layer.masksToBounds = false
-//        layer.cornerRadius = 10
         contentView.backgroundColor = .lightGray
         contentView.layer.cornerRadius = 7
         contentView.layer.masksToBounds = true
@@ -32,48 +34,14 @@ class FriendsTableViewCell: UITableViewCell {
         
     }
     
-//    // do this in one of the init methods
-//    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-//
-//        print("TABLE VIEW 1")
-//
-//        super.init(style: style, reuseIdentifier: reuseIdentifier)
-//
-//        // add shadow on cell
-//        backgroundColor = .clear // very important
-//        layer.masksToBounds = false
-//        layer.shadowOpacity = 0.23
-//        layer.shadowRadius = 4
-//        layer.shadowOffset = CGSize(width: 0, height: 0)
-//        layer.shadowColor = UIColor.black.cgColor
-//
-//        // add corner radius on `contentView`
-//        contentView.backgroundColor = .white
-//        contentView.layer.cornerRadius = 8
-//    }
-//
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    //
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
-    
-    //TODO:- Work on the cell for this
-    @IBOutlet weak var friendImage: UIImageView!
-    @IBOutlet weak var friendLabel: UILabel!
-    @IBOutlet weak var killedLabel: UILabel!
-    
+    // We call this from the tableview
     func displayContent(image: UIImage, title: String, killed: Int) {
         friendImage.image = image
         friendLabel.text = title
         killedLabel.text = String(killed)
     }
 
-    
+    // For adding spaces between each row
     override func layoutSubviews() {
         
         print("Layout Called")

@@ -129,10 +129,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         //TODO:- Check what we will do here
-//        // Pause the view's session
-//        print("**** Leaving the View")
-//        GameStateManager.sharedInstance().savePointsAndKills(kills: kills, points: points)
-//        sceneView.session.pause()
+
     }
     
     // MARK: - Core Data Methods
@@ -310,13 +307,6 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
          targetNode.runAction(sequence)
 //         targetNode.runAction(loopSequence)
     }
-//
-//    func setDefaultLabelColours(node: SCNNode) {
-//
-//        let front = targetNode.childNode(withName: nodeName
-//
-//        childNode.geometry?.firstMaterial?.diffuse.contents = UIColor.green
-//    }
     
     //MARK:- Set the friend nodes up
     // Add the image to the node
@@ -397,9 +387,9 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
             print("\(colourCheck) is Colour Check")
 
         }
-    
     }
     
+    // Every time a bullet hits a node we change the colour of the node
     func changeColourForNode(childNode: SCNNode, existingColour: UIColor) {
         
         var currentColour = existingColour
@@ -474,18 +464,11 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         guard let pointOfView = sceneView.pointOfView else {return}
         
         // Set up the bullet
-        
         print("Bullet fired")
-
-        
         let transform = pointOfView.transform
         let orientation = SCNVector3(-transform.m31, -transform.m32, -transform.m33)
         let location = SCNVector3(transform.m41, transform.m42, transform.m43)
         let position = orientation + location
-        print("transform \(transform)")
-        print("orientation \(orientation)")
-        print("location \(location)")
-        print("position \(position)")
         
         let bullet = SCNNode(geometry: SCNSphere(radius: 0.1))
         bullet.name = "bullet"
@@ -503,11 +486,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         bullet.physicsBody?.contactTestBitMask = BitMaskCategory.target.rawValue
         
         self.sceneView.scene.rootNode.addChildNode(bullet)
-        //            bullet.runAction(
-        //                SCNAction.sequence([SCNAction.wait(duration: 2.0),
-        //                                    SCNAction.removeFromParentNode()])
-        //            )
-        // We don't need the bullet anymore once shot whether missed or shot.
+
         bullet.runAction(SCNAction.sequence(
             [SCNAction.wait(duration: 1.0),
              SCNAction.removeFromParentNode()]), completionHandler: ({
@@ -515,9 +494,6 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
                 self.currentlyShooting = false
              })
         )
-//        DispatchQueue.main.async {
-//  
-//        }
     }
     
     //TODO: - To decide whether to keep this and how we can add this to main queue
@@ -531,33 +507,10 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
             
             return
         }
-        
-//        DispatchQueue.main.async {
-//            // 1
-//            if let touchLocation = touches.first?.location(
-//                in: self.sceneView) {
-//                // 2
-//                if let hit = self.sceneView.hitTest(touchLocation,
-//                                                    options: nil).first {
-//
-//                    print(hit.node.name!)
-//                    // 3
-//                    if hit.node.name == "face-side" || hit.node.name == "front" || hit.node.name == "back" {
-//                        // 4
-//                        print("WE HAVE A HIT IN THE FACE")
-//                        self.faceHit = true
-//
-//                    } else {
-//                        print("NO HIT")
-//                        self.faceHit = false
-//
-//                    }
-//                }
-//            }
-//        }
+
     }
     
-    // MARK - Game management and timer
+    // MARK: - Game management and timer
     
     // Timer for the game if run out of time
     func startTimer() {
@@ -623,6 +576,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         // Pause the view's session
         print("**** ending Game")
         GameStateManager.sharedInstance().savePointsAndKills(kills: kills, points: points)
+//        GameStateManager.sharedInstance().saveKillPointsPerFriend(kills: kills, friend: points)
         sceneView.session.pause()
         showPopUp()
         
@@ -630,11 +584,8 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
     
     
     @IBAction func exitButtonPressed(_ sender: Any) {
-        
-        print("**** Exit button Pressed")
-        // Set alert if not sure
+
         //TODO:- Game Exit check?
-        
         // Otherwise we exit
         gameFinished = true
         myTimer.invalidate()
@@ -757,6 +708,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
             kills += 1
             friends -= 1
             tempMessage = "You KILLED \(targetNode?.name ?? "No Name")"
+            addKillPointsToFriend(friend: targetNode?.name ?? "No Name")
             targetNode!.removeFromParentNode()
             
         } else {
@@ -772,19 +724,6 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
             
             self.message = tempMessage
         }
-    
-        
-//        // Depending if we PRESSED the face or not, what effect we would have.
-//        if faceHit {
-//            print("FACE HIT")
-//            particle = bulletHitEffect(particleName: "target.scnassets/Fire.scnp", directory: nil, loops: false, lifeSpan: 4)
-//
-//        } else {
-//            print("No FACE HIT")
-//
-//            particle = bulletHitEffect(particleName: "target.scnassets/HitSide.scnp", directory: nil, loops: false, lifeSpan: 0.5)
-//
-//        }
         
         let particleNode = SCNNode()
         particleNode.addParticleSystem(particle)
@@ -792,26 +731,6 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         particleNode.scale = SCNVector3(0.5, 0.5, 0.5)
         
         self.sceneView.scene.rootNode.addChildNode(particleNode)
-        
-//        DispatchQueue.main.async {
-//
-//            // If hit the face then the node is removed
-//            if self.faceHit {
-//                print("You Killed \(self.target?.name ?? "No Name")")
-//
-//                self.points += 10
-//                self.kills += 1
-//                self.friends -= 1
-//                self.message = "You KILLED \(self.target?.name ?? "No Name")"
-//                self.target?.removeFromParentNode()
-//
-//            } else {
-//                print("You hit \(self.target?.name ?? "No Name")")
-//                self.points += 1
-//                self.message = "You hit \(self.target?.name ?? "No Name")"
-//            }
-//            self.faceHit = false
-//        }
     }
     
     func physicsWorld(_ world: SCNPhysicsWorld, didEnd contact: SCNPhysicsContact) {
@@ -831,6 +750,47 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         currentlyShooting = false
         // No longer in collision so can end
         collisionInProgress = false
+    }
+    
+    func addKillPointsToFriend(friend: String) {
+    
+        let request: NSFetchRequest<Friend> = Friend.fetchRequest()
+        
+        let fetchResults = fetchedResultsController.fetchedObjects
+        
+        do {
+            // Get results of friends request
+            let results = try managedContext.fetch(request)
+            friends = results.count
+            
+            if let fetchResults = fetchResults {
+                
+                // Fetch List Records
+                for fetch in fetchResults {
+                    
+                    //                let name = result.value(forKey: "name")
+                    let name = fetch.value(forKey: "name") as! String
+                    
+                    if name == friend {
+                        
+                        var currentKilled = fetch.value(forKey: "killed") as! Int
+                        currentKilled = currentKilled + 1
+                    
+                        fetch.setValue(Int64(currentKilled), forKey: "killed")
+                    
+                    }
+
+                    try! managedContext.save()
+                }
+                print("Finished adding score")
+                
+            }
+            
+          
+            
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
     }
     
     // Bullet Effect
@@ -1067,10 +1027,7 @@ extension GameController: ARSCNViewDelegate {
             self.killsLabel.text = "\(self.kills)"
             self.friendsLabel.text = "\(self.friends)"
         }
-        
-        // Count
-        
-        // Enumerate
+
 //        print(time)
         sceneView.scene.rootNode.childNodes.filter({
             $0.categoryBitMask == 2 }).forEach({
@@ -1087,21 +1044,7 @@ extension GameController: ARSCNViewDelegate {
 
             })
         
-//        for node in sceneView.scene.rootNode.childNodes {
-//            print("Node Enumerate")
-//            print("Node Enumerate - \(node.categoryBitMask)")
-//
-//            if node.categoryBitMask == BitMaskCategory.target.rawValue {
-//                print("Node Called \(String(describing: node.name))")
-//                moveNode(node: node)
-//            }
-//        }
-        
-//        for node in sceneView.root {
-//
-//        }
-        
-//        for targetNode
+
     }
     
     func moveNode(node: SCNNode) {
