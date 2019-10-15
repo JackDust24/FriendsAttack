@@ -1111,9 +1111,7 @@ extension GameController: ARSCNViewDelegate {
 //            print("Node is running an action")
             return
         }
-        
-//        print("Node Can Move")
-        
+                
         // Movement
         // TODO:- Play around with this - try and set up by frames
         let waitRandom = randomNonWholeNumbers(numA: 3, numB: 0)

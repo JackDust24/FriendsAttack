@@ -99,7 +99,8 @@ class StartViewController: UIViewController {
                                     insertInto: managedContext)
                 friend.name = index
                 let image = UIImage(named: "target.scnassets/\(index).png")
-                let photoData = image!.pngData()!
+                let roundedImage = image?.roundedImage()
+                let photoData = roundedImage!.pngData()!
                 friend.friendImage = NSData(data: photoData) as Data
                 friend.active = true
             }

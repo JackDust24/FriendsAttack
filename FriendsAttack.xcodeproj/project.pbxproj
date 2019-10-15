@@ -42,7 +42,6 @@
 		9EB97CEF21BD2DC2009ED736 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB97CEE21BD2DC2009ED736 /* Extensions.swift */; };
 		9EBD7F9F21201A5A001B0C81 /* AddFriendSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBD7F9E21201A5A001B0C81 /* AddFriendSecondViewController.swift */; };
 		9EC06F7720DE265A00138175 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC06F7620DE265A00138175 /* GameManager.swift */; };
-		9ECD8EA6234C998F009FF474 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECD8EA4234C998F009FF474 /* TableViewCell.swift */; };
 		9ECD8EA7234C998F009FF474 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ECD8EA5234C998F009FF474 /* TableViewCell.xib */; };
 		9EDC97912121A6AF008B2EAD /* FriendsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9EDC978D212179EF008B2EAD /* FriendsModel.xcdatamodeld */; };
 		9EEF01DA23321051005FE2BB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEF01D923321051005FE2BB /* Constants.swift */; };
@@ -98,7 +97,6 @@
 		9EB97CEE21BD2DC2009ED736 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9EBD7F9E21201A5A001B0C81 /* AddFriendSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendSecondViewController.swift; sourceTree = "<group>"; };
 		9EC06F7620DE265A00138175 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
-		9ECD8EA4234C998F009FF474 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		9ECD8EA5234C998F009FF474 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		9EDC978E212179EF008B2EAD /* FriendsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FriendsModel.xcdatamodel; sourceTree = "<group>"; };
 		9EEF01D923321051005FE2BB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -215,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				9EB2DF28210F1ED400444981 /* FriendsCollectionViewCell.swift */,
+				9ECD8EA5234C998F009FF474 /* TableViewCell.xib */,
 				9E0F9406233106C0008A587E /* FriendsTableViewCell.swift */,
 				9E21894720DC7B41008997FB /* GameController.swift */,
 				9E2AE56F20ECBF0B00AA54B9 /* StartViewController.swift */,
@@ -223,8 +222,6 @@
 				9E07BC3D20ECF06900A26584 /* AddFriendViewController.swift */,
 				9EBD7F9E21201A5A001B0C81 /* AddFriendSecondViewController.swift */,
 				9E493CD3228D3B1C0081FB0D /* ScoreViewController.swift */,
-				9ECD8EA4234C998F009FF474 /* TableViewCell.swift */,
-				9ECD8EA5234C998F009FF474 /* TableViewCell.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -357,7 +354,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9ECD8EA6234C998F009FF474 /* TableViewCell.swift in Sources */,
 				9EB2DF29210F1ED400444981 /* FriendsCollectionViewCell.swift in Sources */,
 				9EBD7F9F21201A5A001B0C81 /* AddFriendSecondViewController.swift in Sources */,
 				9E21894820DC7B41008997FB /* GameController.swift in Sources */,

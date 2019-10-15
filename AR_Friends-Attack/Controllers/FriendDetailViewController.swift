@@ -78,6 +78,11 @@ class FriendDetailViewController: UIViewController {
 
     }
     
+    @IBAction func exit(_ sender: Any) {
+        //TODO- Add Code for Exit
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    
     //TODO:- We can remove this
     func testSampleCode() {
         

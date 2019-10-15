@@ -11,7 +11,7 @@ import CoreData
 
 class FriendsViewController: UIViewController, NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     
-    
+    //MARK:- Properties
     var managedContext: NSManagedObjectContext! {
         didSet {
             // Update the view.
@@ -21,10 +21,6 @@ class FriendsViewController: UIViewController, NSFetchedResultsControllerDelegat
     
     @IBOutlet var collectionView: UICollectionView! // DELETE
     @IBOutlet var tableView: UITableView!
-    
-    // Default Names in the friend list (we can get rid of these later)
-    //TODO:- Set proper default array
-    var friends: [String] = ["Ian", "Doug", "Ploy"]
     
     lazy var fetchedResultsController: NSFetchedResultsController<Friend> = {
         let fetchRequest = NSFetchRequest<Friend>()
@@ -38,8 +34,16 @@ class FriendsViewController: UIViewController, NSFetchedResultsControllerDelegat
         return fetchedResultsController
     }()
     
+    //MARK:- Views
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        // Register the TableView Cell
+        let nibName = UINib(nibName: "TableViewCell", bundle: nil)
+        tableView.register(nibName, forCellReuseIdentifier: "TableViewCell")
         
         // Fetch the data
         performFetch()
@@ -48,13 +52,17 @@ class FriendsViewController: UIViewController, NSFetchedResultsControllerDelegat
     }
     
     func configureView() {
-        print("Check if context set")
         if managedContext == nil {
             print("Context is nil")
             return
         }
     }
     
+    //MARK:- Buttons
+    @IBAction func exit(_ sender: Any) {
+        //TODO- Add Code for Exit
+        self.navigationController?.popToRootViewController(animated: true)
+    }
     
     // MARK:- Private methods to perform Fetch for the contents
     func performFetch() {
@@ -69,127 +77,76 @@ class FriendsViewController: UIViewController, NSFetchedResultsControllerDelegat
         }
     }
 
-    //MARK:- Segues
-    // This is if we want to Add new Friend ONLY
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        
-        print("shouldPerformSegue")
-        
-        let cell = sender as! UICollectionViewCell
-        
-        // This will be for addFriend
-        if cell.tag == 100  {
-            // your code here, like badParameters  = false, e.t.c
-            return false
-        }
-        return true
-    }
-    
-    // This is for View Friend Only Option
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-        print("Prepare for segue")
-        guard let cell = sender as! UICollectionViewCell? else {
-            print("Cell not the sender")
-            return
-        }
-        
-        // Though the previous method checks for this, this is to make it more secure.
-        if cell.tag == 100 {
-            print("We will not send by Segue")
-            return // This is not for Add Friend which is being dealt with by Did Select
-        }
-
-        if segue.identifier == "viewFriend" {
-            print("CHECK - viewFriend - name")
-            let detailVC = segue.destination as! FriendDetailViewController
-            guard cell.tag <= friends.count else {
-                print("Tag out of range - error")
-                return
-            }
-            
-            let detailsForVC = FriendDetails(name: friends[cell.tag], killed: 2)
-            detailVC.detailItem = detailsForVC
-            detailVC.managedContext = managedContext
-            detailVC.name = friends[cell.tag]
-        }
-        
-        //TODO- CHeck why we are calling this?
-        testSampleCode()
-
-    }
-    
  
-// MARK: - Collection Views
-    //TODO:- Delete these
-//
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//
-//        let cell = collectionView.cellForItem(at: indexPath as IndexPath)
-//
-//        // Cell.tag is for Adding a friend - so we call Add friend, else we view the Friend
-//        if cell?.tag == 100 {
-//            print("CollectionView - Add Friend")
-//            let nextController = "AddFriendViewController"
-//            let secondViewController = storyboard?.instantiateViewController(withIdentifier: nextController)  as! AddFriendViewController
-//            self.navigationController?.pushViewController(secondViewController, animated: true)
-//             secondViewController.managedContext = managedContext
-//        } else {
-//            print("Call  segue4 - viewFriend - nothing to do as did prepare for segue")
-//        }
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//
-//        guard let quotes = fetchedResultsController.fetchedObjects else { return 0 }
-//        return quotes.count + 1
-//
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath) as! FriendsCollectionViewCell
-//
-//        // If default set, then show the label
-//        let friendsCount = fetchedResultsController.fetchedObjects?.count ?? 1
-//
-//        print("friendCount = fetchedResultsController.object - \(friendsCount)")
-//
-//        if indexPath.row < friendsCount {
-//            let friend = fetchedResultsController.object(at: indexPath)
-//
-//            print("friend = fetchedResultsController.object - \(friend)")
-//            cell.friendLabel?.text = friend.name
-//            cell.friendImage?.image = UIImage(data: friend.friendImage!)
-//            cell.tag = indexPath.row
-//            return cell
-//
-//        } else {
-//            cell.friendLabel?.text = "Add Friend"
-//            cell.friendLabel?.textColor = UIColor.blue
-//            cell.friendImage?.image = UIImage(named: "target.scnassets/placeholder-image.png")
-//            cell.tag = 100 // This way we can add friend
-//            return cell
-//
-//        }
-//    }
-    
+// MARK: - Tables
+
     //MARK:- Table Views
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        // Create a background view
+        let vw = UIView()
+        vw.backgroundColor = UIColor.gray
+        
+        // Get the table Wdith and then a Float position so we can set the X co-ordinate for the label for the Kills column in the table.
+        let tableWidth = tableView.bounds.size.width
+        let killsLabelPosition = tableWidth - 65.0
+        
+        // Create the name label
+        let nameLabel = UILabel()
+        nameLabel.text = "Friend"
+        nameLabel.frame = CGRect(x: 20, y: 0, width: 100, height: 30)
+        nameLabel.textAlignment = .left
+        nameLabel.numberOfLines=1
+        nameLabel.textColor=UIColor.white
+        nameLabel.font=UIFont.systemFont(ofSize: 22)
+        
+        // Create the kills label for the kills column
+        let killsLabel = UILabel()
+        killsLabel.text = "Kills"
+        killsLabel.frame = CGRect(x: killsLabelPosition, y: 0, width: 60, height: 30)
+        killsLabel.textAlignment = .center
+        killsLabel.numberOfLines=1
+        killsLabel.textColor=UIColor.white
+        killsLabel.font=UIFont.systemFont(ofSize: 22)
+        
+        // Add both labels to the view
+        vw.addSubview(nameLabel)
+        vw.addSubview(killsLabel)
+        
+        // Return the view
+        return vw
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        if section == 0 {
+            return "Name"
+        }
+        
+        return "else"
+    }
+    
+    //MARK:- Table Data
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        print("QUOTES")
-        guard let quotes = fetchedResultsController.fetchedObjects else { return 0 }
-        return quotes.count + 1
+        guard let friends = fetchedResultsController.fetchedObjects else { return 0 }
+        return friends.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        //TODO- Set up TableViewCell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! FriendsTableViewCell
+        // Set up Cell for Table View
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! FriendsTableViewCell
         
-        // If default set, then show the label
         let friendsCount = fetchedResultsController.fetchedObjects?.count ?? 1
-        
         print("friendCount = fetchedResultsController.object - \(friendsCount)")
         
         // Here we say add if less than the count, populate the row,
@@ -197,17 +154,15 @@ class FriendsViewController: UIViewController, NSFetchedResultsControllerDelegat
         if indexPath.row < friendsCount {
             
             let friend = fetchedResultsController.object(at: indexPath)
+            
+            cell.displayContent(image: UIImage(data: friend.friendImage!)!, title: friend.name!, killed: 0)
             print("friend = fetchedResultsController.object - \(friend)")
-            cell.friendLabel?.text = friend.name
-            cell.friendImage?.image = UIImage(data: friend.friendImage!)
             cell.tag = indexPath.row
             return cell
             
         } else {
             
-            cell.friendLabel?.text = "Add Friend"
-            cell.friendLabel?.textColor = UIColor.blue
-            cell.friendImage?.image = UIImage(named: "target.scnassets/placeholder-image.png")
+            cell.displayContent(image: UIImage(named: "target.scnassets/placeholder-image.png")!, title: "Add Friend", killed: 0)
             cell.tag = 100 // This way we can add friend
             return cell
         }
@@ -219,49 +174,28 @@ class FriendsViewController: UIViewController, NSFetchedResultsControllerDelegat
         
         // Cell.tag is for Adding a friend - so we call Add friend, else we view the Friend
         if cell?.tag == 100 {
-            
             print("CollectionView - Add Friend")
             let nextController = "AddFriendViewController"
             let secondViewController = storyboard?.instantiateViewController(withIdentifier: nextController)  as! AddFriendViewController
-        self.navigationController?.pushViewController(secondViewController, animated: true)
+            self.navigationController?.pushViewController(secondViewController, animated: true)
             secondViewController.managedContext = managedContext
             
         } else {
             print("Call segue4 - viewFriend - nothing to do as did prepare for segue")
-        }
-    }
-    
-    //MARK:- Buttons
-    @IBAction func exit(_ sender: Any) {
-        //TODO- Add Code for Exit
-        self.navigationController?.popToRootViewController(animated: true)
-    }
-    
-    //MARK:- Misc
-    func testSampleCode() {
-        
-        if managedContext == nil {
-            print("NO CONTEXT YET")
-            return
-        }
-        
-        let request: NSFetchRequest<Friend> = Friend.fetchRequest()
-        
-        do {
-            //3
-            let results = try managedContext.fetch(request)
+            let nextController = "FriendDetailViewController"
+            let secondViewController = storyboard?.instantiateViewController(withIdentifier: nextController)  as! FriendDetailViewController
+            self.navigationController?.pushViewController(secondViewController, animated: true)
+            secondViewController.managedContext = managedContext
+            let friend = fetchedResultsController.object(at: indexPath)
             
-            // Fetch List Records
-            for result in results {
-                print(result.value(forKey: "name") ?? "no name")
-                print("Record - \(result)")
-            }
-
-        } catch let error as NSError {
-            print("Could not fetch \(error), \(error.userInfo)")
+            let detailsForVC = FriendDetails(name: friend.name ?? "", killed: 2)
+            secondViewController.detailItem = detailsForVC
+            secondViewController.managedContext = managedContext
+            secondViewController.name = friend.name // Don't think we need this anymore
+            
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
