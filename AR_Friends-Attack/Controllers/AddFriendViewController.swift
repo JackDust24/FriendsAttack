@@ -15,13 +15,18 @@ class AddFriendViewController: UIViewController {
     @IBOutlet weak var addPhotoButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet weak var secondView: UIView!
+    
     var managedContext: NSManagedObjectContext!
     
     var hasPhotoBeenTaken = false // So that we can swap between Save and Add image
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // Call the helper view so can round the borders
+        displayForSecondView(view: self.secondView)
+        
         savePhotoButton.isHidden = true
         self.navigationController?.isNavigationBarHidden = true
     }

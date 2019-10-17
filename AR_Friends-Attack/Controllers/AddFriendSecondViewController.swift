@@ -15,9 +15,13 @@ class AddFriendSecondViewController: UIViewController, UITextFieldDelegate {
     var nameOfImage: String?
     var managedContext: NSManagedObjectContext!
     @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var secondView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Set the rounded borders for the view
+        displayForSecondView(view: self.secondView)
         
         // Do any additional setup after loading the view.
         self.navigationController?.isNavigationBarHidden = true

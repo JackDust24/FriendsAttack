@@ -14,8 +14,12 @@ class StartViewController: UIViewController {
     
     var managedContext: NSManagedObjectContext!
     
+    @IBOutlet weak var secondView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        displayForSecondView(view: self.secondView)
         
         // Sample data which we can remove at the end
         //TODO:- We will need default data, so need to set this to get context if empty

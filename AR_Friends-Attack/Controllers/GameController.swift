@@ -270,7 +270,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         
         // Position of node
         let x = randomNumbers(numA: -5, numB: 5)
-        let y = randomNumbers(numA: -5, numB: 5)
+        let y = randomNumbers(numA: -3, numB: 3)
         let z = randomNumbers(numA: -1, numB: -5)
         targetNode.position = SCNVector3(x,y,z)
         
@@ -759,9 +759,9 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         let fetchResults = fetchedResultsController.fetchedObjects
         
         do {
-            // Get results of friends request
-            let results = try managedContext.fetch(request)
-            friends = results.count
+//            // Get results of friends request
+//            let results = try managedContext.fetch(request)
+//            friends = results.count
             
             if let fetchResults = fetchResults {
                 

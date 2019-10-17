@@ -19,8 +19,8 @@ class FriendsViewController: UIViewController, NSFetchedResultsControllerDelegat
         }
     }
     
-    @IBOutlet var collectionView: UICollectionView! // DELETE
     @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var secondView: UIView!
     
     lazy var fetchedResultsController: NSFetchedResultsController<Friend> = {
         let fetchRequest = NSFetchRequest<Friend>()
@@ -37,6 +37,9 @@ class FriendsViewController: UIViewController, NSFetchedResultsControllerDelegat
     //MARK:- Views
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Set the rounded borders for the view
+        displayForSecondView(view: self.secondView)
         
         tableView.delegate = self
         tableView.dataSource = self

@@ -21,6 +21,7 @@ class FriendDetailViewController: UIViewController {
     
     var managedContext: NSManagedObjectContext!
 
+    @IBOutlet weak var secondView: UIView!
     @IBOutlet weak var killedLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel! {
         didSet {
@@ -55,6 +56,9 @@ class FriendDetailViewController: UIViewController {
         super.viewDidLoad()
         
         self.configureView()
+        
+        // Set the rounded borders for the view
+        displayForSecondView(view: self.secondView)
         
     }
     
