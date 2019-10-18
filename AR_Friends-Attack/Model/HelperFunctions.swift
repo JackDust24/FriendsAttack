@@ -9,10 +9,21 @@
 import Foundation
 import UIKit
 
+// For UI Views so they can have a corner
 func displayForSecondView(view: UIView) {
     
-    view.layer.cornerRadius = 10
+    view.layer.cornerRadius = 20
     view.clipsToBounds = true
+    
+}
+
+// For UI Buttons so they can have a corner
+func addCornerRadiusToButton(button: UIButton) {
+    
+    button.layer.cornerRadius = 20
+    button.layer.borderWidth = 1
+    button.layer.borderColor = UIColor.black.cgColor
+    button.clipsToBounds = true
     
 }
 

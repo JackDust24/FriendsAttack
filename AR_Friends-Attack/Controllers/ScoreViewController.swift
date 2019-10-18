@@ -13,12 +13,14 @@ class ScoreViewController: UIViewController {
     @IBOutlet weak var killsLabel: UILabel!
     @IBOutlet weak var pointsLabel: UILabel!
     @IBOutlet weak var secondView: UIView!
+    @IBOutlet weak var exitBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Set the rounded borders for the view
         displayForSecondView(view: self.secondView)
+        addCornerRadiusToButton(button: self.exitBtn)
         
         // We don't use an optional here as there will always be a value even if zero
         let killsAndPoints = GameStateManager.sharedInstance().returnKillsAndPoints()
@@ -31,4 +33,9 @@ class ScoreViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func exitPressed(_ sender: Any) {
+        
+        self.navigationController?.popToRootViewController(animated: true)
+
+    }
 }

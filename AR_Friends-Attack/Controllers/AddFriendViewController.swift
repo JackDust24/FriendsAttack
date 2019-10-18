@@ -27,6 +27,9 @@ class AddFriendViewController: UIViewController {
         // Call the helper view so can round the borders
         displayForSecondView(view: self.secondView)
         
+        addCornerRadiusToButton(button: self.addPhotoButton)
+        addCornerRadiusToButton(button: self.savePhotoButton)
+        
         savePhotoButton.isHidden = true
         self.navigationController?.isNavigationBarHidden = true
     }
@@ -37,10 +40,15 @@ class AddFriendViewController: UIViewController {
         // If photo has been taken, we can ask user if they wish to take again
         if hasPhotoBeenTaken {
 //            addPhotoButton.titleLabel?.text = "Change Photo"
-            addPhotoButton.setTitle("Change Photo", for: .normal)
-            addPhotoButton.titleLabel?.font = UIFont.init(name: "Helvetica", size:18)
+//            addPhotoButton.setTitle("Change Photo", for: .normal)
+//            addPhotoButton.titleLabel?.font = UIFont.init(name: "Helvetica", size:18)
+            self.addPhotoButton.setImage(UIImage(named: "changephoto_hover"), for: .normal)
+            self.addPhotoButton.isOpaque = true
+            self.addPhotoButton.bounds.size = CGSize(width: savePhotoButton.bounds.width - 60, height: savePhotoButton.bounds.height - 10)
+            
             savePhotoButton.isHidden = false
-            addPhotoButton.contentMode = .scaleToFill
+            savePhotoButton.setNeedsFocusUpdate()
+//            addPhotoButton.contentMode = .scaleToFill
         }
         
         testSampleCode()

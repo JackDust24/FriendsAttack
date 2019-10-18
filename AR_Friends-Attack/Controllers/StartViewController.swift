@@ -15,12 +15,24 @@ class StartViewController: UIViewController {
     var managedContext: NSManagedObjectContext!
     
     @IBOutlet weak var secondView: UIView!
+//
+    @IBOutlet weak var playBtn: UIButton!
+
+    @IBOutlet weak var friendsBtn: UIButton!
+    
+    @IBOutlet weak var scoresBtn: UIButton!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set up secondary views and buttons
         displayForSecondView(view: self.secondView)
         
+        addCornerRadiusToButton(button: playBtn)
+        addCornerRadiusToButton(button: friendsBtn)
+        addCornerRadiusToButton(button: scoresBtn)
+
         // Sample data which we can remove at the end
         //TODO:- We will need default data, so need to set this to get context if empty
         insertSampleData()

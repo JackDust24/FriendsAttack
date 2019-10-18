@@ -22,6 +22,10 @@ class FriendsViewController: UIViewController, NSFetchedResultsControllerDelegat
     @IBOutlet var tableView: UITableView!
     @IBOutlet weak var secondView: UIView!
     
+
+    
+    @IBOutlet weak var exitButton: UIButton!
+    
     lazy var fetchedResultsController: NSFetchedResultsController<Friend> = {
         let fetchRequest = NSFetchRequest<Friend>()
         let entity = Friend.entity()
@@ -40,6 +44,8 @@ class FriendsViewController: UIViewController, NSFetchedResultsControllerDelegat
         
         // Set the rounded borders for the view
         displayForSecondView(view: self.secondView)
+        
+        addCornerRadiusToButton(button: self.exitButton)
         
         tableView.delegate = self
         tableView.dataSource = self

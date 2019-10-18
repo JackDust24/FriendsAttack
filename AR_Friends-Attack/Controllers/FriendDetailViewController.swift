@@ -23,6 +23,10 @@ class FriendDetailViewController: UIViewController {
 
     @IBOutlet weak var secondView: UIView!
     @IBOutlet weak var killedLabel: UILabel!
+    
+    
+    @IBOutlet weak var exitBtn: UIButton!
+    
     @IBOutlet weak var nameLabel: UILabel! {
         didSet {
             // Update the view.
@@ -59,6 +63,8 @@ class FriendDetailViewController: UIViewController {
         
         // Set the rounded borders for the view
         displayForSecondView(view: self.secondView)
+        
+        addCornerRadiusToButton(button: self.exitBtn)
         
     }
     

@@ -17,11 +17,15 @@ class AddFriendSecondViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var secondView: UIView!
     
+    @IBOutlet weak var saveBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Set the rounded borders for the view
         displayForSecondView(view: self.secondView)
+        
+        addCornerRadiusToButton(button: self.saveBtn)
         
         // Do any additional setup after loading the view.
         self.navigationController?.isNavigationBarHidden = true
