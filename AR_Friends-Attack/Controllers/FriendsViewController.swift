@@ -49,7 +49,7 @@ class FriendsViewController: UIViewController, NSFetchedResultsControllerDelegat
         
         tableView.delegate = self
         tableView.dataSource = self
-        
+        tableView.backgroundColor = .blue
         // Register the TableView Cell
         let nibName = UINib(nibName: "TableViewCell", bundle: nil)
         tableView.register(nibName, forCellReuseIdentifier: "TableViewCell")
@@ -103,7 +103,8 @@ class FriendsViewController: UIViewController, NSFetchedResultsControllerDelegat
         
         // Create a background view
         let vw = UIView()
-        vw.backgroundColor = UIColor.gray
+        vw.backgroundColor = UIColor.blue
+        vw.alpha = 0.8
         
         // Get the table Wdith and then a Float position so we can set the X co-ordinate for the label for the Kills column in the table.
         let tableWidth = tableView.bounds.size.width

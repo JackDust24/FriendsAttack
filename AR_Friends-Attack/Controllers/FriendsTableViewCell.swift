@@ -20,11 +20,12 @@ class FriendsTableViewCell: UITableViewCell {
         // Initialization code
         
         // Set up view so that it is curved for each cell
-        cellView.backgroundColor = UIColor.white
+        backgroundColor = .clear // very important
+        cellView.backgroundColor = UIColor.lightGray
         self.backgroundView = cellView
         
-        backgroundColor = .clear // very important
-        contentView.backgroundColor = .lightGray
+//        backgroundColor = .clear // very important
+        contentView.backgroundColor = .white
         contentView.layer.cornerRadius = 7
         contentView.layer.masksToBounds = true
 //        contentView.layer.shadowOffset = CGSize(width: 0, height: 1)

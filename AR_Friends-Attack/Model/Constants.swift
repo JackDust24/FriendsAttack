@@ -11,9 +11,11 @@ import Foundation
 // Boundaries for checking node does not go out of bounds
 let kMinX = -5
 let kMaxX = 5
-let kMinY = -3
-let kMaxY = 3
-let kMinZ = -1
-let kMaxZ = -5
+let kMinY = -2
+let kMaxY = 2
+let kMinZ = -3
+let kMaxZ = -10
 
+// Timer
+let kStartTime: Double = 30.0
 

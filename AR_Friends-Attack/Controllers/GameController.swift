@@ -18,8 +18,8 @@ struct friend {
 
 // For the Physics
 enum BitMaskCategory: Int {
+    case bullet = 1
     case target = 2
-    case bullet = 3
 }
 
 enum Movement: String {
@@ -78,8 +78,9 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
     var peopleAdded = 0
     // Timers
     var myTimer = Timer()
-    var countdown: Double = 140.00
+    var countdown = kStartTime
     // Misc
+    // This is for the popup screen
     @IBOutlet weak var constX: NSLayoutConstraint!
 
     
@@ -182,7 +183,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
                     print("1. Add Friend")
                     addFriends(numOfFriend: i)
                 }
-                friends = objectsToAdd
+
            
             } else {
                 print("Fetch Request to add friends")
@@ -192,7 +193,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
                     // Get results of friends request
                     let results = try managedContext.fetch(request)
                     friends = results.count
-                    
+                    print("Friends Count - \(friends)")
                     // Fetch List Records
                     for result in results {
                         print(result.value(forKey: "name") ?? "no name")
@@ -265,13 +266,15 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         let targetScene = SCNScene(named: "target.scnassets/target_copy.scn")!
         let targetNode = targetScene.rootNode.childNode(withName: "target", recursively: false)!
         targetNode.name = nodedName
+        targetNode.scale = SCNVector3(1.1, 1.1, 1.1)
 //        let childNode = targetNode.childNode(withName: "box", recursively: false)
 //        childNode?.name = nodedName
         
+      
         // Position of node
-        let x = randomNumbers(numA: -5, numB: 5)
-        let y = randomNumbers(numA: -3, numB: 3)
-        let z = randomNumbers(numA: -1, numB: -5)
+        let x = randomNumbers(numA: CGFloat(kMinX), numB: CGFloat(kMaxX))
+        let y = randomNumbers(numA: CGFloat(kMinY), numB: CGFloat(kMaxY))
+        let z = randomNumbers(numA: CGFloat(kMinZ), numB: CGFloat(kMaxZ))
         targetNode.position = SCNVector3(x,y,z)
         
         // Set the Physics body
@@ -553,6 +556,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
             }
             
             // We can also end the game if it reaches zero
+            print("Current Friends Total - \(friends) & kills - \(kills)")
             if friends == 0 {
                 
                 print("All friends killed")
@@ -662,15 +666,21 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         let nodeA = contact.nodeA
         let nodeB = contact.nodeB
         
-        print("physicsWorld 1 - \(contact.nodeA.position)")
-        print("physicsWorld 2 - \(contact.nodeA.worldPosition)")
-        
         let nodeAMask = nodeA.categoryBitMask
         let nodeBMask = nodeB.categoryBitMask
 
         print(nodeAMask, nodeBMask)
         print(nodeA.name as Any, nodeB.name as Any)
         print(BitMaskCategory.target.rawValue)
+        
+        print("NodeA Name - \(String(describing: nodeA.name)) / NodeA Position - \(nodeA.worldPosition) / NodeB Name - \(String(describing: nodeB.name))/ NodeB Position - \(nodeB.position)")
+        
+        if nodeAMask == nodeBMask {
+            print("Same nodes colliding, can return")
+            nodeA.removeAllActions()
+            nodeB.removeAllActions()
+            return
+        }
         
         if nodeA.physicsBody?.categoryBitMask == BitMaskCategory.target.rawValue {
             targetNode = nodeA
@@ -684,7 +694,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         
         var particle: SCNParticleSystem
         
-        print("NodeA Name - \(String(describing: nodeA.name)) / NodeA Position - \(nodeA.worldPosition) / NodeB Name - \(String(describing: nodeB.name))/ NodeB Position - \(nodeB.position)")
+   
         
         var tempMessage = "" // We will use this further down for updating the message on the screen
         
@@ -735,15 +745,16 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
     
     func physicsWorld(_ world: SCNPhysicsWorld, didEnd contact: SCNPhysicsContact) {
         
-        print("physicsWorld did end")
         let nodeA = contact.nodeA
         let nodeB = contact.nodeB
 
-        if nodeA.physicsBody?.categoryBitMask == BitMaskCategory.target.rawValue {
-            nodeB.removeFromParentNode()
-            
-        } else if nodeB.physicsBody?.categoryBitMask == BitMaskCategory.target.rawValue {
+        if nodeA.physicsBody?.categoryBitMask == BitMaskCategory.bullet.rawValue {
+            print("NodeA check being Removed - \(nodeA.name)")
             nodeA.removeFromParentNode()
+            
+        } else if nodeB.physicsBody?.categoryBitMask == BitMaskCategory.bullet.rawValue {
+            print("NodeB check being Removed - \(nodeB.name)")
+            nodeB.removeFromParentNode()
 
         }
         // We can shoot again
@@ -754,7 +765,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
     
     func addKillPointsToFriend(friend: String) {
     
-        let request: NSFetchRequest<Friend> = Friend.fetchRequest()
+//        let request: NSFetchRequest<Friend> = Friend.fetchRequest()
         
         let fetchResults = fetchedResultsController.fetchedObjects
         
@@ -833,8 +844,8 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         
         print("Animate Node")
         // 1. Create the constants for this functions
-        let randomPlus = randomNonWholeNumbers(numA: 5, numB: 0)
-        let waitRandom = randomNonWholeNumbers(numA: 5, numB: 0)
+        let randomPlus = randomNonWholeNumbers(numA: 2, numB: 0)
+        let waitRandom = randomNonWholeNumbers(numA: 3, numB: 0)
         let randomNegative = -randomPlus
         let wait = SCNAction.wait(duration: TimeInterval(waitRandom))
         
@@ -1031,7 +1042,7 @@ extension GameController: ARSCNViewDelegate {
 //        print(time)
         sceneView.scene.rootNode.childNodes.filter({
             $0.categoryBitMask == 2 }).forEach({
-                print("Node Enumerate")
+//                print("Node Enumerate -\($0.name)")
                 if !$0.hasActions {
                     print("Node Enumerate - no actions")
                     // Node has no actions running so it is okay
@@ -1040,7 +1051,7 @@ extension GameController: ARSCNViewDelegate {
                     return
                 }
                 
-                print("Node Enumerate - actions")
+//                print("Node Enumerate - actions")
 
             })
         
@@ -1060,7 +1071,7 @@ extension GameController: ARSCNViewDelegate {
         let waitRandom = randomNonWholeNumbers(numA: 3, numB: 0)
 
         let wait = SCNAction.wait(duration: TimeInterval(waitRandom))
-        let parentRotation = rotation(time: 1)
+        let parentRotation = rotation(time: 2)
         let nodeAnimation = animateNode(nodePosition: node.position)
         let nodePositionTest = node.position
         print("Node Name - \(String(describing: node.name)) Node Position - \(nodePositionTest)")
