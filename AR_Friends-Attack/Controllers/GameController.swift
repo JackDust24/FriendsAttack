@@ -103,6 +103,8 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         
         // Fetch the Friends Data
         performFetch()
+        
+        populateFriends()
     }
     
     func testCall() {
@@ -116,7 +118,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
         self.sceneView.autoenablesDefaultLighting = true
-        self.sceneView.debugOptions = [ARSCNDebugOptions.showWorldOrigin, ARSCNDebugOptions.showFeaturePoints]
+//        self.sceneView.debugOptions = [ARSCNDebugOptions.showWorldOrigin, ARSCNDebugOptions.showFeaturePoints]
         
         // Run the view's session
         sceneView.session.run(configuration)
@@ -161,6 +163,52 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
     //TODO - Are we adding friends?
     func populateFriends() {
         
+        // We can start this but no need to add to screen just yet
+        // Add the appropriate amount of targets
+        // If it is nil then we will add sample data
+        if managedContext == nil {
+            print("Add Sample Friends Data")
+            
+            let objectsToAdd = GameStateManager.sharedInstance().initialTargets
+            friendsLabel.text = "\(objectsToAdd)"
+            
+            for i in 1...objectsToAdd {
+                print("1. Add Friend")
+                addFriends(numOfFriend: i)
+            }
+            
+            
+        } else {
+            print("Fetch Request to add friends")
+            let request: NSFetchRequest<Friend> = Friend.fetchRequest()
+            
+            do {
+                // Get results of friends request
+                let results = try managedContext.fetch(request)
+                friends = results.count
+                print("Friends Count - \(friends)")
+                // Fetch List Records
+                for result in results {
+                    print(result.value(forKey: "name") ?? "no name")
+                    print("Record - \(result)")
+                    var target = friend.init()
+                    let name = result.value(forKey: "name") ?? "no-name-given"
+                    let imageData = result.value(forKey: "friendImage") ?? nil
+                    var image = UIImage()
+                    if let imageAvailable = imageData {
+                        // Image exists
+                        print("Image exists")
+                        image = UIImage(data: imageAvailable as! Data)!
+                    }
+                    target.name = "\(name)"
+                    addNodeToScene(nodeFriend: target.name, defaultImage: false, image: image)
+                }
+                print("Finished adding people")
+                
+            } catch let error as NSError {
+                print("Could not fetch \(error), \(error.userInfo)")
+            }
+        }
     }
     
     // MARK: - Add the Targets (the targets)
@@ -171,51 +219,6 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         // We don't want to add if already finished
         if !gameFinished {
             
-            // Add the appropriate amount of targets
-            // If it is nil then we will add sample data
-            if managedContext == nil {
-                print("Add Sample Friends Data")
-
-                let objectsToAdd = GameStateManager.sharedInstance().initialTargets
-                friendsLabel.text = "\(objectsToAdd)"
-                
-                for i in 1...objectsToAdd {
-                    print("1. Add Friend")
-                    addFriends(numOfFriend: i)
-                }
-
-           
-            } else {
-                print("Fetch Request to add friends")
-                let request: NSFetchRequest<Friend> = Friend.fetchRequest()
-                
-                do {
-                    // Get results of friends request
-                    let results = try managedContext.fetch(request)
-                    friends = results.count
-                    print("Friends Count - \(friends)")
-                    // Fetch List Records
-                    for result in results {
-                        print(result.value(forKey: "name") ?? "no name")
-                        print("Record - \(result)")
-                        var target = friend.init()
-                        let name = result.value(forKey: "name") ?? "no-name-given"
-                        let imageData = result.value(forKey: "friendImage") ?? nil
-                        var image = UIImage()
-                        if let imageAvailable = imageData {
-                            // Image exists
-                            print("Image exists")
-                            image = UIImage(data: imageAvailable as! Data)!
-                        }
-                        target.name = "\(name)"
-                        addNodeToScene(nodeFriend: target.name, defaultImage: false, image: image)
-                    }
-                    print("Finished adding people")
-                    
-                } catch let error as NSError {
-                    print("Could not fetch \(error), \(error.userInfo)")
-                }
-            }
             // 2. No longer need the start button, so amend the game variables
             startButton.isHidden = true
             startButton.isEnabled = false
@@ -263,52 +266,57 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         }
         
         // Create a new scene
-        let targetScene = SCNScene(named: "target.scnassets/target_copy.scn")!
-        let targetNode = targetScene.rootNode.childNode(withName: "target", recursively: false)!
-        targetNode.name = nodedName
-        targetNode.scale = SCNVector3(1.1, 1.1, 1.1)
-//        let childNode = targetNode.childNode(withName: "box", recursively: false)
-//        childNode?.name = nodedName
-        
-      
-        // Position of node
-        let x = randomNumbers(numA: CGFloat(kMinX), numB: CGFloat(kMaxX))
-        let y = randomNumbers(numA: CGFloat(kMinY), numB: CGFloat(kMaxY))
-        let z = randomNumbers(numA: CGFloat(kMinZ), numB: CGFloat(kMaxZ))
-        targetNode.position = SCNVector3(x,y,z)
-        
-        // Set the Physics body
-        targetNode.physicsBody = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(node: targetNode, options: nil))
-        targetNode.physicsBody?.categoryBitMask = BitMaskCategory.target.rawValue
-        targetNode.physicsBody?.contactTestBitMask = BitMaskCategory.bullet.rawValue
-        targetNode.categoryBitMask = BitMaskCategory.target.rawValue
-        // TODO:- Play around with this - targetNode.physicsBody?.restitution = 0.1
-        
-        // Add images; we also pass through a bool of default image in case we are loading up the images from core data or the device
-        self.addFace(nodeName: "faceFront", targetNode: targetNode, imageName: nodedName, defaultImage: defaultImage, image: image)
-        self.addFace(nodeName: "faceBack", targetNode: targetNode, imageName: nodedName, defaultImage: defaultImage, image: image)
-        self.addLabel(nodeName: "nameLabelLeft", targetNode: targetNode, imageName: nodedName)
-        self.addLabel(nodeName: "nameLabelRight", targetNode: targetNode, imageName: nodedName)
-        
-        // Set default colours
-        changeNodeLabelColour(targetNode: targetNode)
-        
-//        targetNode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: targetNode, options: nil))
-        
-        
-        self.sceneView.scene.rootNode.addChildNode(targetNode)
-        
-        // Movement
-        // TODO:- Play around with this - try and set up by frames
-        let waitRandom = randomNonWholeNumbers(numA: 3, numB: 0)
-        
-        let wait = SCNAction.wait(duration: TimeInterval(waitRandom))
-        let parentRotation = rotation(time: 2)
-        let nodeAnimation = animateNode(nodePosition: targetNode.position)
-        let sequence = SCNAction.sequence([parentRotation, wait, nodeAnimation])
-        let loopSequence = SCNAction.repeatForever(sequence)
-         targetNode.runAction(sequence)
-//         targetNode.runAction(loopSequence)
+        DispatchQueue.global(qos: .background).async {
+            
+            let targetScene = SCNScene(named: "target.scnassets/target_copy.scn")!
+            let targetNode = targetScene.rootNode.childNode(withName: "target", recursively: false)!
+            targetNode.name = nodedName
+            targetNode.scale = SCNVector3(1.1, 1.1, 1.1)
+            //        let childNode = targetNode.childNode(withName: "box", recursively: false)
+            //        childNode?.name = nodedName
+            
+            
+            // Position of node
+            let x = self.randomNumbers(numA: CGFloat(kMinX), numB: CGFloat(kMaxX))
+            let y = self.randomNumbers(numA: CGFloat(kMinY), numB: CGFloat(kMaxY))
+            let z = self.randomNumbers(numA: CGFloat(kMinZ), numB: CGFloat(kMaxZ))
+            targetNode.position = SCNVector3(x,y,z)
+            
+            // Set the Physics body
+            targetNode.physicsBody = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(node: targetNode, options: nil))
+            targetNode.physicsBody?.categoryBitMask = BitMaskCategory.target.rawValue
+            targetNode.physicsBody?.contactTestBitMask = BitMaskCategory.bullet.rawValue
+            targetNode.categoryBitMask = BitMaskCategory.target.rawValue
+            // TODO:- Play around with this - targetNode.physicsBody?.restitution = 0.1
+            
+            // Add images; we also pass through a bool of default image in case we are loading up the images from core data or the device
+            self.addFace(nodeName: "faceFront", targetNode: targetNode, imageName: nodedName, defaultImage: defaultImage, image: image)
+            self.addFace(nodeName: "faceBack", targetNode: targetNode, imageName: nodedName, defaultImage: defaultImage, image: image)
+            self.addLabel(nodeName: "nameLabelLeft", targetNode: targetNode, imageName: nodedName)
+            self.addLabel(nodeName: "nameLabelRight", targetNode: targetNode, imageName: nodedName)
+            
+            // Set default colours
+            self.changeNodeLabelColour(targetNode: targetNode)
+            
+            //        targetNode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: targetNode, options: nil))
+            
+            
+            self.sceneView.scene.rootNode.addChildNode(targetNode)
+            
+            // Movement
+            // TODO:- Play around with this - try and set up by frames
+            let waitRandom = self.randomNonWholeNumbers(numA: 3, numB: 0)
+            
+            let wait = SCNAction.wait(duration: TimeInterval(waitRandom))
+            let parentRotation = self.rotation(time: 2)
+            let nodeAnimation = self.animateNode(nodePosition: targetNode.position)
+            let sequence = SCNAction.sequence([parentRotation, wait, nodeAnimation])
+            let loopSequence = SCNAction.repeatForever(sequence)
+            targetNode.runAction(sequence)
+            //         targetNode.runAction(loopSequence)
+            
+        }
+   
     }
     
     //MARK:- Set the friend nodes up
@@ -412,6 +420,9 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
             childNode.geometry?.firstMaterial?.diffuse.contents = UIColor.black
             currentColour = UIColor(white: 0, alpha: 1)
             
+        } else if currentColour == UIColor(white: 0, alpha: 1) {
+            print("\(currentColour) is black -> Stay black")
+            
         } else {
             print("\(currentColour) is the original")
             childNode.geometry?.firstMaterial?.diffuse.contents = UIColor.green
@@ -489,10 +500,11 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         bullet.physicsBody?.contactTestBitMask = BitMaskCategory.target.rawValue
         
         self.sceneView.scene.rootNode.addChildNode(bullet)
+        print("Bullet added to scene")
+
 
         bullet.runAction(SCNAction.sequence(
-            [SCNAction.wait(duration: 1.0),
-             SCNAction.removeFromParentNode()]), completionHandler: ({
+            [SCNAction.wait(duration: 1.0), SCNAction.removeFromParentNode()]), completionHandler: ({
                 print("Finished Shooting")
                 self.currentlyShooting = false
              })
@@ -581,6 +593,15 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         print("**** ending Game")
         GameStateManager.sharedInstance().savePointsAndKills(kills: kills, points: points)
 //        GameStateManager.sharedInstance().saveKillPointsPerFriend(kills: kills, friend: points)
+        
+        sceneView.scene.rootNode.childNodes.filter({
+            $0.categoryBitMask == 2 }).forEach({
+                //                print("Node Enumerate -\($0.name)")
+                if !$0.hasActions {
+                    $0.removeAllActions()                }
+                
+            })
+        
         sceneView.session.pause()
         showPopUp()
         
@@ -699,8 +720,6 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         var tempMessage = "" // We will use this further down for updating the message on the screen
         
         // Check Target node to see if Black if so, them it will be destroyed
-        // 1. Change the colour of the node if it hits
-        changeNodeLabelColour(targetNode: targetNode!)
         
         // 2. We only need to check one of the sides
         let frontChild = targetNode?.childNode(withName: "front", recursively: true)
@@ -710,7 +729,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         
         // 4. If Black means it has been hit 3 times
         if colourCheck == UIColor(white: 0, alpha: 1) {
-
+            
             particle = bulletHitEffect(particleName: "target.scnassets/Fire.scnp", directory: nil, loops: false, lifeSpan: 4)
             print("You Killed \(targetNode?.name ?? "No Name")")
             
@@ -720,9 +739,16 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
             tempMessage = "You KILLED \(targetNode?.name ?? "No Name")"
             addKillPointsToFriend(friend: targetNode?.name ?? "No Name")
             targetNode!.removeFromParentNode()
+//            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+//                print("Remove node")
+//                // No longer in collision so can end
+//                self.collisionInProgress = false
+//                targetNode!.removeFromParentNode()
+//                print("Finished Kill")
+//            }
             
         } else {
-
+            
             particle = bulletHitEffect(particleName: "target.scnassets/HitSide.scnp", directory: nil, loops: false, lifeSpan: 0.5)
             print("You hit \(targetNode?.name ?? "No Name")")
             
@@ -730,8 +756,13 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
             tempMessage = "You hit \(targetNode?.name ?? "No Name")"
         }
         
+        // 1. Change the colour of the node if it hits, but we only want to do this IF node is not nil
+        if let nodeToChangeColour = targetNode {
+            changeNodeLabelColour(targetNode: nodeToChangeColour)
+        }
+        
         DispatchQueue.main.async {
-            
+
             self.message = tempMessage
         }
         
@@ -745,63 +776,80 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
     
     func physicsWorld(_ world: SCNPhysicsWorld, didEnd contact: SCNPhysicsContact) {
         
-        let nodeA = contact.nodeA
-        let nodeB = contact.nodeB
+//        let nodeA = contact.nodeA
+//        let nodeB = contact.nodeB
 
-        if nodeA.physicsBody?.categoryBitMask == BitMaskCategory.bullet.rawValue {
-            print("NodeA check being Removed - \(nodeA.name)")
-            nodeA.removeFromParentNode()
-            
-        } else if nodeB.physicsBody?.categoryBitMask == BitMaskCategory.bullet.rawValue {
-            print("NodeB check being Removed - \(nodeB.name)")
-            nodeB.removeFromParentNode()
+        // We can shoot again
+        
+//        if nodeA.physicsBody?.categoryBitMask == BitMaskCategory.bullet.rawValue {
+//            print("NodeA check being Removed - \(nodeA.name)")
+//            nodeA.removeFromParentNode()
+//
+//        } else if nodeB.physicsBody?.categoryBitMask == BitMaskCategory.bullet.rawValue {
+//            print("NodeB check being Removed - \(nodeB.name)")
+//            nodeB.removeFromParentNode()
+//
+//        } else {
+//            return
+//        }
+//
+        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { _ in
+            print("collisionInProgressn = false")
+            // No longer in collision so can end
+            self.collisionInProgress = false
+            self.currentlyShooting = false
 
         }
-        // We can shoot again
-        currentlyShooting = false
-        // No longer in collision so can end
-        collisionInProgress = false
     }
     
     func addKillPointsToFriend(friend: String) {
     
 //        let request: NSFetchRequest<Friend> = Friend.fetchRequest()
         
-        let fetchResults = fetchedResultsController.fetchedObjects
-        
-        do {
-//            // Get results of friends request
-//            let results = try managedContext.fetch(request)
-//            friends = results.count
+        DispatchQueue.global(qos: .background).async {
             
-            if let fetchResults = fetchResults {
+            print("1")
+            let fetchResults = self.fetchedResultsController.fetchedObjects
+            
+            do {
+                //            // Get results of friends request
+                //            let results = try managedContext.fetch(request)
+                //            friends = results.count
+                print("2")
                 
-                // Fetch List Records
-                for fetch in fetchResults {
+                if let fetchResults = fetchResults {
+                    print("3")
                     
-                    //                let name = result.value(forKey: "name")
-                    let name = fetch.value(forKey: "name") as! String
-                    
-                    if name == friend {
+                    // Fetch List Records
+                    for fetch in fetchResults {
                         
-                        var currentKilled = fetch.value(forKey: "killed") as! Int
-                        currentKilled = currentKilled + 1
-                    
-                        fetch.setValue(Int64(currentKilled), forKey: "killed")
-                    
+                        let name = fetch.value(forKey: "name") as! String
+                        print("Name Check - \(name)")
+                        print("friend Check - \(friend)")
+                        
+                        if name == friend {
+                            print("4")
+                            
+                            
+                            var currentKilled = fetch.value(forKey: "killed") as! Int
+                            currentKilled = currentKilled + 1
+                            
+                            fetch.setValue(Int64(currentKilled), forKey: "killed")
+                            
+                        }
+                        print("5")
+                        
+                        try self.managedContext.save()
                     }
-
-                    try! managedContext.save()
+                    print("Finished adding score")
+                    
                 }
-                print("Finished adding score")
                 
+            } catch let error as NSError {
+                print("Could not fetch \(error), \(error.userInfo)")
             }
-            
-          
-            
-        } catch let error as NSError {
-            print("Could not fetch \(error), \(error.userInfo)")
         }
+       
     }
     
     // Bullet Effect
@@ -1075,9 +1123,12 @@ extension GameController: ARSCNViewDelegate {
         let nodeAnimation = animateNode(nodePosition: node.position)
         let nodePositionTest = node.position
         print("Node Name - \(String(describing: node.name)) Node Position - \(nodePositionTest)")
-        let sequence = SCNAction.sequence([parentRotation, wait, nodeAnimation])
+        let sequence = SCNAction.sequence([wait, nodeAnimation])
 //         let loopSequence = SCNAction.repeatForever(sequence)
-        node.runAction(sequence)
+        DispatchQueue.global(qos: .background).async {
+            node.runAction(sequence)
+
+        }
         
         
     }
