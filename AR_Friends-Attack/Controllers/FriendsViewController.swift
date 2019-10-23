@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class FriendsViewController: UIViewController, NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource {
+class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     //MARK:- Properties
     var managedContext: NSManagedObjectContext! {
@@ -35,6 +35,11 @@ class FriendsViewController: UIViewController, NSFetchedResultsControllerDelegat
         fetchedResultsController.delegate = self
         return fetchedResultsController
     }()
+    
+    deinit {
+        print("Don't fetch")
+        fetchedResultsController.delegate = nil
+    }
     
     //MARK:- Views
     override func viewDidLoad() {
@@ -152,6 +157,7 @@ class FriendsViewController: UIViewController, NSFetchedResultsControllerDelegat
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         guard let friends = fetchedResultsController.fetchedObjects else { return 0 }
+        print("FriendsCount - \(friends.count)")
         return friends.count + 1
     }
     
@@ -210,6 +216,32 @@ class FriendsViewController: UIViewController, NSFetchedResultsControllerDelegat
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCell.EditingStyle.delete) {
+            // handle delete (by removing the data from your array and updating the tableview)
+            print("delete tableview cell")
+            
+            let friend = fetchedResultsController.object(at: indexPath)
+            
+            print("delete tableview cell - \(friend)")
+
+            managedContext.delete(friend)
+            do {
+                print("delete tableview cell")
+                try managedContext.save()
+//                tableView.reloadData()
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
+        }
+        print("delete tableview cell 6")
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -285,4 +317,60 @@ class FriendsViewController: UIViewController, NSFetchedResultsControllerDelegat
         
     }
     
+}
+
+extension FriendsViewController: NSFetchedResultsControllerDelegate {
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        print("*** controllerWillChangeContent")
+        tableView.beginUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
+        switch type {
+        case .insert:
+            print("*** NSFetchedResultsChangeInsert (object)")
+            tableView.insertRows(at: [newIndexPath!], with: .fade)
+            
+        case .delete:
+            print("*** NSFetchedResultsChangeDelete (object)")
+            tableView.deleteRows(at: [indexPath!], with: .fade)
+            
+        case .update:
+            print("*** NSFetchedResultsChangeUpdate (object)")
+            //                if let cell = tableView.cellForRow(at: indexPath!)
+            //                    as? ItemTableViewCell {
+            //                    let item = controller.object(at: indexPath!)
+            //                        as! Items
+            //                    cell.configure(for: item)
+            //                }
+        //
+        case .move:
+            print("*** NSFetchedResultsChangeMove (object)")
+            tableView.deleteRows(at: [indexPath!], with: .fade)
+            tableView.insertRows(at: [newIndexPath!], with: .fade)
+        }
+    }
+    
+    func controller(_ controller:
+        NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+        switch type {
+        case .insert:
+            print("*** NSFetchedResultsChangeInsert (section)")
+            tableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
+        case .delete:
+            print("*** NSFetchedResultsChangeDelete (section)")
+            tableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
+        case .update:
+            print("*** NSFetchedResultsChangeUpdate (section)")
+        case .move:
+            print("*** NSFetchedResultsChangeMove (section)")
+        }
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        print("*** controllerDidChangeContent")
+        tableView.endUpdates()
+    }
 }

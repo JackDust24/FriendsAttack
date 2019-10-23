@@ -132,6 +132,12 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         //TODO:- Check what we will do here
+        
+        // Clear Nodes
+//        print("Clear Child Nodes")
+//        self.sceneView.scene.rootNode.enumerateChildNodes { (existingNodes, _) in
+//            existingNodes.removeFromParentNode()
+//        }
 
     }
     
@@ -622,6 +628,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
             self.message = "Exit in a second"
 //            _ = self.navigationController?.popViewController(animated: true)
             self.endGame()
+
         }
     }
     
@@ -662,11 +669,14 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
     
     // Dismissed to main screen - need to checj
     func dismissToMainScreen() {
-        Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { _ in
-//            self.messageLabel.text = "Exiting to main screen"
-            _ = self.navigationController?.popViewController(animated: true)
-            
-        }
+        print("Dismiss")
+        self.navigationController?.popToRootViewController(animated: true)
+
+//        Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { _ in
+////            self.messageLabel.text = "Exiting to main screen"
+//            _ = self.navigationController?.popViewController(animated: true)
+//
+//        }
     }
     
     // MARK:- For collision
@@ -715,8 +725,6 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         
         var particle: SCNParticleSystem
         
-   
-        
         var tempMessage = "" // We will use this further down for updating the message on the screen
         
         // Check Target node to see if Black if so, them it will be destroyed
@@ -738,6 +746,10 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
             friends -= 1
             tempMessage = "You KILLED \(targetNode?.name ?? "No Name")"
             addKillPointsToFriend(friend: targetNode?.name ?? "No Name")
+            
+//            targetNode!.enumerateChildNodes { (targetChildNodes, _) in
+//                targetChildNodes.removeFromParentNode()
+//            }
             targetNode!.removeFromParentNode()
 //            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
 //                print("Remove node")
@@ -772,6 +784,12 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         particleNode.scale = SCNVector3(0.5, 0.5, 0.5)
         
         self.sceneView.scene.rootNode.addChildNode(particleNode)
+        
+//        Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { _ in
+//            //            self.messageLabel.text = "Exiting to main screen"
+//            particleNode.removeFromParentNode()
+//
+//        }
     }
     
     func physicsWorld(_ world: SCNPhysicsWorld, didEnd contact: SCNPhysicsContact) {
@@ -1080,11 +1098,26 @@ extension GameController: ARSCNViewDelegate {
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         
-        DispatchQueue.main.async {
-            self.messageLabel.text = self.message
-            self.pointsLabel.text = "\(self.points)"
-            self.killsLabel.text = "\(self.kills)"
-            self.friendsLabel.text = "\(self.friends)"
+        print("TIME - \(time)")
+        
+        if messageLabel.text != message {
+            messageLabel.text = message
+
+        }
+        
+        if pointsLabel.text != "\(points)" {
+            pointsLabel.text = "\(points)"
+            
+        }
+        
+        if killsLabel.text != "\(kills)" {
+            killsLabel.text = "\(kills)"
+            
+        }
+        
+        if friendsLabel.text != "\(friends)" {
+            friendsLabel.text = "\(friends)"
+            
         }
 
 //        print(time)
