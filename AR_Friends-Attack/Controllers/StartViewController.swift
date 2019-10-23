@@ -69,18 +69,21 @@ class StartViewController: UIViewController {
         // If the user selects the View Screen or Scoresthen it goes there,
         // otherwise it's the Game Controller
         
+        
         if segue.identifier == "viewFriends" {
             print("prepare - viewFriends")
-            let secondViewController = segue.destination as! FriendsViewController
-            secondViewController.managedContext = managedContext
+            let friendsViewController = segue.destination as! FriendsViewController
+            friendsViewController.managedContext = managedContext
+            
         } else if segue.identifier == "showScores" {
             print("prepare - View for Score Controller")
-//            let secondViewController = segue.destination as! ScoreViewController
-//            secondViewController.managedContext = managedContext
-        } else  {
-            let secondViewController = segue.destination as! GameController
+            let scoreViewController = segue.destination as! ScoreViewController
+            scoreViewController.managedContext = managedContext
             
-            secondViewController.managedContext = managedContext
+        } else  {
+            let gameController = segue.destination as! GameController
+            
+            gameController.managedContext = managedContext
             
         }
     }
@@ -99,6 +102,7 @@ class StartViewController: UIViewController {
             // SampleData already already in Core Data
             print("DATA ALREADY EXISTS")
             return
+            
         } else {
             
             print("DATA DOES NOT EXIST")

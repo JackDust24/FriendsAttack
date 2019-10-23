@@ -21,10 +21,8 @@ class FriendsViewController: UIViewController, NSFetchedResultsControllerDelegat
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet weak var secondView: UIView!
-    
-
-    
     @IBOutlet weak var exitButton: UIButton!
+    @IBOutlet weak var resetBtn: UIButton!
     
     lazy var fetchedResultsController: NSFetchedResultsController<Friend> = {
         let fetchRequest = NSFetchRequest<Friend>()
@@ -46,7 +44,8 @@ class FriendsViewController: UIViewController, NSFetchedResultsControllerDelegat
         displayForSecondView(view: self.secondView)
         
         addCornerRadiusToButton(button: self.exitButton)
-        
+        addCornerRadiusToButton(button: self.resetBtn)
+
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .blue
@@ -217,4 +216,73 @@ class FriendsViewController: UIViewController, NSFetchedResultsControllerDelegat
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBAction func resetPressed(_ sender: Any) {
+        
+        // Give use the option to reset all the scores, or just the friends scores
+        let actionSheet = UIAlertController(title: "Reset Scores", message: nil, preferredStyle: .actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "Clear Scores", style: .default, handler: { action in
+            
+            // Clear button tappped.
+            self.dismiss(animated: true)
+            self.showResetConfirmation()
+        }))
+        
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+            
+            // Cancel button tappped.
+            
+            self.dismiss(animated: true) {
+            }
+        }))
+        // Present action sheet.
+        present(actionSheet, animated: true)
+    }
+    
+    
+    func showResetConfirmation() {
+        
+        let alertNameMissing = UIAlertController(title: "Reset All Your Scores",
+                                                 message: "Are You Sure? This can not be undone", preferredStyle: .alert)
+        
+        alertNameMissing.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { action in
+            self.clearScores()
+        }))
+        
+        alertNameMissing.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+
+        present(alertNameMissing, animated: true)
+        
+    }
+    
+    func clearScores() {
+        
+        let fetchResults = fetchedResultsController.fetchedObjects
+        
+        do {
+            //            // Get results of friends request
+            if let fetchResults = fetchResults {
+                
+                // Fetch List Records
+                for fetch in fetchResults {
+                    
+                    let currentKilled = 0
+                    fetch.setValue(Int64(currentKilled), forKey: "killed")
+                    
+                }
+                print("Finished resetting score")
+                self.tableView.reloadData()
+                
+            }
+            try managedContext.save()
+
+            
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+    }
+    
 }
