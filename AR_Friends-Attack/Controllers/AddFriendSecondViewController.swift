@@ -11,156 +11,213 @@ import CoreData
 
 class AddFriendSecondViewController: UIViewController, UITextFieldDelegate {
     
+    //MARK: Properties
     var imageFromMasterScreen: UIImage?
+    var imageForGame: UIImage?
+    var imageForThumbNail: UIImage?
+
     var nameOfImage: String?
     var managedContext: NSManagedObjectContext!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var secondView: UIView!
-    
     @IBOutlet weak var saveBtn: UIButton!
     
+    @IBOutlet weak var friendImage: UIImageView!  {
+        didSet {
+            self.configureView()
+        }
+    }
+    
+    //MARK: Views
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Set the rounded borders for the view
         displayForSecondView(view: self.secondView)
-        
         addCornerRadiusToButton(button: self.saveBtn)
-        
         // Do any additional setup after loading the view.
         self.navigationController?.isNavigationBarHidden = true
     }
 
-    @IBOutlet weak var friendImage: UIImageView!  {
-        didSet {
-            // Update the view.
-            self.configureView()
-        }
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func configureView() {
-        
         // Update the user interface for the detail item.
         if self.friendImage == nil || imageFromMasterScreen == nil { return } // no web view, bail out
-
         // We know this won't be a nil
         friendImage.image = imageFromMasterScreen!
-        
+        resizeTheImage(image: friendImage.image!)
     }
     
     //MARK:- Text Field
     // For typing in name
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        
         if textField == nameTextField {
-            print("You edit myTextField")
             nameTextField.becomeFirstResponder()
         }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        
-        print("DID END TEXT")
+        // Nothing to do here as of yet
     }
     
-    func updateNameFromTextField() {
-        guard let name = nameTextField.text else {
-            print("Text Field didn't have a name in it.")
+    // If text field is empty
+    func updateNameFromTextField(nameToUpdate: String?) {
+        guard let name = nameToUpdate else {
             return
         }
+        
         nameOfImage = name
     }
     
     //MARK:- Buttons for saving and press Done
-    //TODO:- Need to 1. Use has option for Save or Return, 2. Store the name, 3. Save the details
 
-    // For finishing - this needs to change for the save.
+    // Done pressed by user on keyboard
     @IBAction func done(_ sender: Any) {
-        
-        print("Contents of text field - \(nameTextField.text ?? "")")
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func save(_ sender: Any) {
-        
-        print("PRESSED SAVE")
-        print("\(String(describing: nameTextField.text))")
-        
+        // Check if nil or contains whitespace
         if nameTextField.text == "" {
-            print("nameTextField.text == nil")
-
-            showMessage()
-            
+            showMessage(messageType: "blank")
+            return
+        }
+        // We check to see if name is already in the database.
+        // We can unwrap it as it would have not got this far otherwise
+        let duplicateNameCheck = seeIfNameAlreadyExists(name: nameTextField.text!)
+        if duplicateNameCheck {
+            showMessage(messageType: "duplicate")
             return
         }
         
-        updateNameFromTextField()
+        // We want to remove any whitespaces
+        let trimmedName = nameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if trimmedName.count <= 0 {
+            showMessage(messageType: "blank")
+            return
+        }
+        
+        if trimmedName.count > 13 {
+            print("Over Limit")
+            showMessage(messageType: "overlimit")
+            return
+        }
+        
+        // Update the Text Field and Context
+        updateNameFromTextField(nameToUpdate: trimmedName)
         updateContext()
-        //TODO: - We can remove this of saving the Sample COde
-        testSampleCode()
+        // Send notification to StartVIewController to update that we have added a friend
+        let dic = ["FriendAdded":nameTextField.text!]
+        NotificationCenter.default.post(name: .kGameReviewNotification, object: nil, userInfo: dic)
         self.navigationController?.popToRootViewController(animated: true)
     }
     
-    func showMessage() {
-        
-        let alertNameMissing = UIAlertController(title: "Missing Name",
-                                                       message: "Please add a name", preferredStyle: .alert)
-        
-        alertNameMissing.addAction(UIAlertAction(title: "OK", style: .destructive, handler: { action in
-            self.nameTextField.becomeFirstResponder()
-        }))
-        
-        // If the device has a camera add a Camera button to imagePickerActionSheet
-//        let okButton = UIAlertAction(title: "Ok", style: .default)
-//        alertNameMissing.addAction(okButton)
-        
-        // *** Present your instance of UIAlertController
-        present(alertNameMissing, animated: true)
-    }
-    
-    func updateContext() {
-        
-        let context = managedContext
-        // Convert Image - TODO
-        let image = imageFromMasterScreen
-        let photoData = image!.pngData()!
-        let photoDataValue = NSData(data: photoData) as Data
-        let entity = NSEntityDescription.entity(forEntityName: "Friend", in: context!)
-        let newFriend = NSManagedObject(entity: entity!, insertInto: context)
-        newFriend.setValue(nameOfImage, forKey: "name")
-        newFriend.setValue(photoDataValue, forKey: "friendImage")
-        newFriend.setValue(true, forKey: "active")
-        newFriend.setValue(0, forKey: "killed")
-        try! managedContext.save()
-    }
-    
-
-    
-    func testSampleCode() {
+    func seeIfNameAlreadyExists(name: String) -> Bool {
         
         if managedContext == nil {
-            print("NO CONTEXT YET")
-            return
+            return false
         }
         
         let request: NSFetchRequest<Friend> = Friend.fetchRequest()
-        
         do {
-            //3
             let results = try managedContext.fetch(request)
             // Fetch List Records
             for result in results {
                 print(result.value(forKey: "name") ?? "no name")
-                print("testSampleCode")
+                let nameInDB = (result.value(forKey: "name") as! String)
+                if nameInDB == name {
+                    return true // Name already exists so we must get them to add a new one
+                }
             }
+            
+        } catch let error as NSError {
+            //TODO: - Core Data Error Hnadling Handling
+            print("Could not fetch \(error), \(error.userInfo)")
+            abortApp(abortType: "Data")
+
+        }
+        return false
+    }
+    
+    //MARK: Images and Messages
+    func resizeTheImage(image: UIImage) {
+        // For the coreData saving the size of the immage
+        imageForGame = image.resizedImageWithinRect(rectSize: CGSize(width: 50, height: 50))
+        imageForThumbNail = image.resizedImageWithinRect(rectSize: CGSize(width: 25, height: 25))
+    }
+    
+    func showMessage(messageType: String) {
+        
+        var alertNameMissing = UIAlertController()
+        if messageType == "blank" {
+            alertNameMissing = UIAlertController(title: NSLocalizedString("Missing Name", comment: "Alert Title"),
+                                                     message: NSLocalizedString("Please Add a Name", comment: "Message Alert"), preferredStyle: .alert)
+            alertNameMissing.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .default, handler: { action in
+                self.nameTextField.becomeFirstResponder()
+            }))
+        }
+        
+        if messageType == "duplicate" {
+            alertNameMissing = UIAlertController(title: NSLocalizedString("Duplicate Name", comment: "Alert Title"),
+                                                     message: NSLocalizedString("Name Already Exists", comment: "Message Alert"), preferredStyle: .alert)
+            alertNameMissing.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .default, handler: { action in
+                self.nameTextField.becomeFirstResponder()
+                self.nameTextField.text = ""
+            }))
+        }
+        
+        if messageType == "overlimit" {
+            alertNameMissing = UIAlertController(title: NSLocalizedString("Name Is Too Long", comment: "Alert Title"),
+                                                     message: NSLocalizedString("Please Limit To 13 Characters", comment: "Message Title"), preferredStyle: .alert)
+            alertNameMissing.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .default, handler: { action in
+                self.nameTextField.becomeFirstResponder()
+                self.nameTextField.text = ""
+            }))
+        }
+        present(alertNameMissing, animated: true)
+    }
+    
+    //MARK: Update Core Data
+    func updateContext() {
+        
+        let context = managedContext
+        let image2 = imageForGame
+        let photoData2 = image2!.pngData()!
+        let photoDataValue2 = NSData(data: photoData2) as Data
+        
+        let entity = NSEntityDescription.entity(forEntityName: "Friend", in: context!)
+        let newFriend = NSManagedObject(entity: entity!, insertInto: context)
+        newFriend.setValue(nameOfImage, forKey: "name")
+        newFriend.setValue(photoDataValue2, forKey: "friendImage")
+        newFriend.setValue(true, forKey: "active")
+        newFriend.setValue(0, forKey: "killed")
+
+        do {
+            try managedContext.save()
+            
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
+            abortApp(abortType: "Data")
         }
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    // If need to abort function
+    func abortApp(abortType: String) {
+        
+        // Get the type we are aborting, i.e. Core Data, retrieve it from the Helper function
+        let alertSheet = abortDueToIssues(type: abortType)
+        
+        self.present(alertSheet, animated: true, completion: nil)
+    }
+    
 
 }
 

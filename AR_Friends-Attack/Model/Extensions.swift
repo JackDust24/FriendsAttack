@@ -12,8 +12,7 @@ import SceneKit
 
 public extension UIImage {
     
-    // This rounds the image, but
-    //TODO - We may remove this
+    //MARK: Images
     func roundedImage() -> UIImage {
         
         let imageView: UIImageView = UIImageView(image: self)
@@ -27,5 +26,47 @@ public extension UIImage {
         return roundedImage!
     }
     
+    func resizedImage(newSize: CGSize) -> UIImage {
+        // Guard newSize is different
+        guard self.size != newSize else { return self }
+
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
+        self.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
+        let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return newImage
+    }
+
+    func resizedImageWithinRect(rectSize: CGSize) -> UIImage {
+        let widthFactor = size.width / rectSize.width
+        let heightFactor = size.height / rectSize.height
+
+        var resizeFactor = widthFactor
+        if size.height > size.width {
+            resizeFactor = heightFactor
+        }
+
+        let newSize = CGSize(width: size.width/resizeFactor, height: size.height/resizeFactor)
+        let resized = resizedImage(newSize: newSize)
+        return resized
+    }
+    
 }
 
+//MARK: Notifications
+// For the Notifications
+extension Notification.Name {
+    static let kFriendAddedNotification = Notification.Name("kFriendAddedNotification")
+    static let kHUDLabelNotification = Notification.Name("kHUDLabelNotification")
+    static let kGameReviewNotification = Notification.Name("kGameReviewNotification")
+}
+
+//MARK: UIApplication
+// Due to Key Window being depraciated.
+extension UIApplication {
+    // The app's key window taking into consideration apps that support multiple scenes.
+    var keyWindowInConnectedScenes: UIWindow? {
+        return windows.first(where: { $0.isKeyWindow })
+    }
+
+}

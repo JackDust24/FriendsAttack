@@ -21,6 +21,8 @@
 		9E21895820DC7C3C008997FB /* target.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E21895720DC7C3C008997FB /* target.scnassets */; };
 		9E2AE57020ECBF0B00AA54B9 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2AE56F20ECBF0B00AA54B9 /* StartViewController.swift */; };
 		9E2AE57220ECBF3200AA54B9 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2AE57120ECBF3200AA54B9 /* FriendsViewController.swift */; };
+		9E365142239FB9EE00534569 /* shoot.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9E365140239FB9ED00534569 /* shoot.mp4 */; };
+		9E365143239FB9EE00534569 /* explosion.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9E365141239FB9ED00534569 /* explosion.mp4 */; };
 		9E493CC7228D36AB0081FB0D /* ComicNeue-Angular_Oblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E493CBB228D36AA0081FB0D /* ComicNeue-Angular_Oblique.otf */; };
 		9E493CC8228D36AB0081FB0D /* ComicNeue-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E493CBC228D36AA0081FB0D /* ComicNeue-Regular.otf */; };
 		9E493CC9228D36AB0081FB0D /* ComicNeue_Oblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E493CBD228D36AA0081FB0D /* ComicNeue_Oblique.otf */; };
@@ -38,9 +40,12 @@
 		9E8601EC233A798B0093219A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E8601EB233A798B0093219A /* UIKit.framework */; };
 		9E8601ED233A7A970093219A /* UIKit.framework in Resources */ = {isa = PBXBuildFile; fileRef = 9E8601EB233A798B0093219A /* UIKit.framework */; };
 		9E8601EE233A7AB40093219A /* AR_Friends_AttackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8601D0233A17BF0093219A /* AR_Friends_AttackTests.swift */; };
-		9EB2DF29210F1ED400444981 /* FriendsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB2DF28210F1ED400444981 /* FriendsCollectionViewCell.swift */; };
+		9E8B89E923C5AF81003A5E14 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9E8B89EB23C5AF81003A5E14 /* Localizable.strings */; };
+		9E9E6A00238E5EA90017D1B5 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9E69FF238E5EA90017D1B5 /* InfoViewController.swift */; };
 		9EB97CEF21BD2DC2009ED736 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB97CEE21BD2DC2009ED736 /* Extensions.swift */; };
 		9EBD7F9F21201A5A001B0C81 /* AddFriendSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBD7F9E21201A5A001B0C81 /* AddFriendSecondViewController.swift */; };
+		9EBF1A3923C224B400ED056E /* Jack in the Box.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EBF1A3723C224B400ED056E /* Jack in the Box.ttf */; };
+		9EBF1A3A23C224B400ED056E /* Jack in the BoxRegular👪.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EBF1A3823C224B400ED056E /* Jack in the BoxRegular👪.png */; };
 		9EC06F7720DE265A00138175 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC06F7620DE265A00138175 /* GameManager.swift */; };
 		9ECD8EA7234C998F009FF474 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ECD8EA5234C998F009FF474 /* TableViewCell.xib */; };
 		9EDC97912121A6AF008B2EAD /* FriendsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9EDC978D212179EF008B2EAD /* FriendsModel.xcdatamodeld */; };
@@ -75,6 +80,13 @@
 		9E21895720DC7C3C008997FB /* target.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = target.scnassets; sourceTree = "<group>"; };
 		9E2AE56F20ECBF0B00AA54B9 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		9E2AE57120ECBF3200AA54B9 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		9E365140239FB9ED00534569 /* shoot.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = shoot.mp4; path = ../../../Desktop/shoot.mp4; sourceTree = "<group>"; };
+		9E365141239FB9ED00534569 /* explosion.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = explosion.mp4; path = ../../../Desktop/explosion.mp4; sourceTree = "<group>"; };
+		9E3966D1237A855A006E72CF /* facebook-swift-sdk-0.9.0.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = "facebook-swift-sdk-0.9.0.zip"; path = "../../Downloads/facebook-swift-sdk-0.9.0.zip"; sourceTree = "<group>"; };
+		9E3966D2237A857C006E72CF /* facebook-swift-sdk-0.9.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "facebook-swift-sdk-0.9.0"; path = "../../Downloads/facebook-swift-sdk-0.9.0"; sourceTree = "<group>"; };
+		9E3966D3237A85B8006E72CF /* FacebookShare.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = FacebookShare.podspec; path = "../../Downloads/facebook-swift-sdk-0.9.0/FacebookShare.podspec"; sourceTree = "<group>"; };
+		9E3966D4237A85B8006E72CF /* FacebookLogin.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = FacebookLogin.podspec; path = "../../Downloads/facebook-swift-sdk-0.9.0/FacebookLogin.podspec"; sourceTree = "<group>"; };
+		9E3966D5237A85B8006E72CF /* FacebookCore.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = FacebookCore.podspec; path = "../../Downloads/facebook-swift-sdk-0.9.0/FacebookCore.podspec"; sourceTree = "<group>"; };
 		9E493CBB228D36AA0081FB0D /* ComicNeue-Angular_Oblique.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ComicNeue-Angular_Oblique.otf"; sourceTree = "<group>"; };
 		9E493CBC228D36AA0081FB0D /* ComicNeue-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ComicNeue-Regular.otf"; sourceTree = "<group>"; };
 		9E493CBD228D36AA0081FB0D /* ComicNeue_Oblique.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ComicNeue_Oblique.otf; sourceTree = "<group>"; };
@@ -88,15 +100,31 @@
 		9E493CC5228D36AB0081FB0D /* ComicNeue_Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ComicNeue_Light.otf; sourceTree = "<group>"; };
 		9E493CC6228D36AB0081FB0D /* ComicNeue-Angular_Light_Oblique.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ComicNeue-Angular_Light_Oblique.otf"; sourceTree = "<group>"; };
 		9E493CD3228D3B1C0081FB0D /* ScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
+		9E77641F237A7FEC00C15BE6 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E776420237A7FEC00C15BE6 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E8601CE233A17BF0093219A /* FriendsAttackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FriendsAttackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E8601D0233A17BF0093219A /* AR_Friends_AttackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AR_Friends_AttackTests.swift; sourceTree = "<group>"; };
 		9E8601D2233A17BF0093219A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E8601DF233A6B8A0093219A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		9E8601E1233A749A0093219A /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
 		9E8601EB233A798B0093219A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		9EB2DF28210F1ED400444981 /* FriendsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCollectionViewCell.swift; sourceTree = "<group>"; };
+		9E8B89EA23C5AF81003A5E14 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9E8B89ED23C5C650003A5E14 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		9E8B89EE23C5C650003A5E14 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		9E8B89EF23C5C650003A5E14 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		9E8B89F023C5C65C003A5E14 /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		9E8B89F123C5C65C003A5E14 /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Main.strings; sourceTree = "<group>"; };
+		9E8B89F223C5C65C003A5E14 /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9E8B89F323C5C665003A5E14 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		9E8B89F423C5C665003A5E14 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
+		9E8B89F523C5C665003A5E14 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9E9E69FF238E5EA90017D1B5 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		9EB97CEE21BD2DC2009ED736 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9EBD7F9E21201A5A001B0C81 /* AddFriendSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendSecondViewController.swift; sourceTree = "<group>"; };
+		9EBF1A3723C224B400ED056E /* Jack in the Box.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Jack in the Box.ttf"; path = "../../UndeadRevenge/UndeadRevenge/Jack in the Box.ttf"; sourceTree = "<group>"; };
+		9EBF1A3823C224B400ED056E /* Jack in the BoxRegular👪.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Jack in the BoxRegular👪.png"; path = "../../../Library/Containers/com.microsoft.Word/Data/Library/Application Support/Microsoft/FontPreviewCache/en-US/Jack in the BoxRegular👪.png"; sourceTree = "<group>"; };
+		9EBF1A3B23C2F93E00ED056E /* Jack in the BoxRegular👪.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Jack in the BoxRegular👪.png"; sourceTree = "<group>"; };
+		9EBF1A3C23C2F93E00ED056E /* Jack in the Box.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jack in the Box.ttf"; sourceTree = "<group>"; };
 		9EC06F7620DE265A00138175 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		9ECD8EA5234C998F009FF474 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		9EDC978E212179EF008B2EAD /* FriendsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FriendsModel.xcdatamodel; sourceTree = "<group>"; };
@@ -124,9 +152,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6B5F796EC66B85E7AABACCE7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		9E02D86B226F2CD6005D4221 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9E3966D5237A85B8006E72CF /* FacebookCore.podspec */,
+				9E3966D4237A85B8006E72CF /* FacebookLogin.podspec */,
+				9E3966D3237A85B8006E72CF /* FacebookShare.podspec */,
+				9E3966D2237A857C006E72CF /* facebook-swift-sdk-0.9.0 */,
+				9E3966D1237A855A006E72CF /* facebook-swift-sdk-0.9.0.zip */,
+				9E77641F237A7FEC00C15BE6 /* FBSDKCoreKit.framework */,
+				9E776420237A7FEC00C15BE6 /* FBSDKShareKit.framework */,
 				9E8601EB233A798B0093219A /* UIKit.framework */,
 				9E8601E1233A749A0093219A /* SceneKit.framework */,
 				9E02D86C226F2CD6005D4221 /* ARKit.framework */,
@@ -137,14 +179,17 @@
 		9E21893720DC7B41008997FB = {
 			isa = PBXGroup;
 			children = (
-				9E8601DF233A6B8A0093219A /* Default-568h@2x.png */,
-				9E493CBA228D365D0081FB0D /* Fonts */,
-				9E0A14FD227C5D63007ED3CB /* HitSide.scnp */,
-				9E0A14FA227C58C4007ED3CB /* Assets.xcassets */,
+				9E8B89EB23C5AF81003A5E14 /* Localizable.strings */,
 				9E21894220DC7B41008997FB /* AR_Friends-Attack */,
 				9E8601CF233A17BF0093219A /* AR_Friends-AttackTests */,
-				9E21894120DC7B41008997FB /* Products */,
+				9E36513F239FB96F00534569 /* Audio */,
+				9E493CBA228D365D0081FB0D /* Fonts */,
 				9E02D86B226F2CD6005D4221 /* Frameworks */,
+				6B5F796EC66B85E7AABACCE7 /* Pods */,
+				9E21894120DC7B41008997FB /* Products */,
+				9E0A14FA227C58C4007ED3CB /* Assets.xcassets */,
+				9E8601DF233A6B8A0093219A /* Default-568h@2x.png */,
+				9E0A14FD227C5D63007ED3CB /* HitSide.scnp */,
 			);
 			sourceTree = "<group>";
 		};
@@ -160,33 +205,47 @@
 		9E21894220DC7B41008997FB /* AR_Friends-Attack */ = {
 			isa = PBXGroup;
 			children = (
-				9E49E68E2341FDD00020DCB4 /* Model */,
 				9ED56CA421BBB64600B1C7E8 /* Controllers */,
 				9EDC978C212179D1008B2EAD /* CoreData */,
-				9E21894920DC7B41008997FB /* Main.storyboard */,
+				9E49E68E2341FDD00020DCB4 /* Model */,
+				9E86D10023A7585000469BD4 /* Views */,
 				9E21894C20DC7B43008997FB /* Assets.xcassets */,
-				9E21894E20DC7B43008997FB /* LaunchScreen.storyboard */,
 				9E21895120DC7B43008997FB /* Info.plist */,
+				9EBF1A3723C224B400ED056E /* Jack in the Box.ttf */,
+				9EBF1A3823C224B400ED056E /* Jack in the BoxRegular👪.png */,
+				9E21894E20DC7B43008997FB /* LaunchScreen.storyboard */,
+				9E21894920DC7B41008997FB /* Main.storyboard */,
 				9E21895720DC7C3C008997FB /* target.scnassets */,
 			);
 			path = "AR_Friends-Attack";
 			sourceTree = "<group>";
 		};
+		9E36513F239FB96F00534569 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				9E365141239FB9ED00534569 /* explosion.mp4 */,
+				9E365140239FB9ED00534569 /* shoot.mp4 */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
 		9E493CBA228D365D0081FB0D /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				9E493CC1228D36AA0081FB0D /* ComicNeue_Bold_Oblique.otf */,
-				9E493CC3228D36AB0081FB0D /* ComicNeue_Bold.otf */,
-				9E493CBF228D36AA0081FB0D /* ComicNeue_Light_Oblique.otf */,
-				9E493CC5228D36AB0081FB0D /* ComicNeue_Light.otf */,
-				9E493CBD228D36AA0081FB0D /* ComicNeue_Oblique.otf */,
-				9E493CBE228D36AA0081FB0D /* ComicNeue-Angular_Bold_Oblique.otf */,
-				9E493CC4228D36AB0081FB0D /* ComicNeue-Angular_Bold.otf */,
-				9E493CC6228D36AB0081FB0D /* ComicNeue-Angular_Light_Oblique.otf */,
-				9E493CC2228D36AB0081FB0D /* ComicNeue-Angular_Light.otf */,
-				9E493CBB228D36AA0081FB0D /* ComicNeue-Angular_Oblique.otf */,
 				9E493CC0228D36AA0081FB0D /* ComicNeue-Angular-Regular.otf */,
+				9E493CC4228D36AB0081FB0D /* ComicNeue-Angular_Bold.otf */,
+				9E493CBE228D36AA0081FB0D /* ComicNeue-Angular_Bold_Oblique.otf */,
+				9E493CC2228D36AB0081FB0D /* ComicNeue-Angular_Light.otf */,
+				9E493CC6228D36AB0081FB0D /* ComicNeue-Angular_Light_Oblique.otf */,
+				9E493CBB228D36AA0081FB0D /* ComicNeue-Angular_Oblique.otf */,
 				9E493CBC228D36AA0081FB0D /* ComicNeue-Regular.otf */,
+				9E493CC3228D36AB0081FB0D /* ComicNeue_Bold.otf */,
+				9E493CC1228D36AA0081FB0D /* ComicNeue_Bold_Oblique.otf */,
+				9E493CC5228D36AB0081FB0D /* ComicNeue_Light.otf */,
+				9E493CBF228D36AA0081FB0D /* ComicNeue_Light_Oblique.otf */,
+				9E493CBD228D36AA0081FB0D /* ComicNeue_Oblique.otf */,
+				9EBF1A3C23C2F93E00ED056E /* Jack in the Box.ttf */,
+				9EBF1A3B23C2F93E00ED056E /* Jack in the BoxRegular👪.png */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -195,9 +254,9 @@
 			isa = PBXGroup;
 			children = (
 				9E21894320DC7B41008997FB /* AppDelegate.swift */,
-				9EC06F7620DE265A00138175 /* GameManager.swift */,
-				9EB97CEE21BD2DC2009ED736 /* Extensions.swift */,
 				9EEF01D923321051005FE2BB /* Constants.swift */,
+				9EB97CEE21BD2DC2009ED736 /* Extensions.swift */,
+				9EC06F7620DE265A00138175 /* GameManager.swift */,
 				9EFF18C323570CE4002A4258 /* HelperFunctions.swift */,
 			);
 			path = Model;
@@ -212,19 +271,26 @@
 			path = "AR_Friends-AttackTests";
 			sourceTree = "<group>";
 		};
+		9E86D10023A7585000469BD4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9E0F9406233106C0008A587E /* FriendsTableViewCell.swift */,
+				9ECD8EA5234C998F009FF474 /* TableViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		9ED56CA421BBB64600B1C7E8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9EB2DF28210F1ED400444981 /* FriendsCollectionViewCell.swift */,
-				9ECD8EA5234C998F009FF474 /* TableViewCell.xib */,
-				9E0F9406233106C0008A587E /* FriendsTableViewCell.swift */,
-				9E21894720DC7B41008997FB /* GameController.swift */,
-				9E2AE56F20ECBF0B00AA54B9 /* StartViewController.swift */,
-				9E2AE57120ECBF3200AA54B9 /* FriendsViewController.swift */,
-				9E07BC3B20ECF00700A26584 /* FriendDetailViewController.swift */,
-				9E07BC3D20ECF06900A26584 /* AddFriendViewController.swift */,
 				9EBD7F9E21201A5A001B0C81 /* AddFriendSecondViewController.swift */,
+				9E07BC3D20ECF06900A26584 /* AddFriendViewController.swift */,
+				9E07BC3B20ECF00700A26584 /* FriendDetailViewController.swift */,
+				9E2AE57120ECBF3200AA54B9 /* FriendsViewController.swift */,
+				9E21894720DC7B41008997FB /* GameController.swift */,
+				9E9E69FF238E5EA90017D1B5 /* InfoViewController.swift */,
 				9E493CD3228D3B1C0081FB0D /* ScoreViewController.swift */,
+				9E2AE56F20ECBF0B00AA54B9 /* StartViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -287,10 +353,11 @@
 				TargetAttributes = {
 					9E21893F20DC7B41008997FB = {
 						CreatedOnToolsVersion = 9.4;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1110;
 					};
 					9E8601CD233A17BF0093219A = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1110;
 						TestTargetID = 9E21893F20DC7B41008997FB;
 					};
 				};
@@ -302,6 +369,9 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
+				th,
+				ko,
 			);
 			mainGroup = 9E21893720DC7B41008997FB;
 			productRefGroup = 9E21894120DC7B41008997FB /* Products */;
@@ -321,14 +391,19 @@
 			files = (
 				9E493CD2228D36AB0081FB0D /* ComicNeue-Angular_Light_Oblique.otf in Resources */,
 				9ECD8EA7234C998F009FF474 /* TableViewCell.xib in Resources */,
+				9EBF1A3A23C224B400ED056E /* Jack in the BoxRegular👪.png in Resources */,
 				9E493CD0228D36AB0081FB0D /* ComicNeue-Angular_Bold.otf in Resources */,
 				9E493CCE228D36AB0081FB0D /* ComicNeue-Angular_Light.otf in Resources */,
 				9E21895020DC7B43008997FB /* LaunchScreen.storyboard in Resources */,
+				9E365143239FB9EE00534569 /* explosion.mp4 in Resources */,
+				9EBF1A3923C224B400ED056E /* Jack in the Box.ttf in Resources */,
 				9E21894D20DC7B43008997FB /* Assets.xcassets in Resources */,
 				9E493CCC228D36AB0081FB0D /* ComicNeue-Angular-Regular.otf in Resources */,
+				9E8B89E923C5AF81003A5E14 /* Localizable.strings in Resources */,
 				9E493CCB228D36AB0081FB0D /* ComicNeue_Light_Oblique.otf in Resources */,
 				9E493CCA228D36AB0081FB0D /* ComicNeue-Angular_Bold_Oblique.otf in Resources */,
 				9E493CCD228D36AB0081FB0D /* ComicNeue_Bold_Oblique.otf in Resources */,
+				9E365142239FB9EE00534569 /* shoot.mp4 in Resources */,
 				9E21895820DC7C3C008997FB /* target.scnassets in Resources */,
 				9E493CC8228D36AB0081FB0D /* ComicNeue-Regular.otf in Resources */,
 				9E493CD1228D36AB0081FB0D /* ComicNeue_Light.otf in Resources */,
@@ -357,7 +432,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9EB2DF29210F1ED400444981 /* FriendsCollectionViewCell.swift in Sources */,
 				9EBD7F9F21201A5A001B0C81 /* AddFriendSecondViewController.swift in Sources */,
 				9E21894820DC7B41008997FB /* GameController.swift in Sources */,
 				9E07BC3E20ECF06900A26584 /* AddFriendViewController.swift in Sources */,
@@ -371,6 +445,7 @@
 				9EB97CEF21BD2DC2009ED736 /* Extensions.swift in Sources */,
 				9EEF01DA23321051005FE2BB /* Constants.swift in Sources */,
 				9EDC97912121A6AF008B2EAD /* FriendsModel.xcdatamodeld in Sources */,
+				9E9E6A00238E5EA90017D1B5 /* InfoViewController.swift in Sources */,
 				9E493CD4228D3B1C0081FB0D /* ScoreViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -398,16 +473,35 @@
 			isa = PBXVariantGroup;
 			children = (
 				9E21894A20DC7B41008997FB /* Base */,
+				9E8B89EE23C5C650003A5E14 /* zh-Hans */,
+				9E8B89F123C5C65C003A5E14 /* th */,
+				9E8B89F423C5C665003A5E14 /* ko */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		9E21894E20DC7B43008997FB /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				9E21894F20DC7B43008997FB /* Base */,
+				9E8B89ED23C5C650003A5E14 /* zh-Hans */,
+				9E8B89F023C5C65C003A5E14 /* th */,
+				9E8B89F323C5C665003A5E14 /* ko */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
+			sourceTree = "<group>";
+		};
+		9E8B89EB23C5AF81003A5E14 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9E8B89EA23C5AF81003A5E14 /* en */,
+				9E8B89EF23C5C650003A5E14 /* zh-Hans */,
+				9E8B89F223C5C65C003A5E14 /* th */,
+				9E8B89F523C5C665003A5E14 /* ko */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -417,6 +511,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -464,7 +560,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -477,6 +573,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -518,7 +615,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -535,7 +632,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EUFCY3UFR6;
 				INFOPLIST_FILE = "AR_Friends-Attack/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -543,7 +640,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Jason.AR-Friends-Attack";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -556,7 +653,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EUFCY3UFR6;
 				INFOPLIST_FILE = "AR_Friends-Attack/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -564,7 +661,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Jason.AR-Friends-Attack";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -586,7 +683,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "Jason.AR-Friends-AttackTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FriendsAttack.app/FriendsAttack";
 			};
@@ -608,7 +705,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "Jason.AR-Friends-AttackTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FriendsAttack.app/FriendsAttack";
 			};

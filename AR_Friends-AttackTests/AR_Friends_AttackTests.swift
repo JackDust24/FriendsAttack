@@ -14,6 +14,7 @@ import SceneKit
 class AR_Friends_AttackTests: XCTestCase {
     
     var gameController = GameController()
+    var startController = StartViewController()
     
     let moveDown = SCNVector3(0, -2, 0)
     let moveUp = SCNVector3(0, 2, 0)
@@ -41,7 +42,7 @@ class AR_Friends_AttackTests: XCTestCase {
         let passPosition = SCNVector3(-2, 0, 0)
         print(passPosition)
         
-        _ = gameController.testCall()
+        // _ = gameController.testCall()
         print(Movement.left.rawValue)
         print(Movement.left)
         let result = gameController.canNodeMove(nodePosition: passPosition, newPosition: moveLeft, moveDirection: Movement.left)
@@ -156,5 +157,15 @@ class AR_Friends_AttackTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    
+//    //*** For StartViewController ***//
+//    func testDefaultDataAlert() {
+//        
+//     let defaultData = true
+//
+//        let result = startController.)
+//        XCTAssertEqual(result, false, "testDefaultDataAlert is a failure")
+//    }
 
 }

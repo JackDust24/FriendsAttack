@@ -11,22 +11,20 @@ import CoreData
 
 class AddFriendViewController: UIViewController {
    
+    //MARK: Properties
     @IBOutlet weak var savePhotoButton: UIButton!
     @IBOutlet weak var addPhotoButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     
     @IBOutlet weak var secondView: UIView!
-    
     var managedContext: NSManagedObjectContext!
-    
     var hasPhotoBeenTaken = false // So that we can swap between Save and Add image
     
+    //MARK: Views
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Call the helper view so can round the borders
         displayForSecondView(view: self.secondView)
-        
         addCornerRadiusToButton(button: self.addPhotoButton)
         addCornerRadiusToButton(button: self.savePhotoButton)
         
@@ -36,56 +34,71 @@ class AddFriendViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool)  {
         super.viewWillAppear(true)
-        
-        // If photo has been taken, we can ask user if they wish to take again
+    }
+    
+    // This is called to change the buttton after a photo has been taken
+    override func viewDidLayoutSubviews() {
+        // Check if Phot oHas been taken
         if hasPhotoBeenTaken {
-//            addPhotoButton.titleLabel?.text = "Change Photo"
-//            addPhotoButton.setTitle("Change Photo", for: .normal)
-//            addPhotoButton.titleLabel?.font = UIFont.init(name: "Helvetica", size:18)
-            self.addPhotoButton.setImage(UIImage(named: "changephoto_hover"), for: .normal)
+            self.addPhotoButton.setTitle(NSLocalizedString("Change Photo", comment: "Button Title"), for: .normal)
             self.addPhotoButton.isOpaque = true
-            self.addPhotoButton.bounds.size = CGSize(width: savePhotoButton.bounds.width - 60, height: savePhotoButton.bounds.height - 10)
-            
             savePhotoButton.isHidden = false
             savePhotoButton.setNeedsFocusUpdate()
-//            addPhotoButton.contentMode = .scaleToFill
-        }
-        
-        testSampleCode()
-        // Do any additional setup after loading the view.
-    }
-    
-    
-    //TODO: - We can remove this soon
-    func testSampleCode() {
-
-        if managedContext == nil {
-            return
-            
-        }
-        
-        let request: NSFetchRequest<Friend> = Friend.fetchRequest()
-        
-        do {
-
-            let results = try managedContext.fetch(request)
-            
-            // Fetch List Records
-            for result in results {
-                
-                print(result.value(forKey: "name") ?? "no name")
-            }
-
-        } catch let error as NSError {
-            print("Could not fetch \(error), \(error.userInfo)")
         }
     }
-
-    // Get Image
+    
+    //MARK: Outlets and Actions
     @IBAction func addPhoto(_ sender: Any) {
         presentImagePicker()
         
     }
+    
+    @IBAction func exit(_ sender: Any) {
+        //If Photo taken, ask user if they are okay for leaving the screen. Otherwise just leave the screen.
+        if hasPhotoBeenTaken {
+            alertExitBeforeSave()
+        } else {
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+    }
+    
+    //MARK: Alerts
+    
+    // Gets called after pressing play
+    func alertExitBeforeSave() {
+
+        let actionSheet = UIAlertController(title: NSLocalizedString("Not Saved", comment: "Alert Title"), message: kDefaultExitBeforeSave, preferredStyle: .alert)
+
+        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: "Alert Title"), style: .default, handler: { action in
+            // Can leave the screen
+            self.dismiss(animated: true)
+            self.navigationController?.popToRootViewController(animated: true)
+
+        }))
+
+        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("No", comment: "Alert Title"), style: .cancel, handler: { action in
+               // Cancel button tappped.
+
+            self.dismiss(animated: true)
+        }))
+        // Present action sheet.
+
+        if UIDevice.current.userInterfaceIdiom == .pad {
+
+            if let currentPopoverpresentioncontroller = actionSheet.popoverPresentationController {
+                currentPopoverpresentioncontroller.permittedArrowDirections = []
+                currentPopoverpresentioncontroller.sourceRect = CGRect(x: (self.view.bounds.midX), y: (self.view.bounds.midY), width: 0, height: 0)
+                currentPopoverpresentioncontroller.sourceView = self.view
+
+                self.present(actionSheet, animated: true, completion: nil)
+            }
+            
+        } else {
+            self.present(actionSheet, animated: true, completion: nil)
+        }
+    }
+    
+    //MARK: Controllers
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let imageToPass = imageView.image {
@@ -101,29 +114,25 @@ class AddFriendViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-
 }
 
-
-// Set the view controller to delegate for the navvontroller and the imagepicker as we need both
 // MARK: - UINavigationControllerDelegate
+// Set the view controller to delegate for the navvontroller and the imagepicker as we need both
 extension AddFriendViewController: UINavigationControllerDelegate {
     
 }
-
 
 // MARK: - UIImagePickerControllerDelegate
 extension AddFriendViewController: UIImagePickerControllerDelegate {
     // We set this action sheet for the user to select some options from
     func presentImagePicker() {
         
-        let imagePickerActionSheet = UIAlertController(title: "Take Photo",
+        let imagePickerActionSheet = UIAlertController(title: NSLocalizedString("Take Photo", comment: "Picker Title"),
                                                        message: nil, preferredStyle: .actionSheet)
         
         // If the device has a camera add a Camera button to imagePickerActionSheet
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            let cameraButton = UIAlertAction(title: "Take Photo",
+            let cameraButton = UIAlertAction(title: NSLocalizedString("Take Photo", comment: "Picker Title"),
                                              style: .default) { (alert) -> Void in
                                                 let imagePicker = UIImagePickerController()
                                                 imagePicker.delegate = self
@@ -134,7 +143,7 @@ extension AddFriendViewController: UIImagePickerControllerDelegate {
             imagePickerActionSheet.addAction(cameraButton)
         }
         // Add a Choose Existing button for picking from the photo library
-        let libraryButton = UIAlertAction(title: "Choose Existing",
+        let libraryButton = UIAlertAction(title: NSLocalizedString("Access Photos", comment: "Picker Title"),
                                           style: .default) { (alert) -> Void in
                                             let imagePicker = UIImagePickerController()
                                             imagePicker.delegate = self
@@ -145,20 +154,31 @@ extension AddFriendViewController: UIImagePickerControllerDelegate {
         
         imagePickerActionSheet.addAction(libraryButton)
         
-        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancelButton = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Alert Title"), style: .cancel)
         imagePickerActionSheet.addAction(cancelButton)
         
         // *** Present your instance of UIAlertController
-        present(imagePickerActionSheet, animated: true)
+        // present(imagePickerActionSheet, animated: true)
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+
+            if let currentPopoverpresentioncontroller = imagePickerActionSheet.popoverPresentationController {
+            currentPopoverpresentioncontroller.permittedArrowDirections = []
+                currentPopoverpresentioncontroller.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+                currentPopoverpresentioncontroller.sourceView = self.view
+
+                self.present(imagePickerActionSheet, animated: true, completion: nil)
+            }
+            
+        } else {
+            self.present(imagePickerActionSheet, animated: true, completion: nil)
+        }
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 
         // Local variable inserted by Swift 4.2 migrator.
         let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
-
-        print("didFinishPickingMediaWithInfo")
-
         if let img = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as? UIImage {
             let roundedImage = img.roundedImage()
             imageView.image = roundedImage
@@ -167,13 +187,10 @@ extension AddFriendViewController: UIImagePickerControllerDelegate {
         else if let img = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage {
             imageView.image = img
         }
-        
         hasPhotoBeenTaken = true
         dismiss(animated: true, completion: nil)
-        
     }
 }
-
 
 // Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
