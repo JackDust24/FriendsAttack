@@ -1,0 +1,147 @@
+
+/* Class = "UIButton"; normalTitle = "+"; ObjectID = "0lT-hO-8i9"; */
+"0lT-hO-8i9.normalTitle" = "+";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "1yM-wQ-LMg"; */
+"1yM-wQ-LMg.text" = "0";
+
+/* Class = "UILabel"; text = "Game Level"; ObjectID = "2X0-X0-f4i"; */
+"2X0-X0-f4i.text" = "ระดับเกม";
+
+/* Class = "UILabel"; text = "Friends List"; ObjectID = "2rU-UC-10I"; */
+"2rU-UC-10I.text" = "รายชื่อเพื่อน";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "3xu-M3-t3q"; */
+"3xu-M3-t3q.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "RESET"; ObjectID = "5St-M3-KAU"; */
+"5St-M3-KAU.normalTitle" = "รีเซ็ต";
+
+/* Class = "UILabel"; text = "00:00"; ObjectID = "5u7-uj-Uo1"; */
+"5u7-uj-Uo1.text" = "00:00";
+
+/* Class = "UIButton"; normalTitle = "Start"; ObjectID = "6ZZ-G9-9mb"; */
+"6ZZ-G9-9mb.normalTitle" = "เริ่มต้น";
+
+/* Class = "UILabel"; text = "Scores"; ObjectID = "8Nb-0W-7Kl"; */
+"8Nb-0W-7Kl.text" = "คะแนน";
+
+/* Class = "UILabel"; text = "Most Killed Friend ->"; ObjectID = "8iu-Uv-j16"; */
+"8iu-Uv-j16.text" = "เพื่อนที่ถูกฆ่ามากที่สุด ->";
+
+/* Class = "UILabel"; text = "Kills"; ObjectID = "91j-5K-fld"; */
+"91j-5K-fld.text" = "ฆ่า";
+
+/* Class = "UILabel"; text = "Game Overview"; ObjectID = "A3B-Cn-lRy"; */
+"A3B-Cn-lRy.text" = "ภาพรวมของเกม";
+
+/* Class = "UILabel"; text = "Game Settings"; ObjectID = "CI1-wA-9k8"; */
+"CI1-wA-9k8.text" = "ตั้งค่าเกม";
+
+/* Class = "UILabel"; text = "Total Kills: "; ObjectID = "F6h-GH-eVt"; */
+"F6h-GH-eVt.text" = "ฆ่ารวม: ";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Hs8-Fb-bJd"; */
+"Hs8-Fb-bJd.text" = "0";
+
+/* Class = "UILabel"; text = "Killed Amount"; ObjectID = "HzQ-lV-StV"; */
+"HzQ-lV-StV.text" = "จำนวนเงินที่ถูกฆ่า";
+
+/* Class = "UILabel"; text = "Game Kills:"; ObjectID = "Iau-Uf-LA2"; */
+"Iau-Uf-LA2.text" = "เกมฆ่า:";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "K8o-ox-HzT"; */
+"K8o-ox-HzT.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "RESET"; ObjectID = "NmF-2g-ffC"; */
+"NmF-2g-ffC.normalTitle" = "รีเซ็ต";
+
+/* Class = "UILabel"; text = "Game Points:"; ObjectID = "P0k-XG-OZV"; */
+"P0k-XG-OZV.text" = "คะแนนเกม:";
+
+/* Class = "UILabel"; text = "Friends Attack"; ObjectID = "P3P-9W-u9G"; */
+"P3P-9W-u9G.text" = "เพื่อนโจมตี";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "PoF-Lv-Ums"; */
+"PoF-Lv-Ums.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "SAVE PHOTO"; ObjectID = "QVk-KL-fhr"; */
+"QVk-KL-fhr.normalTitle" = "บันทึกรุปภาพ";
+
+/* Class = "UILabel"; text = " Friends Attack"; ObjectID = "SDw-I7-xW2"; */
+"SDw-I7-xW2.text" = "เพื่อนโจมตี";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "SGZ-tI-ZpF"; */
+"SGZ-tI-ZpF.text" = "ชื่อ";
+
+/* Class = "UILabel"; text = "Name:"; ObjectID = "SHX-HO-NfP"; */
+"SHX-HO-NfP.text" = "ชื่อ:";
+
+/* Class = "UILabel"; text = "Add Friend"; ObjectID = "Tq8-se-IIw"; */
+"Tq8-se-IIw.text" = "เพิ่มเพื่อน";
+
+/* Class = "UILabel"; text = "Total Points"; ObjectID = "ZhS-P9-weg"; */
+"ZhS-P9-weg.text" = "แต้มรวมทั้งหมด";
+
+/* Class = "UILabel"; text = "Points"; ObjectID = "Zi1-lE-yf1"; */
+"Zi1-lE-yf1.text" = "จุด";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "aiZ-7H-KBI"; */
+"aiZ-7H-KBI.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "SHARE"; ObjectID = "b02-GS-AM5"; */
+"b02-GS-AM5.normalTitle" = "หุ้น";
+
+/* Class = "UITextField"; placeholder = "Name"; ObjectID = "dSa-Nr-sRE"; */
+"dSa-Nr-sRE.placeholder" = "ชื่อ";
+
+/* Class = "UIButton"; normalTitle = "Dismiss"; ObjectID = "e8D-N9-B0B"; */
+"e8D-N9-B0B.normalTitle" = "ยกเลิก";
+
+/* Class = "UILabel"; text = "Friend"; ObjectID = "ewh-bH-rgA"; */
+"ewh-bH-rgA.text" = "เพื่อน";
+
+/* Class = "UILabel"; text = "Total Points:"; ObjectID = "fOP-YV-dfG"; */
+"fOP-YV-dfG.text" = "แต้มรวมทั้งหมด:";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "jWi-RT-Jia"; */
+"jWi-RT-Jia.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "ADD"; ObjectID = "ja3-aR-Qc2"; */
+"ja3-aR-Qc2.normalTitle" = "เพิ่ม";
+
+/* Class = "UIButton"; normalTitle = "SAVE"; ObjectID = "jaT-Xj-GfB"; */
+"jaT-Xj-GfB.normalTitle" = "บันทึก";
+
+/* Class = "UIButton"; normalTitle = "Exit"; ObjectID = "mWv-T5-xn8"; */
+"mWv-T5-xn8.normalTitle" = "ทางออก";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "n2F-Bd-xe1"; */
+"n2F-Bd-xe1.text" = "0";
+
+/* Class = "UILabel"; text = "Total Kills"; ObjectID = "oDC-yM-YZ9"; */
+"oDC-yM-YZ9.text" = "ฆ่ารวม";
+
+/* Class = "UITextView"; text = "A game by iHawk Visions"; ObjectID = "oEi-No-kHu"; */
+"oEi-No-kHu.text" = "เกมโดย iHawk Visions";
+
+/* Class = "UILabel"; text = "Add up to 10 Friends"; ObjectID = "oNF-MM-gyq"; */
+"oNF-MM-gyq.text" = "เพิ่มเป็น10เพื่อน";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "qcv-3t-Lkk"; */
+"qcv-3t-Lkk.text" = "0";
+
+/* Class = "UILabel"; text = "Add Details"; ObjectID = "sgk-Qm-To0"; */
+"sgk-Qm-To0.text" = "เพิ่มรายละเอียด";
+
+/* Class = "UITextView"; text = "Special thanks to:\n\nFreepik for his profile icons at https://www.flaticon.com/authors/freepik."; ObjectID = "tTV-TV-IFB"; */
+"tTV-TV-IFB.text" = "ขอขอบคุณเป็นพิเศษกับ:\n\nFreepik  https://www.flaticon.com/authors/freepik.";
+
+/* Class = "UILabel"; text = "Friends"; ObjectID = "uY8-wU-lIF"; */
+"uY8-wU-lIF.text" = "เพื่อน";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "wh8-aK-iAQ"; */
+"wh8-aK-iAQ.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "xte-wk-69t"; */
+"xte-wk-69t.text" = "0";

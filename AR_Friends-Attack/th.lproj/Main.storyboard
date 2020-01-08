@@ -1,0 +1,147 @@
+
+/* Class = "UIButton"; normalTitle = "+"; ObjectID = "0lT-hO-8i9"; */
+"0lT-hO-8i9.normalTitle" = "+";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "1yM-wQ-LMg"; */
+"1yM-wQ-LMg.text" = "0";
+
+/* Class = "UILabel"; text = "Game Level"; ObjectID = "2X0-X0-f4i"; */
+"2X0-X0-f4i.text" = "Game Level";
+
+/* Class = "UILabel"; text = "Friends List"; ObjectID = "2rU-UC-10I"; */
+"2rU-UC-10I.text" = "Friends List";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "3xu-M3-t3q"; */
+"3xu-M3-t3q.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "RESET"; ObjectID = "5St-M3-KAU"; */
+"5St-M3-KAU.normalTitle" = "RESET";
+
+/* Class = "UILabel"; text = "00:00"; ObjectID = "5u7-uj-Uo1"; */
+"5u7-uj-Uo1.text" = "00:00";
+
+/* Class = "UIButton"; normalTitle = "Start"; ObjectID = "6ZZ-G9-9mb"; */
+"6ZZ-G9-9mb.normalTitle" = "Start";
+
+/* Class = "UILabel"; text = "Scores"; ObjectID = "8Nb-0W-7Kl"; */
+"8Nb-0W-7Kl.text" = "Scores";
+
+/* Class = "UILabel"; text = "Most Killed Friend ->"; ObjectID = "8iu-Uv-j16"; */
+"8iu-Uv-j16.text" = "Most Killed Friend ->";
+
+/* Class = "UILabel"; text = "Kills"; ObjectID = "91j-5K-fld"; */
+"91j-5K-fld.text" = "Kills";
+
+/* Class = "UILabel"; text = "Game Overview"; ObjectID = "A3B-Cn-lRy"; */
+"A3B-Cn-lRy.text" = "Game Overview";
+
+/* Class = "UILabel"; text = "Game Settings"; ObjectID = "CI1-wA-9k8"; */
+"CI1-wA-9k8.text" = "Game Settings";
+
+/* Class = "UILabel"; text = "Total Kills: "; ObjectID = "F6h-GH-eVt"; */
+"F6h-GH-eVt.text" = "Total Kills: ";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Hs8-Fb-bJd"; */
+"Hs8-Fb-bJd.text" = "0";
+
+/* Class = "UILabel"; text = "Killed Amount"; ObjectID = "HzQ-lV-StV"; */
+"HzQ-lV-StV.text" = "Killed Amount";
+
+/* Class = "UILabel"; text = "Game Kills:"; ObjectID = "Iau-Uf-LA2"; */
+"Iau-Uf-LA2.text" = "Game Kills:";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "K8o-ox-HzT"; */
+"K8o-ox-HzT.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "RESET"; ObjectID = "NmF-2g-ffC"; */
+"NmF-2g-ffC.normalTitle" = "RESET";
+
+/* Class = "UILabel"; text = "Game Points:"; ObjectID = "P0k-XG-OZV"; */
+"P0k-XG-OZV.text" = "Game Points:";
+
+/* Class = "UILabel"; text = "Friends Attack"; ObjectID = "P3P-9W-u9G"; */
+"P3P-9W-u9G.text" = "Friends Attack";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "PoF-Lv-Ums"; */
+"PoF-Lv-Ums.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "SAVE PHOTO"; ObjectID = "QVk-KL-fhr"; */
+"QVk-KL-fhr.normalTitle" = "SAVE PHOTO";
+
+/* Class = "UILabel"; text = " Friends Attack"; ObjectID = "SDw-I7-xW2"; */
+"SDw-I7-xW2.text" = " Friends Attack";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "SGZ-tI-ZpF"; */
+"SGZ-tI-ZpF.text" = "Name";
+
+/* Class = "UILabel"; text = "Name:"; ObjectID = "SHX-HO-NfP"; */
+"SHX-HO-NfP.text" = "Name:";
+
+/* Class = "UILabel"; text = "Add Friend"; ObjectID = "Tq8-se-IIw"; */
+"Tq8-se-IIw.text" = "Add Friend";
+
+/* Class = "UILabel"; text = "Total Points"; ObjectID = "ZhS-P9-weg"; */
+"ZhS-P9-weg.text" = "Total Points";
+
+/* Class = "UILabel"; text = "Points"; ObjectID = "Zi1-lE-yf1"; */
+"Zi1-lE-yf1.text" = "Points";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "aiZ-7H-KBI"; */
+"aiZ-7H-KBI.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "SHARE"; ObjectID = "b02-GS-AM5"; */
+"b02-GS-AM5.normalTitle" = "SHARE";
+
+/* Class = "UITextField"; placeholder = "Name"; ObjectID = "dSa-Nr-sRE"; */
+"dSa-Nr-sRE.placeholder" = "Name";
+
+/* Class = "UIButton"; normalTitle = "Dismiss"; ObjectID = "e8D-N9-B0B"; */
+"e8D-N9-B0B.normalTitle" = "Dismiss";
+
+/* Class = "UILabel"; text = "Friend"; ObjectID = "ewh-bH-rgA"; */
+"ewh-bH-rgA.text" = "Friend";
+
+/* Class = "UILabel"; text = "Total Points:"; ObjectID = "fOP-YV-dfG"; */
+"fOP-YV-dfG.text" = "Total Points:";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "jWi-RT-Jia"; */
+"jWi-RT-Jia.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "ADD"; ObjectID = "ja3-aR-Qc2"; */
+"ja3-aR-Qc2.normalTitle" = "ADD";
+
+/* Class = "UIButton"; normalTitle = "SAVE"; ObjectID = "jaT-Xj-GfB"; */
+"jaT-Xj-GfB.normalTitle" = "SAVE";
+
+/* Class = "UIButton"; normalTitle = "Exit"; ObjectID = "mWv-T5-xn8"; */
+"mWv-T5-xn8.normalTitle" = "Exit";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "n2F-Bd-xe1"; */
+"n2F-Bd-xe1.text" = "0";
+
+/* Class = "UILabel"; text = "Total Kills"; ObjectID = "oDC-yM-YZ9"; */
+"oDC-yM-YZ9.text" = "Total Kills";
+
+/* Class = "UITextView"; text = "A game by iHawk Visions"; ObjectID = "oEi-No-kHu"; */
+"oEi-No-kHu.text" = "A game by iHawk Visions";
+
+/* Class = "UILabel"; text = "Add up to 10 Friends"; ObjectID = "oNF-MM-gyq"; */
+"oNF-MM-gyq.text" = "Add up to 10 Friends";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "qcv-3t-Lkk"; */
+"qcv-3t-Lkk.text" = "0";
+
+/* Class = "UILabel"; text = "Add Details"; ObjectID = "sgk-Qm-To0"; */
+"sgk-Qm-To0.text" = "Add Details";
+
+/* Class = "UITextView"; text = "Special thanks to:\n\nFreepik for his profile icons at https://www.flaticon.com/authors/freepik."; ObjectID = "tTV-TV-IFB"; */
+"tTV-TV-IFB.text" = "Special thanks to:\n\nFreepik for his profile icons at https://www.flaticon.com/authors/freepik.";
+
+/* Class = "UILabel"; text = "Friends"; ObjectID = "uY8-wU-lIF"; */
+"uY8-wU-lIF.text" = "Friends";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "wh8-aK-iAQ"; */
+"wh8-aK-iAQ.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "xte-wk-69t"; */
+"xte-wk-69t.text" = "0";

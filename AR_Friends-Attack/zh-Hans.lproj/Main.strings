@@ -1,0 +1,147 @@
+
+/* Class = "UIButton"; normalTitle = "+"; ObjectID = "0lT-hO-8i9"; */
+"0lT-hO-8i9.normalTitle" = "+";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "1yM-wQ-LMg"; */
+"1yM-wQ-LMg.text" = "0";
+
+/* Class = "UILabel"; text = "Game Level"; ObjectID = "2X0-X0-f4i"; */
+"2X0-X0-f4i.text" = "游戏等级";
+
+/* Class = "UILabel"; text = "Friends List"; ObjectID = "2rU-UC-10I"; */
+"2rU-UC-10I.text" = "好友清单";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "3xu-M3-t3q"; */
+"3xu-M3-t3q.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "RESET"; ObjectID = "5St-M3-KAU"; */
+"5St-M3-KAU.normalTitle" = "重启";
+
+/* Class = "UILabel"; text = "00:00"; ObjectID = "5u7-uj-Uo1"; */
+"5u7-uj-Uo1.text" = "00:00";
+
+/* Class = "UIButton"; normalTitle = "Start"; ObjectID = "6ZZ-G9-9mb"; */
+"6ZZ-G9-9mb.normalTitle" = "开始";
+
+/* Class = "UILabel"; text = "Scores"; ObjectID = "8Nb-0W-7Kl"; */
+"8Nb-0W-7Kl.text" = "分数";
+
+/* Class = "UILabel"; text = "Most Killed Friend ->"; ObjectID = "8iu-Uv-j16"; */
+"8iu-Uv-j16.text" = "杀死最多的朋友 ->";
+
+/* Class = "UILabel"; text = "Kills"; ObjectID = "91j-5K-fld"; */
+"91j-5K-fld.text" = "杀死";
+
+/* Class = "UILabel"; text = "Game Overview"; ObjectID = "A3B-Cn-lRy"; */
+"A3B-Cn-lRy.text" = "游戏总览";
+
+/* Class = "UILabel"; text = "Game Settings"; ObjectID = "CI1-wA-9k8"; */
+"CI1-wA-9k8.text" = "游戏设置";
+
+/* Class = "UILabel"; text = "Total Kills: "; ObjectID = "F6h-GH-eVt"; */
+"F6h-GH-eVt.text" = "击杀总数：";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Hs8-Fb-bJd"; */
+"Hs8-Fb-bJd.text" = "0";
+
+/* Class = "UILabel"; text = "Killed Amount"; ObjectID = "HzQ-lV-StV"; */
+"HzQ-lV-StV.text" = "杀死数量";
+
+/* Class = "UILabel"; text = "Game Kills:"; ObjectID = "Iau-Uf-LA2"; */
+"Iau-Uf-LA2.text" = "游戏杀死：";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "K8o-ox-HzT"; */
+"K8o-ox-HzT.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "RESET"; ObjectID = "NmF-2g-ffC"; */
+"NmF-2g-ffC.normalTitle" = "重启";
+
+/* Class = "UILabel"; text = "Game Points:"; ObjectID = "P0k-XG-OZV"; */
+"P0k-XG-OZV.text" = "游戏积分：";
+
+/* Class = "UILabel"; text = "Friends Attack"; ObjectID = "P3P-9W-u9G"; */
+"P3P-9W-u9G.text" = "好友攻击";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "PoF-Lv-Ums"; */
+"PoF-Lv-Ums.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "SAVE PHOTO"; ObjectID = "QVk-KL-fhr"; */
+"QVk-KL-fhr.normalTitle" = "保存照片";
+
+/* Class = "UILabel"; text = " Friends Attack"; ObjectID = "SDw-I7-xW2"; */
+"SDw-I7-xW2.text" = "好友攻击";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "SGZ-tI-ZpF"; */
+"SGZ-tI-ZpF.text" = "名称";
+
+/* Class = "UILabel"; text = "Name:"; ObjectID = "SHX-HO-NfP"; */
+"SHX-HO-NfP.text" = "名称：";
+
+/* Class = "UILabel"; text = "Add Friend"; ObjectID = "Tq8-se-IIw"; */
+"Tq8-se-IIw.text" = "添加好友";
+
+/* Class = "UILabel"; text = "Total Points"; ObjectID = "ZhS-P9-weg"; */
+"ZhS-P9-weg.text" = "总积分";
+
+/* Class = "UILabel"; text = "Points"; ObjectID = "Zi1-lE-yf1"; */
+"Zi1-lE-yf1.text" = "点数";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "aiZ-7H-KBI"; */
+"aiZ-7H-KBI.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "SHARE"; ObjectID = "b02-GS-AM5"; */
+"b02-GS-AM5.normalTitle" = "分享";
+
+/* Class = "UITextField"; placeholder = "Name"; ObjectID = "dSa-Nr-sRE"; */
+"dSa-Nr-sRE.placeholder" = "名称";
+
+/* Class = "UIButton"; normalTitle = "Dismiss"; ObjectID = "e8D-N9-B0B"; */
+"e8D-N9-B0B.normalTitle" = "离开";
+
+/* Class = "UILabel"; text = "Friend"; ObjectID = "ewh-bH-rgA"; */
+"ewh-bH-rgA.text" = "好友";
+
+/* Class = "UILabel"; text = "Total Points:"; ObjectID = "fOP-YV-dfG"; */
+"fOP-YV-dfG.text" = "总积分：";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "jWi-RT-Jia"; */
+"jWi-RT-Jia.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "ADD"; ObjectID = "ja3-aR-Qc2"; */
+"ja3-aR-Qc2.normalTitle" = "加";
+
+/* Class = "UIButton"; normalTitle = "SAVE"; ObjectID = "jaT-Xj-GfB"; */
+"jaT-Xj-GfB.normalTitle" = "保存";
+
+/* Class = "UIButton"; normalTitle = "Exit"; ObjectID = "mWv-T5-xn8"; */
+"mWv-T5-xn8.normalTitle" = "退出";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "n2F-Bd-xe1"; */
+"n2F-Bd-xe1.text" = "0";
+
+/* Class = "UILabel"; text = "Total Kills"; ObjectID = "oDC-yM-YZ9"; */
+"oDC-yM-YZ9.text" = "击杀总数";
+
+/* Class = "UITextView"; text = "A game by iHawk Visions"; ObjectID = "oEi-No-kHu"; */
+"oEi-No-kHu.text" = "iHawk Visions的游戏";
+
+/* Class = "UILabel"; text = "Add up to 10 Friends"; ObjectID = "oNF-MM-gyq"; */
+"oNF-MM-gyq.text" = "最多添加10个朋友";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "qcv-3t-Lkk"; */
+"qcv-3t-Lkk.text" = "0";
+
+/* Class = "UILabel"; text = "Add Details"; ObjectID = "sgk-Qm-To0"; */
+"sgk-Qm-To0.text" = "添加详细信息";
+
+/* Class = "UITextView"; text = "Special thanks to:\n\nFreepik for his profile icons at https://www.flaticon.com/authors/freepik."; ObjectID = "tTV-TV-IFB"; */
+"tTV-TV-IFB.text" = " 特别感谢：\n\nFreepik  https://www.flaticon.com/authors/freepik.";
+
+/* Class = "UILabel"; text = "Friends"; ObjectID = "uY8-wU-lIF"; */
+"uY8-wU-lIF.text" = "好友";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "wh8-aK-iAQ"; */
+"wh8-aK-iAQ.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "xte-wk-69t"; */
+"xte-wk-69t.text" = "0";
