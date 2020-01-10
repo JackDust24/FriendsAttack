@@ -136,7 +136,7 @@ class ScoreViewController: UIViewController {
         self.backButton.isHidden = true
         self.headerLabel.adjustsFontSizeToFitWidth = true
         self.headerLabel.font.withSize(22.0)
-        self.headerLabel.text = NSLocalizedString("FriendsAttack Scores", comment: "Header Label")
+        self.headerLabel.text = NSLocalizedString("Friends Attack Scores", comment: "Header Label")
         self.view.setNeedsDisplay()
         
         // 2. Get image
@@ -145,7 +145,7 @@ class ScoreViewController: UIViewController {
         // 3. Check if image is not nil
         if let imageCreated = image {
             var activityItems: [AnyObject]?
-            let postText = NSLocalizedString("This Is My Score On FriendsAttack.", comment: "Post message")
+            let postText = NSLocalizedString("This Is My Score On Friends Attack.", comment: "Post message")
             activityItems = [postText as AnyObject, imageCreated]
             let activityController = UIActivityViewController(activityItems: activityItems!, applicationActivities: nil)
             

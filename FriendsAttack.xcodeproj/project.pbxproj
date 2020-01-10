@@ -41,11 +41,11 @@
 		9E8601ED233A7A970093219A /* UIKit.framework in Resources */ = {isa = PBXBuildFile; fileRef = 9E8601EB233A798B0093219A /* UIKit.framework */; };
 		9E8601EE233A7AB40093219A /* AR_Friends_AttackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8601D0233A17BF0093219A /* AR_Friends_AttackTests.swift */; };
 		9E8B89E923C5AF81003A5E14 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9E8B89EB23C5AF81003A5E14 /* Localizable.strings */; };
+		9E96739523C76F5000688841 /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E96739423C76F4800688841 /* Impact.ttf */; };
+		9E96739623C76F5300688841 /* GameCube.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E96739323C76F4800688841 /* GameCube.ttf */; };
 		9E9E6A00238E5EA90017D1B5 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9E69FF238E5EA90017D1B5 /* InfoViewController.swift */; };
 		9EB97CEF21BD2DC2009ED736 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB97CEE21BD2DC2009ED736 /* Extensions.swift */; };
 		9EBD7F9F21201A5A001B0C81 /* AddFriendSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBD7F9E21201A5A001B0C81 /* AddFriendSecondViewController.swift */; };
-		9EBF1A3923C224B400ED056E /* Jack in the Box.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EBF1A3723C224B400ED056E /* Jack in the Box.ttf */; };
-		9EBF1A3A23C224B400ED056E /* Jack in the BoxRegular👪.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EBF1A3823C224B400ED056E /* Jack in the BoxRegular👪.png */; };
 		9EC06F7720DE265A00138175 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC06F7620DE265A00138175 /* GameManager.swift */; };
 		9ECD8EA7234C998F009FF474 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ECD8EA5234C998F009FF474 /* TableViewCell.xib */; };
 		9EDC97912121A6AF008B2EAD /* FriendsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9EDC978D212179EF008B2EAD /* FriendsModel.xcdatamodeld */; };
@@ -118,13 +118,13 @@
 		9E8B89F323C5C665003A5E14 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		9E8B89F423C5C665003A5E14 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
 		9E8B89F523C5C665003A5E14 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9E96738F23C7364100688841 /* GameCube.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = GameCube.ttf; path = ../../../Downloads/GameCube.ttf; sourceTree = "<group>"; };
+		9E96739023C745C400688841 /* Impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Impact.ttf; path = ../../../../../System/Library/Fonts/Supplemental/Impact.ttf; sourceTree = "<group>"; };
+		9E96739323C76F4800688841 /* GameCube.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GameCube.ttf; sourceTree = "<group>"; };
+		9E96739423C76F4800688841 /* Impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Impact.ttf; sourceTree = "<group>"; };
 		9E9E69FF238E5EA90017D1B5 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		9EB97CEE21BD2DC2009ED736 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9EBD7F9E21201A5A001B0C81 /* AddFriendSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendSecondViewController.swift; sourceTree = "<group>"; };
-		9EBF1A3723C224B400ED056E /* Jack in the Box.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Jack in the Box.ttf"; path = "../../UndeadRevenge/UndeadRevenge/Jack in the Box.ttf"; sourceTree = "<group>"; };
-		9EBF1A3823C224B400ED056E /* Jack in the BoxRegular👪.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Jack in the BoxRegular👪.png"; path = "../../../Library/Containers/com.microsoft.Word/Data/Library/Application Support/Microsoft/FontPreviewCache/en-US/Jack in the BoxRegular👪.png"; sourceTree = "<group>"; };
-		9EBF1A3B23C2F93E00ED056E /* Jack in the BoxRegular👪.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Jack in the BoxRegular👪.png"; sourceTree = "<group>"; };
-		9EBF1A3C23C2F93E00ED056E /* Jack in the Box.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jack in the Box.ttf"; sourceTree = "<group>"; };
 		9EC06F7620DE265A00138175 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		9ECD8EA5234C998F009FF474 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		9EDC978E212179EF008B2EAD /* FriendsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FriendsModel.xcdatamodel; sourceTree = "<group>"; };
@@ -211,8 +211,8 @@
 				9E86D10023A7585000469BD4 /* Views */,
 				9E21894C20DC7B43008997FB /* Assets.xcassets */,
 				9E21895120DC7B43008997FB /* Info.plist */,
-				9EBF1A3723C224B400ED056E /* Jack in the Box.ttf */,
-				9EBF1A3823C224B400ED056E /* Jack in the BoxRegular👪.png */,
+				9E96738F23C7364100688841 /* GameCube.ttf */,
+				9E96739023C745C400688841 /* Impact.ttf */,
 				9E21894E20DC7B43008997FB /* LaunchScreen.storyboard */,
 				9E21894920DC7B41008997FB /* Main.storyboard */,
 				9E21895720DC7C3C008997FB /* target.scnassets */,
@@ -233,6 +233,8 @@
 			isa = PBXGroup;
 			children = (
 				9E493CC0228D36AA0081FB0D /* ComicNeue-Angular-Regular.otf */,
+				9E96739323C76F4800688841 /* GameCube.ttf */,
+				9E96739423C76F4800688841 /* Impact.ttf */,
 				9E493CC4228D36AB0081FB0D /* ComicNeue-Angular_Bold.otf */,
 				9E493CBE228D36AA0081FB0D /* ComicNeue-Angular_Bold_Oblique.otf */,
 				9E493CC2228D36AB0081FB0D /* ComicNeue-Angular_Light.otf */,
@@ -244,8 +246,6 @@
 				9E493CC5228D36AB0081FB0D /* ComicNeue_Light.otf */,
 				9E493CBF228D36AA0081FB0D /* ComicNeue_Light_Oblique.otf */,
 				9E493CBD228D36AA0081FB0D /* ComicNeue_Oblique.otf */,
-				9EBF1A3C23C2F93E00ED056E /* Jack in the Box.ttf */,
-				9EBF1A3B23C2F93E00ED056E /* Jack in the BoxRegular👪.png */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -391,18 +391,18 @@
 			files = (
 				9E493CD2228D36AB0081FB0D /* ComicNeue-Angular_Light_Oblique.otf in Resources */,
 				9ECD8EA7234C998F009FF474 /* TableViewCell.xib in Resources */,
-				9EBF1A3A23C224B400ED056E /* Jack in the BoxRegular👪.png in Resources */,
 				9E493CD0228D36AB0081FB0D /* ComicNeue-Angular_Bold.otf in Resources */,
 				9E493CCE228D36AB0081FB0D /* ComicNeue-Angular_Light.otf in Resources */,
 				9E21895020DC7B43008997FB /* LaunchScreen.storyboard in Resources */,
 				9E365143239FB9EE00534569 /* explosion.mp4 in Resources */,
-				9EBF1A3923C224B400ED056E /* Jack in the Box.ttf in Resources */,
+				9E96739623C76F5300688841 /* GameCube.ttf in Resources */,
 				9E21894D20DC7B43008997FB /* Assets.xcassets in Resources */,
 				9E493CCC228D36AB0081FB0D /* ComicNeue-Angular-Regular.otf in Resources */,
 				9E8B89E923C5AF81003A5E14 /* Localizable.strings in Resources */,
 				9E493CCB228D36AB0081FB0D /* ComicNeue_Light_Oblique.otf in Resources */,
 				9E493CCA228D36AB0081FB0D /* ComicNeue-Angular_Bold_Oblique.otf in Resources */,
 				9E493CCD228D36AB0081FB0D /* ComicNeue_Bold_Oblique.otf in Resources */,
+				9E96739523C76F5000688841 /* Impact.ttf in Resources */,
 				9E365142239FB9EE00534569 /* shoot.mp4 in Resources */,
 				9E21895820DC7C3C008997FB /* target.scnassets in Resources */,
 				9E493CC8228D36AB0081FB0D /* ComicNeue-Regular.otf in Resources */,
@@ -627,7 +627,7 @@
 		9E21895520DC7B43008997FB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EUFCY3UFR6;
@@ -648,7 +648,7 @@
 		9E21895620DC7B43008997FB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EUFCY3UFR6;

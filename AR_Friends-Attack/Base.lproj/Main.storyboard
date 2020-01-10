@@ -7,8 +7,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Jack in the Box.ttf">
-            <string>JackintheBox</string>
+        <array key="GameCube.ttf">
+            <string>GAMECUBENDualSet</string>
+        </array>
+        <array key="Impact.ttf">
+            <string>Impact</string>
         </array>
     </customFonts>
     <scenes>
@@ -39,12 +42,12 @@
                                 <rect key="frame" x="30" y="20" width="315" height="627"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Most Killed Friend -&gt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8iu-Uv-j16">
-                                        <rect key="frame" x="24.5" y="184" width="266.5" height="30"/>
+                                        <rect key="frame" x="32.5" y="184" width="250" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="Gc9-SV-iDz"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="lew-6s-7gk"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="JackintheBox" family="Jack in the Box" pointSize="20"/>
+                                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="26"/>
                                         <color key="textColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -53,7 +56,7 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Kills" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oDC-yM-YZ9">
                                                 <rect key="frame" x="0.0" y="0.0" width="125" height="30"/>
-                                                <fontDescription key="fontDescription" name="JackintheBox" family="Jack in the Box" pointSize="16"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -76,7 +79,7 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZhS-P9-weg">
                                                 <rect key="frame" x="0.0" y="0.0" width="125" height="30"/>
-                                                <fontDescription key="fontDescription" name="JackintheBox" family="Jack in the Box" pointSize="16"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -99,33 +102,33 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="Knc-gF-FLj"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="JackintheBox" family="Jack in the Box" pointSize="19"/>
+                                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="30"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <size key="shadowOffset" width="2" height="-6"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friend" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ewh-bH-rgA">
-                                        <rect key="frame" x="37.5" y="244" width="240" height="30"/>
+                                        <rect key="frame" x="37.5" y="246" width="240" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="HHj-z8-vD0"/>
                                             <constraint firstAttribute="height" constant="30" id="n6I-Gd-zWC"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="JackintheBox" family="Jack in the Box" pointSize="20"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                         <color key="textColor" red="0.25882352941176467" green="0.90196078431372551" blue="0.64313725490196072" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qcv-3t-Lkk">
-                                        <rect key="frame" x="37.5" y="284" width="240" height="30"/>
+                                        <rect key="frame" x="37.5" y="286" width="240" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="6Ra-ji-OSf"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="tfx-L5-Mcp"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="JackintheBox" family="Jack in the Box" pointSize="15"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nck-vc-F6P">
-                                        <rect key="frame" x="75.5" y="324" width="164" height="164"/>
+                                        <rect key="frame" x="75.5" y="326" width="164" height="164"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="164" id="1SF-H8-8Ye"/>
                                             <constraint firstAttribute="height" constant="164" id="6jn-L7-Tg4"/>
@@ -143,11 +146,12 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b02-GS-AM5">
-                                        <rect key="frame" x="75.5" y="520" width="164" height="44"/>
+                                        <rect key="frame" x="75.5" y="522" width="164" height="44"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="krT-PH-Wue"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="22"/>
                                         <state key="normal" title="SHARE">
                                             <color key="titleColor" red="0.035294117647058823" green="0.19215686274509802" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -221,28 +225,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x5z-wu-yxj">
                                 <rect key="frame" x="20" y="20" width="335" height="627"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y5P-0h-Q6d">
-                                        <rect key="frame" x="17.5" y="283.5" width="300" height="60"/>
-                                        <color key="backgroundColor" red="0.13333333333333333" green="0.41960784313725491" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="FUz-G0-Gps"/>
-                                            <constraint firstAttribute="height" constant="60" id="iaI-1y-Wyy"/>
-                                        </constraints>
-                                        <state key="normal" image="play_normal">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="playPressed:" destination="47f-za-7LQ" eventType="touchUpInside" id="5os-s6-3aw"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V17-p8-6GM">
-                                        <rect key="frame" x="47.5" y="383.5" width="240" height="54"/>
+                                        <rect key="frame" x="60" y="383.5" width="215" height="54"/>
                                         <color key="backgroundColor" red="0.1333333333" green="0.41960784309999999" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="HJ4-AJ-mqL"/>
                                             <constraint firstAttribute="height" constant="54" id="acH-0i-b8U"/>
                                         </constraints>
-                                        <state key="normal" image="friends_normal.png">
+                                        <state key="normal" image="FRIENDS">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -250,22 +240,22 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WoM-bC-dZz">
-                                        <rect key="frame" x="47.5" y="467.5" width="240" height="54"/>
+                                        <rect key="frame" x="60" y="467.5" width="215" height="54"/>
                                         <color key="backgroundColor" red="0.1333333333" green="0.41960784309999999" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="54" id="Au0-ef-5ue"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="MBh-lz-LRE"/>
                                         </constraints>
-                                        <state key="normal" image="scores_normal">
+                                        <state key="normal" image="SCORES">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <segue destination="0CM-13-v3K" kind="show" identifier="showScores" id="BcS-i8-nd5"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friends Attack" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P3P-9W-u9G">
-                                        <rect key="frame" x="20" y="60" width="295" height="73.5"/>
-                                        <fontDescription key="fontDescription" name="JackintheBox" family="Jack in the Box" pointSize="29"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FRIENDS ATTACK" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P3P-9W-u9G">
+                                        <rect key="frame" x="20" y="60" width="295" height="120"/>
+                                        <fontDescription key="fontDescription" name="GAMECUBENDualSet" family="GAMECUBEN" pointSize="37"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -274,8 +264,8 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="nzZ-UT-17a"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="JackintheBox" family="Jack in the Box" pointSize="16"/>
-                                        <color key="textColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                        <color key="textColor" red="1" green="0.93061857876712339" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EBa-F2-uCO">
@@ -292,6 +282,20 @@
                                             <segue destination="vna-91-X3d" kind="show" identifier="showInfo" id="sNy-M0-01n"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y5P-0h-Q6d">
+                                        <rect key="frame" x="30" y="283.5" width="275" height="60"/>
+                                        <color key="backgroundColor" red="0.13333333333333333" green="0.41960784313725491" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="FUz-G0-Gps"/>
+                                            <constraint firstAttribute="height" constant="60" id="iaI-1y-Wyy"/>
+                                        </constraints>
+                                        <state key="normal" image="PLAY">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="playPressed:" destination="47f-za-7LQ" eventType="touchUpInside" id="5os-s6-3aw"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.023529411764705882" green="0.0" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -300,13 +304,18 @@
                                     <constraint firstItem="P3P-9W-u9G" firstAttribute="centerX" secondItem="x5z-wu-yxj" secondAttribute="centerX" id="47d-Hs-Zam"/>
                                     <constraint firstItem="Y5P-0h-Q6d" firstAttribute="top" secondItem="XZB-A8-0Sv" secondAttribute="bottom" constant="45" id="9Q8-EH-7Gc"/>
                                     <constraint firstAttribute="trailing" secondItem="EBa-F2-uCO" secondAttribute="trailing" constant="10" id="F5J-hk-qY1"/>
-                                    <constraint firstItem="V17-p8-6GM" firstAttribute="centerX" secondItem="Y5P-0h-Q6d" secondAttribute="centerX" id="KOJ-zV-D7b"/>
+                                    <constraint firstAttribute="trailing" secondItem="WoM-bC-dZz" secondAttribute="trailing" constant="60" id="F5O-TY-6kj"/>
+                                    <constraint firstAttribute="trailing" secondItem="Y5P-0h-Q6d" secondAttribute="trailing" constant="30" id="FoU-f4-7Gk"/>
+                                    <constraint firstItem="Y5P-0h-Q6d" firstAttribute="leading" secondItem="x5z-wu-yxj" secondAttribute="leading" constant="30" id="GXf-Ma-BBj"/>
+                                    <constraint firstAttribute="trailing" secondItem="V17-p8-6GM" secondAttribute="trailing" constant="60" id="NMf-nh-IbX"/>
                                     <constraint firstItem="XZB-A8-0Sv" firstAttribute="leading" secondItem="x5z-wu-yxj" secondAttribute="leading" constant="20" id="P06-Yd-uwI"/>
                                     <constraint firstItem="Y5P-0h-Q6d" firstAttribute="centerX" secondItem="x5z-wu-yxj" secondAttribute="centerX" id="QsV-kd-1xC"/>
-                                    <constraint firstItem="XZB-A8-0Sv" firstAttribute="top" secondItem="P3P-9W-u9G" secondAttribute="bottom" constant="45" id="YEp-0m-e5Z"/>
+                                    <constraint firstItem="XZB-A8-0Sv" firstAttribute="top" secondItem="P3P-9W-u9G" secondAttribute="bottom" constant="-1.5" id="YEp-0m-e5Z"/>
                                     <constraint firstAttribute="trailing" secondItem="XZB-A8-0Sv" secondAttribute="trailing" constant="20" id="YvF-1o-vRR"/>
+                                    <constraint firstItem="V17-p8-6GM" firstAttribute="leading" secondItem="x5z-wu-yxj" secondAttribute="leading" constant="60" id="cxB-QN-hep"/>
                                     <constraint firstItem="V17-p8-6GM" firstAttribute="top" secondItem="Y5P-0h-Q6d" secondAttribute="bottom" constant="40" id="gJa-ed-gO7"/>
                                     <constraint firstItem="P3P-9W-u9G" firstAttribute="leading" secondItem="x5z-wu-yxj" secondAttribute="leading" constant="20" id="jU4-LF-tPK"/>
+                                    <constraint firstItem="WoM-bC-dZz" firstAttribute="leading" secondItem="x5z-wu-yxj" secondAttribute="leading" constant="60" id="lCu-bi-SCW"/>
                                     <constraint firstItem="EBa-F2-uCO" firstAttribute="top" secondItem="x5z-wu-yxj" secondAttribute="top" constant="20" id="nOm-dN-V9a"/>
                                     <constraint firstItem="V17-p8-6GM" firstAttribute="centerX" secondItem="WoM-bC-dZz" secondAttribute="centerX" id="ruy-YH-Q6j"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="P3P-9W-u9G" secondAttribute="trailing" id="thK-1k-2bX"/>
@@ -372,7 +381,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="439-KR-lQQ"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="JackintheBox" family="Jack in the Box" pointSize="20"/>
+                                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -395,6 +404,7 @@
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="56M-dP-RtW"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="164" id="ehg-4y-pSo"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="22"/>
                                         <state key="normal" title="RESET">
                                             <color key="titleColor" red="0.035294117649999998" green="0.19215686269999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -408,8 +418,8 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="RLX-2P-reo"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="JackintheBox" family="Jack in the Box" pointSize="15"/>
-                                        <color key="textColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                        <color key="textColor" red="1" green="0.90886665239726039" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -477,7 +487,7 @@
                                             <constraint firstAttribute="height" constant="40" id="EmH-m3-0SE"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="l0P-OH-pt6"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="JackintheBox" family="Jack in the Box" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -487,7 +497,7 @@
                                             <constraint firstAttribute="height" constant="40" id="7r4-XB-KrA"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="DuD-ZG-2FZ"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="JackintheBox" family="Jack in the Box" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -511,6 +521,7 @@
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="164" id="F5V-wT-5VQ"/>
                                             <constraint firstAttribute="height" constant="44" id="eW4-55-ZPw"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="22"/>
                                         <state key="normal" title="RESET">
                                             <color key="titleColor" red="0.035294117649999998" green="0.19215686269999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -525,7 +536,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="lqy-vO-I2r"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="JackintheBox" family="Jack in the Box" pointSize="22"/>
+                                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -607,6 +618,7 @@
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="ClY-qe-CzY"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="164" id="wvv-yx-w2J"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="22"/>
                                         <state key="normal" title="ADD">
                                             <color key="titleColor" red="0.035294117649999998" green="0.19215686269999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -617,11 +629,11 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Friend" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tq8-se-IIw">
-                                        <rect key="frame" x="107" y="30" width="121.5" height="44"/>
+                                        <rect key="frame" x="103" y="30" width="129.5" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="z22-40-SEL"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="JackintheBox" family="Jack in the Box" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </label>
@@ -632,7 +644,7 @@
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="P6X-1A-hs0"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="164" id="XgY-R2-XRS"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="22"/>
                                         <state key="normal" title="SAVE PHOTO">
                                             <color key="titleColor" red="1" green="0.023163055450376779" blue="0.0032672387108140244" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
@@ -700,8 +712,8 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sgk-Qm-To0">
-                                        <rect key="frame" x="104" y="20" width="127" height="22.5"/>
-                                        <fontDescription key="fontDescription" name="JackintheBox" family="Jack in the Box" pointSize="17"/>
+                                        <rect key="frame" x="98.5" y="20" width="138.5" height="37"/>
+                                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -710,7 +722,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="Wq3-Vh-zpk"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="JackintheBox" family="Jack in the Box" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -730,6 +742,7 @@
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="2uR-tr-ZiV"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="164" id="SAh-vH-OsT"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="22"/>
                                         <state key="normal" title="SAVE">
                                             <color key="titleColor" red="0.035294117649999998" green="0.19215686269999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -903,12 +916,12 @@
                                 </constraints>
                                 <blurEffect style="light"/>
                             </visualEffectView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="vle-DJ-mEV" userLabel="messageLabel">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="vle-DJ-mEV" userLabel="messageLabel">
                                 <rect key="frame" x="8" y="125" width="359" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="aiG-OC-zib"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="JackintheBox" family="Jack in the Box" pointSize="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="26"/>
                                 <color key="textColor" red="0.25882352941176467" green="0.90196078431372551" blue="0.64313725490196072" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1117,7 +1130,7 @@
                                             <constraint firstAttribute="height" constant="48" id="lvr-hw-v8V"/>
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" name="JackintheBox" family="Jack in the Box" pointSize="16"/>
+                                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="22"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tTV-TV-IFB">
@@ -1133,15 +1146,6 @@ Freepik for his profile icons at https://www.flaticon.com/authors/freepik.</stri
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Friends Attack" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SDw-I7-xW2">
-                                        <rect key="frame" x="58" y="50" width="219.5" height="39.5"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="39.5" id="Zhn-QI-45A"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="JackintheBox" family="Jack in the Box" pointSize="22"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="AeK-Jb-HtV">
                                         <rect key="frame" x="47" y="232.5" width="241.5" height="34"/>
                                         <subviews>
@@ -1162,7 +1166,7 @@ Freepik for his profile icons at https://www.flaticon.com/authors/freepik.</stri
                                                     <constraint firstAttribute="width" constant="140" id="yRU-CI-qvz"/>
                                                 </constraints>
                                                 <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" name="JackintheBox" family="Jack in the Box" pointSize="15"/>
+                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
@@ -1173,7 +1177,16 @@ Freepik for his profile icons at https://www.flaticon.com/authors/freepik.</stri
                                             <constraint firstAttribute="height" constant="40" id="ZRi-fb-pVr"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="cfH-V3-ReV"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Friends Attack" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SDw-I7-xW2">
+                                        <rect key="frame" x="77.5" y="29" width="180.5" height="39.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="39.5" id="Zhn-QI-45A"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1184,10 +1197,10 @@ Freepik for his profile icons at https://www.flaticon.com/authors/freepik.</stri
                                     <constraint firstItem="AeK-Jb-HtV" firstAttribute="centerX" secondItem="VyX-GY-n0I" secondAttribute="centerX" id="2Vg-64-NR6"/>
                                     <constraint firstItem="Hqt-Q4-o1l" firstAttribute="leading" secondItem="VyX-GY-n0I" secondAttribute="leading" constant="20" id="4Xb-Dd-GKa"/>
                                     <constraint firstItem="oEi-No-kHu" firstAttribute="centerX" secondItem="VyX-GY-n0I" secondAttribute="centerX" id="6Bj-P7-ka7"/>
-                                    <constraint firstItem="SDw-I7-xW2" firstAttribute="top" secondItem="VyX-GY-n0I" secondAttribute="top" constant="50" id="CUT-fB-4Mc"/>
+                                    <constraint firstItem="SDw-I7-xW2" firstAttribute="top" secondItem="VyX-GY-n0I" secondAttribute="top" constant="29" id="CUT-fB-4Mc"/>
                                     <constraint firstItem="tTV-TV-IFB" firstAttribute="leading" secondItem="VyX-GY-n0I" secondAttribute="leading" constant="10" id="Fxe-PI-bqG"/>
                                     <constraint firstItem="Hqt-Q4-o1l" firstAttribute="top" secondItem="VyX-GY-n0I" secondAttribute="top" constant="20" id="Kao-cP-lPn"/>
-                                    <constraint firstItem="oEi-No-kHu" firstAttribute="top" secondItem="SDw-I7-xW2" secondAttribute="bottom" constant="15" id="YEc-Wj-oLE"/>
+                                    <constraint firstItem="oEi-No-kHu" firstAttribute="top" secondItem="SDw-I7-xW2" secondAttribute="bottom" constant="36" id="YEc-Wj-oLE"/>
                                     <constraint firstItem="AeK-Jb-HtV" firstAttribute="top" secondItem="CI1-wA-9k8" secondAttribute="bottom" constant="20" id="bSe-QF-Md6"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="SDw-I7-xW2" secondAttribute="trailing" id="bn3-i4-R0y"/>
                                     <constraint firstItem="SDw-I7-xW2" firstAttribute="centerX" secondItem="oEi-No-kHu" secondAttribute="centerX" id="dJ0-Ng-6VJ"/>
@@ -1221,9 +1234,9 @@ Freepik for his profile icons at https://www.flaticon.com/authors/freepik.</stri
     </scenes>
     <resources>
         <image name="Back" width="120" height="110"/>
+        <image name="FRIENDS" width="606" height="166"/>
+        <image name="PLAY" width="806" height="166"/>
+        <image name="SCORES" width="606" height="166"/>
         <image name="Settings" width="156" height="156"/>
-        <image name="friends_normal.png" width="240" height="60"/>
-        <image name="play_normal" width="300" height="60"/>
-        <image name="scores_normal" width="240" height="60"/>
     </resources>
 </document>

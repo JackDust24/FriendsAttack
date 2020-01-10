@@ -1,6 +1,6 @@
 /* 
   Localizable.strings
-  FriendsAttack
+  Friends Attack
 
   Created by JasonMac on 8/1/2563 BE.
   Copyright © 2563 JasonMac. All rights reserved.
@@ -24,22 +24,22 @@
 "A6" = "A6";
 
 /* Picker Title */
-"Access Photos" = "Access Photos";
+"Access Photos" = "사진들 접속";
 
 /* Helper Message */
-"Add and Remove Friends in Friends Screen" = "Add and Remove Friends in Friends Screen";
+"Add and Remove Friends in Friends Screen" = "친구들 화면에서 친구들 추가 및 제거";
 
 /* Table View Lebel */
-"Add Friend" = "Add Friend";
+"Add Friend" = "친구 추가";
 
 /* Alert message */
-"Add Friends" = "Add Friends";
+"Add Friends" = "친구들 추가";
 
 /* Label to inform users how many friends to add */
-"ADD MAX FRIENDS LABEL" = "Add Up to %ld Friends";
+"ADD MAX FRIENDS LABEL" = "%ld 명 까지 친구들 추가";
 
 /* Notification text */
-"ADDED FRIEND LABEL" = "%@ has been added to your Friends list.";
+"ADDED FRIEND LABEL" = "%@ 이 (가) 친구 목록에 추가되었습니다";
 
 /* Alert Message */
 "Apologies for the inconvenience. There was a problem loading The AR world. Please try loading up the App again." = "Apologies for the inconvenience. There was a problem loading The AR world. Please try loading up the App again.";
@@ -48,181 +48,181 @@
 "Apologies for the inconvenience. There was a problem loading your saved data. Try removing the App and re-installing and please contact us for us to investigate further." = "Apologies for the inconvenience. There was a problem loading your saved data. Try removing the App and re-installing and please contact us for us to investigate further.";
 
 /* Alert message */
-"Are You Sure? This can not be undone" = "Are You Sure? This can not be undone";
+"Are You Sure? This can not be undone" = "확실한가요? 이것은 되돌릴 수 없습니다.";
 
 /* Alert message */
-"Are You Sure? This can not be undone." = "Are You Sure? This can not be undone.";
+"Are You Sure? This can not be undone." = "확실한가요? 이것은 되돌릴 수 없습니다.";
 
 /* Placeholder Player */
 "B1" = "B1";
 
 /* Alert Title */
-"Cancel" = "Cancel";
+"Cancel" = "취소";
 
 /* Button Title */
-"Change Photo" = "Change Photo";
+"Change Photo" = "사진 변경";
 
 /* Alert title */
-"Clear Score" = "Clear Score";
+"Clear Score" = "명확한 점수";
 
 /* Alert title */
-"Clear Scores" = "Clear Scores";
+"Clear Scores" = "명확한 점수";
 
 /* Alert message */
-"Continue" = "Continue";
+"Continue" = "계속하다";
 
 /* Helper Message */
-"Do you want to add your own friends? Click the Friends Button Below." = "Do you want to add your own friends? Click the Friends Button Below.";
+"Do you want to add your own friends? Click the Friends Button Below." = "당신 자신의 친구들을 추가 하시겠습니까? 아래의 친구들 버튼을 클릭하십시오.";
 
 /* Alert Title */
-"Duplicate Name" = "Duplicate Name";
+"Duplicate Name" = "중복된 이름";
 
 /* Game Level */
-"Easy" = "Easy";
+"Easy" = "쉬움";
 
 /* Label */
-"Friend" = "Friend";
+"Friend" = "친구";
 
 /* Header Label */
-"FriendsAttack Scores" = "FriendsAttack Scores";
+"Friends Attack Scores" = "친구들 공격 점수들";
 
 /* In Game Message */
-"Game Exiting. Try Again!" = "Game Exiting. Try Again!";
+"Game Exiting. Try Again!" = "게임 나가기. 다시하기 !";
 
 /* Helper Message */
-"Game Will Exit" = "Game Will Exit";
+"Game Will Exit" = "게임이 종료됩니다";
 
 /* Helper Message */
-"Go to the Settings to Change Game Level" = "Go to the Settings to Change Game Level";
+"Go to the Settings to Change Game Level" = "게임의 수준을 변경하려면 설정으로 이동하세요.";
 
 /* Game Level */
-"Hard" = "Hard";
+"Hard" = "어려움";
 
 /* Helper Message */
-"Hit the Start Button" = "Hit the Start Button";
+"Hit the Start Button" = "시작 버튼을 누르십시오";
 
 /* Score Label */
-"KILLED MANY TIMES LABEL" = "Killed %ld Times";
+"KILLED MANY TIMES LABEL" = "%ld 번 종료";
 
 /* Notification text */
-"KILLED NO FRIENDS LABEL" = "You Killed %ld friends. Try Better Next Time!";
+"KILLED NO FRIENDS LABEL" = "당신은 %ld 명의 친구를 죽였습니다. 다음에 더 잘해보세요!";
 
 /* Notification text */
-"KILLED ONE FRIEND LABEL" = "You Killed Only %ld friend. Keep Trying.";
+"KILLED ONE FRIEND LABEL" = "당신은 %ld 친구 만 죽였습니다. 계속 노력하십시오.";
 
 /* Score Label */
-"KILLED ONE TIME LABEL" = "Killed %ld Time";
+"KILLED ONE TIME LABEL" = "%ld 번 종료";
 
 /* Notification text */
-"KILLED SOME FRIENDS LABEL" = "You killed %ld friends. Well Done!";
+"KILLED SOME FRIENDS LABEL" = "당신은 %ld 명의 친구를 죽였습니다. 잘했습니다.";
 
 /* Label */
-"Kills" = "Kills";
+"Kills" = "총 사살한 수";
 
 /* Helper Message */
-"Loading Up Game ..." = "Loading Up Game ...";
+"Loading Up Game ..." = "게임 읽는 중 ...";
 
 /* Table View Lebel */
-"Max Friends Reached" = "Max Friends Reached";
+"Max Friends Reached" = "친구들 한계에 도달";
 
 /* Game Level */
-"Medium" = "Medium";
+"Medium" = "중간(보통)";
 
 /* Alert Title */
-"Missing Name" = "Missing Name";
+"Missing Name" = "누락 된 이름";
 
 /* Message Alert */
-"Name Already Exists" = "Name Already Exists";
+"Name Already Exists" = "이미 존재하는 이름입니다.";
 
 /* Alert Title */
-"Name Is Too Long" = "Name Is Too Long";
+"Name Is Too Long" = "이름이 너무 깁니다";
 
 /* Alert Title */
-"No" = "No";
+"No" = "아니오.";
 
 /* Alert message */
-"No Friends Added" = "No Friends Added";
+"No Friends Added" = "친구가 추가되지 않았습니다";
 
 /* Score Info */
-"Nobody Killed Yet" = "Nobody Killed Yet";
+"Nobody Killed Yet" = "아직 아무도 죽지 않음.";
 
 /* Alert Title */
-"Not Saved" = "Not Saved";
+"Not Saved" = "저장되지 않음";
 
 /* OK */
-"OK" = "OK";
+"OK" = "확인";
 
 /* Message Alert */
-"Please Add a Name" = "Please Add a Name";
+"Please Add a Name" = "이름을 추가하십시오";
 
 /* Message Title */
-"Please Limit To 13 Characters" = "Please Limit To 13 Characters";
+"Please Limit To 13 Characters" = "13 자로 제한하십시오";
 
 /* Helper Message */
-"Press Play to Play Game" = "Press Play to Play Game";
+"Press Play to Play Game" = "게임을 시작 하려면, 플레이를 누르십시오.";
 
 /* Helper Message */
-"Press the Start Button" = "Press the Start Button";
+"Press the Start Button" = "시작 버튼을 누르십시오";
 
 /* Alert Title */
-"Problem Loading AR Session" = "Problem Loading AR Session";
+"Problem Loading AR Session" = "세션 로딩 문제";
 
 /* Alert Title */
-"Problem Loading Data" = "Problem Loading Data";
+"Problem Loading Data" = "데이터로드 문제";
 
 /* Alert title */
-"Reset All Your Scores" = "Reset All Your Scores";
+"Reset All Your Scores" = "모든 점수들 재설정";
 
 /* Alert title */
-"Reset Kill Score" = "Reset Kill Score";
+"Reset Kill Score" = "킬 점수 재설정";
 
 /* Alert title */
-"Reset Score" = "Reset Score";
+"Reset Score" = "모든 점수들 재설정";
 
 /* Alert title */
-"Reset Scores" = "Reset Scores";
+"Reset Scores" = "모든 점수들 재설정";
 
 /* Header Label */
-"Scores" = "Scores";
+"Scores" = "점수들";
 
 /* Helper Message */
-"Shoot 4 Times to Kill" = "Shoot 4 Times to Kill";
+"Shoot 4 Times to Kill" = "죽이려면 4번 쏘십시오.";
 
 /* Helper Message */
-"Shoot the Boxes - 4 Times to Kill" = "Shoot the Boxes - 4 Times to Kill";
+"Shoot the Boxes - 4 Times to Kill" = "죽이려면 상자를 4번 쏘십시오 ";
 
 /* Picker Title */
-"Take Photo" = "Take Photo";
+"Take Photo" = "사진 찍기";
 
 /* Post message */
-"This Is My Score On FriendsAttack." = "This Is My Score On FriendsAttack.";
+"This Is My Score On Friends Attack." = "이것은 친구들의 공격에서 나의 점수입니다.";
 
 /* In Game Message */
-"Turn Device Around" = "Turn Device Around";
+"Turn Device Around" = "장치 돌리기";
 
 /* Helper Message */
-"When a Box Turns Black, One Shot Will Kill" = "When a Box Turns Black, One Shot Will Kill";
+"When a Box Turns Black, One Shot Will Kill" = "상자가 검은 색으로 변하면, 한방에 죽일 것입니다";
 
 /* Message for hitting target */
-"WHO YOU HIT LABEL" = "You HIT %@";
+"WHO YOU HIT LABEL" = "당신 %@ 치시오.";
 
 /* Message for killing target */
-"WHO YOU KILLED LABEL" = "You KILLED %@";
+"WHO YOU KILLED LABEL" = "당신은 %@ 을 죽였습니다";
 
 /* Alert Title */
-"Yes" = "Yes";
+"Yes" = "예";
 
 /* Helper Message */
-"You have not saved this Friend. Are you sure you want to leave this screen?" = "You have not saved this Friend. Are you sure you want to leave this screen?";
+"You have not saved this Friend. Are you sure you want to leave this screen?" = "당신은 이 친구를 저장하지 않았습니다. 정말로 이 화면에서 나가시겠습니까?";
 
 /* Helper Message */
-"You Have Ran Out Of Time" = "You Have Ran Out Of Time";
+"You Have Ran Out Of Time" = "시간이 다 되었습니다.";
 
 /* Helper Message */
-"You Killed ALL Your Friends" = "You Killed ALL Your Friends";
+"You Killed ALL Your Friends" = "당신은 모든 친구를 죽였습니다. ";
 
 /* Notification text */
-"You Killed All Your Friends. You're A Winner!" = "You Killed All Your Friends. You're A Winner!";
+"You Killed All Your Friends. You're A Winner!" = "당신은 모든 친구를 죽였습니다. 당신이 승자입니다!";
 
 /* Helper Message */
-"You Only Have 30 Seconds to Kill the Targets" = "You Only Have 30 Seconds to Kill the Targets";
+"You Only Have 30 Seconds to Kill the Targets" = "목표물들을 죽일 시간이 30 초 밖에 없습니다";

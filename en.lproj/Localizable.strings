@@ -1,6 +1,6 @@
 /* 
   Localizable.strings
-  FriendsAttack
+  Friends Attack
 
   Created by JasonMac on 8/1/2563 BE.
   Copyright © 2563 JasonMac. All rights reserved.
@@ -48,7 +48,7 @@
 "Apologies for the inconvenience. There was a problem loading your saved data. Try removing the App and re-installing and please contact us for us to investigate further." = "Apologies for the inconvenience. There was a problem loading your saved data. Try removing the App and re-installing and please contact us for us to investigate further.";
 
 /* Alert message */
-"Are You Sure? This can not be undone" = "Are You Sure? This can not be undone";
+"Are You Sure? This can not be undone." = "Are You Sure? This can not be undone";
 
 /* Alert message */
 "Are You Sure? This can not be undone." = "Are You Sure? This can not be undone.";
@@ -84,7 +84,7 @@
 "Friend" = "Friend";
 
 /* Header Label */
-"FriendsAttack Scores" = "FriendsAttack Scores";
+"Friends Attack Scores" = "Friends Attack Scores";
 
 /* In Game Message */
 "Game Exiting. Try Again!" = "Game Exiting. Try Again!";
@@ -195,7 +195,7 @@
 "Take Photo" = "Take Photo";
 
 /* Post message */
-"This Is My Score On FriendsAttack." = "This Is My Score On FriendsAttack.";
+"This Is My Score On Friends Attack." = "This Is My Score On Friends Attack.";
 
 /* In Game Message */
 "Turn Device Around" = "Turn Device Around";

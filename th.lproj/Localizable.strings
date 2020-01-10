@@ -24,22 +24,22 @@
 "A6" = "A6";
 
 /* Picker Title */
-"Access Photos" = "Access Photos";
+"Access Photos" = "เข้าถึงรูปภาพ";
 
 /* Helper Message */
-"Add and Remove Friends in Friends Screen" = "Add and Remove Friends in Friends Screen";
+"Add and Remove Friends in Friends Screen" = "เพิ่มและลบเพื่อนในหน้าจอเพื่อน";
 
 /* Table View Lebel */
-"Add Friend" = "Add Friend";
+"Add Friend" = "เพิ่มเพื่อน";
 
 /* Alert message */
-"Add Friends" = "Add Friends";
+"Add Friends" = "เพิ่มเพื่อน";
 
 /* Label to inform users how many friends to add */
-"ADD MAX FRIENDS LABEL" = "Add Up to %ld Friends";
+"ADD MAX FRIENDS LABEL" = "เพิ่มเป็น %ld เพื่อน";
 
 /* Notification text */
-"ADDED FRIEND LABEL" = "%@ has been added to your Friends list.";
+"ADDED FRIEND LABEL" = "%@ ถูกเพิ่มในรายชื่อเพื่อนของคุณ";
 
 /* Alert Message */
 "Apologies for the inconvenience. There was a problem loading The AR world. Please try loading up the App again." = "Apologies for the inconvenience. There was a problem loading The AR world. Please try loading up the App again.";
@@ -48,181 +48,181 @@
 "Apologies for the inconvenience. There was a problem loading your saved data. Try removing the App and re-installing and please contact us for us to investigate further." = "Apologies for the inconvenience. There was a problem loading your saved data. Try removing the App and re-installing and please contact us for us to investigate further.";
 
 /* Alert message */
-"Are You Sure? This can not be undone" = "Are You Sure? This can not be undone";
+"Are You Sure? This can not be undone." = "คุณแน่ใจไหม? สิ่งนี้ไม่สามารถยกเลิกได้";
 
 /* Alert message */
-"Are You Sure? This can not be undone." = "Are You Sure? This can not be undone.";
+"Are You Sure? This can not be undone." = "คุณแน่ใจไหม? สิ่งนี้ไม่สามารถยกเลิกได้";
 
 /* Placeholder Player */
 "B1" = "B1";
 
 /* Alert Title */
-"Cancel" = "Cancel";
+"Cancel" = "ยกเลิก";
 
 /* Button Title */
-"Change Photo" = "Change Photo";
+"Change Photo" = "เปลี่ยนรูป";
 
 /* Alert title */
-"Clear Score" = "Clear Score";
+"Clear Score" = "ล้างคะแนน";
 
 /* Alert title */
-"Clear Scores" = "Clear Scores";
+"Clear Scores" = "ล้างคะแนน";
 
 /* Alert message */
-"Continue" = "Continue";
+"Continue" = "ต่อ";
 
 /* Helper Message */
-"Do you want to add your own friends? Click the Friends Button Below." = "Do you want to add your own friends? Click the Friends Button Below.";
+"Do you want to add your own friends? Click the Friends Button Below." = "คุณต้องการที่จะเพิ่มเพื่อนของคุณเอง? คลิกที่ปุ่มเพื่อนด้านล่าง";
 
 /* Alert Title */
-"Duplicate Name" = "Duplicate Name";
+"Duplicate Name" = "ชื่อซ้ำ";
 
 /* Game Level */
-"Easy" = "Easy";
+"Easy" = "ง่าย";
 
 /* Label */
-"Friend" = "Friend";
+"Friend" = "เพื่อน";
 
 /* Header Label */
-"FriendsAttack Scores" = "FriendsAttack Scores";
+"Friends Attack Scores" = "เพื่อนโจมตีคะแนน";
 
 /* In Game Message */
-"Game Exiting. Try Again!" = "Game Exiting. Try Again!";
+"Game Exiting. Try Again!" = "กำลังออกจากเกม ลองอีกครั้ง!";
 
 /* Helper Message */
-"Game Will Exit" = "Game Will Exit";
+"Game Will Exit" = "เกมจะออกจาก";
 
 /* Helper Message */
-"Go to the Settings to Change Game Level" = "Go to the Settings to Change Game Level";
+"Go to the Settings to Change Game Level" = "ไปที่การตั้งค่าเพื่อเปลี่ยนระดับเกม";
 
 /* Game Level */
-"Hard" = "Hard";
+"Hard" = "ยาก";
 
 /* Helper Message */
-"Hit the Start Button" = "Hit the Start Button";
+"Hit the Start Button" = "กดปุ่มเริ่มต้น";
 
 /* Score Label */
-"KILLED MANY TIMES LABEL" = "Killed %ld Times";
+"KILLED MANY TIMES LABEL" = "sฆ่า %ld ครั้ง";
 
 /* Notification text */
-"KILLED NO FRIENDS LABEL" = "You Killed %ld friends. Try Better Next Time!";
+"KILLED NO FRIENDS LABEL" = "คุณฆ่าเพื่อน %ld คน ลองครั้งต่อไปดีกว่า!";
 
 /* Notification text */
-"KILLED ONE FRIEND LABEL" = "You Killed Only %ld friend. Keep Trying.";
+"KILLED ONE FRIEND LABEL" = "คุณสังหารเพื่อน %ld คนเท่านั้น พยายามต่อไป.";
 
 /* Score Label */
-"KILLED ONE TIME LABEL" = "Killed %ld Time";
+"KILLED ONE TIME LABEL" = "sฆ่า %ld ครั้ง";
 
 /* Notification text */
-"KILLED SOME FRIENDS LABEL" = "You killed %ld friends. Well Done!";
+"KILLED SOME FRIENDS LABEL" = "คุณฆ่าเพื่อน %ld คน ทำได้ดี!";
 
 /* Label */
-"Kills" = "Kills";
+"Kills" = "ฆ่า";
 
 /* Helper Message */
-"Loading Up Game ..." = "Loading Up Game ...";
+"Loading Up Game ..." = "กำลังโหลดเกม ...";
 
 /* Table View Lebel */
-"Max Friends Reached" = "Max Friends Reached";
+"Max Friends Reached" = "ถึงขีดจำกัดเพื่อนแล้ว";
 
 /* Game Level */
-"Medium" = "Medium";
+"Medium" = "กลาง";
 
 /* Alert Title */
-"Missing Name" = "Missing Name";
+"Missing Name" = "ไม่มีชื่อ";
 
 /* Message Alert */
-"Name Already Exists" = "Name Already Exists";
+"Name Already Exists" = "ชื่อมีอยู่แล้ว";
 
 /* Alert Title */
-"Name Is Too Long" = "Name Is Too Long";
+"Name Is Too Long" = "ชื่อยาวเกินไป";
 
 /* Alert Title */
-"No" = "No";
+"No" = "ไม่";
 
 /* Alert message */
-"No Friends Added" = "No Friends Added";
+"No Friends Added" = "ไม่มีเพื่อนเพิ่ม";
 
 /* Score Info */
-"Nobody Killed Yet" = "Nobody Killed Yet";
+"Nobody Killed Yet" = "ยังไม่มีใครถูกฆ่า";
 
 /* Alert Title */
-"Not Saved" = "Not Saved";
+"Not Saved" = "ไม่ได้บันทึก";
 
 /* OK */
-"OK" = "OK";
+"OK" = "ตกลง";
 
 /* Message Alert */
-"Please Add a Name" = "Please Add a Name";
+"Please Add a Name" = "กรุณาเพิ่มชื่อ";
 
 /* Message Title */
-"Please Limit To 13 Characters" = "Please Limit To 13 Characters";
+"Please Limit To 13 Characters" = "โปรด จำกัด อักขระไม่เกิน 13 ตัว";
 
 /* Helper Message */
-"Press Play to Play Game" = "Press Play to Play Game";
+"Press Play to Play Game" = "กดเล่นเพื่อเล่นเกม";
 
 /* Helper Message */
-"Press the Start Button" = "Press the Start Button";
+"Press the Start Button" = "กดปุ่มเริ่ม";
 
 /* Alert Title */
-"Problem Loading AR Session" = "Problem Loading AR Session";
+"Problem Loading AR Session" = "ปัญหาในการโหลดเซสชัน";
 
 /* Alert Title */
-"Problem Loading Data" = "Problem Loading Data";
+"Problem Loading Data" = "ปัญหาในการโหลดข้อมูล";
 
 /* Alert title */
-"Reset All Your Scores" = "Reset All Your Scores";
+"Reset All Your Scores" = "รีเซ็ตคะแนนทั้งหมดของคุณ";
 
 /* Alert title */
-"Reset Kill Score" = "Reset Kill Score";
+"Reset Kill Score" = "รีเซ็ตคะแนนฆ่า";
 
 /* Alert title */
-"Reset Score" = "Reset Score";
+"Reset Score" = "รีเซ็ตคะแนนทั้งหมดของคุณ";
 
 /* Alert title */
-"Reset Scores" = "Reset Scores";
+"Reset Scores" = "รีเซ็ตคะแนนทั้งหมดของคุณ";
 
 /* Header Label */
-"Scores" = "Scores";
+"Scores" = "คะแนน";
 
 /* Helper Message */
-"Shoot 4 Times to Kill" = "Shoot 4 Times to Kill";
+"Shoot 4 Times to Kill" = "ยิง 4 ครั้งเพื่อฆ่า";
 
 /* Helper Message */
-"Shoot the Boxes - 4 Times to Kill" = "Shoot the Boxes - 4 Times to Kill";
+"Shoot the Boxes - 4 Times to Kill" = "ยิงกล่อง - 4 ครั้งเพื่อฆ่า";
 
 /* Picker Title */
-"Take Photo" = "Take Photo";
+"Take Photo" = "ถ่ายภาพ";
 
 /* Post message */
-"This Is My Score On FriendsAttack." = "This Is My Score On FriendsAttack.";
+"This Is My Score On Friends Attack." = "นี่คือคะแนนของฉันในเพื่อนเข้าร่วม";
 
 /* In Game Message */
-"Turn Device Around" = "Turn Device Around";
+"Turn Device Around" = "หมุนอุปกรณ์ไปรอบ ๆ";
 
 /* Helper Message */
-"When a Box Turns Black, One Shot Will Kill" = "When a Box Turns Black, One Shot Will Kill";
+"When a Box Turns Black, One Shot Will Kill" = "เมื่อกล่องเปลี่ยนเป็นสีดำ ยิงอีกนัดเดียวเพื่อฆ่า";
 
 /* Message for hitting target */
-"WHO YOU HIT LABEL" = "You HIT %@";
+"WHO YOU HIT LABEL" = "คุณกด %@";
 
 /* Message for killing target */
-"WHO YOU KILLED LABEL" = "You KILLED %@";
+"WHO YOU KILLED LABEL" = "คุณฆ่า %@";
 
 /* Alert Title */
-"Yes" = "Yes";
+"Yes" = "ใช่";
 
 /* Helper Message */
-"You have not saved this Friend. Are you sure you want to leave this screen?" = "You have not saved this Friend. Are you sure you want to leave this screen?";
+"You have not saved this Friend. Are you sure you want to leave this screen?" = "คุณยังไม่ได้บันทึกเพื่อนนี้ คุณแน่ใจหรือไม่ว่าต้องการออกจากหน้าจอนี้";
 
 /* Helper Message */
-"You Have Ran Out Of Time" = "You Have Ran Out Of Time";
+"You Have Ran Out Of Time" = "คุณหมดเวลาแล้ว";
 
 /* Helper Message */
-"You Killed ALL Your Friends" = "You Killed ALL Your Friends";
+"You Killed ALL Your Friends" = "คุณฆ่าเพื่อนของคุณทั้งหมด";
 
 /* Notification text */
-"You Killed All Your Friends. You're A Winner!" = "You Killed All Your Friends. You're A Winner!";
+"You Killed All Your Friends. You're A Winner!" = "คุณฆ่าเพื่อนของคุณทั้งหมด คุณเป็นผู้ชนะ!";
 
 /* Helper Message */
-"You Only Have 30 Seconds to Kill the Targets" = "You Only Have 30 Seconds to Kill the Targets";
+"You Only Have 30 Seconds to Kill the Targets" = "คุณมีเวลาเพียง 30 วินาทีในการฆ่าเป้าหมาย";

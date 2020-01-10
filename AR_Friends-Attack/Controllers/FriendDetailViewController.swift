@@ -111,7 +111,7 @@ class FriendDetailViewController: UIViewController {
     func showResetConfirmation() {
            
         let alertNameMissing = UIAlertController(title: NSLocalizedString("Reset Kill Score", comment: "Alert title"),
-                                                    message: NSLocalizedString("Are You Sure? This can not be undone", comment: "Alert message"), preferredStyle: .alert)
+                                                    message: NSLocalizedString("Are You Sure? This can not be undone.", comment: "Alert message"), preferredStyle: .alert)
         alertNameMissing.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: "Alert Title"), style: .destructive, handler: { action in
                self.clearScores()
            }))
