@@ -19,17 +19,52 @@ class InfoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     let myPickerData = GameStateManager.sharedInstance().gameLevels
     let currentGameLevel = GameStateManager.sharedInstance().currentGameLevel.rawValue
 
+    @IBOutlet weak var developerLabel: UITextView!
+    @IBOutlet weak var thanksLabel: UITextView!
+    
     //MARK: Views
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Set the text field as the picker view
         gameLevelField.inputView = thePicker
-        // Get the current Game level
-        gameLevelField.text = currentGameLevel
+        // Get the current Game level        
+        updateTextViews()
+        
         // Add delegae to self
         thePicker.delegate = self
      }
+    
+    func updateTextViews() {
+        // Game Level
+        var currentlevel = ""
+        
+        if currentGameLevel == "Easy" {
+            currentlevel = NSLocalizedString("Easy", comment: "Game Level")
+            
+        } else if currentGameLevel == "Medium" {
+            currentlevel = NSLocalizedString("Medium", comment: "Game Level")
+        } else  if currentGameLevel == "Hard" {
+            currentlevel = NSLocalizedString("Hard", comment: "Game Level")
+        } else {
+            currentlevel = NSLocalizedString("Medium", comment: "Game Level")
+        }
+        
+        gameLevelField.text = String(format:
+        NSLocalizedString("CURRENT GAME LEVEL LABEL",
+        comment: "Initial Game Level"),
+        currentlevel)
+        
+        developerLabel.text =
+        NSLocalizedString("If you have any comments, please contact the developer at admin@lifetravelcoffee.com",
+        comment: "Contact me comment")
+        
+        thanksLabel.text =
+        NSLocalizedString("Special thanks to:\n\nFreepik for his profile icons at https://www.flaticon.com/authors/freepik.",
+               comment: "Thanks comment")
+        
+        
+    }
 
     // MARK: UIPickerView Delegation
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

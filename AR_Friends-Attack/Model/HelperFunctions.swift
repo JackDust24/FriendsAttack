@@ -64,7 +64,7 @@ func abortDueToIssues(type: String) -> UIAlertController {
        
     if type == "Data" {
         let alertCoreDataProblem = UIAlertController(title: NSLocalizedString("Problem Loading Data", comment: "Alert Title"),
-                                                    message: NSLocalizedString("Apologies for the inconvenience. There was a problem loading your saved data. Try removing the App and re-installing and please contact us for us to investigate further.", comment: "Alert Message"), preferredStyle: .alert)
+                                                    message: NSLocalizedString("Apologies for the inconvenience. There was a problem loading your saved data. Try removing the App and re-installing it.", comment: "Alert Message"), preferredStyle: .alert)
            alertCoreDataProblem.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .destructive, handler: nil))
 
            // present(alertNameMissing, animated: true)
@@ -74,8 +74,8 @@ func abortDueToIssues(type: String) -> UIAlertController {
     }
     
     // Default is Session error
-    let alertSessionProblem = UIAlertController(title: NSLocalizedString("Problem Loading AR Session", comment: "Alert Title"),
-                                                message: NSLocalizedString("Apologies for the inconvenience. There was a problem loading The AR world. Please try loading up the App again.", comment: "Alert Message"), preferredStyle: .alert)
+    let alertSessionProblem = UIAlertController(title: NSLocalizedString("Problem Loading Session", comment: "Alert Title"),
+                                                message: NSLocalizedString("Apologies for the inconvenience. There was a problem loading the session. Please close the app and open again.", comment: "Alert Message"), preferredStyle: .alert)
        alertSessionProblem.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .destructive, handler: nil))
 
        // present(alertNameMissing, animated: true)

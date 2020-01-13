@@ -42,10 +42,10 @@
 "ADDED FRIEND LABEL" = "%@ has been added to your Friends list.";
 
 /* Alert Message */
-"Apologies for the inconvenience. There was a problem loading The AR world. Please try loading up the App again." = "Apologies for the inconvenience. There was a problem loading The AR world. Please try loading up the App again.";
+"Apologies for the inconvenience. There was a problem loading the session. Please close the app and open again." = "Apologies for the inconvenience. There was a problem loading the session. Please close the app and open again.";
 
 /* Alert Message */
-"Apologies for the inconvenience. There was a problem loading your saved data. Try removing the App and re-installing and please contact us for us to investigate further." = "Apologies for the inconvenience. There was a problem loading your saved data. Try removing the App and re-installing and please contact us for us to investigate further.";
+"Apologies for the inconvenience. There was a problem loading your saved data. Try removing the App and re-installing it." = "Apologies for the inconvenience. There was a problem loading your saved data. Try removing the App and re-installing it.";
 
 /* Alert message */
 "Are You Sure? This can not be undone." = "Are You Sure? This can not be undone";
@@ -62,14 +62,17 @@
 /* Button Title */
 "Change Photo" = "Change Photo";
 
-/* Alert title */
+/* Alert Title */
 "Clear Score" = "Clear Score";
 
-/* Alert title */
+/* Alert Title */
 "Clear Scores" = "Clear Scores";
 
 /* Alert message */
 "Continue" = "Continue";
+
+/* Initial Game Level */
+"CURRENT GAME LEVEL LABEL" = "%@";
 
 /* Helper Message */
 "Do you want to add your own friends? Click the Friends Button Below." = "Do you want to add your own friends? Click the Friends Button Below.";
@@ -100,6 +103,9 @@
 
 /* Helper Message */
 "Hit the Start Button" = "Hit the Start Button";
+
+/* Contact me comment */
+"If you have any comments, please contact the developer at admin@lifetravelcoffee.com" = "If you have any comments, please contact the developer at admin@lifetravelcoffee.com";
 
 /* Score Label */
 "KILLED MANY TIMES LABEL" = "Killed %ld Times";
@@ -143,6 +149,9 @@
 /* Alert message */
 "No Friends Added" = "No Friends Added";
 
+/* Alert message */
+"No Thanks" = "No Thanks";
+
 /* Score Info */
 "Nobody Killed Yet" = "Nobody Killed Yet";
 
@@ -165,21 +174,21 @@
 "Press the Start Button" = "Press the Start Button";
 
 /* Alert Title */
-"Problem Loading AR Session" = "Problem Loading AR Session";
+"Problem Loading Session" = "Problem Loading Session";
 
 /* Alert Title */
 "Problem Loading Data" = "Problem Loading Data";
 
-/* Alert title */
+/* Alert Title */
 "Reset All Your Scores" = "Reset All Your Scores";
 
-/* Alert title */
+/* Alert Title */
 "Reset Kill Score" = "Reset Kill Score";
 
-/* Alert title */
+/* Alert Title */
 "Reset Score" = "Reset Score";
 
-/* Alert title */
+/* Alert Title */
 "Reset Scores" = "Reset Scores";
 
 /* Header Label */
@@ -191,6 +200,9 @@
 /* Helper Message */
 "Shoot the Boxes - 4 Times to Kill" = "Shoot the Boxes - 4 Times to Kill";
 
+/* Thanks comment */
+"Special thanks to:\n\nFreepik for his profile icons at https://www.flaticon.com/authors/freepik." = "Special thanks to:\n\nFreepik for his profile icons at https://www.flaticon.com/authors/freepik.";
+
 /* Picker Title */
 "Take Photo" = "Take Photo";
 
@@ -199,6 +211,9 @@
 
 /* In Game Message */
 "Turn Device Around" = "Turn Device Around";
+
+/* Alert Title */
+"Watch Tutorial?" = "Watch Tutorial?";
 
 /* Helper Message */
 "When a Box Turns Black, One Shot Will Kill" = "When a Box Turns Black, One Shot Will Kill";

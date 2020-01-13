@@ -271,8 +271,8 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBAction func resetPressed(_ sender: Any) {
         // Give use the option to reset all the scores, or just the friends scores
-        let actionSheet = UIAlertController(title: NSLocalizedString("Reset Scores", comment: "Alert title"), message: nil, preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Clear Scores", comment: "Alert title"), style: .default, handler: { action in
+        let actionSheet = UIAlertController(title: NSLocalizedString("Reset Scores", comment: "Alert Title"), message: nil, preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Clear Scores", comment: "Alert Title"), style: .default, handler: { action in
             // Clear button tappped.
             self.dismiss(animated: true)
             self.showResetConfirmation()
@@ -300,7 +300,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     func showResetConfirmation() {
-        let alertNameMissing = UIAlertController(title: NSLocalizedString("Reset All Your Scores", comment: "Alert title"),
+        let alertNameMissing = UIAlertController(title: NSLocalizedString("Reset All Your Scores", comment: "Alert Title"),
                                                  message: NSLocalizedString("Are You Sure? This can not be undone.", comment: "Alert message"), preferredStyle: .alert)
         alertNameMissing.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: "Alert Title"), style: .destructive, handler: { action in
             self.clearScores()

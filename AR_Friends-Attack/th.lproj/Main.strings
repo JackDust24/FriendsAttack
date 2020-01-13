@@ -122,8 +122,8 @@
 /* Class = "UILabel"; text = "Total Kills"; ObjectID = "oDC-yM-YZ9"; */
 "oDC-yM-YZ9.text" = "ฆ่ารวม";
 
-/* Class = "UITextView"; text = "A game by iHawk Visions"; ObjectID = "oEi-No-kHu"; */
-"oEi-No-kHu.text" = "เกมโดย iHawk Visions";
+/* Class = "UILabel"; text = "A game by iHawk Visions"; ObjectID = "i5T-S1-bkK"; */
+"i5T-S1-bkK.text" = "เกมโดย iHawk Visions";
 
 /* Class = "UILabel"; text = "Add up to 10 Friends"; ObjectID = "oNF-MM-gyq"; */
 "oNF-MM-gyq.text" = "เพิ่มเป็น10เพื่อน";
@@ -134,8 +134,8 @@
 /* Class = "UILabel"; text = "Add Details"; ObjectID = "sgk-Qm-To0"; */
 "sgk-Qm-To0.text" = "เพิ่มรายละเอียด";
 
-/* Class = "UITextView"; text = "Special thanks to:\n\nFreepik for his profile icons at https://www.flaticon.com/authors/freepik."; ObjectID = "tTV-TV-IFB"; */
-"tTV-TV-IFB.text" = "ขอขอบคุณเป็นพิเศษกับ:\n\nFreepik  https://www.flaticon.com/authors/freepik.";
+/* Class = "UITextView"; text = "Thanks"; ObjectID = "tTV-TV-IFB"; */
+"tTV-TV-IFB.text" = "Thanks";
 
 /* Class = "UILabel"; text = "Friends"; ObjectID = "uY8-wU-lIF"; */
 "uY8-wU-lIF.text" = "เพื่อน";

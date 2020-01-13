@@ -9,6 +9,7 @@
 
 import UIKit
 import CoreData
+import AVKit
 
 class StartViewController: UIViewController {
     
@@ -29,6 +30,8 @@ class StartViewController: UIViewController {
     var helperMsgArray: Array<String> = []
     // Work Item for Despatch Timer
     private var helperMsgRequestWorkItem: DispatchWorkItem?
+    
+    let videoURL = "https://wolverine.raywenderlich.com/content/ios/tutorials/video_streaming/foxVillage.mp4"
     
     //MARK: Views
     override func viewDidLoad() {
@@ -61,7 +64,16 @@ class StartViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateNotificationLabel(_:)), name: .kFriendAddedNotification, object: nil)
         // Set Notification for when we exit game and update this controller
         NotificationCenter.default.addObserver(self, selector: #selector(updateNotificationLabel(_:)), name: .kGameReviewNotification, object: nil)
-
+       
+        // Ask if user wants to watch video. We only ask one time.
+        if !UserDefaults.standard.bool(forKey:"hasBeenLaunched") {
+            // show your only-one-time view
+            print("hasBeenLaunched")
+            askUserIfWantToWatchTutorial()
+            UserDefaults.standard.set(true, forKey: "hasBeenLaunched")
+            
+        }
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -222,6 +234,46 @@ class StartViewController: UIViewController {
     
     
     //MARK: Alerts
+    
+    func askUserIfWantToWatchTutorial() {
+        
+        let actionSheet = UIAlertController(title: NSLocalizedString("Watch Tutorial?", comment: "Alert Title"), message: kDefaultFriendsMsg, preferredStyle: .alert)
+                     
+              actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: "Alert message"), style: .default, handler: { action in
+                  
+                  self.dismiss(animated: true)
+                  self.playVideo()
+              }))
+                 
+              actionSheet.addAction(UIAlertAction(title: NSLocalizedString("No Thanks", comment: "Alert message"), style: .cancel, handler: { action in
+                     // Cancel button tappped.
+
+                  self.dismiss(animated: true)
+              }))
+              // Present action sheet.
+
+        self.present(actionSheet, animated: true, completion: nil)
+        
+    }
+    
+    func playVideo() {
+        
+        guard let path = Bundle.main.path(forResource: "Game_Tutorial", ofType:"m4v") else {
+            debugPrint("video.m4v not found")
+            return
+        }
+        
+        let player = AVPlayer(url: URL(fileURLWithPath: path))
+        let vc = AVPlayerViewController()
+        vc.player = player
+    
+        present(vc, animated: true) {
+            vc.player?.play()
+            vc.player?.volume = 0.0
+        }
+        
+    }
+    
     // We ask the user if they are happy that we are using default data.
     // Gets called after pressing play
     func defaultDataAlerts() {
@@ -239,20 +291,8 @@ class StartViewController: UIViewController {
 
             self.dismiss(animated: true)
         }))
-        // Present action sheet.
-        
-        if UIDevice.current.userInterfaceIdiom == .pad {
 
-            if let currentPopoverpresentioncontroller = actionSheet.popoverPresentationController {
-                currentPopoverpresentioncontroller.permittedArrowDirections = []
-                currentPopoverpresentioncontroller.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
-                currentPopoverpresentioncontroller.sourceView = self.view
-                self.present(actionSheet, animated: true, completion: nil)
-            }
-            
-        } else {
-            self.present(actionSheet, animated: true, completion: nil)
-        }
+        self.present(actionSheet, animated: true, completion: nil)
     }
     
     // MARK: - Core Data

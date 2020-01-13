@@ -21,8 +21,6 @@
 		9E21895820DC7C3C008997FB /* target.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E21895720DC7C3C008997FB /* target.scnassets */; };
 		9E2AE57020ECBF0B00AA54B9 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2AE56F20ECBF0B00AA54B9 /* StartViewController.swift */; };
 		9E2AE57220ECBF3200AA54B9 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2AE57120ECBF3200AA54B9 /* FriendsViewController.swift */; };
-		9E365142239FB9EE00534569 /* shoot.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9E365140239FB9ED00534569 /* shoot.mp4 */; };
-		9E365143239FB9EE00534569 /* explosion.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9E365141239FB9ED00534569 /* explosion.mp4 */; };
 		9E493CC7228D36AB0081FB0D /* ComicNeue-Angular_Oblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E493CBB228D36AA0081FB0D /* ComicNeue-Angular_Oblique.otf */; };
 		9E493CC8228D36AB0081FB0D /* ComicNeue-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E493CBC228D36AA0081FB0D /* ComicNeue-Regular.otf */; };
 		9E493CC9228D36AB0081FB0D /* ComicNeue_Oblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E493CBD228D36AA0081FB0D /* ComicNeue_Oblique.otf */; };
@@ -44,6 +42,10 @@
 		9E96739523C76F5000688841 /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E96739423C76F4800688841 /* Impact.ttf */; };
 		9E96739623C76F5300688841 /* GameCube.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E96739323C76F4800688841 /* GameCube.ttf */; };
 		9E9E6A00238E5EA90017D1B5 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9E69FF238E5EA90017D1B5 /* InfoViewController.swift */; };
+		9EA0981423C8959000C8F116 /* shoot.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9EA0981123C8958F00C8F116 /* shoot.mp4 */; };
+		9EA0981523C8959000C8F116 /* Game_Tutorial.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 9EA0981223C8959000C8F116 /* Game_Tutorial.m4v */; };
+		9EA0981623C8959000C8F116 /* explosion.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9EA0981323C8959000C8F116 /* explosion.mp4 */; };
+		9EA0981823C8B10D00C8F116 /* Shojumaru-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA0981723C8B10D00C8F116 /* Shojumaru-Regular.ttf */; };
 		9EB97CEF21BD2DC2009ED736 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB97CEE21BD2DC2009ED736 /* Extensions.swift */; };
 		9EBD7F9F21201A5A001B0C81 /* AddFriendSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBD7F9E21201A5A001B0C81 /* AddFriendSecondViewController.swift */; };
 		9EC06F7720DE265A00138175 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC06F7620DE265A00138175 /* GameManager.swift */; };
@@ -80,8 +82,6 @@
 		9E21895720DC7C3C008997FB /* target.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = target.scnassets; sourceTree = "<group>"; };
 		9E2AE56F20ECBF0B00AA54B9 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		9E2AE57120ECBF3200AA54B9 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
-		9E365140239FB9ED00534569 /* shoot.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = shoot.mp4; path = ../../../Desktop/shoot.mp4; sourceTree = "<group>"; };
-		9E365141239FB9ED00534569 /* explosion.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = explosion.mp4; path = ../../../Desktop/explosion.mp4; sourceTree = "<group>"; };
 		9E3966D1237A855A006E72CF /* facebook-swift-sdk-0.9.0.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = "facebook-swift-sdk-0.9.0.zip"; path = "../../Downloads/facebook-swift-sdk-0.9.0.zip"; sourceTree = "<group>"; };
 		9E3966D2237A857C006E72CF /* facebook-swift-sdk-0.9.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "facebook-swift-sdk-0.9.0"; path = "../../Downloads/facebook-swift-sdk-0.9.0"; sourceTree = "<group>"; };
 		9E3966D3237A85B8006E72CF /* FacebookShare.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = FacebookShare.podspec; path = "../../Downloads/facebook-swift-sdk-0.9.0/FacebookShare.podspec"; sourceTree = "<group>"; };
@@ -123,6 +123,13 @@
 		9E96739323C76F4800688841 /* GameCube.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GameCube.ttf; sourceTree = "<group>"; };
 		9E96739423C76F4800688841 /* Impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Impact.ttf; sourceTree = "<group>"; };
 		9E9E69FF238E5EA90017D1B5 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		9EA0980E23C894DE00C8F116 /* Game_Tutorial.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = Game_Tutorial.mov; path = ../../Desktop/Game/Game_Tutorial.mov; sourceTree = "<group>"; };
+		9EA0980F23C894DE00C8F116 /* shoot.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = shoot.mp4; path = ../../Desktop/Game/shoot.mp4; sourceTree = "<group>"; };
+		9EA0981023C894DE00C8F116 /* explosion.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = explosion.mp4; path = ../../Desktop/Game/explosion.mp4; sourceTree = "<group>"; };
+		9EA0981123C8958F00C8F116 /* shoot.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = shoot.mp4; sourceTree = "<group>"; };
+		9EA0981223C8959000C8F116 /* Game_Tutorial.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = Game_Tutorial.m4v; sourceTree = "<group>"; };
+		9EA0981323C8959000C8F116 /* explosion.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = explosion.mp4; sourceTree = "<group>"; };
+		9EA0981723C8B10D00C8F116 /* Shojumaru-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Shojumaru-Regular.ttf"; sourceTree = "<group>"; };
 		9EB97CEE21BD2DC2009ED736 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9EBD7F9E21201A5A001B0C81 /* AddFriendSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendSecondViewController.swift; sourceTree = "<group>"; };
 		9EC06F7620DE265A00138175 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
@@ -162,6 +169,9 @@
 		9E02D86B226F2CD6005D4221 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9EA0981023C894DE00C8F116 /* explosion.mp4 */,
+				9EA0980E23C894DE00C8F116 /* Game_Tutorial.mov */,
+				9EA0980F23C894DE00C8F116 /* shoot.mp4 */,
 				9E3966D5237A85B8006E72CF /* FacebookCore.podspec */,
 				9E3966D4237A85B8006E72CF /* FacebookLogin.podspec */,
 				9E3966D3237A85B8006E72CF /* FacebookShare.podspec */,
@@ -223,8 +233,9 @@
 		9E36513F239FB96F00534569 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
-				9E365141239FB9ED00534569 /* explosion.mp4 */,
-				9E365140239FB9ED00534569 /* shoot.mp4 */,
+				9EA0981323C8959000C8F116 /* explosion.mp4 */,
+				9EA0981223C8959000C8F116 /* Game_Tutorial.m4v */,
+				9EA0981123C8958F00C8F116 /* shoot.mp4 */,
 			);
 			path = Audio;
 			sourceTree = "<group>";
@@ -232,6 +243,7 @@
 		9E493CBA228D365D0081FB0D /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				9EA0981723C8B10D00C8F116 /* Shojumaru-Regular.ttf */,
 				9E493CC0228D36AA0081FB0D /* ComicNeue-Angular-Regular.otf */,
 				9E96739323C76F4800688841 /* GameCube.ttf */,
 				9E96739423C76F4800688841 /* Impact.ttf */,
@@ -394,7 +406,6 @@
 				9E493CD0228D36AB0081FB0D /* ComicNeue-Angular_Bold.otf in Resources */,
 				9E493CCE228D36AB0081FB0D /* ComicNeue-Angular_Light.otf in Resources */,
 				9E21895020DC7B43008997FB /* LaunchScreen.storyboard in Resources */,
-				9E365143239FB9EE00534569 /* explosion.mp4 in Resources */,
 				9E96739623C76F5300688841 /* GameCube.ttf in Resources */,
 				9E21894D20DC7B43008997FB /* Assets.xcassets in Resources */,
 				9E493CCC228D36AB0081FB0D /* ComicNeue-Angular-Regular.otf in Resources */,
@@ -403,9 +414,11 @@
 				9E493CCA228D36AB0081FB0D /* ComicNeue-Angular_Bold_Oblique.otf in Resources */,
 				9E493CCD228D36AB0081FB0D /* ComicNeue_Bold_Oblique.otf in Resources */,
 				9E96739523C76F5000688841 /* Impact.ttf in Resources */,
-				9E365142239FB9EE00534569 /* shoot.mp4 in Resources */,
+				9EA0981423C8959000C8F116 /* shoot.mp4 in Resources */,
 				9E21895820DC7C3C008997FB /* target.scnassets in Resources */,
+				9EA0981623C8959000C8F116 /* explosion.mp4 in Resources */,
 				9E493CC8228D36AB0081FB0D /* ComicNeue-Regular.otf in Resources */,
+				9EA0981523C8959000C8F116 /* Game_Tutorial.m4v in Resources */,
 				9E493CD1228D36AB0081FB0D /* ComicNeue_Light.otf in Resources */,
 				9E8601E0233A6B8A0093219A /* Default-568h@2x.png in Resources */,
 				9E21894B20DC7B41008997FB /* Main.storyboard in Resources */,
@@ -413,6 +426,7 @@
 				9E493CC9228D36AB0081FB0D /* ComicNeue_Oblique.otf in Resources */,
 				9E0A14FE227C5D63007ED3CB /* HitSide.scnp in Resources */,
 				9E0A14FC227C58C4007ED3CB /* Assets.xcassets in Resources */,
+				9EA0981823C8B10D00C8F116 /* Shojumaru-Regular.ttf in Resources */,
 				9E493CC7228D36AB0081FB0D /* ComicNeue-Angular_Oblique.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

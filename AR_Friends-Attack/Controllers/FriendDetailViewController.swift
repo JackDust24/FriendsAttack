@@ -79,9 +79,9 @@ class FriendDetailViewController: UIViewController {
     // Rest the scores
     @IBAction func resetPressed(_ sender: Any) {
         // Give use the option to reset all the scores, or just the friends scores
-          let actionSheet = UIAlertController(title: NSLocalizedString("Reset Score", comment: "Alert title"), message: nil, preferredStyle: .actionSheet)
+          let actionSheet = UIAlertController(title: NSLocalizedString("Reset Score", comment: "Alert Title"), message: nil, preferredStyle: .actionSheet)
           
-          actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Clear Score", comment: "Alert title"), style: .default, handler: { action in
+          actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Clear Score", comment: "Alert Title"), style: .default, handler: { action in
               self.dismiss(animated: true)
             self.showResetConfirmation()
 
@@ -110,7 +110,7 @@ class FriendDetailViewController: UIViewController {
     
     func showResetConfirmation() {
            
-        let alertNameMissing = UIAlertController(title: NSLocalizedString("Reset Kill Score", comment: "Alert title"),
+        let alertNameMissing = UIAlertController(title: NSLocalizedString("Reset Kill Score", comment: "Alert Title"),
                                                     message: NSLocalizedString("Are You Sure? This can not be undone.", comment: "Alert message"), preferredStyle: .alert)
         alertNameMissing.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: "Alert Title"), style: .destructive, handler: { action in
                self.clearScores()
