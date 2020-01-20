@@ -31,8 +31,8 @@ func addCornerRadiusToButton(button: UIButton) {
 // This is for GameController on how far the range is for position appearance
 func createRangeOfArrays(start: Int, end: Int) -> Array<Int> {
     
-    print(start)
-    print(end)
+    // print(start)
+    // print(end)
     let arr = Array(start...end)
     return arr
 }

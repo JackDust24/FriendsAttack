@@ -158,7 +158,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print("viewWillDisappear")
+        // print("viewWillDisappear")
         // Clear Nodes
         self.sceneView.scene.rootNode.enumerateChildNodes { (existingNodes, _) in
             existingNodes.removeAllActions()
@@ -171,7 +171,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
     }
     
     deinit {
-        print("Deint")
+        // print("Deint")
         fetchedResultsController.delegate = nil
 
         sceneView.session.delegate = nil
@@ -189,7 +189,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
     
     func configureView() {
         if managedContext == nil {
-            print("configureView - managedContext == nil")
+            // print("configureView - managedContext == nil")
             abortApp(abortType: "Data")
             // return
         }
@@ -289,7 +289,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         
         sceneView.scene.rootNode.childNodes.filter({
             $0.physicsBody?.categoryBitMask == 4 }).forEach({
-                //                print("Node Enumerate -\($0.name)")
+                //                // print("Node Enumerate -\($0.name)")
                 if !$0.hasActions {
                     $0.removeAllActions()                }
                 
@@ -341,7 +341,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
     func populateFriends() {
         
         if managedContext == nil {
-            print("populateFriends - managedContext == nil")
+            // print("populateFriends - managedContext == nil")
              abortApp(abortType: "Data")
             // return
             
@@ -395,7 +395,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
     func addBoxNodeToScene(friendDetails: Array<friend>) {
         
         guard friendDetails.count > 0 else {
-            print("ERROR NO NODES")
+            // print("ERROR NO NODES")
             abortApp(abortType: "Data")
             return
         }
@@ -500,10 +500,10 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         // Check to see if the last node does not equal the new bullte node, if it does not allocate it
         // If it does, it means it is the same node as before and that it is causing a contact twice.
         if lastBulletNode != contact.nodeB {
-            print("Not the same node")
+            // print("Not the same node")
             lastBulletNode = contact.nodeB
         } else {
-            print("Same bullet node - set to avoid collision")
+            // print("Same bullet node - set to avoid collision")
             
             return
         }
@@ -517,15 +517,15 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         weak var nodeA = contact.nodeA
         weak var nodeB = contact.nodeB
         
-        let nodeAMask = nodeA?.categoryBitMask
-        // let nodeAMaskTest = nodeA?.physicsBody?.categoryBitMask
-        let nodeBMask = nodeB?.categoryBitMask
-        // let nodeBMaskTest = nodeB?.physicsBody?.categoryBitMask
-        print("Node Masks - \(String(describing: nodeAMask)), \(String(describing: nodeBMask))")
+//        let nodeAMask = nodeA?.categoryBitMask
+//        // let nodeAMaskTest = nodeA?.physicsBody?.categoryBitMask
+//        let nodeBMask = nodeB?.categoryBitMask
+//        // let nodeBMaskTest = nodeB?.physicsBody?.categoryBitMask
+//        // print("Node Masks - \(String(describing: nodeAMask)), \(String(describing: nodeBMask))")
 
-        print("NodeA Name - \(String(describing: nodeA?.name)) / NodeA Position - \(String(describing: nodeA?.worldPosition)) / NodeB Name - \(String(describing: nodeB?.name))/ NodeB Position - \(String(describing: nodeB?.position))")
+        // print("NodeA Name - \(String(describing: nodeA?.name)) / NodeA Position - \(String(describing: nodeA?.worldPosition)) / NodeB Name - \(String(describing: nodeB?.name))/ NodeB Position - \(String(describing: nodeB?.position))")
 
-        print("Node Info \(String(describing: nodeA)), \(String(describing: nodeB))")
+        // print("Node Info \(String(describing: nodeA)), \(String(describing: nodeB))")
         
         if nodeA?.physicsBody?.categoryBitMask == BitMaskCategory.target.rawValue {
             targetNode = nodeA
@@ -599,7 +599,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
                 
                 // Update stats and message
                 targetKilled = true
-//                print("You KILLED \(targetNode?.name ?? "No Name")")
+//                // print("You KILLED \(targetNode?.name ?? "No Name")")
 
                 tempMessage = String(format:
                 NSLocalizedString("WHO YOU KILLED LABEL",
@@ -619,7 +619,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
                 targetNode = nil
                 
             } else {
-                print("You HIT \(targetNode?.name ?? "No Name")")
+                // print("You HIT \(targetNode?.name ?? "No Name")")
 
                 // Node isn't black so just a hit, not a kill.
                 targetKilled = false
@@ -649,7 +649,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
                 if let audioSource = getAudioExplosion {
                     audioSource.load()
                     let player = SCNAudioPlayer(source: audioSource)
-//                    print("\(player)")
+//                    // print("\(player)")
                     nodeB?.addAudioPlayer(player)
                     
                 }
@@ -673,7 +673,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
             }
             
             particleNode.runAction(SCNAction.wait(duration: 2.0), completionHandler: ({
-                print("Remove Particle - \(particleNode)")
+                // print("Remove Particle - \(particleNode)")
                 particleNode.removeFromParentNode()
                 particleNode.geometry = nil
             }))
@@ -686,11 +686,11 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
     func physicsWorld(_ world: SCNPhysicsWorld, didEnd contact: SCNPhysicsContact) {
         // collisionInProgress = false
         
-        print("physicsWorld - didEnd")
-        weak var nodeA = contact.nodeA
-        weak var nodeB = contact.nodeB
+        // print("physicsWorld - didEnd")
+//        weak var nodeA = contact.nodeA
+//        weak var nodeB = contact.nodeB
 
-        print("Node Info for end - \(String(describing: nodeA)), \(String(describing: nodeB))")
+        // print("Node Info for end - \(String(describing: nodeA)), \(String(describing: nodeB))")
       /*  nodeB?.removeFromParentNode()
         nodeB?.geometry = nil
         nodeB?.physicsBody = nil
@@ -789,7 +789,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
             let location = SCNVector3(transform.m41, transform.m42, transform.m43)
             let position = orientation + location
         
-            print("Position = \(position)")
+            // print("Position = \(position)")
               
             let bullet = SCNNode(geometry: SCNSphere(radius: 0.1))
             bullet.name = "bullet"
@@ -810,7 +810,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
               
                 }
                 self.sceneView.scene.rootNode.addChildNode(bullet)
-                print("bullet added \(bullet)")
+                // print("bullet added \(bullet)")
                 
                 // Set the Audio
                 if let audioSource = self.getAudioShoot {
@@ -819,7 +819,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
                     DispatchQueue.global(qos: .background).sync { [unowned self] in
                         self.audioShootPlayer = SCNAudioPlayer(source: audioSource)
                         bullet.addAudioPlayer(self.audioShootPlayer!)
-    //                    print("Audio - Bullet - \(String(describing: self.audioShootPlayer))")
+    //                    // print("Audio - Bullet - \(String(describing: self.audioShootPlayer))")
                     }
                 }
             }
@@ -835,7 +835,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
                 [waitAction, SCNAction.wait(duration: 0.5),
                 SCNAction.removeFromParentNode()]),  completionHandler:
                 ({ [unowned self] in
-                    print("bullet removed \(bullet)")
+                    // print("bullet removed \(bullet)")
                     bullet.geometry = nil
                     bullet.physicsBody = nil
                     self.currentlyShooting = false
@@ -1180,7 +1180,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
     func randomNonWholeNumbers(numA: CGFloat, numB: CGFloat) -> CGFloat {
         let randomNumber =  CGFloat(arc4random()) / CGFloat(UINT32_MAX) * (numA - numB) + min(numA, numB)
         let roundedNumber = (randomNumber*100).rounded()/100
-//        print(roundedNumber)  // 1.57
+//        // print(roundedNumber)  // 1.57
         return roundedNumber
     }
     
@@ -1192,7 +1192,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
         let orientation = SCNVector3(-transform.m31, -transform.m32, -transform.m33)
         let location = SCNVector3(transform.m41, transform.m42, transform.m43)
         let position = orientation + location
-        print("Position = \(position)")
+        // print("Position = \(position)")
         
         // If user needs to turn the device around, let them know
         if position.z > 0.0 {
@@ -1210,20 +1210,20 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
     // MARK: - Session functions
     func session(_ session: ARSession, didFailWithError error: Error) {
 
-        print("SESSION ERROR didFailWithError - \(error)")
+        // print("SESSION ERROR didFailWithError - \(error)")
         abortApp(abortType: "Session")
     }
     
     func sessionWasInterrupted(_ session: ARSession) {
         // Inform the user that the session has been interrupted, for example, by presenting an overlay
-        print("Session was interrupted")
+        // print("Session was interrupted")
         abortApp(abortType: "Session")
     }
     
     func sessionInterruptionEnded(_ session: ARSession) {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
         
-        print("Need to add an Exit Game and leave")
+        // print("Need to add an Exit Game and leave")
 
     }
     
@@ -1240,7 +1240,7 @@ class GameController: UIViewController, SCNPhysicsContactDelegate, NSFetchedResu
     /*
     @available(iOS 11.3, *)
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
-        print("adjust frame")
+        // print("adjust frame")
         
         guard let currentFrame = sceneView.session.currentFrame?.camera else { return }
         let transform = currentFrame.transform
@@ -1254,14 +1254,14 @@ extension GameController: ARSCNViewDelegate {
     
 //MARK:- Renders
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-        print("update renderer node")
+        // print("update renderer node")
         
     }
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         
 //        let currentPosition = sceneView.scene.sess
-       // print("World Position ")
+       // // print("World Position ")
         if !gameStarted || gameIsPaused {
             return // Won't start the updates until all started and uptodate
         }
@@ -1298,7 +1298,7 @@ extension GameController: ARSCNViewDelegate {
             previousTime = time
             currentTime = currentTime - elapsedTime
             
-//            print("Current time = \(currentTime)")
+//            // print("Current time = \(currentTime)")
             
             DispatchQueue.main.async { [weak self] in
                 // 3
@@ -1376,14 +1376,14 @@ extension Int {
 // To clean up the nodes
 extension SCNNode {
     func cleanup() {
-        print("Child Called")
+        // print("Child Called")
 
         for child in childNodes {
-            print("Child - \(child)")
+            // print("Child - \(child)")
             child.removeFromParentNode()
             child.cleanup()
         }
-        print("Child - End of loop")
+        // print("Child - End of loop")
 
         geometry = nil
     }

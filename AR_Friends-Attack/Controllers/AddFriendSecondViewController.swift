@@ -97,7 +97,7 @@ class AddFriendSecondViewController: UIViewController, UITextFieldDelegate {
         }
         
         if trimmedName.count > 13 {
-            print("Over Limit")
+            // print("Over Limit")
             showMessage(messageType: "overlimit")
             return
         }
@@ -122,7 +122,7 @@ class AddFriendSecondViewController: UIViewController, UITextFieldDelegate {
             let results = try managedContext.fetch(request)
             // Fetch List Records
             for result in results {
-                print(result.value(forKey: "name") ?? "no name")
+                // print(result.value(forKey: "name") ?? "no name")
                 let nameInDB = (result.value(forKey: "name") as! String)
                 if nameInDB == name {
                     return true // Name already exists so we must get them to add a new one

@@ -60,7 +60,7 @@ class InfoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         comment: "Contact me comment")
         
         thanksLabel.text =
-        NSLocalizedString("Special thanks to:\n\nFreepik for his profile icons at https://www.flaticon.com/authors/freepik.",
+        NSLocalizedString("Special thanks to:\n\nFreepik for his profile icons at https://www.flaticon.com/authors/freepikand JustInVoke at https://freesound.org/s/446121/.",
                comment: "Thanks comment")
         
         
@@ -94,7 +94,7 @@ class InfoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     @IBAction func exit(_ sender: Any) {
         // Check if the textfield changed, if so save this to the game level settings
         if gameLevelField.text != currentGameLevel {
-            print("Text field for game level has changed")
+            // print("Text field for game level has changed")
             // Change the game level settings before exiting
             // We cab add something blank in case there is a problem as it won't corrupt the properties at all
             GameStateManager.sharedInstance().changeLevel(newLevel: gameLevelField.text ?? "")

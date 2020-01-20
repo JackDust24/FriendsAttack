@@ -65,7 +65,7 @@ class FriendDetailViewController: UIViewController {
     func configureView() {
         // Update the user interface for the detail item.
         if self.killedLabel == nil { return } // no web view, bail out
-        print("Detail item - \(String(describing: detailItem))")
+        // print("Detail item - \(String(describing: detailItem))")
         nameLabel.text = detailItem?.name
         killedLabel.text = "\(detailItem?.killed ?? 0)"
         friendImage.image = detailItem?.image

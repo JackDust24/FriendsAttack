@@ -75,7 +75,7 @@ class GameStateManager: NSObject {
         } else if newLevel == NSLocalizedString("Hard", comment: "Game Level") {
             settingsGameLevel(level: GameLevel.hard)
         }
-//        print(GameLevel.allCases[0].localizedString())
+//        // print(GameLevel.allCases[0].localizedString())
     }
     
     // 2. Set the game settings

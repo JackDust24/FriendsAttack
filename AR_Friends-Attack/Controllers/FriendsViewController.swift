@@ -46,7 +46,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     //MARK:- Views
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("ViewDidLoad")
+        // print("ViewDidLoad")
         // Set the rounded borders for the view
         displayForSecondView(view: self.secondView)
         // addCornerRadiusToButton(button: self.exitButton)
@@ -77,7 +77,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func configureView() {
         if managedContext == nil {
-            print("Context is nil")
+            // print("Context is nil")
             return
         }
     }
@@ -92,7 +92,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         do {
             try fetchedResultsController.performFetch()
         } catch {
-            print("Perform fetch error")
+            // print("Perform fetch error")
             abortApp(abortType: "Data")
         }
     }
@@ -156,11 +156,11 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         guard let friends = fetchedResultsController.fetchedObjects else { return 0 }
-        print("FriendsCount - \(friends.count)")
+        // print("FriendsCount - \(friends.count)")
         
         // If reached it's max peak, cannot add any more.
         if friends.count == kMaxFriends {
-            print("Max friends - \(friends.count)")
+            // print("Max friends - \(friends.count)")
             maxFriendsReached = true
             return friends.count + 1
         }
@@ -192,14 +192,14 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         } else {
             // If max reached cannot add more
             if maxFriendsReached {
-                print("Max friends reached")
+                // print("Max friends reached")
                 cell.displayContent(image: UIImage(named: "target.scnassets/\(kDefaultFriendAdd).png")!, title: NSLocalizedString("Max Friends Reached", comment: "Table View Lebel"), killed: 0, addFriend: true)
                 cell.isUserInteractionEnabled = false
                 cell.tag = 200 // Cannot add friend
                 return cell
             }
             // Otherwise can add friend
-            print("Can Add row")
+            // print("Can Add row")
             cell.isUserInteractionEnabled = true
             cell.displayContent(image: UIImage(named: "target.scnassets/\(kDefaultFriendAdd).png")!, title: NSLocalizedString("Add Friend", comment: "Table View Lebel"), killed: 0, addFriend: true)
             cell.tag = 100 // This way we can add friend
@@ -213,13 +213,13 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Max cells reached
         if cell?.tag == 200 {
             // Will not ever be called, but we will keep anyway
-            print("Max Reached Selected")
+            // print("Max Reached Selected")
             return
             // Can return as nothing to do here.
         }
         // Cell.tag is for Adding a friend - so we call Add friend, else we view the Friend
         if cell?.tag == 100 {
-            print("Add Friend Selected")
+            // print("Add Friend Selected")
 
             let nextController = "AddFriendViewController"
             let secondViewController = storyboard?.instantiateViewController(withIdentifier: nextController)  as! AddFriendViewController
@@ -367,10 +367,10 @@ extension FriendsViewController: NSFetchedResultsControllerDelegate {
         
         switch type {
         case .insert:
-            print("Insert")
+            // print("Insert")
             tableView.insertRows(at: [newIndexPath!], with: .fade)
         case .delete:
-            print("delete")
+            // print("delete")
             tableView.deleteRows(at: [indexPath!], with: .fade)
             perform(#selector(reloadTable), with: nil, afterDelay: 2)
         case .update:
@@ -386,26 +386,27 @@ extension FriendsViewController: NSFetchedResultsControllerDelegate {
         case .move:
             tableView.deleteRows(at: [indexPath!], with: .fade)
             tableView.insertRows(at: [newIndexPath!], with: .fade)
+
         @unknown default:
             //Nothing to do here.
             return
         }
-        print("*** RELOAD DATA")
+        // print("*** RELOAD DATA")
         
     }
     
     func controller(_ controller:
         NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
         
-        print("TEST 2")
+        // print("TEST 2")
         guard let friends = fetchedResultsController.fetchedObjects else {
-            print("No fetched Objects")
+            // print("No fetched Objects")
             return
             
         }
         // We do not want to continue as only the default row left
         if friends.count == 0 {
-            print("No fetched Objects1")
+            // print("No fetched Objects1")
 
             return
         }
@@ -415,9 +416,9 @@ extension FriendsViewController: NSFetchedResultsControllerDelegate {
         case .delete:
             tableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
         case .update:
-            print("*** NSFetchedResultsChangeUpdate (section)")
+             print("*** NSFetchedResultsChangeUpdate (section)")
         case .move:
-            print("*** NSFetchedResultsChangeMove (section)")
+             print("*** NSFetchedResultsChangeMove (section)")
         @unknown default:
             //Nothing to do here
             return

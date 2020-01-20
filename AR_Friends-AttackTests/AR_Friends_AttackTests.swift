@@ -40,11 +40,11 @@ class AR_Friends_AttackTests: XCTestCase {
     func testPassMoveLeft() {
         
         let passPosition = SCNVector3(-2, 0, 0)
-        print(passPosition)
+        // print(passPosition)
         
         // _ = gameController.testCall()
-        print(Movement.left.rawValue)
-        print(Movement.left)
+        // print(Movement.left.rawValue)
+        // print(Movement.left)
         let result = gameController.canNodeMove(nodePosition: passPosition, newPosition: moveLeft, moveDirection: Movement.left)
         XCTAssertEqual(result, true, "testPassMoveLeft is a success")
     }
@@ -52,7 +52,7 @@ class AR_Friends_AttackTests: XCTestCase {
     func testPassMoveRight() {
         
         let passPosition = SCNVector3(2, 0, 0)
-        print(passPosition)
+        // print(passPosition)
         
         let result = gameController.canNodeMove(nodePosition: passPosition, newPosition: moveRight, moveDirection: Movement.right)
         XCTAssertEqual(result, true, "testPassMoveRight is a success")
@@ -61,7 +61,7 @@ class AR_Friends_AttackTests: XCTestCase {
     func testPassMoveUp() {
         
         let passPosition = SCNVector3(0, 2, 0)
-        print(passPosition)
+        // print(passPosition)
 
         let result = gameController.canNodeMove(nodePosition: passPosition, newPosition: moveUp, moveDirection: Movement.up)
         XCTAssertEqual(result, true, "testPassMoveUp is a success")
@@ -70,7 +70,7 @@ class AR_Friends_AttackTests: XCTestCase {
     func testPassMoveDown() {
         
         let passPosition = SCNVector3(0, -2, 0)
-        print(passPosition)
+        // print(passPosition)
 
         let result = gameController.canNodeMove(nodePosition: passPosition, newPosition: moveDown, moveDirection: Movement.down)
         XCTAssertEqual(result, true, "testPassMoveDown is a success")
@@ -79,9 +79,9 @@ class AR_Friends_AttackTests: XCTestCase {
     func testPassMoveForwards() {
         
         let passPosition = SCNVector3(0, 0, -3)
-        print("Forwards - \(passPosition)")
+        // print("Forwards - \(passPosition)")
         let test = Int(passPosition.z) + Int(moveForwards.z)
-        print("Forwards - \(test)")
+        // print("Forwards - \(test)")
 
         let result = gameController.canNodeMove(nodePosition: passPosition, newPosition: moveForwards, moveDirection: Movement.forwards)
         XCTAssertEqual(result, true, "testPassMoveForwards is a success")
@@ -90,7 +90,7 @@ class AR_Friends_AttackTests: XCTestCase {
     func testPassMoveBackwards() {
         
         let passPosition = SCNVector3(0, 0, -2)
-        print(passPosition)
+        // print(passPosition)
 
         let result = gameController.canNodeMove(nodePosition: passPosition, newPosition: moveBackwards, moveDirection: Movement.backwards)
         XCTAssertEqual(result, true, "testPassMoveBackwards is a success")
@@ -100,7 +100,7 @@ class AR_Friends_AttackTests: XCTestCase {
     func testFailMoveLeft() {
         
         let failPosition = SCNVector3(-6, 0, 0)
-        print(failPosition)
+        // print(failPosition)
 
         let result = gameController.canNodeMove(nodePosition: failPosition, newPosition: moveLeft, moveDirection: Movement.left)
         XCTAssertEqual(result, false, "testFailMoveLeft is a failure")
@@ -109,7 +109,7 @@ class AR_Friends_AttackTests: XCTestCase {
     func testFailMoveRight() {
         
      let failPosition = SCNVector3(6, 0, 0)
-     print(failPosition)
+     // print(failPosition)
 
         let result = gameController.canNodeMove(nodePosition: failPosition, newPosition: moveRight, moveDirection: Movement.right)
      XCTAssertEqual(result, false, "testFailMoveRight is a failure")
@@ -118,7 +118,7 @@ class AR_Friends_AttackTests: XCTestCase {
     func testFailMoveUp() {
         
      let failPosition = SCNVector3(0, 6, 0)
-     print(failPosition)
+     // print(failPosition)
 
         let result = gameController.canNodeMove(nodePosition: failPosition, newPosition: moveUp, moveDirection: Movement.up)
      XCTAssertEqual(result, false, "testFailMoveUp is a failure")
@@ -127,7 +127,7 @@ class AR_Friends_AttackTests: XCTestCase {
     func testFailMoveDown() {
         
      let failPosition = SCNVector3(0, -6, 0)
-     print(failPosition)
+     // print(failPosition)
 
         let result = gameController.canNodeMove(nodePosition: failPosition, newPosition: moveDown, moveDirection: Movement.down)
      XCTAssertEqual(result, false, "testFailMoveDown is a failure")
@@ -136,7 +136,7 @@ class AR_Friends_AttackTests: XCTestCase {
     func testFailMoveForwards() {
         
      let failPosition = SCNVector3(0, 0, -2)
-     print(failPosition)
+     // print(failPosition)
 
         let result = gameController.canNodeMove(nodePosition: failPosition, newPosition: moveForwards, moveDirection: Movement.forwards)
      XCTAssertEqual(result, false, "testFailMoveForwards is a failure")
@@ -145,7 +145,7 @@ class AR_Friends_AttackTests: XCTestCase {
     func testFailMoveBackwards() {
         
      let failPosition = SCNVector3(0, 0, -4)
-     print(failPosition)
+     // print(failPosition)
 
         let result = gameController.canNodeMove(nodePosition: failPosition, newPosition: moveBackwards, moveDirection: Movement.backwards)
         XCTAssertEqual(result, false, "testFailMoveBackwards is a failure")
