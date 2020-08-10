@@ -5,6 +5,7 @@
 //  Created by JasonMac on 12/8/2561 BE.
 //  Copyright © 2561 JasonMac. All rights reserved.
 //
+// After the view controller we want to edit image and name
 
 import UIKit
 import CoreData

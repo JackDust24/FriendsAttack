@@ -5,6 +5,7 @@
 //  Created by JasonMac on 17/9/2562 BE.
 //  Copyright © 2562 JasonMac. All rights reserved.
 //
+// For viewing Friends
 
 import UIKit
 

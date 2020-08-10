@@ -5,6 +5,7 @@
 //  Created by JasonMac on 16/10/2562 BE.
 //  Copyright © 2562 JasonMac. All rights reserved.
 //
+// Any Helper Functions I need
 
 import Foundation
 import UIKit

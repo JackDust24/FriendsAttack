@@ -256,24 +256,7 @@ class StartViewController: UIViewController {
         
     }
     
-    func playVideo() {
-        
-        guard let path = Bundle.main.path(forResource: "Game_Tutorial", ofType:"m4v") else {
-            debugPrint("video.m4v not found")
-            return
-        }
-        
-        let player = AVPlayer(url: URL(fileURLWithPath: path))
-        let vc = AVPlayerViewController()
-        vc.player = player
-    
-        present(vc, animated: true) {
-            vc.player?.play()
-            vc.player?.volume = 0.0
-        }
-        
-    }
-    
+   
     // We ask the user if they are happy that we are using default data.
     // Gets called after pressing play
     func defaultDataAlerts() {
@@ -326,6 +309,25 @@ class StartViewController: UIViewController {
             }
             try! managedContext.save()
         }
+    }
+    
+    //MARK:- Video Tutorial
+    func playVideo() {
+        
+        guard let path = Bundle.main.path(forResource: "Game_Tutorial", ofType:"m4v") else {
+            debugPrint("video.m4v not found")
+            return
+        }
+        
+        let player = AVPlayer(url: URL(fileURLWithPath: path))
+        let vc = AVPlayerViewController()
+        vc.player = player
+    
+        present(vc, animated: true) {
+            vc.player?.play()
+            vc.player?.volume = 0.0
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {

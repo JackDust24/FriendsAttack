@@ -5,6 +5,7 @@
 //  Created by JasonMac on 4/7/2561 BE.
 //  Copyright © 2561 JasonMac. All rights reserved.
 //
+// The controller for enabling the adding of friends
 
 import UIKit
 import CoreData
@@ -192,6 +193,7 @@ extension AddFriendViewController: UIImagePickerControllerDelegate {
     }
 }
 
+// MARK: - Helper Functions for Image Picker
 // Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
 	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})

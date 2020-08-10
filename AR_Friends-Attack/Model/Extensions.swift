@@ -5,6 +5,7 @@
 //  Created by JasonMac on 9/12/2561 BE.
 //  Copyright © 2561 JasonMac. All rights reserved.
 //
+// Extenmsions that can be useful
 
 import Foundation
 import UIKit

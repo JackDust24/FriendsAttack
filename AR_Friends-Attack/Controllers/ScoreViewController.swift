@@ -5,6 +5,7 @@
 //  Created by JasonMac on 16/5/2562 BE.
 //  Copyright © 2562 JasonMac. All rights reserved.
 //
+// View Controller for showing the score.
 
 import UIKit
 import CoreData

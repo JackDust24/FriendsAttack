@@ -5,6 +5,7 @@
 //  Created by JasonMac on 27/11/2562 BE.
 //  Copyright © 2562 JasonMac. All rights reserved.
 //
+// Settings and contact information
 
 import UIKit
 

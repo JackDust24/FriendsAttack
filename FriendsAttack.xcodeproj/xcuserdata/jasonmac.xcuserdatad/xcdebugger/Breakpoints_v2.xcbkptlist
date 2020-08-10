@@ -55,8 +55,8 @@
             filePath = "AR_Friends-Attack/Controllers/ScoreViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -87,8 +87,8 @@
             filePath = "AR_Friends-Attack/Controllers/GameController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1186"
-            endingLineNumber = "1186"
+            startingLineNumber = "1187"
+            endingLineNumber = "1187"
             landmarkName = "GameController"
             landmarkType = "3">
          </BreakpointContent>
@@ -103,8 +103,8 @@
             filePath = "AR_Friends-Attack/Controllers/GameController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "686"
-            endingLineNumber = "686"
+            startingLineNumber = "687"
+            endingLineNumber = "687"
             landmarkName = "physicsWorld(_:didEnd:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -5,6 +5,7 @@
 //  Created by JasonMac on 4/7/2561 BE.
 //  Copyright © 2561 JasonMac. All rights reserved.
 //
+// Controller for detailed view of friends
 
 import UIKit
 import CoreData
